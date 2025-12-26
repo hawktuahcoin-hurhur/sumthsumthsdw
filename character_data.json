@@ -1,0 +1,276 @@
+{
+  "characters": [
+    {
+      "name": "Sunny",
+      "first_appearance": 1,
+      "aliases": ["Sunless", "Lord Shadow", "Mongrel"],
+      "description": "The main protagonist. An orphan from the outskirts who awakens as a Sleeper.",
+      "type": "protagonist",
+      "aspect": "Shadow",
+      "clan": "None initially"
+    },
+    {
+      "name": "Nephis",
+      "first_appearance": 15,
+      "aliases": ["Changing Star", "Neph"],
+      "description": "A brilliant and powerful Awakened from a noble lineage. Has a burning inner light.",
+      "type": "main",
+      "aspect": "Light/Fire",
+      "clan": "Valor"
+    },
+    {
+      "name": "Cassie",
+      "first_appearance": 20,
+      "aliases": ["Cassia", "The Blind Oracle"],
+      "description": "A blind girl with prophetic visions. Gentle and kind despite her disability.",
+      "type": "main",
+      "aspect": "Fate/Prophecy",
+      "clan": "None"
+    },
+    {
+      "name": "Kai",
+      "first_appearance": 25,
+      "aliases": ["Nightingale"],
+      "description": "A charming young man with a mysterious past and hidden depths.",
+      "type": "main",
+      "aspect": "Wind",
+      "clan": "Song"
+    },
+    {
+      "name": "Effie",
+      "first_appearance": 30,
+      "aliases": ["Raised by Wolves"],
+      "description": "A lazy but incredibly talented Legacy. Loves food and sleeping.",
+      "type": "main",
+      "aspect": "Beast",
+      "clan": "None"
+    },
+    {
+      "name": "Caster",
+      "first_appearance": 35,
+      "aliases": [],
+      "description": "An arrogant Legacy from a powerful clan. Initially antagonistic.",
+      "type": "secondary",
+      "aspect": "Unknown",
+      "clan": "Unknown"
+    },
+    {
+      "name": "Shadow",
+      "first_appearance": 1,
+      "aliases": ["The First Shadow", "Demon of Shadows"],
+      "description": "Sunny's shadow, which has its own mysterious sentience and personality.",
+      "type": "companion",
+      "aspect": "Shadow",
+      "clan": "N/A"
+    },
+    {
+      "name": "Mordret",
+      "first_appearance": 400,
+      "aliases": ["The Prince of Nothing", "Mirror Knight"],
+      "description": "A mysterious and dangerous figure with terrifying powers.",
+      "type": "antagonist",
+      "aspect": "Mirror/Reflection",
+      "clan": "Valor"
+    },
+    {
+      "name": "Jet",
+      "first_appearance": 150,
+      "aliases": ["Soul Reaper"],
+      "description": "Leader of the Irregulars hunting cohort. Stern but fair.",
+      "type": "secondary",
+      "aspect": "Death",
+      "clan": "None"
+    },
+    {
+      "name": "Teacher Julius",
+      "first_appearance": 5,
+      "aliases": ["Instructor Julius"],
+      "description": "The instructor at the Awakened Academy who teaches combat.",
+      "type": "minor",
+      "aspect": "Unknown",
+      "clan": "Academy"
+    },
+    {
+      "name": "Rain",
+      "first_appearance": 800,
+      "aliases": [],
+      "description": "Sunny's younger sister who he cares for deeply.",
+      "type": "secondary",
+      "aspect": "None",
+      "clan": "None"
+    },
+    {
+      "name": "Saint",
+      "first_appearance": 100,
+      "aliases": ["The Stone Saint", "Stone Maiden"],
+      "description": "A mysterious stone echo that becomes one of Sunny's most powerful shadows.",
+      "type": "companion",
+      "aspect": "Stone/Battle",
+      "clan": "N/A"
+    },
+    {
+      "name": "Nightmare",
+      "first_appearance": 50,
+      "aliases": ["Nightmare Creature"],
+      "description": "A terrifying steed-type creature that Sunny bonds with.",
+      "type": "companion",
+      "aspect": "Fear/Speed",
+      "clan": "N/A"
+    },
+    {
+      "name": "Serpent",
+      "first_appearance": 200,
+      "aliases": ["The Azure Serpent"],
+      "description": "A massive serpentine shadow with water-related abilities.",
+      "type": "companion",
+      "aspect": "Water",
+      "clan": "N/A"
+    },
+    {
+      "name": "Morgan",
+      "first_appearance": 600,
+      "aliases": ["War Maiden"],
+      "description": "A powerful female warrior and member of the Valor clan.",
+      "type": "secondary",
+      "aspect": "War",
+      "clan": "Valor"
+    },
+    {
+      "name": "Master Jet",
+      "first_appearance": 200,
+      "aliases": [],
+      "description": "Becomes Sunny's master and mentor in the real world.",
+      "type": "secondary",
+      "aspect": "Death",
+      "clan": "Irregulars"
+    },
+    {
+      "name": "Anvil",
+      "first_appearance": 180,
+      "aliases": [],
+      "description": "A massive, powerful Awakened who works with Jet.",
+      "type": "minor",
+      "aspect": "Strength",
+      "clan": "Irregulars"
+    },
+    {
+      "name": "Fiend",
+      "first_appearance": 1200,
+      "aliases": ["The Undying Fiend"],
+      "description": "A powerful shadow with regenerative abilities.",
+      "type": "companion",
+      "aspect": "Regeneration",
+      "clan": "N/A"
+    },
+    {
+      "name": "Ananke",
+      "first_appearance": 1500,
+      "aliases": ["Weaver of Fate"],
+      "description": "An ancient and powerful being connected to fate itself.",
+      "type": "antagonist",
+      "aspect": "Fate",
+      "clan": "N/A"
+    },
+    {
+      "name": "Hope",
+      "first_appearance": 300,
+      "aliases": ["The Dreamspawn"],
+      "description": "A mysterious creature with connections to dreams.",
+      "type": "secondary",
+      "aspect": "Dreams",
+      "clan": "N/A"
+    }
+  ],
+  "terms": [
+    {
+      "name": "Nightmare Spell",
+      "first_appearance": 1,
+      "description": "The mysterious force that brought the Nightmare Creatures to Earth."
+    },
+    {
+      "name": "Awakened",
+      "first_appearance": 1,
+      "description": "Humans who survived their First Nightmare and gained supernatural powers."
+    },
+    {
+      "name": "Sleeper",
+      "first_appearance": 1,
+      "description": "A person marked by the Spell who will soon face their First Nightmare."
+    },
+    {
+      "name": "First Nightmare",
+      "first_appearance": 1,
+      "description": "The trial every Sleeper must face to become Awakened or die trying."
+    },
+    {
+      "name": "Aspect",
+      "first_appearance": 10,
+      "description": "The unique power granted to an Awakened after surviving their First Nightmare."
+    },
+    {
+      "name": "Flaw",
+      "first_appearance": 10,
+      "description": "A weakness or curse that accompanies an Awakened's Aspect."
+    },
+    {
+      "name": "Soul Core",
+      "first_appearance": 20,
+      "description": "The source of an Awakened's power, grows stronger with experience."
+    },
+    {
+      "name": "Memory",
+      "first_appearance": 15,
+      "description": "Magical items that Awakened can store in their soul and summon at will."
+    },
+    {
+      "name": "Echo",
+      "first_appearance": 50,
+      "description": "Soul remnants of defeated Nightmare Creatures that can be bound."
+    },
+    {
+      "name": "Legacy",
+      "first_appearance": 25,
+      "description": "Children of Awakened who inherit a portion of their parents' power."
+    },
+    {
+      "name": "Dream Realm",
+      "first_appearance": 40,
+      "description": "The mysterious dimension where Nightmare Creatures originate."
+    },
+    {
+      "name": "Seed of Nightmare",
+      "first_appearance": 100,
+      "description": "Cores from powerful Nightmare Creatures used for ascending."
+    },
+    {
+      "name": "Ascension",
+      "first_appearance": 150,
+      "description": "The process of advancing to a higher rank of power."
+    },
+    {
+      "name": "Saint",
+      "first_appearance": 200,
+      "description": "The highest rank of Awakened, immensely powerful beings."
+    },
+    {
+      "name": "Great Clans",
+      "first_appearance": 30,
+      "description": "Powerful families that control much of human society: Valor, Song, others."
+    },
+    {
+      "name": "Irregulars",
+      "first_appearance": 150,
+      "description": "Government hunting cohort that operates outside the Great Clans."
+    },
+    {
+      "name": "Shadow Dance",
+      "first_appearance": 80,
+      "description": "Sunny's special movement technique using shadows."
+    },
+    {
+      "name": "Soul Sea",
+      "first_appearance": 100,
+      "description": "The internal space where an Awakened stores their power and shadows."
+    }
+  ]
+}

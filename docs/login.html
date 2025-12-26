@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Login - Shadow Slave</title>
+    <title>Save Progress - Shadow Slave</title>
     <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
@@ -12,33 +12,41 @@
             <a href="index.html" class="logo">📖 Shadow Slave</a>
             <div class="nav-links">
                 <a href="chapter-list.html">📚 Chapters</a>
-                <a href="login.html">🔐 Login</a>
+                <a href="wiki.html">📝 Wiki</a>
+                <a href="login.html">💾 Save</a>
             </div>
         </nav>
     </header>
     <main>
         
     <div class="login-container">
-        <h1>🔐 Login</h1>
-        <p>Save your reading progress</p>
+        <h1>💾 Save Progress</h1>
+        <p>Your reading progress is automatically saved!</p>
         
         <div class="login-info">
-            <p>✨ <strong>Good news!</strong> Your reading progress is automatically saved in your browser!</p>
+            <p>✨ <strong>Good news!</strong> Your reading progress is stored locally in your browser.</p>
+            <p style="margin-top: 1rem;">Every chapter you read is automatically tracked. Just keep reading!</p>
         </div>
         
-        <div class="oauth-buttons">
-            <button class="oauth-btn local" onclick="alert('Your progress is already being saved locally! Just keep reading.')">
-                💾 Progress Saved Locally
-            </button>
-        </div>
-        
-        <p style="margin-top: 2rem; color: var(--text-light); font-size: 0.9rem;">
-            Your reading progress is stored in your browser's local storage.
-            No account needed!
-        </p>
+        <a href="chapter-list.html" class="btn">📚 View Chapters</a>
     </div>
     
     </main>
+    
+    <div class="ai-chat-widget">
+        <button class="ai-chat-button" title="AI Assistant">🤖</button>
+        <div class="ai-chat-panel">
+            <div class="ai-chat-header">
+                <h3>🤖 Shadow Slave Guide</h3>
+                <button class="ai-chat-close">&times;</button>
+            </div>
+            <div class="ai-chat-messages"></div>
+            <div class="ai-chat-input">
+                <input type="text" placeholder="Ask about characters, terms...">
+                <button>Send</button>
+            </div>
+        </div>
+    </div>
     <script src="js/main.js"></script>
 </body>
 </html>

@@ -1,0 +1,126 @@
+{% extends "base.html" %}
+
+{% block title %}{{ novel.title }} - Novel Reader{% endblock %}
+
+{% block content %}
+<div class="container">
+    <a href="/" style="color: #00d4ff; text-decoration: none; margin-bottom: 1rem; display: inline-block;">← Back to Home</a>
+    
+    <h1>{{ novel.title }}</h1>
+    <p style="color: #7b2cbf; font-size: 1.1rem;">by {{ novel.author }}</p>
+    
+    {% if novel.description %}
+    <p style="margin: 1.5rem 0; font-size: 1rem; color: rgba(255, 255, 255, 0.8);">
+        {{ novel.description }}
+    </p>
+    {% endif %}
+
+    <div class="stats">
+        <div class="stat">
+            <div class="stat-label">Chapters</div>
+            <div class="stat-value">{{ novel.chapter_count }}</div>
+        </div>
+        <div class="stat">
+            <div class="stat-label">Language</div>
+            <div class="stat-value">{{ novel.language | upper }}</div>
+        </div>
+        {% if novel.tags %}
+        <div class="stat" style="grid-column: 1/-1;">
+            <div class="stat-label">Tags</div>
+            <div class="stat-value" style="font-size: 0.9rem;">{{ novel.tags|join(', ') }}</div>
+        </div>
+        {% endif %}
+    </div>
+
+    <div style="margin-top: 3rem; display: grid; grid-template-columns: 2fr 1fr; gap: 2rem;">
+        <div>
+            <h2>Chapters</h2>
+            <div class="search-box" style="margin-bottom: 1rem;">
+                <input type="text" id="chapterSearch" placeholder="Search chapters...">
+                <button onclick="searchChapters()">Filter</button>
+            </div>
+            <ul class="chapter-list" id="chapterList">
+                {% for chapter in chapters %}
+                <li class="chapter-item">
+                    <a href="/chapter/{{ chapter.id }}">
+                        <span class="chapter-number">Ch. {{ chapter.chapter_number }}</span>
+                        <span class="chapter-title">{{ chapter.title }}</span>
+                        <span class="chapter-meta">
+                            <span title="Words">{{ chapter.word_count }} words</span> •
+                            <span title="Reading time">{{ chapter.reading_time_minutes }} min</span>
+                        </span>
+                    </a>
+                </li>
+                {% endfor %}
+            </ul>
+        </div>
+
+        <div>
+            <h2>Characters (Top 10)</h2>
+            <ul class="character-list">
+                {% for character in characters[:10] %}
+                <li class="character-item">
+                    <div class="character-name">{{ character.name }}</div>
+                    <div class="character-mention">📊 {{ character.mention_count }} mentions</div>
+                    {% if character.sentiment_score %}
+                    <div class="character-mention">💭 Sentiment: {{ "%.2f"|format(character.sentiment_score) }}</div>
+                    {% endif %}
+                </li>
+                {% endfor %}
+                {% if not characters %}
+                <li style="color: rgba(255, 255, 255, 0.5);">No characters tracked yet</li>
+                {% endif %}
+            </ul>
+
+            <div style="margin-top: 2rem; padding: 1rem; background: rgba(0, 212, 255, 0.1); border-radius: 4px; border-left: 3px solid #00d4ff;">
+                <h3 style="margin-top: 0; font-size: 0.95rem;">💡 Quick Links</h3>
+                <ul style="list-style: none; font-size: 0.9rem;">
+                    <li><a href="#" onclick="semanticSearch()">🔍 Semantic Search</a></li>
+                    <li><a href="#" onclick="showRecommendations()">🎯 Recommendations</a></li>
+                    <li><a href="/chapter/{{ chapters[0].id }}" style="color: #00d4ff;">📖 Start Reading</a></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+function searchChapters() {
+    const query = document.getElementById('chapterSearch').value.toLowerCase();
+    const chapters = document.querySelectorAll('.chapter-item');
+    
+    chapters.forEach(item => {
+        const text = item.textContent.toLowerCase();
+        item.style.display = text.includes(query) ? 'block' : 'none';
+    });
+}
+
+function semanticSearch() {
+    const query = prompt('Enter search query:');
+    if (query) {
+        fetch(`/api/semantic-search?q=${encodeURIComponent(query)}&novel_id={{ novel.id }}`)
+            .then(r => r.json())
+            .then(data => {
+                if (data.length > 0) {
+                    alert(`Found ${data.length} similar chapters!`);
+                    // Update chapter list to show results
+                } else {
+                    alert('No similar chapters found');
+                }
+            });
+    }
+}
+
+function showRecommendations() {
+    fetch(`/api/novel/{{ novel.id }}/recommendations`)
+        .then(r => r.json())
+        .then(data => {
+            alert(`Recommended chapters: ${data.slice(0, 5).map(c => c.title).join(', ')}`);
+        });
+}
+
+document.getElementById('chapterSearch').addEventListener('keypress', (e) => {
+    if (e.key === 'Enter') searchChapters();
+});
+</script>
+{% endblock %}

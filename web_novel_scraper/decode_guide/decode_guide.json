@@ -117,7 +117,7 @@
   {
     "host": "novelbin.me",
     "request_config": {
-      "force_flaresolver": "true"
+      "force_flaresolver": true
     },
     "has_pagination": false,
     "toc_main_url_processor": true,

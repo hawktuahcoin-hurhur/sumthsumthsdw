@@ -1,0 +1,61 @@
+{% extends "base.html" %}
+
+{% block title %}Chapter List - Shadow Slave{% endblock %}
+
+{% block content %}
+<div class="container">
+    <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 2rem;">
+        <div>
+            <a href="/" style="color: #00d4ff; text-decoration: none; margin-bottom: 0.5rem; display: inline-block;">☰ Menu</a>
+            <h1 style="margin: 0.5rem 0;">📖 All Chapters</h1>
+            <p style="color: rgba(255, 255, 255, 0.6);">{{ chapters|length }} chapters</p>
+        </div>
+    </div>
+
+    <div class="search-box">
+        <input type="text" id="chapterSearch" placeholder="Search chapters by number or title...">
+        <button onclick="searchChapters()">Search</button>
+    </div>
+
+    <div style="display: grid; grid-template-columns: repeat(auto-fill, minmax(250px, 1fr)); gap: 1rem;" id="chapterGrid">
+        {% for chapter in chapters %}
+        <a href="/chapter/{{ chapter.id }}" style="text-decoration: none;">
+            <div style="padding: 1.5rem; background: rgba(0, 212, 255, 0.08); border-radius: 8px; border: 1px solid rgba(0, 212, 255, 0.2); transition: all 0.3s ease;" class="chapter-card" onmouseover="this.style.background='rgba(0, 212, 255, 0.15)'; this.style.transform='translateY(-2px)'" onmouseout="this.style.background='rgba(0, 212, 255, 0.08)'; this.style.transform='translateY(0)'">
+                <div style="color: #00d4ff; font-size: 0.85rem; margin-bottom: 0.5rem;">Chapter {{ chapter.chapter_number }}</div>
+                <div style="color: #e0e0e0; font-weight: bold; margin-bottom: 0.75rem;">{{ chapter.title }}</div>
+                <div style="display: flex; gap: 1rem; font-size: 0.8rem; color: rgba(255, 255, 255, 0.6);">
+                    <span>📖 {{ chapter.word_count }} words</span>
+                    <span>⏱️ {{ chapter.reading_time_minutes }}m</span>
+                </div>
+            </div>
+        </a>
+        {% endfor %}
+    </div>
+</div>
+
+<script>
+function searchChapters() {
+    const query = document.getElementById('chapterSearch').value.toLowerCase();
+    const cards = document.querySelectorAll('.chapter-card');
+    let count = 0;
+    
+    cards.forEach(card => {
+        const text = card.textContent.toLowerCase();
+        if (text.includes(query)) {
+            card.parentElement.style.display = '';
+            count++;
+        } else {
+            card.parentElement.style.display = 'none';
+        }
+    });
+    
+    if (count === 0 && query) {
+        alert('No chapters found matching: ' + query);
+    }
+}
+
+document.getElementById('chapterSearch').addEventListener('keypress', (e) => {
+    if (e.key === 'Enter') searchChapters();
+});
+</script>
+{% endblock %}

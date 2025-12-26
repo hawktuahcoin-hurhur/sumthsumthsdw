@@ -1,0 +1,74 @@
+{% extends "base.html" %}
+
+{% block title %}About - Shadow Slave Reader{% endblock %}
+
+{% block content %}
+<div class="container" style="max-width: 800px;">
+    <div style="margin-bottom: 2rem;">
+        <a href="/" style="color: #00d4ff; text-decoration: none;">☰ Menu</a>
+    </div>
+
+    <h1>About Shadow Slave Reader</h1>
+
+    <div style="background: rgba(123, 44, 191, 0.1); padding: 2rem; border-radius: 8px; border-left: 4px solid #7b2cbf; margin-bottom: 2rem;">
+        <p style="font-size: 1.05rem; line-height: 1.8;">
+            A sleek, modern web reader for experiencing <strong>Shadow Slave</strong> - featuring all 2,720 chapters with an elegant dark interface designed for comfortable long-form reading.
+        </p>
+    </div>
+
+    <h2>Features</h2>
+    <div style="display: grid; grid-template-columns: 1fr; gap: 1.5rem;">
+        <div style="padding: 1.5rem; background: rgba(0, 212, 255, 0.08); border-radius: 8px; border-left: 3px solid #00d4ff;">
+            <h3 style="margin-top: 0; color: #00d4ff;">📚 All Chapters</h3>
+            <p>Access all 2,720 chapters instantly with smooth navigation.</p>
+        </div>
+        <div style="padding: 1.5rem; background: rgba(123, 44, 191, 0.08); border-radius: 8px; border-left: 3px solid #7b2cbf;">
+            <h3 style="margin-top: 0; color: #7b2cbf;">🎨 Beautiful Design</h3>
+            <p>Dark theme with gradient accents for comfortable reading any time of day.</p>
+        </div>
+        <div style="padding: 1.5rem; background: rgba(0, 212, 255, 0.08); border-radius: 8px; border-left: 3px solid #00d4ff;">
+            <h3 style="margin-top: 0; color: #00d4ff;">⌨️ Keyboard Navigation</h3>
+            <p>Use arrow keys to flip between chapters, +/- to adjust text size.</p>
+        </div>
+        <div style="padding: 1.5rem; background: rgba(123, 44, 191, 0.08); border-radius: 8px; border-left: 3px solid #7b2cbf;">
+            <h3 style="margin-top: 0; color: #7b2cbf;">📊 Reading Stats</h3>
+            <p>See word count, reading time, and difficulty level for each chapter.</p>
+        </div>
+        <div style="padding: 1.5rem; background: rgba(0, 212, 255, 0.08); border-radius: 8px; border-left: 3px solid #00d4ff;">
+            <h3 style="margin-top: 0; color: #00d4ff;">💾 Bookmarks</h3>
+            <p>Save chapters locally to return to later.</p>
+        </div>
+        <div style="padding: 1.5rem; background: rgba(123, 44, 191, 0.08); border-radius: 8px; border-left: 3px solid #7b2cbf;">
+            <h3 style="margin-top: 0; color: #7b2cbf;">🔍 Search</h3>
+            <p>Find chapters by title, number, or content instantly.</p>
+        </div>
+    </div>
+
+    <h2 style="margin-top: 3rem;">How to Use</h2>
+    <div style="background: rgba(255, 255, 255, 0.05); padding: 2rem; border-radius: 8px; border: 1px solid rgba(255, 255, 255, 0.1);">
+        <ol style="line-height: 2;">
+            <li><strong>Start Reading:</strong> Click "Start Reading" from the menu to begin at Chapter 1.</li>
+            <li><strong>Navigate:</strong> Use Previous/Next buttons or arrow keys (← →) to move between chapters.</li>
+            <li><strong>Adjust Text:</strong> Use +/- buttons or keyboard shortcuts to resize text.</li>
+            <li><strong>Jump to Chapter:</strong> Use the "Quick Jump" tool in the sidebar to go to a specific chapter.</li>
+            <li><strong>Bookmark:</strong> Click the bookmark button to save your favorites.</li>
+            <li><strong>View All Chapters:</strong> Go to Chapter List to see all chapters at once.</li>
+        </ol>
+    </div>
+
+    <h2>Keyboard Shortcuts</h2>
+    <div style="background: rgba(255, 255, 255, 0.05); padding: 2rem; border-radius: 8px; border: 1px solid rgba(255, 255, 255, 0.1);">
+        <ul style="list-style: none;">
+            <li style="margin-bottom: 1rem;"><strong>← Arrow Left:</strong> Previous chapter</li>
+            <li style="margin-bottom: 1rem;"><strong>→ Arrow Right:</strong> Next chapter</li>
+            <li style="margin-bottom: 1rem;"><strong>+ Plus:</strong> Increase text size</li>
+            <li><strong>- Minus:</strong> Decrease text size</li>
+        </ul>
+    </div>
+
+    <div style="margin-top: 3rem; padding-top: 2rem; border-top: 1px solid rgba(255, 255, 255, 0.1); text-align: center; color: rgba(255, 255, 255, 0.6);">
+        <p>Built with ❤️ for web novel readers</p>
+        <p style="font-size: 0.9rem;">2025 Shadow Slave Reader</p>
+    </div>
+</div>
+{% endblock %}

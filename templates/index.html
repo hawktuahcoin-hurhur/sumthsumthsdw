@@ -1,0 +1,62 @@
+{% extends "base.html" %}
+
+{% block title %}Shadow Slave - Novel Reader{% endblock %}
+
+{% block content %}
+<div class="container" style="text-align: center; padding: 4rem 2rem;">
+    <div style="max-width: 600px; margin: 0 auto;">
+        <h1 style="font-size: 3.5rem; margin-bottom: 1rem;">📚 Shadow Slave</h1>
+        
+        <div style="background: rgba(123, 44, 191, 0.15); padding: 2rem; border-radius: 8px; margin-bottom: 2rem; border-left: 4px solid #7b2cbf;">
+            <p style="font-size: 1.1rem; line-height: 1.8; color: rgba(255, 255, 255, 0.9);">
+                A tale of darkness and transformation. Experience the journey of a protagonist thrust into a world of shadows and mystery.
+            </p>
+        </div>
+
+        <div style="display: grid; grid-template-columns: 1fr; gap: 1rem; margin-bottom: 3rem;">
+            <div style="padding: 1.5rem; background: rgba(0, 212, 255, 0.1); border-radius: 8px; border: 2px solid rgba(0, 212, 255, 0.3);">
+                <div style="font-size: 1.3rem; color: #00d4ff; font-weight: bold; margin-bottom: 0.5rem;">📖 Chapters</div>
+                <div style="font-size: 1.5rem; color: #00d4ff;">2,720</div>
+            </div>
+        </div>
+
+        <div style="display: flex; flex-direction: column; gap: 1rem;">
+            <a href="/chapter/1" style="display: inline-block; padding: 1.2rem 2rem; background: linear-gradient(135deg, #00d4ff, #7b2cbf); color: white; border-radius: 8px; font-weight: bold; font-size: 1.1rem; text-decoration: none; transition: all 0.3s ease;" onmouseover="this.style.transform='scale(1.05)'" onmouseout="this.style.transform='scale(1)'">
+                ▶ Start Reading
+            </a>
+            <a href="/chapter-list" style="display: inline-block; padding: 1rem 2rem; background: rgba(123, 44, 191, 0.3); color: #7b2cbf; border-radius: 8px; border: 2px solid #7b2cbf; font-weight: bold; text-decoration: none; transition: all 0.3s ease;" onmouseover="this.style.background='rgba(123, 44, 191, 0.5)'" onmouseout="this.style.background='rgba(123, 44, 191, 0.3)'">
+                📋 Chapter List
+            </a>
+            <a href="/about" style="display: inline-block; padding: 1rem 2rem; background: rgba(255, 255, 255, 0.05); color: var(--text-light); border-radius: 8px; border: 1px solid rgba(255, 255, 255, 0.1); font-weight: bold; text-decoration: none; transition: all 0.3s ease;" onmouseover="this.style.background='rgba(255, 255, 255, 0.1)'" onmouseout="this.style.background='rgba(255, 255, 255, 0.05)'">
+                ℹ️ About
+            </a>
+            {% if session.get('user_id') %}
+            <div style="margin-top: 1rem; padding: 1rem; background: rgba(0, 212, 255, 0.1); border-radius: 8px; border: 1px solid rgba(0, 212, 255, 0.3);">
+                <div style="display: flex; align-items: center; justify-content: center; gap: 1rem;">
+                    {% if session.get('avatar') %}
+                    <img src="{{ session.get('avatar') }}" style="width: 40px; height: 40px; border-radius: 50%; border: 2px solid #00d4ff;">
+                    {% endif %}
+                    <span style="color: #00d4ff;">👋 Welcome, {{ session.get('username', 'Reader') }}!</span>
+                    <a href="/logout" style="padding: 0.4rem 1rem; background: rgba(255, 100, 100, 0.2); color: #ff6b6b; border-radius: 4px; font-size: 0.85rem;">Logout</a>
+                </div>
+            </div>
+            {% else %}
+            <a href="/login" style="display: inline-block; padding: 1rem 2rem; background: linear-gradient(135deg, #5865F2, #7b2cbf); color: white; border-radius: 8px; font-weight: bold; text-decoration: none; transition: all 0.3s ease;" onmouseover="this.style.transform='scale(1.02)'" onmouseout="this.style.transform='scale(1)'">
+                🔐 Login to Save Progress
+            </a>
+            {% endif %}
+        </div>
+
+        <div style="margin-top: 3rem; padding-top: 2rem; border-top: 1px solid rgba(255, 255, 255, 0.1); color: var(--text-light); font-size: 0.9rem;">
+            <p>Built with AI-powered features for enhanced reading experience</p>
+        </div>
+    </div>
+</div>
+
+<style>
+    :root {
+        --text-light: rgba(255, 255, 255, 0.6);
+    }
+</style>
+{% endblock %}
+

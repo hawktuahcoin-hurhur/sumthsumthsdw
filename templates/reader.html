@@ -1,0 +1,197 @@
+{% extends "base.html" %}
+
+{% block title %}{{ chapter.title }} - {{ novel.title }}{% endblock %}
+
+{% block content %}
+<div class="reader-container">
+    <div>
+        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 2rem;">
+            <div>
+                <a href="/" style="color: #00d4ff; font-size: 0.9rem; display: inline-block; margin-bottom: 0.5rem;">☰ Menu</a>
+                <div>
+                    <a href="/novel/{{ novel.id }}" style="color: #7b2cbf; font-size: 0.9rem;">📚 {{ novel.title }}</a>
+                </div>
+                <h1 style="margin: 0.5rem 0; font-size: 2rem;">{{ chapter.title }}</h1>
+                <div style="font-size: 0.9rem; color: #7b2cbf;">Chapter {{ chapter.chapter_number }} of {{ novel.chapter_count }}</div>
+            </div>
+            <div style="text-align: right; color: rgba(255, 255, 255, 0.6); font-size: 0.9rem;">
+                📖 {{ chapter.word_count }} words<br>
+                ⏱️ {{ chapter.reading_time_minutes }} min
+                {% if chapter.readability_score %}
+                <br>📊 Grade {{ "%.1f"|format(chapter.readability_score) }}
+                {% endif %}
+            </div>
+        </div>
+
+        {% if chapter.summary %}
+        <div style="padding: 1.5rem; background: rgba(123, 44, 191, 0.15); border-left: 3px solid #7b2cbf; margin-bottom: 2rem; border-radius: 4px;">
+            <strong style="color: #7b2cbf;">✨ Summary:</strong> {{ chapter.summary }}
+        </div>
+        {% endif %}
+
+        <article class="chapter-content" style="font-size: 1.1rem; line-height: 1.9; margin-bottom: 3rem; text-align: justify;">
+            {% set paragraphs = chapter.content.split('\n\n') %}
+            {% for para in paragraphs %}
+                {% if para.strip() %}
+                    <p>{{ para.strip() }}</p>
+                {% endif %}
+            {% endfor %}
+        </article>
+
+        <div class="chapter-nav" style="display: grid; grid-template-columns: 1fr auto 1fr; gap: 1rem; margin-top: 3rem; padding-top: 2rem; border-top: 1px solid rgba(255, 255, 255, 0.1);">
+            {% if prev_chapter %}
+            <a href="/chapter/{{ prev_chapter.id }}" style="text-align: left; padding: 1rem; background: rgba(0, 212, 255, 0.1); border-radius: 6px; border: 1px solid rgba(0, 212, 255, 0.3); transition: all 0.3s ease;" onmouseover="this.style.background='rgba(0, 212, 255, 0.2)'" onmouseout="this.style.background='rgba(0, 212, 255, 0.1)'">
+                <div style="color: #00d4ff; font-weight: bold;">← Previous</div>
+                <div style="font-size: 0.85rem; color: rgba(255, 255, 255, 0.7); margin-top: 0.25rem;">{{ prev_chapter.title[:35] }}</div>
+            </a>
+            {% else %}
+            <div></div>
+            {% endif %}
+
+            <div style="display: flex; flex-direction: column; justify-content: center; align-items: center; gap: 0.5rem;">
+                <div style="color: rgba(255, 255, 255, 0.5); font-size: 0.85rem;">{{ chapter.chapter_number }} / {{ novel.chapter_count }}</div>
+                <button onclick="bookmarkChapter()" style="padding: 0.5rem 1rem; background: rgba(123, 44, 191, 0.3); border: 1px solid #7b2cbf; color: #7b2cbf; border-radius: 4px; cursor: pointer; transition: all 0.2s ease;" onmouseover="this.style.background='rgba(123, 44, 191, 0.5)'" onmouseout="this.style.background='rgba(123, 44, 191, 0.3)'">📌 Bookmark</button>
+            </div>
+
+            {% if next_chapter %}
+            <a href="/chapter/{{ next_chapter.id }}" style="text-align: right; padding: 1rem; background: rgba(123, 44, 191, 0.1); border-radius: 6px; border: 1px solid rgba(123, 44, 191, 0.3); transition: all 0.3s ease;" onmouseover="this.style.background='rgba(123, 44, 191, 0.2)'" onmouseout="this.style.background='rgba(123, 44, 191, 0.1)'">
+                <div style="color: #7b2cbf; font-weight: bold;">Next →</div>
+                <div style="font-size: 0.85rem; color: rgba(255, 255, 255, 0.7); margin-top: 0.25rem;">{{ next_chapter.title[:35] }}</div>
+            </a>
+            {% else %}
+            <div></div>
+            {% endif %}
+        </div>
+    </div>
+
+    <div class="sidebar">
+        <div class="sidebar-section">
+            <h3>📖 Reader Tools</h3>
+            <div style="display: flex; flex-direction: column; gap: 0.5rem; font-size: 0.9rem;">
+                <button onclick="increaseFontSize()" style="font-size: 0.85rem; padding: 0.5rem;">A+ Text</button>
+                <button onclick="decreaseFontSize()" style="font-size: 0.85rem; padding: 0.5rem;">A- Text</button>
+                <button onclick="shareChapter()" style="font-size: 0.85rem; padding: 0.5rem;">📤 Share</button>
+            </div>
+        </div>
+
+        <div class="sidebar-section">
+            <h3>🔗 Quick Jump</h3>
+            <div style="font-size: 0.9rem;">
+                <div style="margin-bottom: 1rem;">
+                    <label for="chapterInput" style="color: rgba(255, 255, 255, 0.7); font-size: 0.85rem;">Go to chapter:</label>
+                    <div style="display: flex; gap: 0.5rem; margin-top: 0.5rem;">
+                        <input type="number" id="chapterInput" min="1" max="{{ novel.chapter_count }}" value="{{ chapter.chapter_number }}" style="flex: 1; padding: 0.5rem; background: rgba(255, 255, 255, 0.1); border: 1px solid rgba(255, 255, 255, 0.2); border-radius: 4px; color: #e0e0e0; font-size: 0.9rem;">
+                        <button onclick="jumpToChapter()" style="padding: 0.5rem 1rem; font-size: 0.85rem;">Go</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        {% if characters %}
+        <div class="sidebar-section">
+            <h3>👥 Characters</h3>
+            <ul class="character-list" style="max-height: 200px; overflow-y: auto;">
+                {% for character in characters[:10] %}
+                <li class="character-item">
+                    <div class="character-name" style="font-size: 0.9rem;">{{ character.name }}</div>
+                    <div class="character-mention" style="font-size: 0.75rem;">{{ character.mention_count }}× mentioned</div>
+                </li>
+                {% endfor %}
+            </ul>
+        </div>
+        {% endif %}
+
+        <div class="sidebar-section">
+            <h3>📊 Chapter Stats</h3>
+            <div style="font-size: 0.85rem; line-height: 2;">
+                <div><span style="color: rgba(255, 255, 255, 0.6);">Words:</span> <strong style="color: #00d4ff;">{{ chapter.word_count }}</strong></div>
+                <div><span style="color: rgba(255, 255, 255, 0.6);">Reading Time:</span> <strong style="color: #00d4ff;">{{ chapter.reading_time_minutes }}m</strong></div>
+                {% if chapter.readability_score %}
+                <div><span style="color: rgba(255, 255, 255, 0.6);">Level:</span> <strong style="color: #7b2cbf;">Grade {{ "%.1f"|format(chapter.readability_score) }}</strong></div>
+                {% endif %}
+            </div>
+        </div>
+
+        <div class="sidebar-section" style="background: rgba(0, 212, 255, 0.05); border-left: 3px solid #00d4ff;">
+            <h3 style="color: #00d4ff; margin-top: 0; font-size: 0.95rem;">⌨️ Keyboard Shortcuts</h3>
+            <div style="font-size: 0.8rem; line-height: 1.8; color: rgba(255, 255, 255, 0.7);">
+                <div><strong>← →</strong> Navigate chapters</div>
+                <div><strong>+</strong> Larger text</div>
+                <div><strong>-</strong> Smaller text</div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+function bookmarkChapter() {
+    NovelReader.storage.addBookmark({{ chapter.id }}, '{{ chapter.title }}');
+    alert('✅ Bookmarked: {{ chapter.title }}');
+}
+
+function increaseFontSize() {
+    const content = document.querySelector('.chapter-content');
+    const current = parseFloat(window.getComputedStyle(content).fontSize);
+    content.style.fontSize = (current + 2) + 'px';
+    localStorage.setItem('fontSize', current + 2);
+}
+
+function decreaseFontSize() {
+    const content = document.querySelector('.chapter-content');
+    const current = parseFloat(window.getComputedStyle(content).fontSize);
+    if (current > 12) {
+        content.style.fontSize = (current - 2) + 'px';
+        localStorage.setItem('fontSize', current - 2);
+    }
+}
+
+function shareChapter() {
+    const url = window.location.href;
+    if (navigator.share) {
+        navigator.share({
+            title: '{{ chapter.title }}',
+            url: url
+        });
+    } else {
+        prompt('Copy chapter link:', url);
+    }
+}
+
+function jumpToChapter() {
+    const chapterNum = parseInt(document.getElementById('chapterInput').value);
+    if (chapterNum >= 1 && chapterNum <= {{ novel.chapter_count }}) {
+        // Fetch chapter by number
+        fetch(`/api/novels/{{ novel.id }}/chapters?number=${chapterNum}`)
+            .then(r => r.json())
+            .then(data => {
+                if (data.id) window.location.href = `/chapter/${data.id}`;
+            });
+    }
+}
+
+// Restore font size on load
+window.addEventListener('load', () => {
+    const savedSize = localStorage.getItem('fontSize');
+    if (savedSize) {
+        document.querySelector('.chapter-content').style.fontSize = savedSize + 'px';
+    }
+});
+
+// Keyboard shortcuts
+document.addEventListener('keydown', (e) => {
+    if (e.key === 'ArrowRight') {
+        const nextBtn = document.querySelector('.nav-button:last-child a');
+        if (nextBtn) nextBtn.click();
+    } else if (e.key === 'ArrowLeft') {
+        const prevBtn = document.querySelector('.nav-button:first-child a');
+        if (prevBtn) prevBtn.click();
+    } else if (e.key === '+' || e.key === '=') {
+        e.preventDefault();
+        increaseFontSize();
+    } else if (e.key === '-') {
+        e.preventDefault();
+        decreaseFontSize();
+    }
+});
+</script>
+{% endblock %}

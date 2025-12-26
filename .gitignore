@@ -1,6 +1,5 @@
 **.jpg
 **.png
-**.html
 **/tmp
 **/output
 **.epub
@@ -15,3 +14,8 @@ dist
 docs/build
 .idea
 .venv
+
+# Novel reader app
+chapters_data.json
+*.db
+*.sqlite

@@ -9,9 +9,6 @@ ftfy==6.3.1
 Flask==3.0.0
 Flask-SQLAlchemy==3.1.1
 SQLAlchemy==2.0.23
-sentence-transformers==2.2.2
-transformers==4.35.2
-faiss-cpu==1.8.0
-spacy==3.7.2
 textstat==0.7.3
-torch==2.1.1
+gunicorn==21.2.0
+beautifulsoup4==4.12.2

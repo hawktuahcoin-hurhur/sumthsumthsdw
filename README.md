@@ -1,76 +1,82 @@
-# Web Novel Scraper CLI
+# Shadow Slave Web Reader
 
-## 🔑 Why Use Web Novel Scraper?
+📖 A beautiful web reader for Shadow Slave novel with 2,720 chapters.
 
-- **Read Offline**: Download your favorite novels and read them anywhere, even without internet
-- **Device Friendly**: EPUB format optimized for e-readers and mobile devices
-- **Resource Efficient**: Smart caching system prevents unnecessary downloads
-- **Server Friendly**: Prevents accidental server overloads
-- **Simple Interface**: Basic and direct commands for a hassle-free experience
-- **Automatic Organization**: Keep your novels organized and easy to find
+## Features
 
-## 🌟 Main Features
+- 📚 All 2,720 chapters pre-loaded
+- 🌙 Beautiful dark theme
+- ⌨️ Keyboard navigation (← →)
+- 🔐 OAuth login (Google/Discord) to save progress
+- 📱 Mobile-friendly
 
-- Downloads and converts web novels to EPUB format
-- Smart caching: downloads chapters only once
-- Simple and straightforward command-line interface
-- Support for multiple web novel sites
+## Deploy to PythonAnywhere (Free)
 
-## 🚀 Quick Tutorial
+1. **Create account** at https://www.pythonanywhere.com (free tier works!)
 
-### 1. Installation
-``` bash
-pip install web-novel-scraper
+2. **Open a Bash console** and clone the repo:
+   ```bash
+   git clone https://github.com/hawktuahcoin-hurhur/sumthsumthsdw.git
+   ```
+
+3. **Create a virtual environment**:
+   ```bash
+   mkvirtualenv --python=/usr/bin/python3.10 shadowslave
+   cd sumthsumthsdw
+   pip install -r requirements.txt
+   ```
+
+4. **Create your .env file**:
+   ```bash
+   cp .env.example .env
+   nano .env  # Edit with your settings
+   ```
+   Set `BASE_URL=https://yourusername.pythonanywhere.com`
+
+5. **Go to Web tab** → Add a new web app:
+   - Choose "Manual configuration"
+   - Select Python 3.10
+   
+6. **Configure the web app**:
+   - **Source code**: `/home/yourusername/sumthsumthsdw`
+   - **Virtualenv**: `/home/yourusername/.virtualenvs/shadowslave`
+   
+7. **Edit the WSGI file** (click the link in Web tab):
+   Replace everything with:
+   ```python
+   import sys
+   import os
+   
+   project_home = '/home/yourusername/sumthsumthsdw'
+   if project_home not in sys.path:
+       sys.path.insert(0, project_home)
+   
+   from dotenv import load_dotenv
+   load_dotenv(os.path.join(project_home, '.env'))
+   
+   from run_web_app import app as application
+   ```
+
+8. **Click "Reload"** and visit `https://yourusername.pythonanywhere.com`
+
+## Run Locally
+
+```bash
+git clone https://github.com/hawktuahcoin-hurhur/sumthsumthsdw.git
+cd sumthsumthsdw
+pip install -r requirements.txt
+python run_web_app.py
 ```
-### 2. Download Your First Novel
+Open http://localhost:5000
 
-1. **Create a new novel**:
-``` bash
-web-novel-scraper create-novel -t "My First Novel" --toc-main-url "https://novelbin.me/novel/my-novel/toc"
-```
-2. **Convert to EPUB**:
-``` bash
-web-novel-scraper save-novel-to-epub -t "My First Novel" --sync-toc
-```
-3. **Find your files**:
-``` bash
-web-novel-scraper show-novel-dir -t "My First Novel"
-```
-### 3. Additional Options
+## Configuration
 
-- **Add metadata**:
-``` bash
-web-novel-scraper set-metadata -t "My First Novel" --author "Author" --language "en"
-```
-- **Add cover image**:
-``` bash
-web-novel-scraper set-cover-image -t "My First Novel" --cover "path/to/image.jpg"
-```
-- **View novel information**:
-``` bash
-web-novel-scraper show-novel-info -t "My First Novel"
-```
-## 📱 Supported Sites
+Copy `.env.example` to `.env` and set:
+- `BASE_URL` - Your site URL (for OAuth redirects)
+- `SECRET_KEY` - Random string for sessions
+- `GOOGLE_CLIENT_ID` / `GOOGLE_CLIENT_SECRET` - For Google login
+- `DISCORD_CLIENT_ID` / `DISCORD_CLIENT_SECRET` - For Discord login
 
-- Novelbin
-- Novelhi
-- Novellive
-- Royalroad
-- GenesisStudio
-- HostedNovel
-- ScribbleHub
-- NovelCool
-- FreeWebNovel
-- Foxaholic
-- Fanmtl
-- Pandamtl
-- MtlNovels
+## License
 
-## 📖 Full Documentation
-
-For a detailed guide, advanced use cases, and complete command reference, visit:
-[https://web-novel-scraper.readthedocs.io/stable/](https://web-novel-scraper.readthedocs.io/stable/)
-
-## 📝 Responsible Usage Note
-
-Please use this tool responsibly and respect the terms of service and rate limits of the web novel sites.
+MIT

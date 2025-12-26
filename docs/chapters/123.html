@@ -12,22 +12,22 @@
             <a href="../index.html" class="logo">📖 Shadow Slave</a>
             <div class="nav-links">
                 <a href="../chapter-list.html">📚 Chapters</a>
-                <a href="../wiki.html">📝 Wiki</a>
                 <a href="../login.html">💾 Save</a>
             </div>
         </nav>
     </header>
-    <main>
+    <main class="with-sidebar">
         
-    <div class="chapter-header">
-        <h1>Chapter 123 Helping Hand</h1>
-        <div class="chapter-meta">
-            Chapter 123 of 2720 • 1,466 words • 5 min read
+    <div class="chapter-container">
+        <div class="chapter-header">
+            <h1>Chapter 123 Helping Hand</h1>
+            <div class="chapter-meta">
+                Chapter 123 of 2720 • 1,466 words • 5 min read
+            </div>
         </div>
-    </div>
-    
-    <div class="chapter-content">
-        <p>Soon after Nephis had finally come back to her senses, they prepared to leave the shelter of the giant stone hand. The morning had just begun, so there was plenty of time to cross the remaining distance and climb out of the deep and vast crater. If all was going to go well, they would meet the next sunset on top of the tall wall of the mysterious city.</p>
+        
+        <div class="chapter-content">
+            <p>Soon after Nephis had finally come back to her senses, they prepared to leave the shelter of the giant stone hand. The morning had just begun, so there was plenty of time to cross the remaining distance and climb out of the deep and vast crater. If all was going to go well, they would meet the next sunset on top of the tall wall of the mysterious city.</p>
 <p>Of course, numerous things could go wrong between now and then. But, for some reason, Sunny felt optimistic.</p>
 <p>This was a rare moment for his cynical, paranoid heart.</p>
 <p>Just like before, Sunny and Neph took turns climbing down a few dozen meters and lowering Cassie to one another with the help of the golden rope. However, they had grown considerably stronger since the last time they had to do it.</p>
@@ -89,14 +89,42 @@
 <p>"That is great. What type of Memory?"</p>
 <p>Sunny scratched his head, hesitated, and then answered:</p>
 <p>"Uh. It's a... rock? An ordinary rock..."</p>
+        </div>
+        
+        <div class="chapter-nav">
+            <a href="122.html" class="">← Previous</a>
+            <a href="../chapter-list.html">📚 All Chapters</a>
+            <a href="124.html" class="">Next →</a>
+        </div>
     </div>
     
-    <div class="chapter-nav">
-        <a href="122.html" class="">← Previous</a>
-        <a href="../chapter-list.html">📚 All Chapters</a>
-        <a href="../wiki.html">📝 Wiki</a>
-        <a href="124.html" class="">Next →</a>
-    </div>
+    <aside class="wiki-sidebar">
+        <div class="wiki-sidebar-header">
+            <h3>📖 Wiki</h3>
+            <p>Spoiler-free up to current chapter</p>
+        </div>
+        <div class="wiki-tabs">
+            <button class="wiki-tab active" data-tab="characters">👤 Characters</button>
+            <button class="wiki-tab" data-tab="terms">📚 Terms</button>
+            <button class="wiki-tab" data-tab="locations">🗺️ Places</button>
+            <button class="wiki-tab" data-tab="events">⚔️ Events</button>
+        </div>
+        <div class="wiki-content">
+            <div id="characters-section" class="wiki-section active">
+                <div id="characters-list"></div>
+            </div>
+            <div id="terms-section" class="wiki-section">
+                <div id="terms-list"></div>
+            </div>
+            <div id="locations-section" class="wiki-section">
+                <div id="locations-list"></div>
+            </div>
+            <div id="events-section" class="wiki-section">
+                <div id="events-list"></div>
+            </div>
+        </div>
+    </aside>
+    <button class="wiki-toggle">📖</button>
     
     </main>
     

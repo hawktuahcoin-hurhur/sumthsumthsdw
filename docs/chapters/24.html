@@ -12,22 +12,22 @@
             <a href="../index.html" class="logo">📖 Shadow Slave</a>
             <div class="nav-links">
                 <a href="../chapter-list.html">📚 Chapters</a>
-                <a href="../wiki.html">📝 Wiki</a>
                 <a href="../login.html">💾 Save</a>
             </div>
         </nav>
     </header>
-    <main>
+    <main class="with-sidebar">
         
-    <div class="chapter-header">
-        <h1>Chapter 24 Moving Up in the World</h1>
-        <div class="chapter-meta">
-            Chapter 24 of 2720 • 1,402 words • 5 min read
+    <div class="chapter-container">
+        <div class="chapter-header">
+            <h1>Chapter 24 Moving Up in the World</h1>
+            <div class="chapter-meta">
+                Chapter 24 of 2720 • 1,402 words • 5 min read
+            </div>
         </div>
-    </div>
-    
-    <div class="chapter-content">
-        <p>Everything having to do with Sleepers was situated in the same building. Sunny followed the instructions sent to his communicator and quickly found the dormitories, which were situated on one of the lowest levels. To his surprise, he actually got a whole room to himself.</p>
+        
+        <div class="chapter-content">
+            <p>Everything having to do with Sleepers was situated in the same building. Sunny followed the instructions sent to his communicator and quickly found the dormitories, which were situated on one of the lowest levels. To his surprise, he actually got a whole room to himself.</p>
 <p>It had a bed with a soft mattress, a table, a dresser, and even a separate bathroom! The materials were new and aesthetically pleasing, the air crisp and sterile. It was warm inside, and the outer wall was equipped with a hidden screen that seamlessly imitated a wide window, opening to a picturesque vista of a snowy park.</p>
 <p>There were even several sets of clothes with the Academy emblem provided to him for free.</p>
 <p>'How extravagant,' Sunny thought, a little stunned.</p>
@@ -90,14 +90,42 @@
 <p>To the right of it, two simple lines of text were displayed:</p>
 <p>"Name: Nephis"</p>
 <p>"True Name: Changing Star"</p>
+        </div>
+        
+        <div class="chapter-nav">
+            <a href="23.html" class="">← Previous</a>
+            <a href="../chapter-list.html">📚 All Chapters</a>
+            <a href="25.html" class="">Next →</a>
+        </div>
     </div>
     
-    <div class="chapter-nav">
-        <a href="23.html" class="">← Previous</a>
-        <a href="../chapter-list.html">📚 All Chapters</a>
-        <a href="../wiki.html">📝 Wiki</a>
-        <a href="25.html" class="">Next →</a>
-    </div>
+    <aside class="wiki-sidebar">
+        <div class="wiki-sidebar-header">
+            <h3>📖 Wiki</h3>
+            <p>Spoiler-free up to current chapter</p>
+        </div>
+        <div class="wiki-tabs">
+            <button class="wiki-tab active" data-tab="characters">👤 Characters</button>
+            <button class="wiki-tab" data-tab="terms">📚 Terms</button>
+            <button class="wiki-tab" data-tab="locations">🗺️ Places</button>
+            <button class="wiki-tab" data-tab="events">⚔️ Events</button>
+        </div>
+        <div class="wiki-content">
+            <div id="characters-section" class="wiki-section active">
+                <div id="characters-list"></div>
+            </div>
+            <div id="terms-section" class="wiki-section">
+                <div id="terms-list"></div>
+            </div>
+            <div id="locations-section" class="wiki-section">
+                <div id="locations-list"></div>
+            </div>
+            <div id="events-section" class="wiki-section">
+                <div id="events-list"></div>
+            </div>
+        </div>
+    </aside>
+    <button class="wiki-toggle">📖</button>
     
     </main>
     

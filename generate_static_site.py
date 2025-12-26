@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 """
 Generate a static site from the chapters data.
-Includes AI Assistant and spoiler-free Character Wiki.
+Features: AI Assistant, Comprehensive Wiki Sidebar that updates per chapter.
 by Guiltythree
 """
 import json
@@ -24,9 +24,11 @@ def get_css():
     --secondary: #7b2cbf;
     --dark-bg: #1a1a2e;
     --card-bg: #16213e;
+    --sidebar-bg: #0f1729;
     --text: #e0e0e0;
     --text-light: rgba(255, 255, 255, 0.6);
     --accent: #ff6b6b;
+    --success: #4ade80;
 }
 
 * { margin: 0; padding: 0; box-sizing: border-box; }
@@ -53,7 +55,7 @@ nav {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    max-width: 1200px;
+    max-width: 1400px;
     margin: 0 auto;
 }
 
@@ -79,6 +81,13 @@ main {
     max-width: 900px;
     margin: 0 auto;
     padding: 2rem;
+}
+
+main.with-sidebar {
+    max-width: 1400px;
+    display: grid;
+    grid-template-columns: 1fr 350px;
+    gap: 2rem;
 }
 
 a { color: var(--primary); text-decoration: none; }
@@ -112,15 +121,6 @@ a:hover { color: var(--secondary); }
     transform: translateY(-2px);
     box-shadow: 0 10px 30px rgba(0, 212, 255, 0.3);
     color: white;
-}
-
-.btn-secondary {
-    background: rgba(255, 255, 255, 0.1);
-    border: 1px solid rgba(255, 255, 255, 0.2);
-}
-.btn-secondary:hover {
-    background: rgba(255, 255, 255, 0.2);
-    box-shadow: none;
 }
 
 .menu-grid {
@@ -184,6 +184,8 @@ a:hover { color: var(--secondary); }
 .resume-section h3 { margin-bottom: 1rem; color: var(--primary); }
 
 /* Chapter reader */
+.chapter-container { flex: 1; }
+
 .chapter-header {
     margin-bottom: 2rem;
     padding-bottom: 1rem;
@@ -273,115 +275,146 @@ a:hover { color: var(--secondary); }
 .chapter-number { color: var(--primary); font-weight: bold; font-size: 0.9rem; }
 .chapter-title { margin-top: 0.25rem; font-size: 0.95rem; }
 
-/* Wiki */
-.wiki-header {
-    text-align: center;
-    margin-bottom: 2rem;
+/* Wiki Sidebar */
+.wiki-sidebar {
+    background: var(--sidebar-bg);
+    border-radius: 12px;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    height: fit-content;
+    position: sticky;
+    top: 80px;
+    max-height: calc(100vh - 100px);
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
 }
-.wiki-header h1 {
+
+.wiki-sidebar-header {
+    padding: 1rem;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    background: rgba(0, 0, 0, 0.2);
+}
+.wiki-sidebar-header h3 {
     background: linear-gradient(135deg, var(--primary), var(--secondary));
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
+    font-size: 1.1rem;
+    margin-bottom: 0.25rem;
 }
-.wiki-notice {
-    background: rgba(255, 107, 107, 0.1);
-    border: 1px solid rgba(255, 107, 107, 0.3);
-    padding: 1rem;
-    border-radius: 8px;
-    margin: 1rem 0;
-    color: var(--accent);
-}
-
-.wiki-controls {
-    display: flex;
-    gap: 1rem;
-    margin-bottom: 2rem;
-    flex-wrap: wrap;
-    align-items: center;
-}
-.wiki-controls label { color: var(--text-light); }
-.wiki-controls input, .wiki-controls select {
-    padding: 0.5rem 1rem;
-    background: rgba(255, 255, 255, 0.1);
-    border: 1px solid rgba(255, 255, 255, 0.2);
-    border-radius: 8px;
-    color: var(--text);
+.wiki-sidebar-header p {
+    font-size: 0.8rem;
+    color: var(--text-light);
 }
 
 .wiki-tabs {
     display: flex;
-    gap: 1rem;
-    margin-bottom: 2rem;
     border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-    padding-bottom: 1rem;
+    background: rgba(0, 0, 0, 0.1);
 }
 .wiki-tab {
-    padding: 0.5rem 1.5rem;
+    flex: 1;
+    padding: 0.6rem 0.3rem;
     background: transparent;
-    border: 1px solid rgba(255, 255, 255, 0.2);
-    border-radius: 8px;
-    color: var(--text);
+    border: none;
+    color: var(--text-light);
     cursor: pointer;
+    font-size: 0.75rem;
+    transition: all 0.3s;
+    border-bottom: 2px solid transparent;
+}
+.wiki-tab:hover { color: var(--text); background: rgba(255, 255, 255, 0.05); }
+.wiki-tab.active { 
+    color: var(--primary); 
+    border-bottom-color: var(--primary);
+    background: rgba(0, 212, 255, 0.1);
+}
+
+.wiki-content {
+    flex: 1;
+    overflow-y: auto;
+    padding: 0.75rem;
+}
+
+.wiki-section { display: none; }
+.wiki-section.active { display: block; }
+
+.wiki-item {
+    background: rgba(255, 255, 255, 0.03);
+    padding: 0.75rem;
+    border-radius: 8px;
+    margin-bottom: 0.5rem;
+    border-left: 3px solid var(--secondary);
     transition: all 0.3s;
 }
-.wiki-tab:hover, .wiki-tab.active {
-    background: var(--primary);
-    border-color: var(--primary);
+.wiki-item:hover {
+    background: rgba(255, 255, 255, 0.08);
+    border-left-color: var(--primary);
 }
-
-.character-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-    gap: 1.5rem;
+.wiki-item.new-this-chapter {
+    border-left-color: var(--success);
+    background: rgba(74, 222, 128, 0.1);
 }
-.character-card {
-    background: rgba(255, 255, 255, 0.05);
-    padding: 1.5rem;
-    border-radius: 12px;
-    border: 1px solid rgba(255, 255, 255, 0.1);
-}
-.character-card h3 {
+.wiki-item h4 {
     color: var(--primary);
-    margin-bottom: 0.5rem;
-}
-.character-card .aliases {
-    color: var(--text-light);
-    font-size: 0.85rem;
-    margin-bottom: 0.5rem;
-}
-.character-card .description {
-    margin-bottom: 1rem;
-}
-.character-card .meta {
-    font-size: 0.85rem;
-    color: var(--text-light);
+    font-size: 0.9rem;
+    margin-bottom: 0.25rem;
     display: flex;
-    gap: 1rem;
+    justify-content: space-between;
+    align-items: center;
+}
+.wiki-item .badge {
+    font-size: 0.65rem;
+    padding: 0.15rem 0.4rem;
+    border-radius: 4px;
+    background: var(--secondary);
+    color: white;
+}
+.wiki-item .badge.new { background: var(--success); }
+.wiki-item .aliases {
+    font-size: 0.75rem;
+    color: var(--text-light);
+    margin-bottom: 0.25rem;
+}
+.wiki-item .description {
+    font-size: 0.8rem;
+    line-height: 1.4;
+}
+.wiki-item .meta {
+    font-size: 0.7rem;
+    color: var(--text-light);
+    margin-top: 0.5rem;
+    display: flex;
+    gap: 0.5rem;
     flex-wrap: wrap;
 }
-.character-card .meta span {
+.wiki-item .meta span {
     background: rgba(255, 255, 255, 0.1);
-    padding: 0.25rem 0.5rem;
-    border-radius: 4px;
-}
-.character-card.spoiler {
-    opacity: 0.3;
-    filter: blur(2px);
-    pointer-events: none;
+    padding: 0.1rem 0.3rem;
+    border-radius: 3px;
 }
 
-.term-list {
-    display: grid;
-    gap: 1rem;
+.wiki-empty {
+    text-align: center;
+    color: var(--text-light);
+    padding: 2rem 1rem;
+    font-size: 0.9rem;
 }
-.term-card {
-    background: rgba(255, 255, 255, 0.05);
-    padding: 1rem 1.5rem;
-    border-radius: 8px;
-    border-left: 3px solid var(--secondary);
+
+.wiki-toggle {
+    display: none;
+    position: fixed;
+    bottom: 20px;
+    left: 20px;
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, var(--secondary), var(--primary));
+    border: none;
+    cursor: pointer;
+    font-size: 1.2rem;
+    box-shadow: 0 4px 20px rgba(123, 44, 191, 0.4);
+    z-index: 1000;
 }
-.term-card h4 { color: var(--primary); margin-bottom: 0.5rem; }
-.term-card.spoiler { opacity: 0.3; filter: blur(2px); }
 
 /* AI Chat Widget */
 .ai-chat-widget {
@@ -515,6 +548,25 @@ a:hover { color: var(--secondary); }
 }
 
 /* Responsive */
+@media (max-width: 1024px) {
+    main.with-sidebar {
+        grid-template-columns: 1fr;
+    }
+    .wiki-sidebar {
+        display: none;
+        position: fixed;
+        top: 60px;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        max-height: none;
+        border-radius: 0;
+        z-index: 99;
+    }
+    .wiki-sidebar.mobile-open { display: flex; }
+    .wiki-toggle { display: block; }
+}
+
 @media (max-width: 768px) {
     .stats { grid-template-columns: 1fr; }
     .hero h1 { font-size: 2rem; }
@@ -522,38 +574,142 @@ a:hover { color: var(--secondary); }
     .search-box { width: 100%; }
     .chapter-list-header { flex-direction: column; }
     .menu-grid { grid-template-columns: 1fr; }
-    .ai-chat-panel { width: calc(100vw - 40px); right: 20px; }
+    .ai-chat-panel { width: calc(100vw - 40px); }
 }
 '''
 
-def get_js():
-    return '''// Shadow Slave Reader - by Guiltythree
-// With AI Assistant and Character Wiki
+def get_wiki_data_js(char_data):
+    """Generate JavaScript object with all wiki data."""
+    return f'''const WIKI_DATA = {json.dumps(char_data, indent=2)};'''
 
-const Storage = {
-    getProgress() { return JSON.parse(localStorage.getItem('readingProgress') || '{}'); },
-    saveProgress(chapterNum) {
+def get_js(char_data):
+    wiki_data = get_wiki_data_js(char_data)
+    return f'''// Shadow Slave Reader - by Guiltythree
+// With AI Assistant and Comprehensive Wiki Sidebar
+
+{wiki_data}
+
+const Storage = {{
+    getProgress() {{ return JSON.parse(localStorage.getItem('readingProgress') || '{{}}'); }},
+    saveProgress(chapterNum) {{
         const progress = this.getProgress();
         progress.lastChapter = chapterNum;
         progress.readChapters = progress.readChapters || [];
-        if (!progress.readChapters.includes(chapterNum)) {
+        if (!progress.readChapters.includes(chapterNum)) {{
             progress.readChapters.push(chapterNum);
-        }
+        }}
         progress.lastRead = new Date().toISOString();
         localStorage.setItem('readingProgress', JSON.stringify(progress));
-    },
-    getLastChapter() { return this.getProgress().lastChapter || null; },
-    isRead(chapterNum) { return (this.getProgress().readChapters || []).includes(chapterNum); },
-    getReadCount() { return (this.getProgress().readChapters || []).length; },
-    getMaxChapterRead() {
+    }},
+    getLastChapter() {{ return this.getProgress().lastChapter || null; }},
+    isRead(chapterNum) {{ return (this.getProgress().readChapters || []).includes(chapterNum); }},
+    getReadCount() {{ return (this.getProgress().readChapters || []).length; }},
+    getMaxChapterRead() {{
         const chapters = this.getProgress().readChapters || [];
         return chapters.length > 0 ? Math.max(...chapters) : 0;
-    }
-};
+    }}
+}};
+
+// Wiki Sidebar
+const WikiSidebar = {{
+    currentChapter: 1,
+    
+    init(chapterNum) {{
+        this.currentChapter = chapterNum;
+        this.render();
+        this.initTabs();
+        this.initMobileToggle();
+    }},
+    
+    render() {{
+        this.renderSection('characters', WIKI_DATA.characters, 'characters-list');
+        this.renderSection('terms', WIKI_DATA.terms, 'terms-list');
+        this.renderSection('locations', WIKI_DATA.locations, 'locations-list');
+        this.renderSection('events', WIKI_DATA.events, 'events-list');
+    }},
+    
+    renderSection(type, items, containerId) {{
+        const container = document.getElementById(containerId);
+        if (!container) return;
+        
+        const visible = items.filter(item => item.first_appearance <= this.currentChapter);
+        visible.sort((a, b) => b.first_appearance - a.first_appearance);
+        
+        if (visible.length === 0) {{
+            container.innerHTML = '<div class="wiki-empty">Nothing discovered yet in this chapter</div>';
+            return;
+        }}
+        
+        container.innerHTML = visible.map(item => {{
+            const isNew = item.first_appearance === this.currentChapter;
+            const newBadge = isNew ? '<span class="badge new">NEW!</span>' : '';
+            const typeBadge = item.type ? `<span class="badge">${{item.type}}</span>` : '';
+            const categoryBadge = item.category ? `<span class="badge">${{item.category}}</span>` : '';
+            
+            let aliases = '';
+            if (item.aliases && item.aliases.length > 0) {{
+                aliases = `<div class="aliases">AKA: ${{item.aliases.join(', ')}}</div>`;
+            }}
+            
+            let meta = [];
+            if (item.rank) meta.push(`<span>Rank: ${{item.rank}}</span>`);
+            if (item.aspect && item.aspect !== 'N/A') meta.push(`<span>Aspect: ${{item.aspect}}</span>`);
+            if (item.clan && item.clan !== 'N/A' && item.clan !== 'None') meta.push(`<span>Clan: ${{item.clan}}</span>`);
+            meta.push(`<span>Ch.${{item.first_appearance}}</span>`);
+            
+            const metaHtml = meta.length > 0 ? `<div class="meta">${{meta.join('')}}</div>` : '';
+            
+            return `
+                <div class="wiki-item ${{isNew ? 'new-this-chapter' : ''}}">
+                    <h4>${{item.name}} ${{newBadge || typeBadge || categoryBadge}}</h4>
+                    ${{aliases}}
+                    <div class="description">${{item.description}}</div>
+                    ${{metaHtml}}
+                </div>
+            `;
+        }}).join('');
+        
+        // Update tab count
+        const tab = document.querySelector(`[data-tab="${{type}}"]`);
+        if (tab) {{
+            const newCount = visible.filter(i => i.first_appearance === this.currentChapter).length;
+            const newIndicator = newCount > 0 ? ` (${{newCount}} new)` : '';
+            tab.dataset.count = visible.length;
+        }}
+    }},
+    
+    initTabs() {{
+        const tabs = document.querySelectorAll('.wiki-tab');
+        const sections = document.querySelectorAll('.wiki-section');
+        
+        tabs.forEach(tab => {{
+            tab.addEventListener('click', () => {{
+                tabs.forEach(t => t.classList.remove('active'));
+                sections.forEach(s => s.classList.remove('active'));
+                
+                tab.classList.add('active');
+                const target = tab.dataset.tab;
+                document.getElementById(`${{target}}-section`)?.classList.add('active');
+            }});
+        }});
+    }},
+    
+    initMobileToggle() {{
+        const toggle = document.querySelector('.wiki-toggle');
+        const sidebar = document.querySelector('.wiki-sidebar');
+        
+        if (toggle && sidebar) {{
+            toggle.addEventListener('click', () => {{
+                sidebar.classList.toggle('mobile-open');
+                toggle.textContent = sidebar.classList.contains('mobile-open') ? '✕' : '📖';
+            }});
+        }}
+    }}
+}};
 
 // AI Assistant
-const AIAssistant = {
-    responses: {
+const AIAssistant = {{
+    responses: {{
         greetings: [
             "Hello, Sleeper! How can I help you on your journey through the Dream Realm?",
             "Greetings! I'm your guide through Shadow Slave. Ask me anything!",
@@ -566,21 +722,21 @@ const AIAssistant = {
         awakened: "Awakened are humans who survived their First Nightmare and gained supernatural powers called Aspects. They rank from Sleeper → Awakened → Ascended → Master → Saint → Sovereign.",
         aspect: "An Aspect is the unique supernatural ability granted to someone after becoming Awakened. Each Aspect comes with a Flaw - a weakness or curse.",
         shadow: "Sunny's shadow is sentient and has its own personality. It's one of the most mysterious elements of his power.",
-        progress: () => {
+        progress: () => {{
             const last = Storage.getLastChapter();
             const count = Storage.getReadCount();
-            return last ? `You've read ${count} chapters so far. You were last on Chapter ${last}. Keep going!` : "You haven't started reading yet. Begin with Chapter 1!";
-        },
-        wiki: "Check out the Character Wiki! It automatically hides spoilers based on your reading progress.",
+            return last ? `You've read ${{count}} chapters so far. You were last on Chapter ${{last}}. Keep going!` : "You haven't started reading yet. Begin with Chapter 1!";
+        }},
+        wiki: "Check the Wiki sidebar on the right! It shows characters, terms, locations, and events that have appeared up to your current chapter.",
         help: "I can help with: character info, world terms, your progress, navigation. Try asking about Sunny, Nephis, the Nightmare Spell, or your reading progress!",
         unknown: [
             "I'm not sure about that. Try asking about specific characters or concepts!",
             "That's beyond my knowledge. Ask me about characters, the Nightmare Spell, or Aspects!",
             "Hmm, I don't have info on that. Want to know about the main characters?"
         ]
-    },
+    }},
     
-    processQuery(query) {
+    processQuery(query) {{
         const q = query.toLowerCase();
         
         if (q.match(/hello|hi|hey|greet/)) return this.random(this.responses.greetings);
@@ -596,13 +752,13 @@ const AIAssistant = {
         if (q.match(/help|what can|how to/)) return this.responses.help;
         
         return this.random(this.responses.unknown);
-    },
+    }},
     
-    random(arr) { return arr[Math.floor(Math.random() * arr.length)]; }
-};
+    random(arr) {{ return arr[Math.floor(Math.random() * arr.length)]; }}
+}};
 
 // Initialize chat
-function initChat() {
+function initChat() {{
     const btn = document.querySelector('.ai-chat-button');
     const panel = document.querySelector('.ai-chat-panel');
     const closeBtn = document.querySelector('.ai-chat-close');
@@ -615,11 +771,10 @@ function initChat() {
     btn.onclick = () => panel.classList.toggle('open');
     closeBtn.onclick = () => panel.classList.remove('open');
     
-    function sendMessage() {
+    function sendMessage() {{
         const text = input.value.trim();
         if (!text) return;
         
-        // User message
         const userMsg = document.createElement('div');
         userMsg.className = 'ai-message user';
         userMsg.textContent = text;
@@ -627,141 +782,91 @@ function initChat() {
         
         input.value = '';
         
-        // AI response
-        setTimeout(() => {
+        setTimeout(() => {{
             const botMsg = document.createElement('div');
             botMsg.className = 'ai-message bot';
             botMsg.textContent = AIAssistant.processQuery(text);
             messages.appendChild(botMsg);
             messages.scrollTop = messages.scrollHeight;
-        }, 500);
+        }}, 500);
         
         messages.scrollTop = messages.scrollHeight;
-    }
+    }}
     
     sendBtn.onclick = sendMessage;
-    input.onkeypress = (e) => { if (e.key === 'Enter') sendMessage(); };
+    input.onkeypress = (e) => {{ if (e.key === 'Enter') sendMessage(); }};
     
-    // Initial greeting
     const greeting = document.createElement('div');
     greeting.className = 'ai-message bot';
     greeting.textContent = "Hello! I'm your Shadow Slave guide. Ask me about characters, concepts, or your reading progress!";
     messages.appendChild(greeting);
-}
+}}
 
 // Chapter page
-function initChapterPage() {
+function initChapterPage() {{
     const match = window.location.pathname.match(/chapters\\/([0-9]+)\\.html/);
-    if (match) {
+    if (match) {{
         const chapterNum = parseInt(match[1]);
         Storage.saveProgress(chapterNum);
-    }
-}
+        WikiSidebar.init(chapterNum);
+    }}
+}}
 
 // Index page
-function initIndexPage() {
+function initIndexPage() {{
     const lastChapter = Storage.getLastChapter();
     const resumeSection = document.getElementById('resume-section');
-    if (lastChapter && resumeSection) {
+    if (lastChapter && resumeSection) {{
         resumeSection.classList.add('visible');
         const link = resumeSection.querySelector('a');
-        if (link) {
-            link.href = `chapters/${lastChapter}.html`;
-            link.textContent = `Continue Chapter ${lastChapter}`;
-        }
+        if (link) {{
+            link.href = `chapters/${{lastChapter}}.html`;
+            link.textContent = `Continue Chapter ${{lastChapter}}`;
+        }}
         const readCount = document.getElementById('read-count');
         if (readCount) readCount.textContent = Storage.getReadCount();
-    }
-}
+    }}
+}}
 
 // Chapter list
-function initChapterList() {
-    document.querySelectorAll('.chapter-card').forEach(card => {
+function initChapterList() {{
+    document.querySelectorAll('.chapter-card').forEach(card => {{
         const match = card.href.match(/chapters\\/([0-9]+)\\.html/);
-        if (match && Storage.isRead(parseInt(match[1]))) {
+        if (match && Storage.isRead(parseInt(match[1]))) {{
             card.classList.add('read');
-        }
-    });
+        }}
+    }});
     
     const searchBox = document.getElementById('chapter-search');
-    if (searchBox) {
-        searchBox.addEventListener('input', (e) => {
+    if (searchBox) {{
+        searchBox.addEventListener('input', (e) => {{
             const query = e.target.value.toLowerCase();
-            document.querySelectorAll('.chapter-card').forEach(card => {
+            document.querySelectorAll('.chapter-card').forEach(card => {{
                 card.style.display = card.textContent.toLowerCase().includes(query) ? 'block' : 'none';
-            });
-        });
-    }
-}
-
-// Wiki
-function initWiki() {
-    const slider = document.getElementById('chapter-slider');
-    const sliderValue = document.getElementById('slider-value');
-    const characters = document.querySelectorAll('.character-card');
-    const terms = document.querySelectorAll('.term-card');
-    const tabs = document.querySelectorAll('.wiki-tab');
-    
-    if (!slider) return;
-    
-    // Set slider to max chapter read
-    const maxRead = Storage.getMaxChapterRead();
-    if (maxRead > 0) {
-        slider.value = maxRead;
-        sliderValue.textContent = maxRead;
-    }
-    
-    function updateWiki() {
-        const maxChapter = parseInt(slider.value);
-        sliderValue.textContent = maxChapter;
-        
-        characters.forEach(card => {
-            const firstAppear = parseInt(card.dataset.firstAppearance);
-            card.classList.toggle('spoiler', firstAppear > maxChapter);
-        });
-        
-        terms.forEach(card => {
-            const firstAppear = parseInt(card.dataset.firstAppearance);
-            card.classList.toggle('spoiler', firstAppear > maxChapter);
-        });
-    }
-    
-    slider.oninput = updateWiki;
-    updateWiki();
-    
-    // Tabs
-    tabs.forEach(tab => {
-        tab.onclick = () => {
-            tabs.forEach(t => t.classList.remove('active'));
-            tab.classList.add('active');
-            
-            const target = tab.dataset.tab;
-            document.getElementById('characters-section').style.display = target === 'characters' ? 'block' : 'none';
-            document.getElementById('terms-section').style.display = target === 'terms' ? 'block' : 'none';
-        };
-    });
-}
+            }});
+        }});
+    }}
+}}
 
 // Keyboard navigation
-document.addEventListener('keydown', (e) => {
-    if (e.key === 'ArrowRight') {
+document.addEventListener('keydown', (e) => {{
+    if (e.key === 'ArrowRight') {{
         const next = document.querySelector('.chapter-nav a:last-child:not(.disabled)');
         if (next) next.click();
-    } else if (e.key === 'ArrowLeft') {
+    }} else if (e.key === 'ArrowLeft') {{
         const prev = document.querySelector('.chapter-nav a:first-child:not(.disabled)');
         if (prev) prev.click();
-    }
-});
+    }}
+}});
 
 // Init
-document.addEventListener('DOMContentLoaded', () => {
+document.addEventListener('DOMContentLoaded', () => {{
     initChat();
     
     if (document.querySelector('.chapter-content')) initChapterPage();
     else if (document.querySelector('.hero')) initIndexPage();
     else if (document.querySelector('.chapters-grid')) initChapterList();
-    else if (document.querySelector('.wiki-header')) initWiki();
-});
+}});
 '''
 
 def get_chat_widget():
@@ -781,6 +886,36 @@ def get_chat_widget():
         </div>
     </div>'''
 
+def get_wiki_sidebar():
+    return '''
+    <aside class="wiki-sidebar">
+        <div class="wiki-sidebar-header">
+            <h3>📖 Wiki</h3>
+            <p>Spoiler-free up to current chapter</p>
+        </div>
+        <div class="wiki-tabs">
+            <button class="wiki-tab active" data-tab="characters">👤 Characters</button>
+            <button class="wiki-tab" data-tab="terms">📚 Terms</button>
+            <button class="wiki-tab" data-tab="locations">🗺️ Places</button>
+            <button class="wiki-tab" data-tab="events">⚔️ Events</button>
+        </div>
+        <div class="wiki-content">
+            <div id="characters-section" class="wiki-section active">
+                <div id="characters-list"></div>
+            </div>
+            <div id="terms-section" class="wiki-section">
+                <div id="terms-list"></div>
+            </div>
+            <div id="locations-section" class="wiki-section">
+                <div id="locations-list"></div>
+            </div>
+            <div id="events-section" class="wiki-section">
+                <div id="events-list"></div>
+            </div>
+        </div>
+    </aside>
+    <button class="wiki-toggle">📖</button>'''
+
 def get_base_template():
     return '''<!DOCTYPE html>
 <html lang="en">
@@ -796,12 +931,11 @@ def get_base_template():
             <a href="{home_path}" class="logo">📖 Shadow Slave</a>
             <div class="nav-links">
                 <a href="{chapters_path}">📚 Chapters</a>
-                <a href="{wiki_path}">📝 Wiki</a>
                 <a href="{login_path}">💾 Save</a>
             </div>
         </nav>
     </header>
-    <main>
+    <main{main_class}>
         {content}
     </main>
     {chat_widget}
@@ -829,10 +963,10 @@ def generate_index(total_chapters):
             <h3>All Chapters</h3>
             <p>Browse {total_chapters:,} chapters</p>
         </a>
-        <a href="wiki.html" class="menu-card">
-            <div class="icon">📝</div>
-            <h3>Character Wiki</h3>
-            <p>Spoiler-free character guide</p>
+        <a href="chapters/1.html" class="menu-card">
+            <div class="icon">📖</div>
+            <h3>Read with Wiki</h3>
+            <p>Sidebar updates per chapter</p>
         </a>
         <a href="login.html" class="menu-card">
             <div class="icon">💾</div>
@@ -869,24 +1003,28 @@ def generate_chapter(chapter, prev_num, next_num, total):
     prev_class = '' if prev_num else 'disabled'
     next_class = '' if next_num else 'disabled'
     
+    wiki = get_wiki_sidebar()
+    
     return f'''
-    <div class="chapter-header">
-        <h1>{chapter['title']}</h1>
-        <div class="chapter-meta">
-            Chapter {chapter['chapter_number']} of {total} • {word_count:,} words • {reading_time} min read
+    <div class="chapter-container">
+        <div class="chapter-header">
+            <h1>{chapter['title']}</h1>
+            <div class="chapter-meta">
+                Chapter {chapter['chapter_number']} of {total} • {word_count:,} words • {reading_time} min read
+            </div>
+        </div>
+        
+        <div class="chapter-content">
+            {content_html}
+        </div>
+        
+        <div class="chapter-nav">
+            <a href="{prev_link}" class="{prev_class}">← Previous</a>
+            <a href="../chapter-list.html">📚 All Chapters</a>
+            <a href="{next_link}" class="{next_class}">Next →</a>
         </div>
     </div>
-    
-    <div class="chapter-content">
-        {content_html}
-    </div>
-    
-    <div class="chapter-nav">
-        <a href="{prev_link}" class="{prev_class}">← Previous</a>
-        <a href="../chapter-list.html">📚 All Chapters</a>
-        <a href="../wiki.html">📝 Wiki</a>
-        <a href="{next_link}" class="{next_class}">Next →</a>
-    </div>
+    {wiki}
     '''
 
 def generate_chapter_list(chapters):
@@ -908,68 +1046,6 @@ def generate_chapter_list(chapters):
     </div>
     '''
 
-def generate_wiki(char_data, total_chapters):
-    # Characters
-    char_cards = []
-    for char in sorted(char_data['characters'], key=lambda x: x['first_appearance']):
-        aliases = ', '.join(char['aliases']) if char['aliases'] else 'None'
-        aspect = char.get('aspect', 'Unknown')
-        char_cards.append(f'''
-        <div class="character-card" data-first-appearance="{char['first_appearance']}" data-type="{char['type']}">
-            <h3>{char['name']}</h3>
-            <div class="aliases">AKA: {aliases}</div>
-            <div class="description">{char['description']}</div>
-            <div class="meta">
-                <span>First: Ch.{char['first_appearance']}</span>
-                <span>Type: {char['type'].title()}</span>
-                <span>Aspect: {aspect}</span>
-            </div>
-        </div>''')
-    
-    # Terms
-    term_cards = []
-    for term in sorted(char_data['terms'], key=lambda x: x['first_appearance']):
-        term_cards.append(f'''
-        <div class="term-card" data-first-appearance="{term['first_appearance']}">
-            <h4>{term['name']}</h4>
-            <p>{term['description']}</p>
-            <small>First mentioned: Chapter {term['first_appearance']}</small>
-        </div>''')
-    
-    return f'''
-    <div class="wiki-header">
-        <h1>📝 Character Wiki</h1>
-        <p>Spoiler-free based on your reading progress</p>
-    </div>
-    
-    <div class="wiki-notice">
-        ⚠️ <strong>Spoiler Protection:</strong> Characters and terms are hidden until you've read the chapter where they first appear. Adjust the slider to reveal more!
-    </div>
-    
-    <div class="wiki-controls">
-        <label>Show content up to Chapter:</label>
-        <input type="range" id="chapter-slider" min="1" max="{total_chapters}" value="1">
-        <span id="slider-value">1</span>
-    </div>
-    
-    <div class="wiki-tabs">
-        <button class="wiki-tab active" data-tab="characters">👤 Characters</button>
-        <button class="wiki-tab" data-tab="terms">📖 Terms & Concepts</button>
-    </div>
-    
-    <div id="characters-section">
-        <div class="character-grid">
-            {''.join(char_cards)}
-        </div>
-    </div>
-    
-    <div id="terms-section" style="display: none;">
-        <div class="term-list">
-            {''.join(term_cards)}
-        </div>
-    </div>
-    '''
-
 def generate_login():
     return '''
     <div class="login-container">
@@ -986,13 +1062,20 @@ def generate_login():
     '''
 
 def main():
-    print("📚 Generating static site with AI Assistant & Wiki...")
+    print("📚 Generating static site with Wiki Sidebar...")
     
     data = load_chapters()
     char_data = load_characters()
     chapters = data['chapters']
     total = len(chapters)
-    print(f"   Found {total} chapters, {len(char_data['characters'])} characters, {len(char_data['terms'])} terms")
+    
+    char_count = len(char_data['characters'])
+    term_count = len(char_data['terms'])
+    loc_count = len(char_data.get('locations', []))
+    event_count = len(char_data.get('events', []))
+    
+    print(f"   Found {total} chapters")
+    print(f"   Wiki: {char_count} characters, {term_count} terms, {loc_count} locations, {event_count} events")
     
     # Create directories
     OUTPUT_DIR.mkdir(exist_ok=True)
@@ -1002,16 +1085,17 @@ def main():
     
     # Write assets
     (OUTPUT_DIR / 'css' / 'style.css').write_text(get_css())
-    (OUTPUT_DIR / 'js' / 'main.js').write_text(get_js())
-    print("   ✓ CSS and JS")
+    (OUTPUT_DIR / 'js' / 'main.js').write_text(get_js(char_data))
+    print("   ✓ CSS and JS with embedded wiki data")
     
     template = get_base_template()
     chat = get_chat_widget()
     
-    def render(title, content, css='css/style.css', js='js/main.js', home='index.html', chaps='chapter-list.html', wiki='wiki.html', login='login.html'):
+    def render(title, content, css='css/style.css', js='js/main.js', home='index.html', chaps='chapter-list.html', login='login.html', with_sidebar=False):
         return template.format(
             title=title, content=content, css_path=css, js_path=js,
-            home_path=home, chapters_path=chaps, wiki_path=wiki, login_path=login, chat_widget=chat
+            home_path=home, chapters_path=chaps, login_path=login, chat_widget=chat,
+            main_class=' class="with-sidebar"' if with_sidebar else ''
         )
     
     # Index
@@ -1022,16 +1106,12 @@ def main():
     (OUTPUT_DIR / 'chapter-list.html').write_text(render('All Chapters - Shadow Slave', generate_chapter_list(chapters)))
     print("   ✓ chapter-list.html")
     
-    # Wiki
-    (OUTPUT_DIR / 'wiki.html').write_text(render('Character Wiki - Shadow Slave', generate_wiki(char_data, total)))
-    print("   ✓ wiki.html")
-    
     # Login
     (OUTPUT_DIR / 'login.html').write_text(render('Save Progress - Shadow Slave', generate_login()))
     print("   ✓ login.html")
     
-    # Chapters
-    print(f"   Generating {total} chapter pages...")
+    # Chapters with sidebar
+    print(f"   Generating {total} chapter pages with wiki sidebar...")
     for i, chapter in enumerate(chapters):
         num = chapter['chapter_number']
         prev_num = num - 1 if num > 1 else None
@@ -1044,9 +1124,9 @@ def main():
             js_path='../js/main.js',
             home_path='../index.html',
             chapters_path='../chapter-list.html',
-            wiki_path='../wiki.html',
             login_path='../login.html',
-            chat_widget=chat
+            chat_widget=chat,
+            main_class=' class="with-sidebar"'
         )
         (OUTPUT_DIR / 'chapters' / f'{num}.html').write_text(html)
         
@@ -1057,9 +1137,9 @@ def main():
     (OUTPUT_DIR / '.nojekyll').touch()
     
     print(f"\n✅ Static site generated!")
-    print(f"   - {total} chapters")
-    print(f"   - AI Assistant on every page")
-    print(f"   - Spoiler-free Character Wiki")
+    print(f"   - {total} chapters with wiki sidebar")
+    print(f"   - Wiki updates based on current chapter")
+    print(f"   - {char_count + term_count + loc_count + event_count} total wiki entries")
     print(f"   - Author: Guiltythree")
 
 if __name__ == '__main__':

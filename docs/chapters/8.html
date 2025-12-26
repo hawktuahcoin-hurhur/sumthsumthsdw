@@ -12,22 +12,22 @@
             <a href="../index.html" class="logo">📖 Shadow Slave</a>
             <div class="nav-links">
                 <a href="../chapter-list.html">📚 Chapters</a>
-                <a href="../wiki.html">📝 Wiki</a>
                 <a href="../login.html">💾 Save</a>
             </div>
         </nav>
     </header>
-    <main>
+    <main class="with-sidebar">
         
-    <div class="chapter-header">
-        <h1>Chapter 8 Nothing at All</h1>
-        <div class="chapter-meta">
-            Chapter 8 of 2720 • 1,422 words • 5 min read
+    <div class="chapter-container">
+        <div class="chapter-header">
+            <h1>Chapter 8 Nothing at All</h1>
+            <div class="chapter-meta">
+                Chapter 8 of 2720 • 1,422 words • 5 min read
+            </div>
         </div>
-    </div>
-    
-    <div class="chapter-content">
-        <p>"Because the monster isn't dead."</p>
+        
+        <div class="chapter-content">
+            <p>"Because the monster isn't dead."</p>
 <p>These ominous words hung in the silence. Three pairs of eyes widened, staring right at Sunny.</p>
 <p>"Why do you say that?"</p>
 <p>After thinking about it, Sunny came to the conclusion that the tyrant was, indeed, still alive. His reasoning was pretty straightforward: he did not hear the Spell congratulating him on slaying the creature after it fell off the cliff. Which meant that it was not slain.</p>
@@ -101,14 +101,42 @@
 <p>The sound of the whetstone scraping against the blade was somehow comforting.</p>
 <p>At the break of dawn, when the sun had lazily begun to warm up the air, they loaded themselves with all the supplies they'd managed to gather and set out into the cold.</p>
 <p>Sunny looked back, taking in the sight of the stone platform for the last time. He had managed to get past the place where the slave caravan was supposed to perish. What was going to happen next? No one could tell.</p>
+        </div>
+        
+        <div class="chapter-nav">
+            <a href="7.html" class="">← Previous</a>
+            <a href="../chapter-list.html">📚 All Chapters</a>
+            <a href="9.html" class="">Next →</a>
+        </div>
     </div>
     
-    <div class="chapter-nav">
-        <a href="7.html" class="">← Previous</a>
-        <a href="../chapter-list.html">📚 All Chapters</a>
-        <a href="../wiki.html">📝 Wiki</a>
-        <a href="9.html" class="">Next →</a>
-    </div>
+    <aside class="wiki-sidebar">
+        <div class="wiki-sidebar-header">
+            <h3>📖 Wiki</h3>
+            <p>Spoiler-free up to current chapter</p>
+        </div>
+        <div class="wiki-tabs">
+            <button class="wiki-tab active" data-tab="characters">👤 Characters</button>
+            <button class="wiki-tab" data-tab="terms">📚 Terms</button>
+            <button class="wiki-tab" data-tab="locations">🗺️ Places</button>
+            <button class="wiki-tab" data-tab="events">⚔️ Events</button>
+        </div>
+        <div class="wiki-content">
+            <div id="characters-section" class="wiki-section active">
+                <div id="characters-list"></div>
+            </div>
+            <div id="terms-section" class="wiki-section">
+                <div id="terms-list"></div>
+            </div>
+            <div id="locations-section" class="wiki-section">
+                <div id="locations-list"></div>
+            </div>
+            <div id="events-section" class="wiki-section">
+                <div id="events-list"></div>
+            </div>
+        </div>
+    </aside>
+    <button class="wiki-toggle">📖</button>
     
     </main>
     

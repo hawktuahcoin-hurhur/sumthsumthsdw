@@ -12,22 +12,22 @@
             <a href="../index.html" class="logo">📖 Shadow Slave</a>
             <div class="nav-links">
                 <a href="../chapter-list.html">📚 Chapters</a>
-                <a href="../wiki.html">📝 Wiki</a>
                 <a href="../login.html">💾 Save</a>
             </div>
         </nav>
     </header>
-    <main>
+    <main class="with-sidebar">
         
-    <div class="chapter-header">
-        <h1>Chapter 9 Wishful Thinking</h1>
-        <div class="chapter-meta">
-            Chapter 9 of 2720 • 1,601 words • 6 min read
+    <div class="chapter-container">
+        <div class="chapter-header">
+            <h1>Chapter 9 Wishful Thinking</h1>
+            <div class="chapter-meta">
+                Chapter 9 of 2720 • 1,601 words • 6 min read
+            </div>
         </div>
-    </div>
-    
-    <div class="chapter-content">
-        <p>There was a problem.</p>
+        
+        <div class="chapter-content">
+            <p>There was a problem.</p>
 <p>They were planning to follow the road up to the mountain pass and then over it, getting as far away from the scene of the massacre as they could before the night came. However, the road was no more.</p>
 <p>At some point during the last months, or maybe even just yesterday, a terrible rockfall occurred, obliterating whole segments of the narrow roadway and making its other parts untraversable. Sunny stood on the precipice of a vast chasm, looking down with no particular expression on his face.</p>
 <p>"What do we do now?"</p>
@@ -85,14 +85,42 @@
 <p>However, Sunny's mental escapade was not completely useless. Looking up from the slippery rocks under his feet, he noticed that the sun was already considerably lower. Come to think of it, the air also seemed to be much colder.</p>
 <p>'At least it helped me pass the time,' Sunny thought.</p>
 <p>The night was approaching.</p>
+        </div>
+        
+        <div class="chapter-nav">
+            <a href="8.html" class="">← Previous</a>
+            <a href="../chapter-list.html">📚 All Chapters</a>
+            <a href="10.html" class="">Next →</a>
+        </div>
     </div>
     
-    <div class="chapter-nav">
-        <a href="8.html" class="">← Previous</a>
-        <a href="../chapter-list.html">📚 All Chapters</a>
-        <a href="../wiki.html">📝 Wiki</a>
-        <a href="10.html" class="">Next →</a>
-    </div>
+    <aside class="wiki-sidebar">
+        <div class="wiki-sidebar-header">
+            <h3>📖 Wiki</h3>
+            <p>Spoiler-free up to current chapter</p>
+        </div>
+        <div class="wiki-tabs">
+            <button class="wiki-tab active" data-tab="characters">👤 Characters</button>
+            <button class="wiki-tab" data-tab="terms">📚 Terms</button>
+            <button class="wiki-tab" data-tab="locations">🗺️ Places</button>
+            <button class="wiki-tab" data-tab="events">⚔️ Events</button>
+        </div>
+        <div class="wiki-content">
+            <div id="characters-section" class="wiki-section active">
+                <div id="characters-list"></div>
+            </div>
+            <div id="terms-section" class="wiki-section">
+                <div id="terms-list"></div>
+            </div>
+            <div id="locations-section" class="wiki-section">
+                <div id="locations-list"></div>
+            </div>
+            <div id="events-section" class="wiki-section">
+                <div id="events-list"></div>
+            </div>
+        </div>
+    </aside>
+    <button class="wiki-toggle">📖</button>
     
     </main>
     

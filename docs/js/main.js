@@ -2866,11 +2866,6 @@ async function initFirebase() {
     try {
         firebase.initializeApp(FirebaseConfig);
         db = firebase.firestore();
-        
-        // Initialize Storage
-        try {
-            firebase.storage();
-        } catch (e) { /* ignore if already initialized */ }
 
         // Listen for login completion from the dedicated auth popup.
         try {

@@ -2925,28 +2925,33 @@ function updateAuthUI() {
 }
 
 function showProfile() {
-    console.log('showProfile called, currentUser:', currentUser);
-    if (!currentUser) {
-        console.log('No currentUser, exiting');
-        return;
-    }
+    const modal = document.getElementById('profile-modal');
+    if (!modal) return;
+    
     const nameEl = document.getElementById('profile-name');
     const emailEl = document.getElementById('profile-email');
     const chaptersEl = document.getElementById('profile-chapters');
     const lastEl = document.getElementById('profile-last');
     const avatarEl = document.getElementById('profile-avatar');
     
-    if (nameEl) nameEl.textContent = currentUser.displayName || currentUser.email.split('@')[0];
-    if (emailEl) emailEl.textContent = currentUser.email;
-    if (chaptersEl) chaptersEl.textContent = Storage.getReadCount();
-    if (lastEl) lastEl.textContent = Storage.getLastChapter() ? 'Chapter ' + Storage.getLastChapter() : 'None';
-    if (avatarEl && currentUser.photoURL) {
-        avatarEl.innerHTML = `<img src="${currentUser.photoURL}" style="width: 100%; height: 100%; border-radius: 50%; object-fit: cover;" />`;
+    if (currentUser) {
+        if (nameEl) nameEl.textContent = currentUser.displayName || currentUser.email.split('@')[0];
+        if (emailEl) emailEl.textContent = currentUser.email;
+        if (avatarEl && currentUser.photoURL) {
+            avatarEl.innerHTML = `<img src="${currentUser.photoURL}" style="width: 100%; height: 100%; border-radius: 50%; object-fit: cover;" />`;
+        } else if (avatarEl) {
+            avatarEl.innerHTML = '👤';
+        }
+    } else {
+        if (nameEl) nameEl.textContent = 'Guest';
+        if (emailEl) emailEl.textContent = 'Not signed in';
+        if (avatarEl) avatarEl.innerHTML = '👤';
     }
     
-    const modal = document.getElementById('profile-modal');
-    console.log('profile-modal element:', modal);
-    if (modal) modal.style.display = 'flex';
+    if (chaptersEl) chaptersEl.textContent = Storage.getReadCount();
+    if (lastEl) lastEl.textContent = Storage.getLastChapter() ? 'Chapter ' + Storage.getLastChapter() : 'None';
+    
+    modal.style.display = 'flex';
 }
 
 function showLoginSuccess() {

@@ -1867,7 +1867,7 @@ let wasLoggedIn = false;
 async function handleLogin() {{
     if (loginInProgress) return;
     if (!firebase || !firebase.auth) {{
-        alert('Firebase not configured');
+        console.log('Firebase not ready yet');
         return;
     }}
     loginInProgress = true;
@@ -1879,9 +1879,8 @@ async function handleLogin() {{
             setTimeout(() => showLoginSuccess(), 300);
         }}
     }} catch (e) {{
-        if (e.code !== 'auth/cancelled-popup-request' && e.code !== 'auth/popup-closed-by-user') {{
-            console.error('Login error:', e);
-        }}
+        // Silently ignore popup errors - user can retry
+        console.log('Login cancelled or error:', e.code);
     }} finally {{
         loginInProgress = false;
     }}

@@ -2925,7 +2925,11 @@ function updateAuthUI() {
 }
 
 function showProfile() {
-    if (!currentUser) return;
+    console.log('showProfile called, currentUser:', currentUser);
+    if (!currentUser) {
+        console.log('No currentUser, exiting');
+        return;
+    }
     const nameEl = document.getElementById('profile-name');
     const emailEl = document.getElementById('profile-email');
     const chaptersEl = document.getElementById('profile-chapters');
@@ -2941,6 +2945,7 @@ function showProfile() {
     }
     
     const modal = document.getElementById('profile-modal');
+    console.log('profile-modal element:', modal);
     if (modal) modal.style.display = 'flex';
 }
 

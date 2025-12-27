@@ -2063,10 +2063,26 @@ async function saveBio() {{
 }}
 
 async function handleAvatarUpload(event) {{
-    if (!currentUser || !db) return;
+    console.log('handleAvatarUpload called');
+    if (!currentUser) {{
+        console.log('No current user');
+        alert('Please log in first');
+        return;
+    }}
+    if (!db) {{
+        console.log('Firestore not initialized');
+        return;
+    }}
     
     const file = event.target.files[0];
-    if (!file || !file.type.startsWith('image/')) return;
+    if (!file) {{
+        console.log('No file selected');
+        return;
+    }}
+    if (!file.type.startsWith('image/')) {{
+        alert('Please select an image file');
+        return;
+    }}
     
     // Limit to 2MB
     if (file.size > 2 * 1024 * 1024) {{
@@ -2074,23 +2090,32 @@ async function handleAvatarUpload(event) {{
         return;
     }}
     
+    console.log('Uploading file:', file.name, 'size:', file.size);
+    
     try {{
         const storage = firebase.storage();
+        console.log('Storage reference obtained');
+        
         const storageRef = storage.ref();
         const fileName = `${{Date.now()}}_${{file.name.replace(/[^a-zA-Z0-9.-]/g, '')}}`;
         const fileRef = storageRef.child(`avatars/${{currentUser.uid}}/${{fileName}}`);
+        console.log('Uploading to path:', fileRef.fullPath);
         
         // Upload file
         const snapshot = await fileRef.put(file);
+        console.log('File uploaded successfully');
         
         // Get download URL
         const downloadUrl = await fileRef.getDownloadURL();
+        console.log('Download URL obtained:', downloadUrl);
         
         // Update user profile in Firestore with merge to create doc if needed
+        console.log('Updating Firestore for user:', currentUser.uid);
         await db.collection('users').doc(currentUser.uid).set(
             {{ customAvatarUrl: downloadUrl }}, 
             {{ merge: true }}
         );
+        console.log('Firestore updated successfully');
         
         // Update local profile
         if (userProfile) {{
@@ -2104,7 +2129,10 @@ async function handleAvatarUpload(event) {{
         if (avatarEl) {{
             avatarEl.innerHTML = `<img src=\"${{downloadUrl}}\" style=\"width: 100%; height: 100%; border-radius: 50%; object-fit: cover;\" />`;
         }}
+        
+        alert('Avatar uploaded successfully!');
     }} catch (e) {{
+        console.error('Avatar upload error:', e);
         alert('Failed to upload avatar: ' + (e.message || 'Unknown error'));
     }}
     

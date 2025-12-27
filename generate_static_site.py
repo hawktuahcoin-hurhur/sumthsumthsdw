@@ -492,6 +492,32 @@ a:hover { color: var(--secondary); }
 .wiki-modal-body {
     padding: 1.5rem;
 }
+.wiki-modal-section {
+    margin-top: 1.25rem;
+}
+.wiki-modal-section h3 {
+    margin: 0 0 0.5rem 0;
+    font-size: 1.1rem;
+    color: var(--primary);
+}
+.chip-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+}
+.chip {
+    padding: 0.35rem 0.6rem;
+    border-radius: 999px;
+    background: rgba(255, 255, 255, 0.08);
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    font-size: 0.8rem;
+    color: var(--text-color);
+}
+.chip .meta {
+    margin-left: 0.35rem;
+    color: var(--text-light);
+    font-size: 0.7rem;
+}
 .wiki-modal-aliases {
     color: var(--text-light);
     font-size: 0.9rem;
@@ -976,6 +1002,55 @@ const WikiSidebar = {{
             }}
         }} else {{
             ranksEl.style.display = 'none';
+        }}
+
+        // Attributes
+        const attributes = Array.isArray(item.attributes) ? item.attributes : [];
+        // Echoes (filter by current chapter)
+        const echoNames = Array.isArray(item.echoes) ? item.echoes : [];
+        const echoes = echoNames
+            .map(name => this.allItems.find(i => i.name === name && i.itemType === 'echo'))
+            .filter(e => e && e.first_appearance <= this.currentChapter);
+        // Memories (filter by current chapter)
+        const memoryNames = Array.isArray(item.memories) ? item.memories : [];
+        const memories = memoryNames
+            .map(name => this.allItems.find(i => i.name === name && i.itemType === 'memory'))
+            .filter(m => m && m.first_appearance <= this.currentChapter);
+
+        // Render sections
+        const body = document.querySelector('.wiki-modal-body');
+        // Clear any previous dynamic sections
+        body.querySelectorAll('.wiki-modal-section.dynamic').forEach(el => el.remove());
+
+        if (attributes.length > 0) {{
+            const sec = document.createElement('div');
+            sec.className = 'wiki-modal-section dynamic';
+            sec.innerHTML = `
+                <h3>Attributes</h3>
+                <div class="chip-list">${{attributes.map(a => `<span class="chip">${{a}}</span>`).join('')}}
+                </div>
+            `;
+            body.appendChild(sec);
+        }}
+        if (echoes.length > 0) {{
+            const sec = document.createElement('div');
+            sec.className = 'wiki-modal-section dynamic';
+            sec.innerHTML = `
+                <h3>Echoes</h3>
+                <div class="chip-list">${{echoes.map(e => `<span class="chip">${{e.name}}<span class="meta">Ch.${{e.first_appearance}}</span></span>`).join('')}}
+                </div>
+            `;
+            body.appendChild(sec);
+        }}
+        if (memories.length > 0) {{
+            const sec = document.createElement('div');
+            sec.className = 'wiki-modal-section dynamic';
+            sec.innerHTML = `
+                <h3>Memories</h3>
+                <div class="chip-list">${{memories.map(m => `<span class="chip">${{m.name}}<span class="meta">Ch.${{m.first_appearance}}</span></span>`).join('')}}
+                </div>
+            `;
+            body.appendChild(sec);
         }}
         
         overlay.classList.add('active');

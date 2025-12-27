@@ -21,6 +21,26 @@
         "Master Sunless"
       ],
       "description": "Protagonist from the outskirts with the Shadow Slave Aspect. His Flaw 'Clear Conscience' prevents lying.",
+      "attributes": [
+        "Strategist under pressure",
+        "Dry humor and pragmatic",
+        "Protective of cohort",
+        "Shadow techniques specialist"
+      ],
+      "echoes": [
+        "Stone Saint",
+        "Soul Serpent"
+      ],
+      "memories": [
+        "Puppeteer's Shroud",
+        "Midnight Shard",
+        "Weaver's Mask",
+        "Mantle of the Underworld",
+        "Cruel Sight",
+        "Covetous Coffer",
+        "Shadow Lantern",
+        "Sin of Solace"
+      ],
       "description_progression": [
         {
           "from_chapter": 1,
@@ -85,6 +105,14 @@
         "Light Bringer"
       ],
       "description": "Legacy of Clan Valor whose inner fire burns with purpose. Her power exacts a personal cost.",
+      "attributes": [
+        "Disciplined leadership",
+        "Endures personal cost",
+        "Mission-focused",
+        "Radiant combat style"
+      ],
+      "echoes": [],
+      "memories": [],
       "description_progression": [
         {
           "from_chapter": 24,
@@ -149,6 +177,13 @@
         "oracle"
       ],
       "description": "Blind oracle whose visions thread danger and hope. Closely tied to Clan Song.",
+      "attributes": [
+        "Prophetic insight",
+        "Gentle but resolute",
+        "Advises with caution"
+      ],
+      "echoes": [],
+      "memories": [],
       "description_progression": [
         {
           "from_chapter": 36,
@@ -201,6 +236,13 @@
         "Nightingale"
       ],
       "description": "Singer found on the Forgotten Shore whose voice carries power. Charming, loyal, and braver than he looks.",
+      "attributes": [
+        "Voice-based support",
+        "Loyal teammate",
+        "Morale stabilizer"
+      ],
+      "echoes": [],
+      "memories": [],
       "description_progression": [
         {
           "from_chapter": 115,

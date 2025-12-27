@@ -24,6 +24,26 @@ const WIKI_DATA = {
         "Master Sunless"
       ],
       "description": "Protagonist from the outskirts with the Shadow Slave Aspect. His Flaw 'Clear Conscience' prevents lying.",
+      "attributes": [
+        "Strategist under pressure",
+        "Dry humor and pragmatic",
+        "Protective of cohort",
+        "Shadow techniques specialist"
+      ],
+      "echoes": [
+        "Stone Saint",
+        "Soul Serpent"
+      ],
+      "memories": [
+        "Puppeteer's Shroud",
+        "Midnight Shard",
+        "Weaver's Mask",
+        "Mantle of the Underworld",
+        "Cruel Sight",
+        "Covetous Coffer",
+        "Shadow Lantern",
+        "Sin of Solace"
+      ],
       "description_progression": [
         {
           "from_chapter": 1,
@@ -88,6 +108,14 @@ const WIKI_DATA = {
         "Light Bringer"
       ],
       "description": "Legacy of Clan Valor whose inner fire burns with purpose. Her power exacts a personal cost.",
+      "attributes": [
+        "Disciplined leadership",
+        "Endures personal cost",
+        "Mission-focused",
+        "Radiant combat style"
+      ],
+      "echoes": [],
+      "memories": [],
       "description_progression": [
         {
           "from_chapter": 24,
@@ -152,6 +180,13 @@ const WIKI_DATA = {
         "oracle"
       ],
       "description": "Blind oracle whose visions thread danger and hope. Closely tied to Clan Song.",
+      "attributes": [
+        "Prophetic insight",
+        "Gentle but resolute",
+        "Advises with caution"
+      ],
+      "echoes": [],
+      "memories": [],
       "description_progression": [
         {
           "from_chapter": 36,
@@ -204,6 +239,13 @@ const WIKI_DATA = {
         "Nightingale"
       ],
       "description": "Singer found on the Forgotten Shore whose voice carries power. Charming, loyal, and braver than he looks.",
+      "attributes": [
+        "Voice-based support",
+        "Loyal teammate",
+        "Morale stabilizer"
+      ],
+      "echoes": [],
+      "memories": [],
       "description_progression": [
         {
           "from_chapter": 115,
@@ -2035,6 +2077,55 @@ const WikiSidebar = {
             }
         } else {
             ranksEl.style.display = 'none';
+        }
+
+        // Attributes
+        const attributes = Array.isArray(item.attributes) ? item.attributes : [];
+        // Echoes (filter by current chapter)
+        const echoNames = Array.isArray(item.echoes) ? item.echoes : [];
+        const echoes = echoNames
+            .map(name => this.allItems.find(i => i.name === name && i.itemType === 'echo'))
+            .filter(e => e && e.first_appearance <= this.currentChapter);
+        // Memories (filter by current chapter)
+        const memoryNames = Array.isArray(item.memories) ? item.memories : [];
+        const memories = memoryNames
+            .map(name => this.allItems.find(i => i.name === name && i.itemType === 'memory'))
+            .filter(m => m && m.first_appearance <= this.currentChapter);
+
+        // Render sections
+        const body = document.querySelector('.wiki-modal-body');
+        // Clear any previous dynamic sections
+        body.querySelectorAll('.wiki-modal-section.dynamic').forEach(el => el.remove());
+
+        if (attributes.length > 0) {
+            const sec = document.createElement('div');
+            sec.className = 'wiki-modal-section dynamic';
+            sec.innerHTML = `
+                <h3>Attributes</h3>
+                <div class="chip-list">${attributes.map(a => `<span class="chip">${a}</span>`).join('')}
+                </div>
+            `;
+            body.appendChild(sec);
+        }
+        if (echoes.length > 0) {
+            const sec = document.createElement('div');
+            sec.className = 'wiki-modal-section dynamic';
+            sec.innerHTML = `
+                <h3>Echoes</h3>
+                <div class="chip-list">${echoes.map(e => `<span class="chip">${e.name}<span class="meta">Ch.${e.first_appearance}</span></span>`).join('')}
+                </div>
+            `;
+            body.appendChild(sec);
+        }
+        if (memories.length > 0) {
+            const sec = document.createElement('div');
+            sec.className = 'wiki-modal-section dynamic';
+            sec.innerHTML = `
+                <h3>Memories</h3>
+                <div class="chip-list">${memories.map(m => `<span class="chip">${m.name}<span class="meta">Ch.${m.first_appearance}</span></span>`).join('')}
+                </div>
+            `;
+            body.appendChild(sec);
         }
         
         overlay.classList.add('active');

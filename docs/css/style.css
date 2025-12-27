@@ -472,6 +472,32 @@ a:hover { color: var(--secondary); }
 .wiki-modal-body {
     padding: 1.5rem;
 }
+.wiki-modal-section {
+    margin-top: 1.25rem;
+}
+.wiki-modal-section h3 {
+    margin: 0 0 0.5rem 0;
+    font-size: 1.1rem;
+    color: var(--primary);
+}
+.chip-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+}
+.chip {
+    padding: 0.35rem 0.6rem;
+    border-radius: 999px;
+    background: rgba(255, 255, 255, 0.08);
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    font-size: 0.8rem;
+    color: var(--text-color);
+}
+.chip .meta {
+    margin-left: 0.35rem;
+    color: var(--text-light);
+    font-size: 0.7rem;
+}
 .wiki-modal-aliases {
     color: var(--text-light);
     font-size: 0.9rem;

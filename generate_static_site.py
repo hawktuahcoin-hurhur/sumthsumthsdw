@@ -667,7 +667,7 @@ a:hover { color: var(--secondary); }
     z-index: 1000;
 }
 
-/* AI Chat Widget */
+/* AI Chat Widget - Sleek Minimal Design */
 .ai-chat-widget {
     position: fixed;
     bottom: 20px;
@@ -676,54 +676,62 @@ a:hover { color: var(--secondary); }
 }
 
 .ai-chat-button {
-    width: 60px;
-    height: 60px;
-    border-radius: 50%;
-    background: linear-gradient(135deg, var(--primary), var(--secondary));
-    border: none;
+    width: 48px;
+    height: 48px;
+    border-radius: 4px;
+    background: var(--card-bg);
+    border: 1px solid rgba(255, 255, 255, 0.15);
     cursor: pointer;
-    font-size: 1.5rem;
-    box-shadow: 0 4px 20px rgba(0, 212, 255, 0.4);
-    transition: transform 0.3s;
+    font-size: 1.25rem;
+    color: var(--text);
+    transition: all 0.2s ease;
 }
-.ai-chat-button:hover { transform: scale(1.1); }
+.ai-chat-button:hover { 
+    background: rgba(255, 255, 255, 0.08);
+    border-color: rgba(255, 255, 255, 0.25);
+}
 
 .ai-chat-panel {
     position: fixed;
-    bottom: 90px;
+    bottom: 80px;
     right: 20px;
-    width: 380px;
+    width: 360px;
     max-width: calc(100vw - 40px);
-    height: 500px;
+    height: 480px;
     max-height: 70vh;
-    background: var(--card-bg);
-    border-radius: 16px;
+    background: #1a1a1f;
+    border-radius: 4px;
     border: 1px solid rgba(255, 255, 255, 0.1);
     display: none;
     flex-direction: column;
-    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.5);
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.4);
 }
 .ai-chat-panel.open { display: flex; }
 
 .ai-chat-header {
-    padding: 1rem;
-    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    padding: 0.875rem 1rem;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.08);
     display: flex;
     justify-content: space-between;
     align-items: center;
 }
 .ai-chat-header h3 {
-    background: linear-gradient(135deg, var(--primary), var(--secondary));
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
+    font-size: 0.875rem;
+    font-weight: 500;
+    color: var(--text);
+    letter-spacing: 0.02em;
 }
 .ai-chat-close {
     background: none;
     border: none;
-    color: var(--text);
-    font-size: 1.5rem;
+    color: rgba(255, 255, 255, 0.5);
+    font-size: 1.25rem;
     cursor: pointer;
+    padding: 0;
+    line-height: 1;
+    transition: color 0.2s;
 }
+.ai-chat-close:hover { color: var(--text); }
 
 .ai-chat-messages {
     flex: 1;
@@ -731,47 +739,60 @@ a:hover { color: var(--secondary); }
     padding: 1rem;
     display: flex;
     flex-direction: column;
-    gap: 1rem;
+    gap: 0.875rem;
 }
 .ai-message {
-    max-width: 85%;
-    padding: 0.75rem 1rem;
-    border-radius: 12px;
-    font-size: 0.95rem;
+    max-width: 90%;
+    padding: 0.625rem 0.875rem;
+    font-size: 0.875rem;
+    line-height: 1.5;
+    border-radius: 2px;
 }
 .ai-message.bot {
-    background: rgba(255, 255, 255, 0.1);
+    background: transparent;
+    border-left: 2px solid rgba(255, 255, 255, 0.2);
     align-self: flex-start;
-    border-bottom-left-radius: 4px;
+    padding-left: 0.75rem;
+    color: rgba(255, 255, 255, 0.85);
 }
 .ai-message.user {
-    background: linear-gradient(135deg, var(--primary), var(--secondary));
+    background: rgba(255, 255, 255, 0.06);
     align-self: flex-end;
-    border-bottom-right-radius: 4px;
+    color: var(--text);
 }
 
 .ai-chat-input {
-    padding: 1rem;
-    border-top: 1px solid rgba(255, 255, 255, 0.1);
+    padding: 0.875rem 1rem;
+    border-top: 1px solid rgba(255, 255, 255, 0.08);
     display: flex;
     gap: 0.5rem;
 }
 .ai-chat-input input {
     flex: 1;
-    padding: 0.75rem;
-    background: rgba(255, 255, 255, 0.1);
-    border: 1px solid rgba(255, 255, 255, 0.2);
-    border-radius: 8px;
+    padding: 0.625rem 0.75rem;
+    background: rgba(255, 255, 255, 0.04);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 2px;
     color: var(--text);
+    font-size: 0.875rem;
 }
-.ai-chat-input input:focus { outline: none; border-color: var(--primary); }
+.ai-chat-input input:focus { 
+    outline: none; 
+    border-color: rgba(255, 255, 255, 0.25);
+    background: rgba(255, 255, 255, 0.06);
+}
 .ai-chat-input button {
-    padding: 0.75rem 1rem;
-    background: var(--primary);
-    border: none;
-    border-radius: 8px;
-    color: white;
+    padding: 0.625rem 1rem;
+    background: rgba(255, 255, 255, 0.1);
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    border-radius: 2px;
+    color: var(--text);
     cursor: pointer;
+    font-size: 0.875rem;
+    transition: all 0.2s;
+}
+.ai-chat-input button:hover {
+    background: rgba(255, 255, 255, 0.15);
 }
 
 /* Login */

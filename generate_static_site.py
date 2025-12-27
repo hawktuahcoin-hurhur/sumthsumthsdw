@@ -1261,28 +1261,32 @@ const WikiSidebar = {{
 const AIAssistant = {{
     responses: {{
         greetings: [
-            "Hello, Sleeper! How can I help you on your journey through the Dream Realm?",
-            "Greetings! I'm your guide through Shadow Slave. Ask me anything!",
-            "Welcome back! Ready to continue the adventure?"
+            "Hello, Sleeper! Welcome to your journey through the Dream Realm. I'm here to help you navigate this dark and twisted world. Feel free to ask me about characters, the power system, world lore, or your reading progress. What would you like to know?",
+            "Greetings, fellow traveler! I'm your guide through Shadow Slave's intricate world. Whether you want to learn about the Nightmare Spell, understand the Awakened ranks, or get info on specific characters like Sunny and Nephis - just ask. How can I assist you today?",
+            "Welcome back to the Dream Realm! Ready to continue your adventure? I can help you with character backgrounds, world-building concepts, the complex power system, or help you pick up where you left off. What's on your mind?"
         ],
-        sunny: "Sunny (Sunless) is the protagonist - an orphan from the outskirts who becomes an Awakened. His Aspect is Shadow, allowing him to control shadows and eventually become the 'Lord Shadow'. He's known for his cunning mind and dark humor.",
-        nephis: "Nephis (Changing Star) is a brilliant Legacy from Clan Valor. She possesses an inner fire that literally burns within her. She's one of the most powerful Awakened of her generation.",
-        cassie: "Cassie is a blind prophet who can see visions of the future. Despite her gentle nature, her prophecies are incredibly accurate and sometimes terrifying.",
-        nightmare: "The Nightmare Spell is the mysterious force that brought the Dream Realm to Earth. It grants humans the chance to become Awakened through surviving Nightmares.",
-        awakened: "Awakened are humans who survived their First Nightmare and gained supernatural powers called Aspects. They rank from Sleeper → Awakened → Ascended → Master → Saint → Sovereign.",
-        aspect: "An Aspect is the unique supernatural ability granted to someone after becoming Awakened. Each Aspect comes with a Flaw - a weakness or curse.",
-        shadow: "Sunny's shadow is sentient and has its own personality. It's one of the most mysterious elements of his power.",
+        sunny: "Sunny, also known as Sunless, is the protagonist of Shadow Slave. He grew up as an orphan in the outskirts - the slums outside the protective walls of human cities. After surviving his First Nightmare, he Awakened with the Shadow Aspect, granting him control over shadows and eventually earning him the title 'Lord Shadow'. What makes Sunny unique is his cunning intellect and dark, sarcastic humor. He's a pragmatic survivor who relies on wit rather than brute strength. His journey from a powerless outcast to one of the most formidable beings is the heart of the story. His sentient shadow companion adds another layer of mystery to his already complex abilities.",
+        nephis: "Nephis, known by her True Name 'Changing Star', is one of the most compelling characters in Shadow Slave. She's a Legacy - someone born into one of the great clans (Clan Valor) that have shaped humanity's survival against the Nightmare Spell. Nephis possesses an extraordinary inner fire that literally burns within her, making her one of the most powerful Awakened of her generation. Despite her noble background, she's driven by complex motivations that often put her at odds with her own family. Her relationship with Sunny is central to the story - a mix of mutual respect, tension, and something deeper that evolves throughout the chapters.",
+        cassie: "Cassie, sometimes called Cassia, is a blind prophet whose abilities are both a gift and a curse. After becoming Awakened, she gained the power to see visions of the future - glimpses of what's to come that are remarkably accurate. Despite her gentle, kind nature, her prophecies often reveal terrifying truths about the world and its fate. Being blind in the physical world but able to 'see' the future creates a fascinating duality in her character. She's one of Sunny's closest companions, and her prophecies have saved the group countless times - though the burden of knowing what's coming weighs heavily on her.",
+        nightmare: "The Nightmare Spell is the catastrophic event that changed humanity forever. It brought the Dream Realm - a dimension of monsters, ancient gods, and unimaginable horrors - crashing into Earth's reality. But it also gave humanity a chance: those who survive their First Nightmare in the Dream Realm return as Awakened, gaining supernatural Aspects and powers. The Spell is mysterious - no one fully understands its origins or true purpose. Some believe it's a curse, others a twisted form of evolution. What's certain is that it created the entire power structure of the world: the great clans, the Citadel, the constant war against Nightmare Creatures, and the desperate struggle for humanity's survival.",
+        awakened: "The Awakened are humans who survived their First Nightmare and emerged with supernatural powers called Aspects. The ranking system goes: Sleeper (before awakening) → Awakened (first rank) → Ascended → Master → Saint → Sovereign (the highest known rank). Each rank represents an exponential increase in power. Awakened protect humanity from Nightmare Creatures and explore the Dream Realm for resources and knowledge. The higher ranks become almost godlike in their abilities. Most Awakened never progress beyond the first few ranks - reaching Master is exceptional, and Saints are legendary figures. The journey through these ranks, the trials required, and the transformations involved are central to the story's progression.",
+        aspect: "An Aspect is the unique supernatural ability granted to someone after becoming Awakened - it defines their power, fighting style, and often their fate. Each Aspect is different: some grant control over elements, others enhance physical abilities, some provide utility powers. But every Aspect comes with a Flaw - an inherent weakness or curse that balances the power. Flaws can be debilitating or even lethal. For example, Sunny's Shadow Aspect gives him incredible abilities, but his Flaw creates significant complications in his life. The interplay between Aspect powers and their Flaws creates strategic depth in combat and character development throughout the story.",
+        shadow: "Sunny's sentient shadow is one of the most intriguing mysteries of the series. Unlike normal shadows, his has its own personality, thoughts, and sometimes even seems to act independently. It can express emotions through gestures and movements, often in humorous or sarcastic ways that mirror Sunny's own personality. The shadow's sentience is connected to his Shadow Aspect, but the full extent of their relationship and the shadow's true nature unfolds gradually through the story. It serves as both a companion and an extension of Sunny's powers, adding depth to his abilities and creating memorable comedic and dramatic moments.",
         progress: () => {{
             const last = Storage.getLastChapter();
             const count = Storage.getReadCount();
-            return last ? `You've read ${{count}} chapters so far. You were last on Chapter ${{last}}. Keep going!` : "You haven't started reading yet. Begin with Chapter 1!";
+            if (last) {{
+                const percent = Math.round((last / 2720) * 100);
+                return `Great progress! You've read ${{count}} chapters so far (${{percent}}% of the story). You were last reading Chapter ${{last}}. The journey continues - there's still so much to discover about Sunny's path through the Dream Realm. Ready to continue?`;
+            }}
+            return "You haven't started reading yet! Shadow Slave is an epic journey of over 2,700 chapters following Sunny's transformation from an outcast to a legend. Begin with Chapter 1 and experience the Nightmare Spell for yourself!";
         }},
-        wiki: "Check the Wiki sidebar on the right! It shows characters, terms, locations, and events that have appeared up to your current chapter.",
-        help: "I can help with: character info, world terms, your progress, navigation. Try asking about Sunny, Nephis, the Nightmare Spell, or your reading progress!",
+        wiki: "The Wiki sidebar on the right is your companion through the story! It dynamically shows characters, terms, locations, and events that have appeared up to your current chapter - so you won't encounter spoilers for content you haven't read yet. Click on any entry to see more details. It's perfect for refreshing your memory on who's who or understanding the complex terminology of the Dream Realm. Note: The wiki information is approximate and may not be 100% accurate for all entries.",
+        help: "I'm here to help you navigate Shadow Slave! Here's what I can assist with:\n\n• Character info - Ask about Sunny, Nephis, Cassie, or other characters\n• World lore - The Nightmare Spell, Dream Realm, great clans\n• Power system - Aspects, Flaws, Awakened ranks (Sleeper to Sovereign)\n• Your progress - Where you left off, chapters read\n• Wiki guide - How to use the spoiler-free sidebar\n\nJust type your question naturally. For example: 'Tell me about Sunny' or 'What are Aspects?'",
         unknown: [
-            "I'm not sure about that. Try asking about specific characters or concepts!",
-            "That's beyond my knowledge. Ask me about characters, the Nightmare Spell, or Aspects!",
-            "Hmm, I don't have info on that. Want to know about the main characters?"
+            "I don't have specific information on that topic, but I'd love to help with something else! Try asking about the main characters (Sunny, Nephis, Cassie), the power system (Aspects, Awakened ranks), or the world lore (Nightmare Spell, Dream Realm). What interests you?",
+            "That's beyond my current knowledge base. I'm best at explaining Shadow Slave's core concepts - the Nightmare Spell, character backgrounds, the Awakened ranking system, Aspects and Flaws. Would you like to know about any of these?",
+            "Hmm, I'm not sure about that particular topic. How about I tell you about one of the main characters? Sunny's journey from outcast to legend is fascinating, or I could explain how the Awakened power system works. What sounds interesting?"
         ]
     }},
     
@@ -1502,6 +1506,10 @@ def generate_index(total_chapters):
         <h1>Shadow Slave</h1>
         <p class="author">by Guiltythree</p>
         <a href="chapters/1.html" class="btn">📖 Start Reading</a>
+    </div>
+    
+    <div style="background: rgba(255, 193, 7, 0.1); border: 1px solid rgba(255, 193, 7, 0.3); border-radius: 4px; padding: 0.75rem 1rem; margin: 0 auto 1.5rem; max-width: 600px; text-align: center;">
+        <p style="margin: 0; color: rgba(255, 255, 255, 0.8); font-size: 0.9rem;">⚠️ <strong>Note:</strong> The wiki is very iffy, so don't take all the info to heart.</p>
     </div>
     
     <div id="resume-section" class="resume-section">

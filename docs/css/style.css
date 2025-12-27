@@ -276,6 +276,12 @@ input:-webkit-autofill {
 }
 .chapter-content p { margin-bottom: 1.5rem; text-align: justify; }
 
+.chapter-content .chapter-paragraph.tts-active {
+    background: rgba(0, 212, 255, 0.08);
+    outline: 1px solid rgba(0, 212, 255, 0.22);
+    outline-offset: 0;
+}
+
 .chapter-nav {
     display: flex;
     justify-content: space-between;

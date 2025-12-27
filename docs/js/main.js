@@ -2507,13 +2507,33 @@ const WikiSidebar = {
 // Text-to-Speech (Chapter pages)
 const TTS = {
     utterance: null,
+    paragraphs: [],
+    index: 0,
     supported: () => (typeof window !== 'undefined' && 'speechSynthesis' in window && 'SpeechSynthesisUtterance' in window),
 
+    clearHighlight() {
+        this.paragraphs.forEach(p => p.classList.remove('tts-active'));
+    },
+
+    setHighlight(i) {
+        this.clearHighlight();
+        const el = this.paragraphs[i];
+        if (!el) return;
+        el.classList.add('tts-active');
+        // Keep it visible without being too jumpy
+        try { el.scrollIntoView({ block: 'nearest' }); } catch (e) { /* ignore */ }
+    },
+
+    loadParagraphs() {
+        const nodes = Array.from(document.querySelectorAll('.chapter-content .chapter-paragraph'));
+        this.paragraphs = nodes;
+    },
+
     getText() {
+        // Kept for backwards compatibility; paragraph-based TTS uses DOM paragraphs
         const container = document.querySelector('.chapter-content');
         if (!container) return '';
         const text = (container.innerText || container.textContent || '').trim();
-        // Keep it simple: speak the raw chapter text
         return text.replace(/\s+/g, ' ');
     },
 
@@ -2521,19 +2541,52 @@ const TTS = {
         if (!this.supported()) return;
         window.speechSynthesis.cancel();
         this.utterance = null;
+        this.index = 0;
+        this.clearHighlight();
     },
 
-    speak(rate = 1.0) {
+    speakCurrent(rate = 1.0) {
         if (!this.supported()) return;
-        const text = this.getText();
-        if (!text) return;
-        this.stop();
+        if (!this.paragraphs || this.paragraphs.length === 0) this.loadParagraphs();
+        if (!this.paragraphs || this.paragraphs.length === 0) return;
+        if (this.index < 0) this.index = 0;
+        if (this.index >= this.paragraphs.length) {
+            this.stop();
+            return;
+        }
+
+        const text = (this.paragraphs[this.index].innerText || this.paragraphs[this.index].textContent || '').trim();
+        if (!text) {
+            this.index += 1;
+            this.speakCurrent(rate);
+            return;
+        }
+
         const u = new SpeechSynthesisUtterance(text);
         u.rate = Math.max(0.5, Math.min(2.0, Number(rate) || 1.0));
         u.pitch = 1.0;
         u.volume = 1.0;
+
         this.utterance = u;
+        this.setHighlight(this.index);
+
+        u.onend = () => {
+            this.index += 1;
+            this.speakCurrent(rate);
+        };
+        u.onerror = () => {
+            this.stop();
+        };
+
         window.speechSynthesis.speak(u);
+    },
+
+    speak(rate = 1.0) {
+        if (!this.supported()) return;
+        this.stop();
+        this.loadParagraphs();
+        this.index = 0;
+        this.speakCurrent(rate);
     },
 
     pause() {

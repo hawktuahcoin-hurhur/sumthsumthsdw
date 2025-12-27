@@ -12,10 +12,10 @@
     --warning: #fbbf24;
     --border: rgba(255, 255, 255, 0.12);
     --border-strong: rgba(255, 255, 255, 0.18);
-    --radius-sm: 2px;
-    --radius: 4px;
-    --radius-lg: 6px;
-    --shadow: 0 12px 32px rgba(0, 0, 0, 0.45);
+    --radius-sm: 0px;
+    --radius: 0px;
+    --radius-lg: 0px;
+    --shadow: none;
 }
 
 * { margin: 0; padding: 0; box-sizing: border-box; }
@@ -369,7 +369,7 @@ a:hover { color: var(--secondary); }
 }
 @keyframes rankGlow {
     0%, 100% { box-shadow: none; }
-    50% { box-shadow: 0 0 15px rgba(251, 191, 36, 0.5); }
+    50% { box-shadow: none; }
 }
 .wiki-item h4 {
     color: var(--primary);
@@ -588,7 +588,7 @@ a:hover { color: var(--secondary); }
 .wiki-item .meta span {
     background: rgba(255, 255, 255, 0.1);
     padding: 0.1rem 0.3rem;
-    border-radius: 3px;
+    border-radius: var(--radius-sm);
 }
 .wiki-item .meta span.rank-upgrade {
     background: rgba(251, 191, 36, 0.3);
@@ -651,7 +651,7 @@ a:hover { color: var(--secondary); }
     cursor: pointer;
     font-size: 1.2rem;
     color: var(--text);
-    box-shadow: var(--shadow);
+    box-shadow: none;
     z-index: 1000;
 }
 
@@ -692,7 +692,7 @@ a:hover { color: var(--secondary); }
     border: 1px solid var(--border);
     display: none;
     flex-direction: column;
-    box-shadow: var(--shadow);
+    box-shadow: none;
 }
 .ai-chat-panel.open { display: flex; }
 
@@ -727,26 +727,33 @@ a:hover { color: var(--secondary); }
     padding: 1rem;
     display: flex;
     flex-direction: column;
-    gap: 0.875rem;
+    gap: 0;
 }
 .ai-message {
-    max-width: 90%;
-    padding: 0.625rem 0.875rem;
+    max-width: 100%;
+    width: 100%;
+    padding: 0.75rem 0.875rem;
     font-size: 0.875rem;
     line-height: 1.5;
-    border-radius: 2px;
+    border-radius: 0;
+    background: transparent;
+    border-top: 1px solid var(--border);
+}
+.ai-chat-messages .ai-message:first-child {
+    border-top: none;
 }
 .ai-message.bot {
-    background: transparent;
     border-left: 2px solid rgba(255, 255, 255, 0.2);
-    align-self: flex-start;
-    padding-left: 0.75rem;
+    border-right: none;
+    align-self: stretch;
     color: rgba(255, 255, 255, 0.85);
 }
 .ai-message.user {
-    background: rgba(255, 255, 255, 0.06);
-    align-self: flex-end;
+    border-right: 2px solid rgba(255, 255, 255, 0.2);
+    border-left: none;
+    align-self: stretch;
     color: var(--text);
+    text-align: right;
 }
 
 .ai-chat-input {

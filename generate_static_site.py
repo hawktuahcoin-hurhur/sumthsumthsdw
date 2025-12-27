@@ -1796,42 +1796,22 @@ const FirebaseConfig = {{
 
 let currentUser = null;
 let db = null;
-let justLoggedIn = false;
 
 async function initFirebase() {{
     try {{
         firebase.initializeApp(FirebaseConfig);
         db = firebase.firestore();
         
-        // Set persistence to LOCAL (survives browser restarts)
-        await firebase.auth().setPersistence(firebase.auth.Auth.Persistence.LOCAL);
-        
-        // Check for redirect result first
-        try {{
-            const result = await firebase.auth().getRedirectResult();
-            if (result && result.user) {{
-                justLoggedIn = true;
-                console.log('Redirect login successful:', result.user.email);
-            }}
-        }} catch (redirectError) {{
-            console.log('Redirect result:', redirectError.code);
-        }}
-        
         firebase.auth().onAuthStateChanged(user => {{
-            console.log('Auth state changed:', user ? user.email : 'logged out');
-            const wasLoggedOut = !currentUser;
             currentUser = user;
             updateAuthUI();
             if (user) {{
                 loadComments();
-                if (justLoggedIn && wasLoggedOut) {{
-                    justLoggedIn = false;
-                    setTimeout(() => showLoginSuccess(), 300);
                 }}
             }}
         }});
     }} catch (e) {{
-        console.log('Firebase init error:', e.message);
+        console.log('Firebase init:', e.message);
     }}
 }}
 
@@ -1888,7 +1868,18 @@ function handleLogin() {{
         return;
     }}
     const provider = new firebase.auth.GoogleAuthProvider();
-    firebase.auth().signInWithRedirect(provider);
+    provider.setCustomParameters({{
+        'prompt': 'select_account'
+    }});
+    firebase.auth().signInWithPopup(provider).then(result => {{
+        if (result.user) {{
+            setTimeout(() => showLoginSuccess(), 500);
+        }}
+    }}).catch(error => {{
+        if (error.code !== 'auth/cancelled-popup-request' && error.code !== 'auth/popup-closed-by-user') {{
+            console.log('Login error:', error.code, error.message);
+        }}
+    }});
 }}
 
 async function handleLogout() {{

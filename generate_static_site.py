@@ -96,6 +96,37 @@ main.with-sidebar {
 a { color: var(--primary); text-decoration: none; }
 a:hover { color: var(--secondary); }
 
+/* Form controls */
+input[type="text"],
+input[type="search"],
+textarea {
+    font: inherit;
+    color: var(--text);
+    caret-color: var(--text);
+    background: rgba(255, 255, 255, 0.06);
+    border: 1px solid var(--border-strong);
+    border-radius: 0;
+    -webkit-appearance: none;
+    appearance: none;
+}
+input[type="text"]::placeholder,
+input[type="search"]::placeholder,
+textarea::placeholder {
+    color: rgba(255, 255, 255, 0.45);
+}
+input[type="text"]:focus,
+input[type="search"]:focus,
+textarea:focus {
+    outline: none;
+    border-color: rgba(0, 212, 255, 0.35);
+    background: rgba(255, 255, 255, 0.08);
+}
+input:-webkit-autofill {
+    -webkit-text-fill-color: var(--text);
+    -webkit-box-shadow: 0 0 0px 1000px rgba(255, 255, 255, 0.06) inset;
+    transition: background-color 9999s ease-in-out 0s;
+}
+
 /* Hero */
 .hero { text-align: center; padding: 4rem 0; }
 .hero h1 {
@@ -254,14 +285,15 @@ a:hover { color: var(--secondary); }
 }
 .search-box {
     padding: 0.75rem 1rem;
-    background: rgba(255, 255, 255, 0.04);
-    border: 1px solid var(--border);
+    background: rgba(255, 255, 255, 0.06);
+    border: 1px solid var(--border-strong);
     border-radius: var(--radius);
     color: var(--text);
     width: 300px;
     max-width: 100%;
+    min-height: 42px;
 }
-.search-box:focus { outline: none; border-color: var(--border-strong); }
+.search-box:focus { outline: none; border-color: rgba(0, 212, 255, 0.35); }
 
 .chapters-grid {
     display: grid;
@@ -788,16 +820,17 @@ a:hover { color: var(--secondary); }
 .ai-chat-input input {
     flex: 1;
     padding: 0.625rem 0.75rem;
-    background: rgba(255, 255, 255, 0.04);
-    border: 1px solid var(--border);
+    background: rgba(255, 255, 255, 0.06);
+    border: 1px solid var(--border-strong);
     border-radius: var(--radius-sm);
     color: var(--text);
     font-size: 0.875rem;
+    min-height: 40px;
 }
 .ai-chat-input input:focus { 
     outline: none; 
-    border-color: rgba(255, 255, 255, 0.25);
-    background: rgba(255, 255, 255, 0.06);
+    border-color: rgba(0, 212, 255, 0.35);
+    background: rgba(255, 255, 255, 0.08);
 }
 .ai-chat-input button {
     padding: 0.625rem 1rem;

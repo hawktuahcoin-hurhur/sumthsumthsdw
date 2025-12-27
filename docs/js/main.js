@@ -2858,21 +2858,33 @@ const FirebaseConfig = {
 
 let currentUser = null;
 let db = null;
+let justLoggedIn = false;
 
 async function initFirebase() {
     try {
         firebase.initializeApp(FirebaseConfig);
         db = firebase.firestore();
         
+        // Check for redirect result first
+        const result = await firebase.auth().getRedirectResult();
+        if (result.user) {
+            justLoggedIn = true;
+        }
+        
         firebase.auth().onAuthStateChanged(user => {
+            const wasLoggedOut = !currentUser;
             currentUser = user;
             updateAuthUI();
             if (user) {
                 loadComments();
+                if (justLoggedIn && wasLoggedOut) {
+                    justLoggedIn = false;
+                    setTimeout(() => showLoginSuccess(), 300);
+                }
             }
         });
     } catch (e) {
-        console.log('Firebase not configured. To enable auth & comments, set up Firebase config in the code.');
+        console.log('Firebase init:', e.message);
     }
 }
 
@@ -2923,36 +2935,20 @@ function showLoginSuccess() {
     document.getElementById('login-success-modal').style.display = 'flex';
 }
 
-let loginInProgress = false;
-let wasLoggedIn = false;
-
-async function handleLogin() {
-    if (loginInProgress) return;
+function handleLogin() {
     if (!firebase || !firebase.auth) {
         console.log('Firebase not ready yet');
         return;
     }
-    loginInProgress = true;
-    wasLoggedIn = !!currentUser;
     const provider = new firebase.auth.GoogleAuthProvider();
-    try {
-        const result = await firebase.auth().signInWithPopup(provider);
-        if (result.user && !wasLoggedIn) {
-            setTimeout(() => showLoginSuccess(), 300);
-        }
-    } catch (e) {
-        // Silently ignore popup errors - user can retry
-        console.log('Login cancelled or error:', e.code);
-    } finally {
-        loginInProgress = false;
-    }
+    firebase.auth().signInWithRedirect(provider);
 }
 
 async function handleLogout() {
     try {
         await firebase.auth().signOut();
     } catch (e) {
-        alert('Logout failed: ' + e.message);
+        console.log('Logout error:', e.message);
     }
 }
 

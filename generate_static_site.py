@@ -923,8 +923,20 @@ const WikiSidebar = {{
             aliasesEl.style.display = 'none';
         }}
         
-        // Description
-        document.getElementById('wiki-modal-description').innerHTML = item.description;
+        // Description (progressive, stacked up to current chapter)
+        const descEl = document.getElementById('wiki-modal-description');
+        if (item.description_progression && Array.isArray(item.description_progression)) {{
+            const visible = item.description_progression
+                .filter(p => p.from_chapter <= this.currentChapter)
+                .sort((a, b) => a.from_chapter - b.from_chapter);
+            if (visible.length > 0) {{
+                descEl.innerHTML = visible.map(p => `<p>${{p.text}}</p>`).join('');
+            }} else {{
+                descEl.innerHTML = `<p>${{item.description}}</p>`;
+            }}
+        }} else {{
+            descEl.innerHTML = `<p>${{item.description}}</p>`;
+        }}
         
         // Meta info
         let metaItems = [];
@@ -1027,7 +1039,17 @@ const WikiSidebar = {{
                 }}
             }}
             
-            const preview = this.truncate(item.description, 60);
+            // Progressive preview: latest paragraph up to current chapter or base description
+            let previewText = item.description;
+            if (item.description_progression && Array.isArray(item.description_progression)) {{
+                const visible = item.description_progression
+                    .filter(p => p.from_chapter <= this.currentChapter)
+                    .sort((a, b) => a.from_chapter - b.from_chapter);
+                if (visible.length > 0) {{
+                    previewText = visible[visible.length - 1].text;
+                }}
+            }}
+            const preview = this.truncate(previewText, 100);
             
             return `
                 <div class="wiki-item ${{isNew ? 'new-this-chapter' : ''}}" onclick="WikiSidebar.openModal('${{item.name.replace(/'/g, "\\'")}}')">

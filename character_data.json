@@ -20,7 +20,33 @@
         "Devil of Antarctica",
         "Master Sunless"
       ],
-      "description": "The main protagonist. An orphan from the outskirts who awakens with the Shadow Slave Aspect. His Flaw 'Clear Conscience' means he cannot lie.",
+      "description": "Protagonist from the outskirts with the Shadow Slave Aspect. His Flaw 'Clear Conscience' prevents lying.",
+      "description_progression": [
+        {
+          "from_chapter": 1,
+          "text": "Born in the lawless outskirts, Sunny enters the First Nightmare on the Black Mountain as a slave. Resourceful and sardonic, he survives by studying enemies, exploiting terrain, and masking his fear behind dry humor. The Spell reveals his Aspect—Shadow Slave—and the Flaw 'Clear Conscience', a constraint that forbids him from lying. His earliest victories are small but defining: reading people accurately, making ruthless decisions when cornered, and discovering that his shadow is more than a silhouette."
+        },
+        {
+          "from_chapter": 34,
+          "text": "On the Forgotten Shore, Sunny forms a fragile cohort as the stakes escalate from survival to strategy. He acquires the Stone Saint Echo, turning an ancient statue into his stalwart guardian, and begins to think in terms of assets, risk, and long-term outcomes. Bright Castle politics test his patience and morality, while his bond with Nephis, Cassie, Kai, and Effie deepens through shared hardship. These chapters forge his leadership—not out of idealism, but out of relentless necessity and the willingness to bear difficult choices." 
+        },
+        {
+          "from_chapter": 351,
+          "text": "After becoming Awakened, Sunny graduates from improvisation to systematized mastery: training, Memory curation, Echo integration, and refinement of shadow techniques. He learns to leverage Domains, Soul Sea logistics, and the delicate economy of fragments. The Second Nightmare pushes him into Ascended, expanding both his capabilities and the burden of his decisions. Friends become responsibilities; plans become labyrinths; and every gain costs something invisible but lasting."
+        },
+        {
+          "from_chapter": 751,
+          "text": "Earning the title 'Master Sunless' coincides with the Antarctic Campaign, where tactics scale from skirmishes to sieges. Sunny operates amid collapsing timelines and mass-casualty calculus, earning the epithet 'Devil of Antarctica' not out of cruelty, but from executing grim necessities. Leadership sharpens into a blade: precise, cold when required, protective when possible. His shadow repertoire expands, and the distinction between man and legend starts to blur."
+        },
+        {
+          "from_chapter": 1022,
+          "text": "In the Tomb of Ariel, time itself becomes a variable. Sunny navigates anomalies with disciplined paranoia, using Memory configurations and Echo deployments like chess pieces. He confronts entities tied to fate and inevitability, probing the boundaries of Weave and Name. The past and future press inward, demanding clarity he barely possesses. Yet he adapts, stacking contingencies and keeping his cohort alive through insight and grit." 
+        },
+        {
+          "from_chapter": 1309,
+          "text": "The Twilight expedition is a crucible for everything Sunny has become: a strategist with shadows for soldiers, a friend who carries the weight of choices, and a survivor confronting rulers whose domains rewrite reality. His humor persists—quieter now, edged by memory. He is not a hero by design; he is a practitioner of victory under constraints, shaping outcomes in worlds designed to break the stubborn."
+        }
+      ],
       "type": "protagonist",
       "aspect": "Shadow Slave",
       "flaw": "Clear Conscience",
@@ -58,7 +84,29 @@
         "Neph",
         "Light Bringer"
       ],
-      "description": "A silver-haired girl from Clan Valor. Her Aspect allows her to ignite with inner fire. Her Flaw means she must suffer to use her power.",
+      "description": "Legacy of Clan Valor whose inner fire burns with purpose. Her power exacts a personal cost.",
+      "description_progression": [
+        {
+          "from_chapter": 24,
+          "text": "Introduced as a composed, silver-haired Legacy from Clan Valor, Nephis carries an aura of resolve. Her Aspect manifests as inner fire—radiant and disciplined—while the price of power is suffering borne quietly. At the Academy, her focus is absolute, hinting at a mission larger than prestige or rank." 
+        },
+        {
+          "from_chapter": 34,
+          "text": "On the Forgotten Shore, Nephis becomes the axis of fragile order. She guides through crisis, makes measured sacrifices, and holds fast when fear should win. The cohort orbits her discipline; Sunny’s cynicism learns to respect her burden. Her strength is not only in flame—it is in choosing pain when ease would betray the goal."
+        },
+        {
+          "from_chapter": 351,
+          "text": "Awakened and ascending, Nephis’s power refines into luminous precision. Hints of her family’s complicated legacy surface—debts owed, oaths kept, and a father known as Broken Sword whose shadow shapes her path. Valor’s politics surround her, but she remains a sovereign mind, wielding duty like a blade."
+        },
+        {
+          "from_chapter": 804,
+          "text": "As alliances shift and threats mature, Nephis navigates the expectations of Clan Valor and the realities of war. Her decisions are rarely soft, but never empty; every choice advances a line she refuses to break. The cohort’s faith in her is earned—not by warmth, but by the integrity of outcomes." 
+        },
+        {
+          "from_chapter": 1700,
+          "text": "By the time Saints enter the board, Nephis has become a study in radiance under constraint. Her inner fire is no longer spectacle—it is governance, a principle turned power. She stands where others would kneel, paying costs measured not in pain, but in permanence."
+        }
+      ],
       "type": "main",
       "aspect": "Changing Star",
       "flaw": "Pristine Soul",
@@ -100,7 +148,25 @@
         "blind girl",
         "oracle"
       ],
-      "description": "A blind girl with the gift of prophecy. Her visions are terrifyingly accurate. Later associated with Clan Song.",
+      "description": "Blind oracle whose visions thread danger and hope. Closely tied to Clan Song.",
+      "description_progression": [
+        {
+          "from_chapter": 36,
+          "text": "Cassie enters as a quiet presence with sight shaped by prophecy rather than light. Her warnings are precise yet fragmentary, guiding the cohort through hazards that should be fatal. She trusts carefully, speaks sparingly, and pays for clarity with exhaustion that feels older than she is."
+        },
+        {
+          "from_chapter": 55,
+          "text": "Within the cohort, Cassie becomes the conscience of caution. Her visions map routes through ruin, but never promise safety. The group learns to treat her foresight as a tool—not a crutch—because fate bends, but rarely breaks. She grows from survivor to guide, shouldering the weight of being right too often." 
+        },
+        {
+          "from_chapter": 351,
+          "text": "As an Awakened aligned with Clan Song, Cassie refines the discipline of reading futures without drowning in them. Her role broadens: negotiating, advising, and anchoring decisions with the humility of someone who knows how wrong right can feel. Mastery later adds authority, but her gentleness remains deliberate."
+        },
+        {
+          "from_chapter": 1022,
+          "text": "In places where time misbehaves, Cassie’s sight complicates and clarifies in the same breath. She becomes a compass that points through paradox, reminding the cohort that progress is not linear and survival is both a choice and an art."
+        }
+      ],
       "type": "main",
       "aspect": "Oracle",
       "clan": "Song",
@@ -134,7 +200,21 @@
         "Kai",
         "Nightingale"
       ],
-      "description": "A handsome young man found in a well on the Forgotten Shore. His Aspect 'Nightingale' gives his voice special powers.",
+      "description": "Singer found on the Forgotten Shore whose voice carries power. Charming, loyal, and braver than he looks.",
+      "description_progression": [
+        {
+          "from_chapter": 115,
+          "text": "First discovered trapped in a well, Kai brings music to a world of stone and hunger. His Nightingale Aspect weaves resonance into words, turning songs into tools—comfort, distraction, and subtle control. He bonds quickly, offering levity where silence would fester."
+        },
+        {
+          "from_chapter": 200,
+          "text": "Kai proves he is more than morale: he scouts, negotiates, and fights when he must. His courage is practical, not performative, and his loyalty survives deprivation intact. The cohort learns to rely on him for the human moments that keep strategy humane." 
+        },
+        {
+          "from_chapter": 351,
+          "text": "As an Awakened, Kai refines control over voice—calibrating influence, focus, and emotional balance. He becomes a bridge among strong personalities, turning friction into coordination. The Nightingale’s song grows from survival tactic into battlefield instrument." 
+        }
+      ],
       "type": "main",
       "aspect": "Nightingale",
       "clan": "None",

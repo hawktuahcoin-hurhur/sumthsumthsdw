@@ -29,12 +29,19 @@ def get_css():
     --text-light: rgba(255, 255, 255, 0.6);
     --accent: #ff6b6b;
     --success: #4ade80;
+    --warning: #fbbf24;
+    --border: rgba(255, 255, 255, 0.12);
+    --border-strong: rgba(255, 255, 255, 0.18);
+    --radius-sm: 2px;
+    --radius: 4px;
+    --radius-lg: 6px;
+    --shadow: 0 12px 32px rgba(0, 0, 0, 0.45);
 }
 
 * { margin: 0; padding: 0; box-sizing: border-box; }
 
 body {
-    background: linear-gradient(135deg, var(--dark-bg) 0%, var(--card-bg) 100%);
+    background: var(--dark-bg);
     color: var(--text);
     font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
     line-height: 1.6;
@@ -42,10 +49,9 @@ body {
 }
 
 header {
-    background: rgba(0, 0, 0, 0.3);
-    backdrop-filter: blur(10px);
+    background: rgba(0, 0, 0, 0.35);
     padding: 1rem 2rem;
-    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    border-bottom: 1px solid var(--border);
     position: sticky;
     top: 0;
     z-index: 100;
@@ -61,11 +67,8 @@ nav {
 
 .logo {
     font-size: 1.5rem;
-    font-weight: bold;
-    background: linear-gradient(135deg, var(--primary), var(--secondary));
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    background-clip: text;
+    font-weight: 650;
+    color: var(--text);
     text-decoration: none;
 }
 
@@ -73,7 +76,7 @@ nav {
 .nav-links a {
     color: var(--text);
     text-decoration: none;
-    transition: color 0.3s;
+    transition: color 0.2s ease;
 }
 .nav-links a:hover { color: var(--primary); }
 
@@ -97,30 +100,44 @@ a:hover { color: var(--secondary); }
 .hero { text-align: center; padding: 4rem 0; }
 .hero h1 {
     font-size: 3rem;
-    background: linear-gradient(135deg, var(--primary), var(--secondary));
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
+    color: var(--text);
     margin-bottom: 0.5rem;
+    letter-spacing: -0.02em;
 }
 .hero .author { color: var(--text-light); font-size: 1.2rem; margin-bottom: 2rem; }
+
+.disclaimer-banner {
+    background: rgba(251, 191, 36, 0.08);
+    border: 1px solid rgba(251, 191, 36, 0.2);
+    border-radius: var(--radius);
+    padding: 0.75rem 1rem;
+    margin: 0 auto 1.5rem;
+    max-width: 600px;
+    text-align: center;
+}
+.disclaimer-banner p {
+    margin: 0;
+    color: rgba(255, 255, 255, 0.82);
+    font-size: 0.9rem;
+}
 
 .btn {
     display: inline-block;
     padding: 1rem 2rem;
-    background: linear-gradient(135deg, var(--primary), var(--secondary));
-    color: white;
-    border-radius: 8px;
-    font-weight: bold;
+    background: rgba(0, 212, 255, 0.14);
+    color: var(--text);
+    border-radius: var(--radius);
+    font-weight: 650;
     font-size: 1.1rem;
     text-decoration: none;
-    transition: transform 0.2s, box-shadow 0.2s;
-    border: none;
+    transition: background 0.2s ease, border-color 0.2s ease;
+    border: 1px solid rgba(0, 212, 255, 0.25);
     cursor: pointer;
 }
 .btn:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 10px 30px rgba(0, 212, 255, 0.3);
-    color: white;
+    background: rgba(0, 212, 255, 0.2);
+    border-color: rgba(0, 212, 255, 0.35);
+    color: var(--text);
 }
 
 .menu-grid {
@@ -131,19 +148,18 @@ a:hover { color: var(--secondary); }
 }
 
 .menu-card {
-    background: rgba(255, 255, 255, 0.05);
+    background: rgba(255, 255, 255, 0.035);
     padding: 2rem;
-    border-radius: 12px;
+    border-radius: var(--radius);
     text-align: center;
-    border: 1px solid rgba(255, 255, 255, 0.1);
-    transition: all 0.3s;
+    border: 1px solid var(--border);
+    transition: background 0.2s ease, border-color 0.2s ease;
     text-decoration: none;
     color: var(--text);
 }
 .menu-card:hover {
-    background: rgba(255, 255, 255, 0.1);
-    border-color: var(--primary);
-    transform: translateY(-3px);
+    background: rgba(255, 255, 255, 0.055);
+    border-color: var(--border-strong);
 }
 .menu-card .icon { font-size: 2.5rem; margin-bottom: 1rem; }
 .menu-card h3 { margin-bottom: 0.5rem; color: var(--primary); }
@@ -156,28 +172,26 @@ a:hover { color: var(--secondary); }
     margin: 3rem 0;
 }
 .stat {
-    background: rgba(255, 255, 255, 0.05);
+    background: rgba(255, 255, 255, 0.035);
     padding: 2rem;
-    border-radius: 12px;
+    border-radius: var(--radius);
     text-align: center;
-    border: 1px solid rgba(255, 255, 255, 0.1);
+    border: 1px solid var(--border);
 }
 .stat-number {
     font-size: 2.5rem;
     font-weight: bold;
-    background: linear-gradient(135deg, var(--primary), var(--secondary));
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
+    color: var(--text);
 }
 .stat-label { color: var(--text-light); margin-top: 0.5rem; }
 
 .resume-section {
-    background: rgba(0, 212, 255, 0.1);
+    background: rgba(0, 212, 255, 0.08);
     padding: 2rem;
-    border-radius: 12px;
+    border-radius: var(--radius);
     margin: 2rem 0;
     text-align: center;
-    border: 1px solid rgba(0, 212, 255, 0.2);
+    border: 1px solid rgba(0, 212, 255, 0.18);
     display: none;
 }
 .resume-section.visible { display: block; }
@@ -189,22 +203,21 @@ a:hover { color: var(--secondary); }
 .chapter-header {
     margin-bottom: 2rem;
     padding-bottom: 1rem;
-    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    border-bottom: 1px solid var(--border);
 }
 .chapter-header h1 {
     font-size: 1.8rem;
-    background: linear-gradient(135deg, var(--primary), var(--secondary));
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
+    color: var(--text);
 }
 .chapter-meta { color: var(--text-light); font-size: 0.9rem; margin-top: 0.5rem; }
 
 .chapter-content {
-    background: rgba(255, 255, 255, 0.03);
+    background: rgba(255, 255, 255, 0.02);
     padding: 2rem;
-    border-radius: 12px;
+    border-radius: var(--radius);
+    border: 1px solid var(--border);
     line-height: 1.9;
-    font-size: 1.1rem;
+    font-size: 1.05rem;
 }
 .chapter-content p { margin-bottom: 1.5rem; text-align: justify; }
 
@@ -213,17 +226,18 @@ a:hover { color: var(--secondary); }
     justify-content: space-between;
     margin-top: 2rem;
     padding-top: 2rem;
-    border-top: 1px solid rgba(255, 255, 255, 0.1);
+    border-top: 1px solid var(--border);
     flex-wrap: wrap;
     gap: 1rem;
 }
 .chapter-nav a {
     padding: 0.75rem 1.5rem;
-    background: rgba(255, 255, 255, 0.1);
-    border-radius: 8px;
-    transition: background 0.3s;
+    background: rgba(255, 255, 255, 0.04);
+    border-radius: var(--radius);
+    border: 1px solid var(--border);
+    transition: background 0.2s ease, border-color 0.2s ease;
 }
-.chapter-nav a:hover { background: rgba(255, 255, 255, 0.2); }
+.chapter-nav a:hover { background: rgba(255, 255, 255, 0.06); border-color: var(--border-strong); }
 .chapter-nav a.disabled { opacity: 0.3; pointer-events: none; }
 
 /* Chapter list */
@@ -236,20 +250,18 @@ a:hover { color: var(--secondary); }
     gap: 1rem;
 }
 .chapter-list-header h1 {
-    background: linear-gradient(135deg, var(--primary), var(--secondary));
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
+    color: var(--text);
 }
 .search-box {
     padding: 0.75rem 1rem;
-    background: rgba(255, 255, 255, 0.1);
-    border: 1px solid rgba(255, 255, 255, 0.2);
-    border-radius: 8px;
+    background: rgba(255, 255, 255, 0.04);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
     color: var(--text);
     width: 300px;
     max-width: 100%;
 }
-.search-box:focus { outline: none; border-color: var(--primary); }
+.search-box:focus { outline: none; border-color: var(--border-strong); }
 
 .chapters-grid {
     display: grid;
@@ -257,19 +269,18 @@ a:hover { color: var(--secondary); }
     gap: 1rem;
 }
 .chapter-card {
-    background: rgba(255, 255, 255, 0.05);
+    background: rgba(255, 255, 255, 0.03);
     padding: 1rem 1.5rem;
-    border-radius: 8px;
-    border: 1px solid rgba(255, 255, 255, 0.1);
-    transition: all 0.3s;
+    border-radius: var(--radius);
+    border: 1px solid var(--border);
+    transition: background 0.2s ease, border-color 0.2s ease;
     text-decoration: none;
     color: var(--text);
     display: block;
 }
 .chapter-card:hover {
-    background: rgba(255, 255, 255, 0.1);
-    border-color: var(--primary);
-    transform: translateY(-2px);
+    background: rgba(255, 255, 255, 0.05);
+    border-color: var(--border-strong);
 }
 .chapter-card.read { border-left: 3px solid var(--primary); }
 .chapter-number { color: var(--primary); font-weight: bold; font-size: 0.9rem; }
@@ -278,8 +289,8 @@ a:hover { color: var(--secondary); }
 /* Wiki Sidebar */
 .wiki-sidebar {
     background: var(--sidebar-bg);
-    border-radius: 12px;
-    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: var(--radius);
+    border: 1px solid var(--border);
     height: fit-content;
     position: sticky;
     top: 80px;
@@ -291,13 +302,11 @@ a:hover { color: var(--secondary); }
 
 .wiki-sidebar-header {
     padding: 1rem;
-    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-    background: rgba(0, 0, 0, 0.2);
+    border-bottom: 1px solid var(--border);
+    background: transparent;
 }
 .wiki-sidebar-header h3 {
-    background: linear-gradient(135deg, var(--primary), var(--secondary));
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
+    color: var(--text);
     font-size: 1.1rem;
     margin-bottom: 0.25rem;
 }
@@ -308,8 +317,8 @@ a:hover { color: var(--secondary); }
 
 .wiki-tabs {
     display: flex;
-    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-    background: rgba(0, 0, 0, 0.1);
+    border-bottom: 1px solid var(--border);
+    background: transparent;
 }
 .wiki-tab {
     flex: 1;
@@ -319,14 +328,14 @@ a:hover { color: var(--secondary); }
     color: var(--text-light);
     cursor: pointer;
     font-size: 0.75rem;
-    transition: all 0.3s;
+    transition: background 0.2s ease, color 0.2s ease;
     border-bottom: 2px solid transparent;
 }
 .wiki-tab:hover { color: var(--text); background: rgba(255, 255, 255, 0.05); }
 .wiki-tab.active { 
     color: var(--primary); 
     border-bottom-color: var(--primary);
-    background: rgba(0, 212, 255, 0.1);
+    background: rgba(0, 212, 255, 0.06);
 }
 
 .wiki-content {
@@ -339,18 +348,17 @@ a:hover { color: var(--secondary); }
 .wiki-section.active { display: block; }
 
 .wiki-item {
-    background: rgba(255, 255, 255, 0.03);
+    background: rgba(255, 255, 255, 0.02);
     padding: 0.75rem;
-    border-radius: 8px;
+    border-radius: var(--radius);
     margin-bottom: 0.5rem;
     border-left: 3px solid var(--secondary);
-    transition: all 0.3s;
+    transition: background 0.2s ease, border-left-color 0.2s ease;
     cursor: pointer;
 }
 .wiki-item:hover {
-    background: rgba(255, 255, 255, 0.08);
+    background: rgba(255, 255, 255, 0.04);
     border-left-color: var(--primary);
-    transform: translateX(3px);
 }
 .wiki-item .description-preview {
     font-size: 0.8rem;
@@ -375,7 +383,7 @@ a:hover { color: var(--secondary); }
     background: rgba(74, 222, 128, 0.1);
 }
 .wiki-item.rank-upgraded {
-    border-left-color: #fbbf24;
+    border-left-color: var(--warning);
     background: rgba(251, 191, 36, 0.1);
     animation: rankGlow 2s ease-in-out;
 }
@@ -394,7 +402,7 @@ a:hover { color: var(--secondary); }
 .wiki-item .badge {
     font-size: 0.65rem;
     padding: 0.15rem 0.4rem;
-    border-radius: 4px;
+    border-radius: var(--radius-sm);
     background: var(--secondary);
     color: white;
 }
@@ -417,44 +425,43 @@ a:hover { color: var(--secondary); }
     left: 0;
     right: 0;
     bottom: 0;
-    background: rgba(0, 0, 0, 0.85);
-    backdrop-filter: blur(5px);
+    background: rgba(0, 0, 0, 0.75);
     z-index: 2000;
     display: flex;
     align-items: center;
     justify-content: center;
     opacity: 0;
     visibility: hidden;
-    transition: all 0.3s ease;
+    transition: opacity 0.2s ease, visibility 0.2s ease;
 }
 .wiki-modal-overlay.active {
     opacity: 1;
     visibility: visible;
 }
 .wiki-modal {
-    background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
-    border-radius: 16px;
+    background: var(--card-bg);
+    border-radius: var(--radius-lg);
     max-width: 600px;
     width: 90%;
     max-height: 80vh;
     overflow-y: auto;
-    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
-    border: 1px solid rgba(255, 255, 255, 0.1);
-    transform: scale(0.9) translateY(20px);
-    transition: transform 0.3s ease;
+    box-shadow: var(--shadow);
+    border: 1px solid var(--border);
+    transform: translateY(8px);
+    transition: transform 0.2s ease;
 }
 .wiki-modal-overlay.active .wiki-modal {
-    transform: scale(1) translateY(0);
+    transform: translateY(0);
 }
 .wiki-modal-header {
     padding: 1.5rem;
-    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    border-bottom: 1px solid var(--border);
     display: flex;
     justify-content: space-between;
     align-items: flex-start;
     position: sticky;
     top: 0;
-    background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
+    background: var(--card-bg);
     z-index: 1;
 }
 .wiki-modal-header h2 {
@@ -471,16 +478,16 @@ a:hover { color: var(--secondary); }
 .wiki-modal-header .badge {
     font-size: 0.75rem;
     padding: 0.25rem 0.6rem;
-    border-radius: 4px;
+    border-radius: var(--radius-sm);
     background: var(--secondary);
     color: white;
 }
 .wiki-modal-header .badge.new { background: var(--success); }
-.wiki-modal-header .badge.rank { background: #fbbf24; color: #1a1a2e; }
+.wiki-modal-header .badge.rank { background: var(--warning); color: #1a1a2e; }
 .wiki-modal-close {
     background: none;
     border: none;
-    color: var(--text-light);
+    color: rgba(255, 255, 255, 0.55);
     font-size: 1.5rem;
     cursor: pointer;
     padding: 0.5rem;
@@ -507,11 +514,11 @@ a:hover { color: var(--secondary); }
 }
 .chip {
     padding: 0.35rem 0.6rem;
-    border-radius: 999px;
-    background: rgba(255, 255, 255, 0.08);
-    border: 1px solid rgba(255, 255, 255, 0.15);
+    border-radius: var(--radius-sm);
+    background: rgba(255, 255, 255, 0.04);
+    border: 1px solid var(--border);
     font-size: 0.8rem;
-    color: var(--text-color);
+    color: var(--text);
 }
 .chip .meta {
     margin-left: 0.35rem;
@@ -527,7 +534,7 @@ a:hover { color: var(--secondary); }
 .wiki-modal-description {
     font-size: 1rem;
     line-height: 1.7;
-    color: var(--text-color);
+    color: var(--text);
     margin-bottom: 1.5rem;
 }
 .wiki-modal-meta {
@@ -539,7 +546,7 @@ a:hover { color: var(--secondary); }
 .wiki-modal-meta-item {
     background: rgba(255, 255, 255, 0.05);
     padding: 0.75rem;
-    border-radius: 8px;
+    border-radius: var(--radius);
     border-left: 3px solid var(--secondary);
 }
 .wiki-modal-meta-item label {
@@ -556,12 +563,12 @@ a:hover { color: var(--secondary); }
 }
 .wiki-modal-rank-history {
     background: rgba(251, 191, 36, 0.1);
-    border-radius: 8px;
+    border-radius: var(--radius);
     padding: 1rem;
     border: 1px solid rgba(251, 191, 36, 0.2);
 }
 .wiki-modal-rank-history h4 {
-    color: #fbbf24;
+    color: var(--warning);
     font-size: 0.9rem;
     margin: 0 0 0.75rem 0;
 }
@@ -576,11 +583,11 @@ a:hover { color: var(--secondary); }
     gap: 0.5rem;
     background: rgba(0, 0, 0, 0.3);
     padding: 0.5rem 0.75rem;
-    border-radius: 6px;
+    border-radius: var(--radius);
 }
 .wiki-modal-rank-entry.current {
     background: rgba(251, 191, 36, 0.2);
-    border: 1px solid #fbbf24;
+    border: 1px solid var(--warning);
 }
 .wiki-modal-rank-entry .rank {
     color: var(--primary);
@@ -605,7 +612,7 @@ a:hover { color: var(--secondary); }
 }
 .wiki-item .meta span.rank-upgrade {
     background: rgba(251, 191, 36, 0.3);
-    color: #fbbf24;
+    color: var(--warning);
     font-weight: bold;
 }
 
@@ -613,7 +620,7 @@ a:hover { color: var(--secondary); }
 .rank-history {
     margin-top: 0.5rem;
     padding-top: 0.5rem;
-    border-top: 1px solid rgba(255, 255, 255, 0.1);
+    border-top: 1px solid var(--border);
 }
 .rank-history .rank-title {
     font-size: 0.7rem;
@@ -629,7 +636,7 @@ a:hover { color: var(--secondary); }
     margin-bottom: 0.25rem;
     padding: 0.15rem 0.4rem;
     background: rgba(255, 255, 255, 0.05);
-    border-radius: 3px;
+    border-radius: var(--radius-sm);
 }
 .rank-history .rank-entry.current {
     background: rgba(251, 191, 36, 0.2);
@@ -658,12 +665,13 @@ a:hover { color: var(--secondary); }
     left: 20px;
     width: 50px;
     height: 50px;
-    border-radius: 50%;
-    background: linear-gradient(135deg, var(--secondary), var(--primary));
-    border: none;
+    border-radius: var(--radius);
+    background: var(--card-bg);
+    border: 1px solid var(--border);
     cursor: pointer;
     font-size: 1.2rem;
-    box-shadow: 0 4px 20px rgba(123, 44, 191, 0.4);
+    color: var(--text);
+    box-shadow: var(--shadow);
     z-index: 1000;
 }
 
@@ -678,9 +686,9 @@ a:hover { color: var(--secondary); }
 .ai-chat-button {
     width: 48px;
     height: 48px;
-    border-radius: 4px;
+    border-radius: var(--radius);
     background: var(--card-bg);
-    border: 1px solid rgba(255, 255, 255, 0.15);
+    border: 1px solid var(--border);
     cursor: pointer;
     font-size: 1.25rem;
     color: var(--text);
@@ -699,12 +707,12 @@ a:hover { color: var(--secondary); }
     max-width: calc(100vw - 40px);
     height: 480px;
     max-height: 70vh;
-    background: #1a1a1f;
-    border-radius: 4px;
-    border: 1px solid rgba(255, 255, 255, 0.1);
+    background: var(--card-bg);
+    border-radius: var(--radius);
+    border: 1px solid var(--border);
     display: none;
     flex-direction: column;
-    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.4);
+    box-shadow: var(--shadow);
 }
 .ai-chat-panel.open { display: flex; }
 
@@ -771,8 +779,8 @@ a:hover { color: var(--secondary); }
     flex: 1;
     padding: 0.625rem 0.75rem;
     background: rgba(255, 255, 255, 0.04);
-    border: 1px solid rgba(255, 255, 255, 0.1);
-    border-radius: 2px;
+    border: 1px solid var(--border);
+    border-radius: var(--radius-sm);
     color: var(--text);
     font-size: 0.875rem;
 }
@@ -783,9 +791,9 @@ a:hover { color: var(--secondary); }
 }
 .ai-chat-input button {
     padding: 0.625rem 1rem;
-    background: rgba(255, 255, 255, 0.1);
-    border: 1px solid rgba(255, 255, 255, 0.15);
-    border-radius: 2px;
+    background: rgba(255, 255, 255, 0.06);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-sm);
     color: var(--text);
     cursor: pointer;
     font-size: 0.875rem;
@@ -799,22 +807,20 @@ a:hover { color: var(--secondary); }
 .login-container {
     max-width: 400px;
     margin: 4rem auto;
-    background: rgba(255, 255, 255, 0.05);
+    background: rgba(255, 255, 255, 0.035);
     padding: 3rem;
-    border-radius: 16px;
-    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: var(--radius-lg);
+    border: 1px solid var(--border);
     text-align: center;
 }
 .login-container h1 {
-    background: linear-gradient(135deg, var(--primary), var(--secondary));
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
+    color: var(--text);
     margin-bottom: 1rem;
 }
 .login-info {
-    background: rgba(0, 212, 255, 0.1);
+    background: rgba(0, 212, 255, 0.08);
     padding: 1.5rem;
-    border-radius: 8px;
+    border-radius: var(--radius);
     margin: 2rem 0;
     border: 1px solid rgba(0, 212, 255, 0.2);
 }
@@ -1508,8 +1514,8 @@ def generate_index(total_chapters):
         <a href="chapters/1.html" class="btn">📖 Start Reading</a>
     </div>
     
-    <div style="background: rgba(255, 193, 7, 0.1); border: 1px solid rgba(255, 193, 7, 0.3); border-radius: 4px; padding: 0.75rem 1rem; margin: 0 auto 1.5rem; max-width: 600px; text-align: center;">
-        <p style="margin: 0; color: rgba(255, 255, 255, 0.8); font-size: 0.9rem;">⚠️ <strong>Note:</strong> The wiki is very iffy, so don't take all the info to heart.</p>
+    <div class="disclaimer-banner">
+        <p>⚠️ <strong>Note:</strong> The wiki is very iffy, so don't take all the info to heart.</p>
     </div>
     
     <div id="resume-section" class="resume-section">

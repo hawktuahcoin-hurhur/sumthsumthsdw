@@ -2865,13 +2865,22 @@ async function initFirebase() {
         firebase.initializeApp(FirebaseConfig);
         db = firebase.firestore();
         
+        // Set persistence to LOCAL (survives browser restarts)
+        await firebase.auth().setPersistence(firebase.auth.Auth.Persistence.LOCAL);
+        
         // Check for redirect result first
-        const result = await firebase.auth().getRedirectResult();
-        if (result.user) {
-            justLoggedIn = true;
+        try {
+            const result = await firebase.auth().getRedirectResult();
+            if (result && result.user) {
+                justLoggedIn = true;
+                console.log('Redirect login successful:', result.user.email);
+            }
+        } catch (redirectError) {
+            console.log('Redirect result:', redirectError.code);
         }
         
         firebase.auth().onAuthStateChanged(user => {
+            console.log('Auth state changed:', user ? user.email : 'logged out');
             const wasLoggedOut = !currentUser;
             currentUser = user;
             updateAuthUI();
@@ -2884,7 +2893,7 @@ async function initFirebase() {
             }
         });
     } catch (e) {
-        console.log('Firebase init:', e.message);
+        console.log('Firebase init error:', e.message);
     }
 }
 

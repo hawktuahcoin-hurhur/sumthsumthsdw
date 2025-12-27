@@ -1988,6 +1988,23 @@ const WikiSidebar = {
         });
     },
     
+    getTerms(item) {
+        const base = [item.name, ...(item.aliases || [])];
+        const terms = (item.search_terms && item.search_terms.length > 0) ? item.search_terms : base;
+        return terms.map(t => t.toLowerCase());
+    },
+    
+    coMentionedItems(subjectItem, targetType) {
+        const subjectTerms = this.getTerms(subjectItem);
+        const items = this.allItems.filter(i => i.itemType === targetType && i.first_appearance <= this.currentChapter);
+        return items.filter(it => {
+            const itTerms = this.getTerms(it);
+            const subjectMentioned = subjectTerms.some(t => this.chapterContent.includes(t));
+            const itMentioned = itTerms.some(t => this.chapterContent.includes(t));
+            return subjectMentioned && itMentioned;
+        });
+    },
+
     openModal(itemName) {
         const item = this.allItems.find(i => i.name === itemName);
         if (!item) return;
@@ -2079,18 +2096,35 @@ const WikiSidebar = {
             ranksEl.style.display = 'none';
         }
 
-        // Attributes
-        const attributes = Array.isArray(item.attributes) ? item.attributes : [];
-        // Echoes (filter by current chapter)
-        const echoNames = Array.isArray(item.echoes) ? item.echoes : [];
-        const echoes = echoNames
-            .map(name => this.allItems.find(i => i.name === name && i.itemType === 'echo'))
-            .filter(e => e && e.first_appearance <= this.currentChapter);
-        // Memories (filter by current chapter)
-        const memoryNames = Array.isArray(item.memories) ? item.memories : [];
-        const memories = memoryNames
-            .map(name => this.allItems.find(i => i.name === name && i.itemType === 'memory'))
-            .filter(m => m && m.first_appearance <= this.currentChapter);
+        // Attributes (explicit or fallback from meta)
+        let attributes = Array.isArray(item.attributes) ? item.attributes.slice() : [];
+        if (attributes.length === 0) {
+            const auto = [];
+            if (item.type) auto.push(`Type: ${item.type}`);
+            if (currentRank) auto.push(`Rank: ${currentRank}`);
+            if (item.aspect && item.aspect !== 'N/A') auto.push(`Aspect: ${item.aspect}`);
+            if (item.flaw && item.flaw !== 'N/A') auto.push(`Flaw: ${item.flaw}`);
+            if (item.clan && item.clan !== 'N/A' && item.clan !== 'None') auto.push(`Clan: ${item.clan}`);
+            attributes = auto;
+        }
+        // Echoes
+        let echoes = [];
+        if (Array.isArray(item.echoes) && item.echoes.length > 0) {
+            echoes = item.echoes
+                .map(name => this.allItems.find(i => i.name === name && i.itemType === 'echo'))
+                .filter(e => e && e.first_appearance <= this.currentChapter);
+        } else if (item.itemType === 'character') {
+            echoes = this.coMentionedItems(item, 'echo');
+        }
+        // Memories
+        let memories = [];
+        if (Array.isArray(item.memories) && item.memories.length > 0) {
+            memories = item.memories
+                .map(name => this.allItems.find(i => i.name === name && i.itemType === 'memory'))
+                .filter(m => m && m.first_appearance <= this.currentChapter);
+        } else if (item.itemType === 'character') {
+            memories = this.coMentionedItems(item, 'memory');
+        }
 
         // Render sections
         const body = document.querySelector('.wiki-modal-body');

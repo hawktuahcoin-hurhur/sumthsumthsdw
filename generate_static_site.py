@@ -1827,13 +1827,12 @@ async function initFirebase() {{
         firebase.auth().onAuthStateChanged(user => {{
             currentUser = user;
             updateAuthUI();
-            if (user) {{
-                loadComments();
-                if (pendingLoginSuccess) {{
-                    pendingLoginSuccess = false;
-                    setTimeout(() => showLoginSuccess(), 250);
-                }}
-                }}
+            if (!user) return;
+
+            loadComments();
+            if (pendingLoginSuccess) {{
+                pendingLoginSuccess = false;
+                setTimeout(() => showLoginSuccess(), 250);
             }}
         }});
     }} catch (e) {{
@@ -1888,6 +1887,11 @@ function showLoginSuccess() {{
     document.getElementById('login-success-modal').style.display = 'flex';
 }}
 
+function showPopupBlocked() {{
+    const el = document.getElementById('popup-blocked-modal');
+    if (el) el.style.display = 'flex';
+}}
+
 function handleLogin() {{
     if (!firebase || !firebase.auth) {{
         console.log('Firebase not ready yet');
@@ -1904,15 +1908,19 @@ function handleLogin() {{
     const w = window.open(
         authUrl,
         'ssAuth',
-        'popup=yes,width=520,height=720,left=120,top=80,noopener,noreferrer'
+        'popup=yes,width=520,height=720,left=120,top=80'
     );
 
     if (!w) {{
-        // Popup blocked: fall back to redirect in this tab.
-        const provider = new firebase.auth.GoogleAuthProvider();
-        provider.setCustomParameters({{ 'prompt': 'select_account' }});
-        firebase.auth().signInWithRedirect(provider);
+        // Popup blocked: do NOT redirect away; ask user to allow popups.
+        pendingLoginSuccess = false;
+        showPopupBlocked();
+        return;
     }}
+
+    try {{
+        w.focus();
+    }} catch (e) {{ /* ignore */ }}
 }}
 
 async function handleLogout() {{
@@ -2161,6 +2169,16 @@ def get_base_template():
             <p id="login-success-name" style="color: var(--text-light); margin-bottom: 1.5rem;"></p>
             <p style="margin-bottom: 1.5rem;">You're now signed in. You can comment on chapters and your progress will be synced.</p>
             <button class="btn" style="width: 100%;" onclick="document.getElementById('login-success-modal').style.display = 'none';">Continue Reading</button>
+        </div>
+    </div>
+    <div id="popup-blocked-modal" class="modal" style="display: none;">
+        <div class="modal-content" style="text-align: center;">
+            <div style="font-size: 3rem; margin-bottom: 1rem;">🪟</div>
+            <h3 style="margin-bottom: 0.5rem;">Allow popups to sign in</h3>
+            <p style="color: var(--text-light); margin-bottom: 1.25rem;">
+                Your browser blocked the sign-in popup. Please allow popups for this site, then try again.
+            </p>
+            <button class="btn" style="width: 100%;" onclick="document.getElementById('popup-blocked-modal').style.display = 'none';">OK</button>
         </div>
     </div>
     <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-app-compat.js"></script>

@@ -2889,13 +2889,12 @@ async function initFirebase() {
         firebase.auth().onAuthStateChanged(user => {
             currentUser = user;
             updateAuthUI();
-            if (user) {
-                loadComments();
-                if (pendingLoginSuccess) {
-                    pendingLoginSuccess = false;
-                    setTimeout(() => showLoginSuccess(), 250);
-                }
-                }
+            if (!user) return;
+
+            loadComments();
+            if (pendingLoginSuccess) {
+                pendingLoginSuccess = false;
+                setTimeout(() => showLoginSuccess(), 250);
             }
         });
     } catch (e) {
@@ -2950,6 +2949,11 @@ function showLoginSuccess() {
     document.getElementById('login-success-modal').style.display = 'flex';
 }
 
+function showPopupBlocked() {
+    const el = document.getElementById('popup-blocked-modal');
+    if (el) el.style.display = 'flex';
+}
+
 function handleLogin() {
     if (!firebase || !firebase.auth) {
         console.log('Firebase not ready yet');
@@ -2966,15 +2970,19 @@ function handleLogin() {
     const w = window.open(
         authUrl,
         'ssAuth',
-        'popup=yes,width=520,height=720,left=120,top=80,noopener,noreferrer'
+        'popup=yes,width=520,height=720,left=120,top=80'
     );
 
     if (!w) {
-        // Popup blocked: fall back to redirect in this tab.
-        const provider = new firebase.auth.GoogleAuthProvider();
-        provider.setCustomParameters({ 'prompt': 'select_account' });
-        firebase.auth().signInWithRedirect(provider);
+        // Popup blocked: do NOT redirect away; ask user to allow popups.
+        pendingLoginSuccess = false;
+        showPopupBlocked();
+        return;
     }
+
+    try {
+        w.focus();
+    } catch (e) { /* ignore */ }
 }
 
 async function handleLogout() {

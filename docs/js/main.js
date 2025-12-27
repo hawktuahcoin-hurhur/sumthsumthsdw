@@ -2268,6 +2268,34 @@ const WikiSidebar = {
             ranksEl.style.display = 'none';
         }
 
+        // Power System: Aspect, Flaw, co-mentioned powers terms (up to current chapter)
+        const powerChips = [];
+        if (item.aspect && item.aspect !== 'N/A') {
+            powerChips.push(`Aspect: ${item.aspect}`);
+        }
+        if (item.flaw && item.flaw !== 'N/A') {
+            powerChips.push(`Flaw: ${item.flaw}`);
+        }
+        if (currentRank) {
+            powerChips.push(`Rank: ${currentRank}`);
+        }
+        // Co-mentioned terms in category "powers"
+        const coTerms = this.coMentionedItems(item, 'term').filter(t => (t.category || '') === 'powers');
+        coTerms.forEach(t => powerChips.push(t.name));
+
+        const body = document.querySelector('.wiki-modal-body');
+        body.querySelectorAll('.wiki-modal-section.dynamic').forEach(el => el.remove());
+        if (powerChips.length > 0) {
+            const sec = document.createElement('div');
+            sec.className = 'wiki-modal-section dynamic';
+            sec.innerHTML = `
+                <h3>Power System</h3>
+                <div class="chip-list">${powerChips.map(c => `<span class="chip">${c}</span>`).join('')}
+                </div>
+            `;
+            body.appendChild(sec);
+        }
+
         // Attributes (explicit or fallback from meta)
         let attributes = Array.isArray(item.attributes) ? item.attributes.slice() : [];
         if (attributes.length === 0) {
@@ -2298,11 +2326,7 @@ const WikiSidebar = {
             memories = this.coMentionedItems(item, 'memory');
         }
 
-        // Render sections
-        const body = document.querySelector('.wiki-modal-body');
-        // Clear any previous dynamic sections
-        body.querySelectorAll('.wiki-modal-section.dynamic').forEach(el => el.remove());
-
+        // Render sections (Attributes, Echoes, Memories)
         if (attributes.length > 0) {
             const sec = document.createElement('div');
             sec.className = 'wiki-modal-section dynamic';

@@ -1463,6 +1463,7 @@ def get_base_template():
             <div class="nav-links">
                 <a href="{chapters_path}">📚 Chapters</a>
                 <a href="{login_path}">💾 Save</a>
+                <a href="https://www.webnovel.com/book/shadow-slave_17505878106372705" target="_blank" rel="noopener">🔗 Official Webnovel</a>
             </div>
         </nav>
     </header>

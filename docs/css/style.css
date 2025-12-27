@@ -334,6 +334,15 @@ a:hover { color: var(--secondary); }
     border-left-color: var(--success);
     background: rgba(74, 222, 128, 0.1);
 }
+.wiki-item.rank-upgraded {
+    border-left-color: #fbbf24;
+    background: rgba(251, 191, 36, 0.1);
+    animation: rankGlow 2s ease-in-out;
+}
+@keyframes rankGlow {
+    0%, 100% { box-shadow: none; }
+    50% { box-shadow: 0 0 15px rgba(251, 191, 36, 0.5); }
+}
 .wiki-item h4 {
     color: var(--primary);
     font-size: 0.9rem;
@@ -371,6 +380,46 @@ a:hover { color: var(--secondary); }
     background: rgba(255, 255, 255, 0.1);
     padding: 0.1rem 0.3rem;
     border-radius: 3px;
+}
+.wiki-item .meta span.rank-upgrade {
+    background: rgba(251, 191, 36, 0.3);
+    color: #fbbf24;
+    font-weight: bold;
+}
+
+/* Rank History */
+.rank-history {
+    margin-top: 0.5rem;
+    padding-top: 0.5rem;
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+}
+.rank-history .rank-title {
+    font-size: 0.7rem;
+    color: var(--text-light);
+    margin-bottom: 0.3rem;
+}
+.rank-history .rank-entry {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.25rem;
+    font-size: 0.7rem;
+    margin-right: 0.5rem;
+    margin-bottom: 0.25rem;
+    padding: 0.15rem 0.4rem;
+    background: rgba(255, 255, 255, 0.05);
+    border-radius: 3px;
+}
+.rank-history .rank-entry.current {
+    background: rgba(251, 191, 36, 0.2);
+    border: 1px solid rgba(251, 191, 36, 0.5);
+}
+.rank-history .rank-name {
+    color: var(--primary);
+    font-weight: 500;
+}
+.rank-history .rank-chapter {
+    color: var(--text-light);
+    font-size: 0.65rem;
 }
 
 .wiki-empty {

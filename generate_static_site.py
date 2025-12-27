@@ -354,6 +354,15 @@ a:hover { color: var(--secondary); }
     border-left-color: var(--success);
     background: rgba(74, 222, 128, 0.1);
 }
+.wiki-item.rank-upgraded {
+    border-left-color: #fbbf24;
+    background: rgba(251, 191, 36, 0.1);
+    animation: rankGlow 2s ease-in-out;
+}
+@keyframes rankGlow {
+    0%, 100% { box-shadow: none; }
+    50% { box-shadow: 0 0 15px rgba(251, 191, 36, 0.5); }
+}
 .wiki-item h4 {
     color: var(--primary);
     font-size: 0.9rem;
@@ -391,6 +400,46 @@ a:hover { color: var(--secondary); }
     background: rgba(255, 255, 255, 0.1);
     padding: 0.1rem 0.3rem;
     border-radius: 3px;
+}
+.wiki-item .meta span.rank-upgrade {
+    background: rgba(251, 191, 36, 0.3);
+    color: #fbbf24;
+    font-weight: bold;
+}
+
+/* Rank History */
+.rank-history {
+    margin-top: 0.5rem;
+    padding-top: 0.5rem;
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+}
+.rank-history .rank-title {
+    font-size: 0.7rem;
+    color: var(--text-light);
+    margin-bottom: 0.3rem;
+}
+.rank-history .rank-entry {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.25rem;
+    font-size: 0.7rem;
+    margin-right: 0.5rem;
+    margin-bottom: 0.25rem;
+    padding: 0.15rem 0.4rem;
+    background: rgba(255, 255, 255, 0.05);
+    border-radius: 3px;
+}
+.rank-history .rank-entry.current {
+    background: rgba(251, 191, 36, 0.2);
+    border: 1px solid rgba(251, 191, 36, 0.5);
+}
+.rank-history .rank-name {
+    color: var(--primary);
+    font-weight: 500;
+}
+.rank-history .rank-chapter {
+    color: var(--text-light);
+    font-size: 0.65rem;
 }
 
 .wiki-empty {
@@ -651,20 +700,59 @@ const WikiSidebar = {{
                 aliases = `<div class="aliases">AKA: ${{item.aliases.join(', ')}}</div>`;
             }}
             
+            // Handle dynamic rank progression
+            let currentRank = '';
+            let rankBadge = '';
+            let rankUpgrade = false;
+            if (item.rank_progression && item.rank_progression.length > 0) {{
+                // Find the current rank based on chapter
+                const applicableRanks = item.rank_progression.filter(r => r.from_chapter <= this.currentChapter);
+                if (applicableRanks.length > 0) {{
+                    const latestRank = applicableRanks[applicableRanks.length - 1];
+                    currentRank = latestRank.rank;
+                    // Check if rank just changed this chapter
+                    if (latestRank.from_chapter === this.currentChapter && applicableRanks.length > 1) {{
+                        rankUpgrade = true;
+                    }}
+                }}
+            }}
+            
             let meta = [];
-            if (item.rank) meta.push(`<span>Rank: ${{item.rank}}</span>`);
+            if (currentRank) {{
+                const rankClass = rankUpgrade ? 'rank-upgrade' : '';
+                const upgradeIcon = rankUpgrade ? '⬆️ ' : '';
+                meta.push(`<span class="${{rankClass}}">${{upgradeIcon}}Rank: ${{currentRank}}</span>`);
+            }}
             if (item.aspect && item.aspect !== 'N/A') meta.push(`<span>Aspect: ${{item.aspect}}</span>`);
             if (item.clan && item.clan !== 'N/A' && item.clan !== 'None') meta.push(`<span>Clan: ${{item.clan}}</span>`);
             meta.push(`<span>Ch.${{item.first_appearance}}</span>`);
             
             const metaHtml = meta.length > 0 ? `<div class="meta">${{meta.join('')}}</div>` : '';
             
+            // Build rank history (spoiler-free)
+            let rankHistory = '';
+            if (item.rank_progression && item.rank_progression.length > 0) {{
+                const visibleRanks = item.rank_progression.filter(r => r.from_chapter <= this.currentChapter);
+                if (visibleRanks.length > 0) {{
+                    rankHistory = `<div class="rank-history">
+                        <div class="rank-title">Rank History:</div>
+                        ${{visibleRanks.map(r => `
+                            <div class="rank-entry ${{r.from_chapter === this.currentChapter ? 'current' : ''}}">
+                                <span class="rank-name">${{r.rank}}</span>
+                                <span class="rank-chapter">Ch.${{r.from_chapter}}</span>
+                            </div>
+                        `).join('')}}
+                    </div>`;
+                }}
+            }}
+            
             return `
-                <div class="wiki-item ${{isNew ? 'new-this-chapter' : ''}}">
+                <div class="wiki-item ${{isNew ? 'new-this-chapter' : ''}} ${{rankUpgrade ? 'rank-upgraded' : ''}}">
                     <h4>${{item.name}} ${{newBadge || typeBadge || categoryBadge}}</h4>
                     ${{aliases}}
                     <div class="description">${{item.description}}</div>
                     ${{metaHtml}}
+                    ${{rankHistory}}
                 </div>
             `;
         }}).join('');

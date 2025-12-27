@@ -2858,17 +2858,43 @@ const FirebaseConfig = {
 
 let currentUser = null;
 let db = null;
+let pendingLoginSuccess = false;
 
 async function initFirebase() {
     try {
         firebase.initializeApp(FirebaseConfig);
         db = firebase.firestore();
+
+        // Listen for login completion from the dedicated auth popup.
+        try {
+            if ('BroadcastChannel' in window) {
+                const authChannel = new BroadcastChannel('ss-auth');
+                authChannel.onmessage = (ev) => {
+                    if (ev && ev.data && ev.data.type === 'login-success') {
+                        pendingLoginSuccess = true;
+                    }
+                };
+            }
+        } catch (e) { /* ignore */ }
+
+        window.addEventListener('storage', (e) => {
+            if (e && e.key === 'ss-auth-event' && e.newValue) {
+                try {
+                    const payload = JSON.parse(e.newValue);
+                    if (payload && payload.type === 'login-success') pendingLoginSuccess = true;
+                } catch (err) { /* ignore */ }
+            }
+        });
         
         firebase.auth().onAuthStateChanged(user => {
             currentUser = user;
             updateAuthUI();
             if (user) {
                 loadComments();
+                if (pendingLoginSuccess) {
+                    pendingLoginSuccess = false;
+                    setTimeout(() => showLoginSuccess(), 250);
+                }
                 }
             }
         });
@@ -2929,19 +2955,26 @@ function handleLogin() {
         console.log('Firebase not ready yet');
         return;
     }
-    const provider = new firebase.auth.GoogleAuthProvider();
-    provider.setCustomParameters({
-        'prompt': 'select_account'
-    });
-    firebase.auth().signInWithPopup(provider).then(result => {
-        if (result.user) {
-            setTimeout(() => showLoginSuccess(), 500);
-        }
-    }).catch(error => {
-        if (error.code !== 'auth/cancelled-popup-request' && error.code !== 'auth/popup-closed-by-user') {
-            console.log('Login error:', error.code, error.message);
-        }
-    });
+
+    // Open a first-party popup that performs redirect auth inside it.
+    // This avoids cases where the provider popup can't communicate back to this window.
+    const authUrl = window.location.pathname.includes('/chapters/')
+        ? new URL('../auth.html', window.location.href).toString()
+        : new URL('auth.html', window.location.href).toString();
+
+    pendingLoginSuccess = true;
+    const w = window.open(
+        authUrl,
+        'ssAuth',
+        'popup=yes,width=520,height=720,left=120,top=80,noopener,noreferrer'
+    );
+
+    if (!w) {
+        // Popup blocked: fall back to redirect in this tab.
+        const provider = new firebase.auth.GoogleAuthProvider();
+        provider.setCustomParameters({ 'prompt': 'select_account' });
+        firebase.auth().signInWithRedirect(provider);
+    }
 }
 
 async function handleLogout() {

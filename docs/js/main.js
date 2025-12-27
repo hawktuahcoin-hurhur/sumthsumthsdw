@@ -3086,81 +3086,94 @@ async function saveBio() {
 }
 
 async function handleAvatarUpload(event) {
-    console.log('handleAvatarUpload called');
     if (!currentUser) {
-        console.log('No current user');
         alert('Please log in first');
         return;
     }
-    if (!db) {
-        console.log('Firestore not initialized');
-        return;
-    }
+    if (!db) return;
     
     const file = event.target.files[0];
-    if (!file) {
-        console.log('No file selected');
-        return;
-    }
+    if (!file) return;
     if (!file.type.startsWith('image/')) {
         alert('Please select an image file');
         return;
     }
     
-    // Limit to 2MB
+    // Limit to 2MB source file
     if (file.size > 2 * 1024 * 1024) {
         alert('Image must be under 2MB');
         return;
     }
     
-    console.log('Uploading file:', file.name, 'size:', file.size);
-    
     try {
-        const storage = firebase.storage();
-        console.log('Storage reference obtained');
+        // Compress and resize image to base64 (no Storage needed!)
+        const dataUrl = await compressImage(file, 150, 0.8);
         
-        const storageRef = storage.ref();
-        const fileName = `${Date.now()}_${file.name.replace(/[^a-zA-Z0-9.-]/g, '')}`;
-        const fileRef = storageRef.child(`avatars/${currentUser.uid}/${fileName}`);
-        console.log('Uploading to path:', fileRef.fullPath);
-        
-        // Upload file
-        const snapshot = await fileRef.put(file);
-        console.log('File uploaded successfully');
-        
-        // Get download URL
-        const downloadUrl = await fileRef.getDownloadURL();
-        console.log('Download URL obtained:', downloadUrl);
-        
-        // Update user profile in Firestore with merge to create doc if needed
-        console.log('Updating Firestore for user:', currentUser.uid);
+        // Store base64 directly in Firestore
         await db.collection('users').doc(currentUser.uid).set(
-            { customAvatarUrl: downloadUrl }, 
+            { customAvatarUrl: dataUrl }, 
             { merge: true }
         );
-        console.log('Firestore updated successfully');
         
         // Update local profile
         if (userProfile) {
-            userProfile.customAvatarUrl = downloadUrl;
+            userProfile.customAvatarUrl = dataUrl;
         } else {
-            userProfile = { customAvatarUrl: downloadUrl };
+            userProfile = { customAvatarUrl: dataUrl };
         }
         
         // Update avatar display immediately
         const avatarEl = document.getElementById('profile-avatar');
         if (avatarEl) {
-            avatarEl.innerHTML = `<img src="${downloadUrl}" style="width: 100%; height: 100%; border-radius: 50%; object-fit: cover;" />`;
+            avatarEl.innerHTML = `<img src="${dataUrl}" style="width: 100%; height: 100%; border-radius: 50%; object-fit: cover;" />`;
         }
         
-        alert('Avatar uploaded successfully!');
+        alert('Avatar updated!');
     } catch (e) {
-        console.error('Avatar upload error:', e);
-        alert('Failed to upload avatar: ' + (e.message || 'Unknown error'));
+        alert('Failed to update avatar: ' + (e.message || 'Unknown error'));
     }
     
-    // Reset file input
     event.target.value = '';
+}
+
+// Compress image to base64 data URL (no Storage required)
+function compressImage(file, maxSize, quality) {
+    return new Promise((resolve, reject) => {
+        const reader = new FileReader();
+        reader.onload = (e) => {
+            const img = new Image();
+            img.onload = () => {
+                const canvas = document.createElement('canvas');
+                let width = img.width;
+                let height = img.height;
+                
+                // Scale down to maxSize x maxSize
+                if (width > height) {
+                    if (width > maxSize) {
+                        height = Math.round((height * maxSize) / width);
+                        width = maxSize;
+                    }
+                } else {
+                    if (height > maxSize) {
+                        width = Math.round((width * maxSize) / height);
+                        height = maxSize;
+                    }
+                }
+                
+                canvas.width = width;
+                canvas.height = height;
+                const ctx = canvas.getContext('2d');
+                ctx.drawImage(img, 0, 0, width, height);
+                
+                // Convert to JPEG base64
+                resolve(canvas.toDataURL('image/jpeg', quality));
+            };
+            img.onerror = reject;
+            img.src = e.target.result;
+        };
+        reader.onerror = reject;
+        reader.readAsDataURL(file);
+    });
 }
 
 function showLoginSuccess() {

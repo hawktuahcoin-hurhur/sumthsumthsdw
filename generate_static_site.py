@@ -1240,28 +1240,28 @@ const WikiSidebar = {{
 const AIAssistant = {{
     responses: {{
         greetings: [
-            "Hey! What do you want to know?",
-            "Yo, what's up?",
-            "Need something?"
+            "Hello, Sleeper! How can I help you on your journey through the Dream Realm?",
+            "Greetings! I'm your guide through Shadow Slave. Ask me anything!",
+            "Welcome back! Ready to continue the adventure?"
         ],
-        sunny: "Sunny's the MC - grew up poor in the outskirts, got the Shadow Slave aspect which is pretty OP. Can't lie because of his flaw. Sarcastic as hell but actually a good guy deep down.",
-        nephis: "Nephis is from Clan Valor, super powerful fire-based aspect. She's intense and driven - there's a lot going on with her family that explains why she's so focused.",
-        cassie: "Cassie's the blind oracle. Her visions are legit terrifying sometimes. Sweet person though, just cursed with knowing too much.",
-        nightmare: "The Nightmare Spell is what started everything - it connected Earth to the Dream Realm and now people can become Awakened by surviving these nightmare trials.",
-        awakened: "Power rankings go: Sleeper → Awakened → Ascended → Master → Saint → Sovereign. Each step up is exponentially harder to reach.",
-        aspect: "Aspects are the powers you get after surviving your nightmare. The catch is every aspect comes with a flaw - some curse or limitation you're stuck with.",
-        shadow: "Sunny's shadow is alive and has its own personality. It's kind of a troublemaker but loyal. Super weird and mysterious power.",
+        sunny: "Sunny (Sunless) is the protagonist - an orphan from the outskirts who becomes an Awakened. His Aspect is Shadow, allowing him to control shadows and eventually become the 'Lord Shadow'. He's known for his cunning mind and dark humor.",
+        nephis: "Nephis (Changing Star) is a brilliant Legacy from Clan Valor. She possesses an inner fire that literally burns within her. She's one of the most powerful Awakened of her generation.",
+        cassie: "Cassie is a blind prophet who can see visions of the future. Despite her gentle nature, her prophecies are incredibly accurate and sometimes terrifying.",
+        nightmare: "The Nightmare Spell is the mysterious force that brought the Dream Realm to Earth. It grants humans the chance to become Awakened through surviving Nightmares.",
+        awakened: "Awakened are humans who survived their First Nightmare and gained supernatural powers called Aspects. They rank from Sleeper → Awakened → Ascended → Master → Saint → Sovereign.",
+        aspect: "An Aspect is the unique supernatural ability granted to someone after becoming Awakened. Each Aspect comes with a Flaw - a weakness or curse.",
+        shadow: "Sunny's shadow is sentient and has its own personality. It's one of the most mysterious elements of his power.",
         progress: () => {{
             const last = Storage.getLastChapter();
             const count = Storage.getReadCount();
-            return last ? `You're on chapter ${{last}}, ${{count}} chapters read total.` : "Haven't started yet? Chapter 1 is waiting.";
+            return last ? `You've read ${{count}} chapters so far. You were last on Chapter ${{last}}. Keep going!` : "You haven't started reading yet. Begin with Chapter 1!";
         }},
-        wiki: "The wiki sidebar on the right updates based on where you are - no spoilers past your current chapter.",
-        help: "I know about the characters, world stuff, and can check your reading progress. Just ask.",
+        wiki: "Check the Wiki sidebar on the right! It shows characters, terms, locations, and events that have appeared up to your current chapter.",
+        help: "I can help with: character info, world terms, your progress, navigation. Try asking about Sunny, Nephis, the Nightmare Spell, or your reading progress!",
         unknown: [
-            "Not sure about that one. Try asking about a character or concept?",
-            "Don't have that info. Ask about characters, aspects, or the world?",
-            "Can't help with that. Want to know about the main cast?"
+            "I'm not sure about that. Try asking about specific characters or concepts!",
+            "That's beyond my knowledge. Ask me about characters, the Nightmare Spell, or Aspects!",
+            "Hmm, I don't have info on that. Want to know about the main characters?"
         ]
     }},
     
@@ -1327,7 +1327,7 @@ function initChat() {{
     
     const greeting = document.createElement('div');
     greeting.className = 'ai-message bot';
-    greeting.textContent = "Hey, need help with anything? Characters, plot stuff, whatever.";
+    greeting.textContent = "Hello! I'm your Shadow Slave guide. Ask me about characters, concepts, or your reading progress!";
     messages.appendChild(greeting);
 }}
 
@@ -1403,15 +1403,15 @@ document.addEventListener('DOMContentLoaded', () => {{
 def get_chat_widget():
     return '''
     <div class="ai-chat-widget">
-        <button class="ai-chat-button" title="Reader's Notes">📝</button>
+        <button class="ai-chat-button" title="AI Assistant">🤖</button>
         <div class="ai-chat-panel">
             <div class="ai-chat-header">
-                <h3>📝 Reader's Notes</h3>
+                <h3>🤖 Shadow Slave Guide</h3>
                 <button class="ai-chat-close">&times;</button>
             </div>
             <div class="ai-chat-messages"></div>
             <div class="ai-chat-input">
-                <input type="text" placeholder="Ask me anything...">
+                <input type="text" placeholder="Ask about characters, terms...">
                 <button>Send</button>
             </div>
         </div>

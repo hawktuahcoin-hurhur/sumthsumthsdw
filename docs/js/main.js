@@ -2525,15 +2525,7 @@ const AIAssistant = {
             return "You haven't started reading yet! Shadow Slave is an epic journey of over 2,700 chapters following Sunny's transformation from an outcast to a legend. Begin with Chapter 1 and experience the Nightmare Spell for yourself!";
         },
         wiki: "The Wiki sidebar on the right is your companion through the story! It dynamically shows characters, terms, locations, and events that have appeared up to your current chapter - so you won't encounter spoilers for content you haven't read yet. Click on any entry to see more details. It's perfect for refreshing your memory on who's who or understanding the complex terminology of the Dream Realm. Note: The wiki information is approximate and may not be 100% accurate for all entries.",
-        help: "I'm here to help you navigate Shadow Slave! Here's what I can assist with:
-
-• Character info - Ask about Sunny, Nephis, Cassie, or other characters
-• World lore - The Nightmare Spell, Dream Realm, great clans
-• Power system - Aspects, Flaws, Awakened ranks (Sleeper to Sovereign)
-• Your progress - Where you left off, chapters read
-• Wiki guide - How to use the spoiler-free sidebar
-
-Just type your question naturally. For example: 'Tell me about Sunny' or 'What are Aspects?'",
+        help: "I'm here to help you navigate Shadow Slave! Here's what I can assist with:\n\n• Character info - Ask about Sunny, Nephis, Cassie, or other characters\n• World lore - The Nightmare Spell, Dream Realm, great clans\n• Power system - Aspects, Flaws, Awakened ranks (Sleeper to Sovereign)\n• Your progress - Where you left off, chapters read\n• Wiki guide - How to use the spoiler-free sidebar\n\nJust type your question naturally. For example: 'Tell me about Sunny' or 'What are Aspects?'",
         unknown: [
             "I don't have specific information on that topic, but I'd love to help with something else! Try asking about the main characters (Sunny, Nephis, Cassie), the power system (Aspects, Awakened ranks), or the world lore (Nightmare Spell, Dream Realm). What interests you?",
             "That's beyond my current knowledge base. I'm best at explaining Shadow Slave's core concepts - the Nightmare Spell, character backgrounds, the Awakened ranking system, Aspects and Flaws. Would you like to know about any of these?",

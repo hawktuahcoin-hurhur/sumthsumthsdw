@@ -1834,16 +1834,24 @@ function updateAuthUI() {{
     }}
 }}
 
+let loginInProgress = false;
+
 async function handleLogin() {{
-    if (!firebase) {{
+    if (loginInProgress) return;
+    if (!firebase || !firebase.auth) {{
         alert('Firebase not configured');
         return;
     }}
+    loginInProgress = true;
     const provider = new firebase.auth.GoogleAuthProvider();
     try {{
         await firebase.auth().signInWithPopup(provider);
     }} catch (e) {{
-        alert('Login failed: ' + e.message);
+        if (e.code !== 'auth/cancelled-popup-request' && e.code !== 'auth/popup-closed-by-user') {{
+            alert('Login failed: ' + e.message);
+        }}
+    }} finally {{
+        loginInProgress = false;
     }}
 }}
 

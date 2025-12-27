@@ -14,6 +14,11 @@
                 <a href="../chapter-list.html">📚 Chapters</a>
                 <a href="../login.html">💾 Save</a>
                 <a href="https://www.webnovel.com/book/shadow-slave_17505878106372705" target="_blank" rel="noopener">🔗 Official Webnovel</a>
+                <div id="auth-container" style="gap: 0.5rem;">
+                    <button id="login-btn" class="btn btn-sm" style="background: var(--secondary);">Sign In</button>
+                    <button id="logout-btn" class="btn btn-sm" style="background: var(--accent); display: none;">Sign Out</button>
+                    <span id="user-display" style="color: var(--text-light); font-size: 0.9rem; align-self: center;"></span>
+                </div>
             </div>
         </nav>
     </header>
@@ -42,7 +47,7 @@
             </div>
         </div>
         
-        <div class="chapter-content">
+        <div class="chapter-content" data-chapter="1570">
             <p class="chapter-paragraph">Sunny did not really believe that the fairy tale Ananke had told him was literal. The magical Well of Wishes did not really exist, and neither did the remnant of the primal desire from which the gods had been born exist in the Estuary. Cassie had told him herself — not everyone's wish would be fulfilled here. But his would, through some unknown process.</p>
 <p class="chapter-paragraph">Still, looking at the mysterious lake surrounding him, Sunny could not help but wonder if both of them had, perhaps, been wrong. Wouldn't it be nice, for something that magical to exist?</p>
 <p class="chapter-paragraph">But, of course, the dark and seemingly endless lake was not the Well of Wishes Ananke had told him about. Sunny realized it when faint lights ignited in its depths, and a nauseating feeling assaulted his senses. 'Argh... damn it!'</p>
@@ -136,6 +141,19 @@
             </div>
         </div>
     </div>
+    <div id="comment-modal" class="modal" style="display: none;">
+        <div class="modal-content">
+            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1rem;">
+                <h3>Add Comment</h3>
+                <button class="close-btn" onclick="document.getElementById('comment-modal').style.display = 'none';">&times;</button>
+            </div>
+            <textarea id="comment-text" placeholder="Write your comment..." style="width: 100%; min-height: 100px; padding: 0.75rem; background: var(--card-bg); border: 1px solid var(--border); color: var(--text); border-radius: var(--radius); font-family: inherit; margin-bottom: 1rem; resize: vertical;"></textarea>
+            <button id="submit-comment-btn" class="btn" onclick="submitComment()">Post Comment</button>
+        </div>
+    </div>
+    <script src="https://www.gstatic.com/firebasejs/10.7.0/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.7.0/firebase-auth.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.7.0/firebase-firestore.js"></script>
     <script src="../js/main.js"></script>
 </body>
 </html>

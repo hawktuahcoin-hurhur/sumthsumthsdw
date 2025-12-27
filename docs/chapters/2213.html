@@ -14,6 +14,11 @@
                 <a href="../chapter-list.html">📚 Chapters</a>
                 <a href="../login.html">💾 Save</a>
                 <a href="https://www.webnovel.com/book/shadow-slave_17505878106372705" target="_blank" rel="noopener">🔗 Official Webnovel</a>
+                <div id="auth-container" style="gap: 0.5rem;">
+                    <button id="login-btn" class="btn btn-sm" style="background: var(--secondary);">Sign In</button>
+                    <button id="logout-btn" class="btn btn-sm" style="background: var(--accent); display: none;">Sign Out</button>
+                    <span id="user-display" style="color: var(--text-light); font-size: 0.9rem; align-self: center;"></span>
+                </div>
             </div>
         </nav>
     </header>
@@ -42,7 +47,7 @@
             </div>
         </div>
         
-        <div class="chapter-content">
+        <div class="chapter-content" data-chapter="2213">
             <p class="chapter-paragraph">The soldiers watched the battle between the Sovereigns in stunned, breathless silence. To them, it looked apocalyptic.</p>
 <p class="chapter-paragraph">The sea of the dead and the celestial river of rustling swords had intertwined into a vast storm of devastation, with mangled pieces of severed flesh and shards of shattered metal obscuring the battlefield like a chilling haze. The bone plain continued to tremble as if from a powerful earthquake, the violent tremors throwing countless soldiers to the ground. The cacophony of the unfathomable battle was overwhelming and deafening, and the winds it had given birth to were strong enough to make the Awakened warriors stagger and sway.</p>
 <p class="chapter-paragraph">It seemed as if the sky itself would break apart and fall... or rather, overflow with incandescent radiance, countless rays of incinerating sunlight pouring through the breaches in the cloud to annihilate the cowering armies.</p>
@@ -132,6 +137,19 @@
             </div>
         </div>
     </div>
+    <div id="comment-modal" class="modal" style="display: none;">
+        <div class="modal-content">
+            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1rem;">
+                <h3>Add Comment</h3>
+                <button class="close-btn" onclick="document.getElementById('comment-modal').style.display = 'none';">&times;</button>
+            </div>
+            <textarea id="comment-text" placeholder="Write your comment..." style="width: 100%; min-height: 100px; padding: 0.75rem; background: var(--card-bg); border: 1px solid var(--border); color: var(--text); border-radius: var(--radius); font-family: inherit; margin-bottom: 1rem; resize: vertical;"></textarea>
+            <button id="submit-comment-btn" class="btn" onclick="submitComment()">Post Comment</button>
+        </div>
+    </div>
+    <script src="https://www.gstatic.com/firebasejs/10.7.0/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.7.0/firebase-auth.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.7.0/firebase-firestore.js"></script>
     <script src="../js/main.js"></script>
 </body>
 </html>

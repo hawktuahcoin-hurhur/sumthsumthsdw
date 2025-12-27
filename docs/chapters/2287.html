@@ -14,6 +14,11 @@
                 <a href="../chapter-list.html">📚 Chapters</a>
                 <a href="../login.html">💾 Save</a>
                 <a href="https://www.webnovel.com/book/shadow-slave_17505878106372705" target="_blank" rel="noopener">🔗 Official Webnovel</a>
+                <div id="auth-container" style="gap: 0.5rem;">
+                    <button id="login-btn" class="btn btn-sm" style="background: var(--secondary);">Sign In</button>
+                    <button id="logout-btn" class="btn btn-sm" style="background: var(--accent); display: none;">Sign Out</button>
+                    <span id="user-display" style="color: var(--text-light); font-size: 0.9rem; align-self: center;"></span>
+                </div>
             </div>
         </nav>
     </header>
@@ -42,7 +47,7 @@
             </div>
         </div>
         
-        <div class="chapter-content">
+        <div class="chapter-content" data-chapter="2287">
             <p class="chapter-paragraph">Slayer was a strange being. She was a Shadow whose dark depths were illuminated by the silver light of pure soul essence. She was not quite Supreme, but also not quite Transcendent — and, while she fought under Sunny's dark banner, she was not loyal or devoted to him. Her prey, the Great Tyrant controlling a vast swath of the abominable swarm, was quite a strange creature as well. In fact, Sunny had been convinced that the black millipedes were no different from a mindless mob at first, ruled by no one and only beholden to their bestial instincts. It was only after suffering several crushing defeats recently that he guessed the existence of a guiding force behind them. Even then, it took him a long time to discover the Tyrants...</p>
 <p class="chapter-paragraph">Which was too long, considering how nearly omniscient he was when his shadow sense reached far and wide.</p>
 <p class="chapter-paragraph">As it turned out, the Great Tyrants of the Black Millipede tribe were elusive creatures. It was hard to catch a glimpse of their blurry forms, and even harder to ambush them — that was because they, too, existed in a transient ambivalence of being split between two states. Only, unlike Slayer, who was torn between two Ranks, the Millipede Queens seemed to exist in the fleeting gaps between two moments. At least that was what Sunny deduced after failing to kill them on several occasions. These Great Tyrants did not exist in the present, remaining forever hidden a moment in the past and a moment in the future. And since it was impossible to destroy something that did not exist, Sunny had failed to slay them time after time. It was an odd and paradoxical ability, to say the least. However, it was also the kind of unreasonable power Sunny expected from beings of the Great Rank.</p>
@@ -112,6 +117,19 @@
             </div>
         </div>
     </div>
+    <div id="comment-modal" class="modal" style="display: none;">
+        <div class="modal-content">
+            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1rem;">
+                <h3>Add Comment</h3>
+                <button class="close-btn" onclick="document.getElementById('comment-modal').style.display = 'none';">&times;</button>
+            </div>
+            <textarea id="comment-text" placeholder="Write your comment..." style="width: 100%; min-height: 100px; padding: 0.75rem; background: var(--card-bg); border: 1px solid var(--border); color: var(--text); border-radius: var(--radius); font-family: inherit; margin-bottom: 1rem; resize: vertical;"></textarea>
+            <button id="submit-comment-btn" class="btn" onclick="submitComment()">Post Comment</button>
+        </div>
+    </div>
+    <script src="https://www.gstatic.com/firebasejs/10.7.0/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.7.0/firebase-auth.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.7.0/firebase-firestore.js"></script>
     <script src="../js/main.js"></script>
 </body>
 </html>

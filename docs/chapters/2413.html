@@ -14,6 +14,11 @@
                 <a href="../chapter-list.html">📚 Chapters</a>
                 <a href="../login.html">💾 Save</a>
                 <a href="https://www.webnovel.com/book/shadow-slave_17505878106372705" target="_blank" rel="noopener">🔗 Official Webnovel</a>
+                <div id="auth-container" style="gap: 0.5rem;">
+                    <button id="login-btn" class="btn btn-sm" style="background: var(--secondary);">Sign In</button>
+                    <button id="logout-btn" class="btn btn-sm" style="background: var(--accent); display: none;">Sign Out</button>
+                    <span id="user-display" style="color: var(--text-light); font-size: 0.9rem; align-self: center;"></span>
+                </div>
             </div>
         </nav>
     </header>
@@ -42,7 +47,7 @@
             </div>
         </div>
         
-        <div class="chapter-content">
+        <div class="chapter-content" data-chapter="2413">
             <p class="chapter-paragraph">Some time later, Sunny was in a magnificent council room of the Jade Palace - two of him, even. One was sitting on the Shadow Chair with his legs crossed, while the other was sprawled on a tastefully decadent couch, covering his face with a hand and groaning pitifully. Both were nursing a mighty headache.</p>
 <p class="chapter-paragraph">The incarnation on the chair was much better off than the other one, though. He was clean and neatly dressed, at least. His other self, the one who had just returned from a harrowing adventure in the realm of Ariel's Game, was covered in layers upon layers of ash, soot, dried blood, and dirt of all kinds. The hole in his chest barely healed, and the scar where his severed arm had been reattached was yet to disappear completely.</p>
 <p class="chapter-paragraph">All in all, the sight of him was quite pathetic.</p>
@@ -129,6 +134,19 @@
             </div>
         </div>
     </div>
+    <div id="comment-modal" class="modal" style="display: none;">
+        <div class="modal-content">
+            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1rem;">
+                <h3>Add Comment</h3>
+                <button class="close-btn" onclick="document.getElementById('comment-modal').style.display = 'none';">&times;</button>
+            </div>
+            <textarea id="comment-text" placeholder="Write your comment..." style="width: 100%; min-height: 100px; padding: 0.75rem; background: var(--card-bg); border: 1px solid var(--border); color: var(--text); border-radius: var(--radius); font-family: inherit; margin-bottom: 1rem; resize: vertical;"></textarea>
+            <button id="submit-comment-btn" class="btn" onclick="submitComment()">Post Comment</button>
+        </div>
+    </div>
+    <script src="https://www.gstatic.com/firebasejs/10.7.0/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.7.0/firebase-auth.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.7.0/firebase-firestore.js"></script>
     <script src="../js/main.js"></script>
 </body>
 </html>

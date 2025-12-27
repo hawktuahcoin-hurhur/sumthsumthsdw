@@ -14,6 +14,11 @@
                 <a href="../chapter-list.html">📚 Chapters</a>
                 <a href="../login.html">💾 Save</a>
                 <a href="https://www.webnovel.com/book/shadow-slave_17505878106372705" target="_blank" rel="noopener">🔗 Official Webnovel</a>
+                <div id="auth-container" style="gap: 0.5rem;">
+                    <button id="login-btn" class="btn btn-sm" style="background: var(--secondary);">Sign In</button>
+                    <button id="logout-btn" class="btn btn-sm" style="background: var(--accent); display: none;">Sign Out</button>
+                    <span id="user-display" style="color: var(--text-light); font-size: 0.9rem; align-self: center;"></span>
+                </div>
             </div>
         </nav>
     </header>
@@ -42,7 +47,7 @@
             </div>
         </div>
         
-        <div class="chapter-content">
+        <div class="chapter-content" data-chapter="1992">
             <p class="chapter-paragraph">There was a good reason for that, of course.</p>
 <p class="chapter-paragraph">And shameful and ugly reason, but a good one nevertheless. Soon after the second stage of the war started, the forces of both Domains had ventured to gain control over vast territories of Godgrave. The Sword Army had held a great advantage in that regard, already holding East Collarbone Plain and a large portion of the Breastbone Reach at the time, while the Song Army had been locked on West Collarbone Plain. There were expeditions launched to conquer the two remaining Citadels in Godgrave. Revel was leading an expedition into the darkness of the Spine Ocean, and a Saint from the branch family of Valor was leading a competing one to make sure that the Lightslayer died there. At the same time, Sir Gilead ventured south with a small force of elite warriors to claim the Citadel on the femur of the dead deity — considering that Nameless Temple stood between them and the Song Army, his expedition was unopposed. The Queen of Worms had seemingly decided to choose her battles and gave up on the south completely. A lot of time had passed since the three conquest parties departed, but neither of the Citadels were conquered yet... which was quite important. That was because the conquest of the last two Citadels would become the final tally of the authority that the two Domains possessed in Godgrave. And once their authority had no more room to grow, there would be nothing left to hold the Sovereigns back. And so, the King of Swords and the Queen of Worms would finally enter the battlefield in person... to face each other, and see which one of them would inherit the throne of War's Divine Realm.</p>
 <p class="chapter-paragraph">Which one of them would kill the other and get the other's crown. ...That did not mean that there was nothing for the two great armies to do while the conquest parties braved the dreadful depths of Godgrave to claim the Citadels, though. In fact, the ordinary soldiers had to play the most important role in this Realm War. The authority of a Domain did not only depend on Citadels, after all — as Sunny had found out. There were other factors involved, like the strength and spirit of those people who belonged to the Domain... and its territory. The latter was especially important, because while the two Domains were roughly equal in terms of population, there was vast unconquered territory in Godgrave. The side that managed to claim more of it could very well swing the final balance of power in its favor. So... the two great armies had begun the conquest. The initial process of claiming territory for a Domain was rather simple — Sunny had helped the Sword Army do just that while marching to the Vanishing Lake. The forces of humanity had to push the scarlet jungle back, burn it, slaughter the Nightmare Creatures who populated it — the original masters of this cursed land — and build fortresses around the fissures in the ancient bone, thus preventing the abominable infestation from extending its tendrils from the Hollows again.</p>
@@ -114,6 +119,19 @@
             </div>
         </div>
     </div>
+    <div id="comment-modal" class="modal" style="display: none;">
+        <div class="modal-content">
+            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1rem;">
+                <h3>Add Comment</h3>
+                <button class="close-btn" onclick="document.getElementById('comment-modal').style.display = 'none';">&times;</button>
+            </div>
+            <textarea id="comment-text" placeholder="Write your comment..." style="width: 100%; min-height: 100px; padding: 0.75rem; background: var(--card-bg); border: 1px solid var(--border); color: var(--text); border-radius: var(--radius); font-family: inherit; margin-bottom: 1rem; resize: vertical;"></textarea>
+            <button id="submit-comment-btn" class="btn" onclick="submitComment()">Post Comment</button>
+        </div>
+    </div>
+    <script src="https://www.gstatic.com/firebasejs/10.7.0/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.7.0/firebase-auth.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.7.0/firebase-firestore.js"></script>
     <script src="../js/main.js"></script>
 </body>
 </html>

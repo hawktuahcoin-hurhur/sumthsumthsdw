@@ -14,6 +14,11 @@
                 <a href="../chapter-list.html">📚 Chapters</a>
                 <a href="../login.html">💾 Save</a>
                 <a href="https://www.webnovel.com/book/shadow-slave_17505878106372705" target="_blank" rel="noopener">🔗 Official Webnovel</a>
+                <div id="auth-container" style="gap: 0.5rem;">
+                    <button id="login-btn" class="btn btn-sm" style="background: var(--secondary);">Sign In</button>
+                    <button id="logout-btn" class="btn btn-sm" style="background: var(--accent); display: none;">Sign Out</button>
+                    <span id="user-display" style="color: var(--text-light); font-size: 0.9rem; align-self: center;"></span>
+                </div>
             </div>
         </nav>
     </header>
@@ -42,7 +47,7 @@
             </div>
         </div>
         
-        <div class="chapter-content">
+        <div class="chapter-content" data-chapter="1986">
             <p class="chapter-paragraph">Morgan sighed as she saw the water break in a dozen places, far in the distance, and grotesque tentacles shoot from the depths. Carried in them were the massive corpses of the Nightmare Creatures that dwelled in the forest — some of them the very same Nightmare Creatures whom she and her Saints had wounded, but failed to finish off in yesterday's battle. The corpses were launched into the air like morbid projectiles, tracing low arcs as they trailed torrents of blood behind them. One was shot down by Nightingale, who had drawn his bow in the blink of an eye. Another exploded into a cloud of bloody haze when a pebble tossed casually by Raised by Wolves collided with it midair.</p>
 <p class="chapter-paragraph">But the rest landed on the rubble with disgusting squelching noises, some crashing into the wall and making it tremble with deafening thunderclaps.</p>
 <p class="chapter-paragraph">A series of shockwaves rolled across the lake, making the water ripple. Morgan studied the bloody mess left in the wake of the obliterated corpses with a dubious expression. "Leave it to my brother to find a common language with the Nightmare Creatures..."n/o/vel/b//in dot c//om</p>
@@ -114,6 +119,19 @@
             </div>
         </div>
     </div>
+    <div id="comment-modal" class="modal" style="display: none;">
+        <div class="modal-content">
+            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1rem;">
+                <h3>Add Comment</h3>
+                <button class="close-btn" onclick="document.getElementById('comment-modal').style.display = 'none';">&times;</button>
+            </div>
+            <textarea id="comment-text" placeholder="Write your comment..." style="width: 100%; min-height: 100px; padding: 0.75rem; background: var(--card-bg); border: 1px solid var(--border); color: var(--text); border-radius: var(--radius); font-family: inherit; margin-bottom: 1rem; resize: vertical;"></textarea>
+            <button id="submit-comment-btn" class="btn" onclick="submitComment()">Post Comment</button>
+        </div>
+    </div>
+    <script src="https://www.gstatic.com/firebasejs/10.7.0/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.7.0/firebase-auth.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.7.0/firebase-firestore.js"></script>
     <script src="../js/main.js"></script>
 </body>
 </html>

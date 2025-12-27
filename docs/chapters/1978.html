@@ -14,6 +14,11 @@
                 <a href="../chapter-list.html">📚 Chapters</a>
                 <a href="../login.html">💾 Save</a>
                 <a href="https://www.webnovel.com/book/shadow-slave_17505878106372705" target="_blank" rel="noopener">🔗 Official Webnovel</a>
+                <div id="auth-container" style="gap: 0.5rem;">
+                    <button id="login-btn" class="btn btn-sm" style="background: var(--secondary);">Sign In</button>
+                    <button id="logout-btn" class="btn btn-sm" style="background: var(--accent); display: none;">Sign Out</button>
+                    <span id="user-display" style="color: var(--text-light); font-size: 0.9rem; align-self: center;"></span>
+                </div>
             </div>
         </nav>
     </header>
@@ -42,7 +47,7 @@
             </div>
         </div>
         
-        <div class="chapter-content">
+        <div class="chapter-content" data-chapter="1978">
             <p class="chapter-paragraph">After speaking to Rain about their parents, Sunny felt strangely at peace. The darkness surrounding the Nameless Temple was safe and nurturing, and the quiet rustle of the leaves was pleasantly soothing. Added to his previous euphoria, it seemed like nothing could spoil his tranquil mood. But, at the same time, he didn't feel quite well about himself. After all, he had unexpectedly dumped the knowledge that they were family on Rain, and then proceeded to give her a lecture about their dead parents... whom she did not even remember.</p>
 <p class="chapter-paragraph">Rain was a young woman who was trying to find her place in the world while dealing with the appalling nature of war — the former was already difficult enough, but the latter was a mental burden that no human could carry well, let alone endure unscathed.</p>
 <p class="chapter-paragraph">Sunny knew it better than most And yet here he was, adding to her burden. Feeling a bit guilty, he decided to sweeten the deal with some gifts. Luckily, there were the Memories he had prepared for her. Although Rain seemed a little distant and subdued, her eyes glistened at the mention of Memories. She had witnessed and survived so many horrors since the start of the war, after all, and unlike other Awakened soldiers, she had not received any rewards from the Spell in the process. The same Awakened soldiers were walking around with their shiny new Memories on full display, and she saw them every minute of every day.</p>
@@ -158,6 +163,19 @@
             </div>
         </div>
     </div>
+    <div id="comment-modal" class="modal" style="display: none;">
+        <div class="modal-content">
+            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1rem;">
+                <h3>Add Comment</h3>
+                <button class="close-btn" onclick="document.getElementById('comment-modal').style.display = 'none';">&times;</button>
+            </div>
+            <textarea id="comment-text" placeholder="Write your comment..." style="width: 100%; min-height: 100px; padding: 0.75rem; background: var(--card-bg); border: 1px solid var(--border); color: var(--text); border-radius: var(--radius); font-family: inherit; margin-bottom: 1rem; resize: vertical;"></textarea>
+            <button id="submit-comment-btn" class="btn" onclick="submitComment()">Post Comment</button>
+        </div>
+    </div>
+    <script src="https://www.gstatic.com/firebasejs/10.7.0/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.7.0/firebase-auth.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.7.0/firebase-firestore.js"></script>
     <script src="../js/main.js"></script>
 </body>
 </html>

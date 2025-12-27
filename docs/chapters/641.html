@@ -14,6 +14,11 @@
                 <a href="../chapter-list.html">📚 Chapters</a>
                 <a href="../login.html">💾 Save</a>
                 <a href="https://www.webnovel.com/book/shadow-slave_17505878106372705" target="_blank" rel="noopener">🔗 Official Webnovel</a>
+                <div id="auth-container" style="gap: 0.5rem;">
+                    <button id="login-btn" class="btn btn-sm" style="background: var(--secondary);">Sign In</button>
+                    <button id="logout-btn" class="btn btn-sm" style="background: var(--accent); display: none;">Sign Out</button>
+                    <span id="user-display" style="color: var(--text-light); font-size: 0.9rem; align-self: center;"></span>
+                </div>
             </div>
         </nav>
     </header>
@@ -42,7 +47,7 @@
             </div>
         </div>
         
-        <div class="chapter-content">
+        <div class="chapter-content" data-chapter="641">
             <p class="chapter-paragraph">Sunny and the diabolical steed of the fallen Shadow Lord battled across an endless tapestry of nightmares. Both were possessed by an insatiable desire to destroy the other, burning with bloodlust, fury, and relentless killing intent.</p>
 <p class="chapter-paragraph">Their blood flowed across a hundred harrowing dreams, dissolving into the crimson rivers that had been spilled in the Kingdom of Hope across the centuries. As the weaker of the two, it was Sunny who bled most of the time... but every time he was torn apart and killed, he made sure to at least leave a mark on the stallion's tenebrous black body.</p>
 <p class="chapter-paragraph">No matter how many times the damned horse killed Sunny, he had to share in the pain. Sunny was not only being hunted... no, he was a hunter himself. What did it matter how many deaths he experienced, what ghastly torments the nightmares held in store for him? In this realm of terrors, he was as immortal as the stygian steed. Every time he died, he was reborn anew.</p>
@@ -127,6 +132,19 @@
             </div>
         </div>
     </div>
+    <div id="comment-modal" class="modal" style="display: none;">
+        <div class="modal-content">
+            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1rem;">
+                <h3>Add Comment</h3>
+                <button class="close-btn" onclick="document.getElementById('comment-modal').style.display = 'none';">&times;</button>
+            </div>
+            <textarea id="comment-text" placeholder="Write your comment..." style="width: 100%; min-height: 100px; padding: 0.75rem; background: var(--card-bg); border: 1px solid var(--border); color: var(--text); border-radius: var(--radius); font-family: inherit; margin-bottom: 1rem; resize: vertical;"></textarea>
+            <button id="submit-comment-btn" class="btn" onclick="submitComment()">Post Comment</button>
+        </div>
+    </div>
+    <script src="https://www.gstatic.com/firebasejs/10.7.0/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.7.0/firebase-auth.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.7.0/firebase-firestore.js"></script>
     <script src="../js/main.js"></script>
 </body>
 </html>

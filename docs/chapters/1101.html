@@ -14,6 +14,11 @@
                 <a href="../chapter-list.html">📚 Chapters</a>
                 <a href="../login.html">💾 Save</a>
                 <a href="https://www.webnovel.com/book/shadow-slave_17505878106372705" target="_blank" rel="noopener">🔗 Official Webnovel</a>
+                <div id="auth-container" style="gap: 0.5rem;">
+                    <button id="login-btn" class="btn btn-sm" style="background: var(--secondary);">Sign In</button>
+                    <button id="logout-btn" class="btn btn-sm" style="background: var(--accent); display: none;">Sign Out</button>
+                    <span id="user-display" style="color: var(--text-light); font-size: 0.9rem; align-self: center;"></span>
+                </div>
             </div>
         </nav>
     </header>
@@ -42,7 +47,7 @@
             </div>
         </div>
         
-        <div class="chapter-content">
+        <div class="chapter-content" data-chapter="1101">
             <p class="chapter-paragraph">Soon after, Sunny found himself in a very strange situation. He was left alone with three emissaries of the great clan Valor - Changing Star, Morgan, and Whispering Blade himself. Two of the most powerful people in the world were right there in front of him, speaking with each other casually. And, of course, Nephis was there too.</p>
 <p class="chapter-paragraph">The waiting room they had been led to was comfortable and spacious. Food and refreshments had been served by the staff members, and it seemed as if the four of them were having a friendly get-together back in NQSC. The only difference was that everyone was wearing armor... well, except for Sunny himself. Still, he fit right in with the members of clan Valor due to his black tunic.</p>
 <p class="chapter-paragraph">He sighed. 'Speak about strange bedfellows. That is what they call sleeping with the enemy, huh... wait. Neither of these sentences sounds right!' Lamenting the poor sense of whoever had come up with these idioms, Sunny reached for a plate and loaded it with all kinds of food. Supplies were a sore point for the Evacuation Army, but Wake of Ruin must have decided to go all out today - there were a lot of things on the table that would have been almost impossible to procure anywhere in Antarctica, except maybe on the black market.</p>
@@ -118,6 +123,19 @@
             </div>
         </div>
     </div>
+    <div id="comment-modal" class="modal" style="display: none;">
+        <div class="modal-content">
+            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1rem;">
+                <h3>Add Comment</h3>
+                <button class="close-btn" onclick="document.getElementById('comment-modal').style.display = 'none';">&times;</button>
+            </div>
+            <textarea id="comment-text" placeholder="Write your comment..." style="width: 100%; min-height: 100px; padding: 0.75rem; background: var(--card-bg); border: 1px solid var(--border); color: var(--text); border-radius: var(--radius); font-family: inherit; margin-bottom: 1rem; resize: vertical;"></textarea>
+            <button id="submit-comment-btn" class="btn" onclick="submitComment()">Post Comment</button>
+        </div>
+    </div>
+    <script src="https://www.gstatic.com/firebasejs/10.7.0/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.7.0/firebase-auth.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.7.0/firebase-firestore.js"></script>
     <script src="../js/main.js"></script>
 </body>
 </html>

@@ -14,6 +14,11 @@
                 <a href="../chapter-list.html">📚 Chapters</a>
                 <a href="../login.html">💾 Save</a>
                 <a href="https://www.webnovel.com/book/shadow-slave_17505878106372705" target="_blank" rel="noopener">🔗 Official Webnovel</a>
+                <div id="auth-container" style="gap: 0.5rem;">
+                    <button id="login-btn" class="btn btn-sm" style="background: var(--secondary);">Sign In</button>
+                    <button id="logout-btn" class="btn btn-sm" style="background: var(--accent); display: none;">Sign Out</button>
+                    <span id="user-display" style="color: var(--text-light); font-size: 0.9rem; align-self: center;"></span>
+                </div>
             </div>
         </nav>
     </header>
@@ -42,7 +47,7 @@
             </div>
         </div>
         
-        <div class="chapter-content">
+        <div class="chapter-content" data-chapter="2175">
             <p class="chapter-paragraph">After having a short discussion, Cassie and Helie were ready to set out. There was no reason to linger, anyway — the decision had been made, and there was no going back. Helie was concerned for the clan, but at the moment, the best way she could protect them was to play dead for a while. The abominable jungle rustled eerily around the two of them, making Cassie's skin crawl. She shivered and placed her hand on the hilt of the Quiet Dancer, trying to find comfort in its familiar texture. Altering Jest's memories had burned most of her remaining essence... in fact, she had been forced to cut the connection to most of her marks while delving into his past to preserve some, and as a result, she was truly and utterly blind at the moment. She could not even activate her Awakened Ability — or rather, she could, but only for a short while. Which meant that it was better not to use her Aspect unless there was an emergency. Both of she and Helie were beaten and battered, still reeling from the fierce violence of the battle and utterly exhausted. Nevertheless, Cassie spoke after hesitating for a few moments:</p>
 <p class="chapter-paragraph">"Saint Helie... I'm afraid I am running quite low on soul essence. So, while my Echo will be of some help, I will have to rely on you to get us out of this appalling jungle."</p>
 <p class="chapter-paragraph">She could not see what expression the beautiful Saint made, but it somehow felt like someone was giving her a dubious look. In the end, Helie coughed. "Sure, no problem. Luckily, I wasted very little essence myself — that old goat prevented me from using my Aspect throughout most of the battle, after all. And I am sure that your Echo will be very helpful, as well."</p>
@@ -144,6 +149,19 @@
             </div>
         </div>
     </div>
+    <div id="comment-modal" class="modal" style="display: none;">
+        <div class="modal-content">
+            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1rem;">
+                <h3>Add Comment</h3>
+                <button class="close-btn" onclick="document.getElementById('comment-modal').style.display = 'none';">&times;</button>
+            </div>
+            <textarea id="comment-text" placeholder="Write your comment..." style="width: 100%; min-height: 100px; padding: 0.75rem; background: var(--card-bg); border: 1px solid var(--border); color: var(--text); border-radius: var(--radius); font-family: inherit; margin-bottom: 1rem; resize: vertical;"></textarea>
+            <button id="submit-comment-btn" class="btn" onclick="submitComment()">Post Comment</button>
+        </div>
+    </div>
+    <script src="https://www.gstatic.com/firebasejs/10.7.0/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.7.0/firebase-auth.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.7.0/firebase-firestore.js"></script>
     <script src="../js/main.js"></script>
 </body>
 </html>

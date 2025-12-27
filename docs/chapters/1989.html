@@ -14,6 +14,11 @@
                 <a href="../chapter-list.html">📚 Chapters</a>
                 <a href="../login.html">💾 Save</a>
                 <a href="https://www.webnovel.com/book/shadow-slave_17505878106372705" target="_blank" rel="noopener">🔗 Official Webnovel</a>
+                <div id="auth-container" style="gap: 0.5rem;">
+                    <button id="login-btn" class="btn btn-sm" style="background: var(--secondary);">Sign In</button>
+                    <button id="logout-btn" class="btn btn-sm" style="background: var(--accent); display: none;">Sign Out</button>
+                    <span id="user-display" style="color: var(--text-light); font-size: 0.9rem; align-self: center;"></span>
+                </div>
             </div>
         </nav>
     </header>
@@ -42,7 +47,7 @@
             </div>
         </div>
         
-        <div class="chapter-content">
+        <div class="chapter-content" data-chapter="1989">
             <p class="chapter-paragraph">Morgan had her bow, and the Saints of Night had already summoned their weapons.</p>
 <p class="chapter-paragraph">In this battle, their strength would be stifled by having to fight on land. However, that did not mean that they were powerless — far from it. Naeve was wearing light, but immensely resilient armor sewn from the skin of some unknown sea monster, wielding a long harpoon made of bone as a spear. His indigo eyes seemed to glow in the moonlight, and his handsome face was both somber and cold. Bloodwave had summoned a heavy armor forged from dull metal, which made his towering figure seem even more formidable. He was armed with a heavy cutlass — there were two of them before, but one had been destroyed in one of the previous battles. Now, the taciturn Saint simply used the claws of his steel gauntlet to rend the flesh of his enemies. Aether reached toward the sky, grasping a ray of starlight and manifesting it into a thin blade. The youngest of the Saints did not possess as much physical strength as the rest of them, but made up for it with speed and skill. The weapons he could weave from starlight were absolutely lethal... still, his Aspect was not suited for close combat that well. Not that anyone was suited well for facing Mordret. Today, the defenders of the crumbling fortress were weaker than they had ever been. Morgan's three most powerful champions were away, each dealing with their own crisis.</p>
 <p class="chapter-paragraph">Her brother, meanwhile, still possessed more than enough vessels to take the castle. Some of them were following Knossos and Typhaon, but ten — including his true body — were here.</p>
@@ -112,6 +117,19 @@
             </div>
         </div>
     </div>
+    <div id="comment-modal" class="modal" style="display: none;">
+        <div class="modal-content">
+            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1rem;">
+                <h3>Add Comment</h3>
+                <button class="close-btn" onclick="document.getElementById('comment-modal').style.display = 'none';">&times;</button>
+            </div>
+            <textarea id="comment-text" placeholder="Write your comment..." style="width: 100%; min-height: 100px; padding: 0.75rem; background: var(--card-bg); border: 1px solid var(--border); color: var(--text); border-radius: var(--radius); font-family: inherit; margin-bottom: 1rem; resize: vertical;"></textarea>
+            <button id="submit-comment-btn" class="btn" onclick="submitComment()">Post Comment</button>
+        </div>
+    </div>
+    <script src="https://www.gstatic.com/firebasejs/10.7.0/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.7.0/firebase-auth.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.7.0/firebase-firestore.js"></script>
     <script src="../js/main.js"></script>
 </body>
 </html>

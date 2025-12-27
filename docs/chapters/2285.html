@@ -14,6 +14,11 @@
                 <a href="../chapter-list.html">📚 Chapters</a>
                 <a href="../login.html">💾 Save</a>
                 <a href="https://www.webnovel.com/book/shadow-slave_17505878106372705" target="_blank" rel="noopener">🔗 Official Webnovel</a>
+                <div id="auth-container" style="gap: 0.5rem;">
+                    <button id="login-btn" class="btn btn-sm" style="background: var(--secondary);">Sign In</button>
+                    <button id="logout-btn" class="btn btn-sm" style="background: var(--accent); display: none;">Sign Out</button>
+                    <span id="user-display" style="color: var(--text-light); font-size: 0.9rem; align-self: center;"></span>
+                </div>
             </div>
         </nav>
     </header>
@@ -42,7 +47,7 @@
             </div>
         </div>
         
-        <div class="chapter-content">
+        <div class="chapter-content" data-chapter="2285">
             <p class="chapter-paragraph">The Burned Forest sprawled under an ashen sky like a dark and desolate reminder of total devastation. Here and there, the charred trunks of titanic trees rose into the sky like crumbled towers, their branches gone, their leaves long turned to ash. Below them, an impenetrable maze of blackened deadfall rose hundreds of meters above the ground, obscuring it completely. Sunny was standing atop one of the few burned trees that had stubbornly remained upright even in death, looking down at the vast expanse of charred tangle from a great height — two of him, really, one clad in a beautiful suit of black jade armor, the other wearing simple garments of dark cloth. The one in the armor looked down with an arrogant expression. "I think we are going to lose again."</p>
 <p class="chapter-paragraph">The one in the simple clothes smiled faintly, a naughty glint in his eyes. "Don't sell our legion short."</p>
 <p class="chapter-paragraph">Below them, a terrifying battle was taking place. The charred tangle had come alive, frothing with a glistening black substance. That substance was myriads of monstrous millipedes, ranging from several to dozens of meters in length, their bodies covered in glossy black chitin. The millipedes crawled from the depths of the fallen forest, flowing to the surface like a frenzied tide. Each was a Corrupted Beast, at least, and some even of the Great Rank. There were eerie champions among them, as well — Monsters, Demons, and Devils, the latter defending the vague shapes of the swarm's elusive Tyrants. Some had carapaces that stood out against the black tide with vibrant colors and chilling patterns, drawing attention to their sinister forms. The sight of the monstrous vermin was a bit frightening even for someone like Sunny. "And away... we... go..."</p>
@@ -107,6 +112,19 @@
             </div>
         </div>
     </div>
+    <div id="comment-modal" class="modal" style="display: none;">
+        <div class="modal-content">
+            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1rem;">
+                <h3>Add Comment</h3>
+                <button class="close-btn" onclick="document.getElementById('comment-modal').style.display = 'none';">&times;</button>
+            </div>
+            <textarea id="comment-text" placeholder="Write your comment..." style="width: 100%; min-height: 100px; padding: 0.75rem; background: var(--card-bg); border: 1px solid var(--border); color: var(--text); border-radius: var(--radius); font-family: inherit; margin-bottom: 1rem; resize: vertical;"></textarea>
+            <button id="submit-comment-btn" class="btn" onclick="submitComment()">Post Comment</button>
+        </div>
+    </div>
+    <script src="https://www.gstatic.com/firebasejs/10.7.0/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.7.0/firebase-auth.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.7.0/firebase-firestore.js"></script>
     <script src="../js/main.js"></script>
 </body>
 </html>

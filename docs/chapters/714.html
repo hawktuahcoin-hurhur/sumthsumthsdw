@@ -14,6 +14,11 @@
                 <a href="../chapter-list.html">📚 Chapters</a>
                 <a href="../login.html">💾 Save</a>
                 <a href="https://www.webnovel.com/book/shadow-slave_17505878106372705" target="_blank" rel="noopener">🔗 Official Webnovel</a>
+                <div id="auth-container" style="gap: 0.5rem;">
+                    <button id="login-btn" class="btn btn-sm" style="background: var(--secondary);">Sign In</button>
+                    <button id="logout-btn" class="btn btn-sm" style="background: var(--accent); display: none;">Sign Out</button>
+                    <span id="user-display" style="color: var(--text-light); font-size: 0.9rem; align-self: center;"></span>
+                </div>
             </div>
         </nav>
     </header>
@@ -42,7 +47,7 @@
             </div>
         </div>
         
-        <div class="chapter-content">
+        <div class="chapter-content" data-chapter="714">
             <p class="chapter-paragraph">As the silver circle of the full moon reached the highest point in the sky, a sudden movement tore through the darkness of the night. In the clamor of drums and human voices, an armada of wooden ships flew forward, each vessel illuminated by the orange flame of lanterns. Some had red sails, and some had white. In the pale moonlight, all of them looked grey and colorless.</p>
 <p class="chapter-paragraph">The ships rushed forward, seeming like a river of lights. On their decks, human figures moved, feverishly preparing for battle. The soldiers were drawing their weapons and nocking arrows on the strings of their bows, while the captains stared at the radiant moon, their faces tense and grim.</p>
 <p class="chapter-paragraph">...Soon, a lonesome black dot appeared on the surface of the silver disk, and then slowly grew as it drew closer. A single ship, this one much larger and more graceful than the rest of them, was fearlessly flying to meet the luminous armada. There was a beautiful tree growing around its mast, and a man with pale skin and raven black hair standing at the oar, guiding the vessel forward. His eyes were grey and clear, shining with the reflected light of the moon.</p>
@@ -145,6 +150,19 @@
             </div>
         </div>
     </div>
+    <div id="comment-modal" class="modal" style="display: none;">
+        <div class="modal-content">
+            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1rem;">
+                <h3>Add Comment</h3>
+                <button class="close-btn" onclick="document.getElementById('comment-modal').style.display = 'none';">&times;</button>
+            </div>
+            <textarea id="comment-text" placeholder="Write your comment..." style="width: 100%; min-height: 100px; padding: 0.75rem; background: var(--card-bg); border: 1px solid var(--border); color: var(--text); border-radius: var(--radius); font-family: inherit; margin-bottom: 1rem; resize: vertical;"></textarea>
+            <button id="submit-comment-btn" class="btn" onclick="submitComment()">Post Comment</button>
+        </div>
+    </div>
+    <script src="https://www.gstatic.com/firebasejs/10.7.0/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.7.0/firebase-auth.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.7.0/firebase-firestore.js"></script>
     <script src="../js/main.js"></script>
 </body>
 </html>

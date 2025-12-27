@@ -14,6 +14,11 @@
                 <a href="../chapter-list.html">📚 Chapters</a>
                 <a href="../login.html">💾 Save</a>
                 <a href="https://www.webnovel.com/book/shadow-slave_17505878106372705" target="_blank" rel="noopener">🔗 Official Webnovel</a>
+                <div id="auth-container" style="gap: 0.5rem;">
+                    <button id="login-btn" class="btn btn-sm" style="background: var(--secondary);">Sign In</button>
+                    <button id="logout-btn" class="btn btn-sm" style="background: var(--accent); display: none;">Sign Out</button>
+                    <span id="user-display" style="color: var(--text-light); font-size: 0.9rem; align-self: center;"></span>
+                </div>
             </div>
         </nav>
     </header>
@@ -42,7 +47,7 @@
             </div>
         </div>
         
-        <div class="chapter-content">
+        <div class="chapter-content" data-chapter="1569">
             <p class="chapter-paragraph">'Ah... I am... starting to rethink the value of curiosity...'</p>
 <p class="chapter-paragraph">Even subjected to the horror of the knowledge of the Void, which could quite literally turn Sunny into a Nightmare Creature, he still felt a strange impulse to open his eyes and try to glean the secrets left in the Estuary by the Demon of Dread. It was such a tantalizing mystery, after all. The Void, the ineffable beings that dwelled in it, and how the gods were born from them... only to wage war on the very existence that had given shape to their divinity.</p>
 <p class="chapter-paragraph">It was a bit like the compulsion to jump that some people felt while standing near the edge of a tall cliff. Of course, taking that leap would mean the death of them. And opening his eyes would mean the end of Sunny. So, he kept them shut and kept walking. At first, each step felt as if he was trying to move a mountain. But slowly, torturously, he grew accustomed to the suffocating pressure of the ghastly runes. Not to the point of being comfortable around them, but at least enough so to increase his pace. The reason he could make even a single step, though, was the Mirror of Truth — and the reflection of Nephis caught in it. Without borrowing her [Longing] Ability, Sunny would have collapsed to the ground the moment the runes surrounded him, turning into a pile of... something. Tentacles, maybe, or bone blades. Then again, the Mad Prince had looked pretty human-like. So, perhaps, he would have retained his general appearance, with only his soul becoming consumed by Corruption. That would have made Sunny a Fallen Terror, which was the same Rank and Class that the Crimson Terror of the Forgotten Shore had possessed. The comparison made him feel not exactly nostalgic, but definitely contemplative. 'Things have changed a lot, haven't they?'</p>
@@ -111,6 +116,19 @@
             </div>
         </div>
     </div>
+    <div id="comment-modal" class="modal" style="display: none;">
+        <div class="modal-content">
+            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1rem;">
+                <h3>Add Comment</h3>
+                <button class="close-btn" onclick="document.getElementById('comment-modal').style.display = 'none';">&times;</button>
+            </div>
+            <textarea id="comment-text" placeholder="Write your comment..." style="width: 100%; min-height: 100px; padding: 0.75rem; background: var(--card-bg); border: 1px solid var(--border); color: var(--text); border-radius: var(--radius); font-family: inherit; margin-bottom: 1rem; resize: vertical;"></textarea>
+            <button id="submit-comment-btn" class="btn" onclick="submitComment()">Post Comment</button>
+        </div>
+    </div>
+    <script src="https://www.gstatic.com/firebasejs/10.7.0/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.7.0/firebase-auth.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.7.0/firebase-firestore.js"></script>
     <script src="../js/main.js"></script>
 </body>
 </html>

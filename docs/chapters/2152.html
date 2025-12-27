@@ -14,6 +14,11 @@
                 <a href="../chapter-list.html">📚 Chapters</a>
                 <a href="../login.html">💾 Save</a>
                 <a href="https://www.webnovel.com/book/shadow-slave_17505878106372705" target="_blank" rel="noopener">🔗 Official Webnovel</a>
+                <div id="auth-container" style="gap: 0.5rem;">
+                    <button id="login-btn" class="btn btn-sm" style="background: var(--secondary);">Sign In</button>
+                    <button id="logout-btn" class="btn btn-sm" style="background: var(--accent); display: none;">Sign Out</button>
+                    <span id="user-display" style="color: var(--text-light); font-size: 0.9rem; align-self: center;"></span>
+                </div>
             </div>
         </nav>
     </header>
@@ -42,7 +47,7 @@
             </div>
         </div>
         
-        <div class="chapter-content">
+        <div class="chapter-content" data-chapter="2152">
             <p class="chapter-paragraph">A month later, a weary group of Awakened stood on a hill in the desolate wasteland, looking at the sprawling ruins below. The world seemed entirely black and white, with charred frames of ancient buildings rising from the snow. Cold wind was trying to get into the gaps of their armor, and neither the warm coats nor the mittens they wore on top of the gloves could stop it. This land seemed dead, with no trace of life left anywhere on its poisoned surface. Of course... it was not the Dream Realm. Instead, it was the real world. The charred ruins were simply one of the countless human cities that had been destroyed during the Dark Times, and the soil was contaminated by dreadful weapons borne of human mind, not some eerie curse. The air was toxic, as well, which was why they were wearing military gas masks and carrying oxygen tanks on their backs — Awakened were more tenacious than mundane people, but braving the wild reaches of Earth unprotected was still a deadly task for them. The long journey had been a rough experience even for Warden and his people. There were very few Nightmare Creatures out here, but the land itself presented an obstacle. With the collapse of the regime, as well as other powers that had ruled the remaining human enclaves in this part of the world, whatever logistics and transportation systems that had existed before were now in complete disarray. Warden and his warriors had intended to travel by train, but the tracks were broken just a few hundred kilometers away from NQSC. So, they purchased an off-road cargo vehicle from a group of former soldiers and drove it further north. The vehicle had not been very comfortable, but at least it worked. Sadly, its engine was torn to shreds by the claws of a random Nightmare Creature about a week ago, and they had to cover the rest of the distance on foot. ...Overall, Jest couldn't quite decide which of the worlds was more inhospitable. He did enjoy returning to the castle when it was his turn to sleep, though — it was warm there, at least. In any case, they had reached their destination now. There was a human settlement in front of them. It was much smaller than NQSC, of course, with a population that barely reached a few dozen millions of people. More than that, it had not been turned into a fearsome siege capital during the Dark Times, so its defenses and infrastructure were far inferior.</p>
 <p class="chapter-paragraph">There were no tall barriers surrounding the city like an impenetrable ring, serving both as defensive fortifications and a sophisticated air filtration system. Instead, there were several domed areas hidden deep within the charred ruins — the original city had been much more sprawling than the one that emerged from its corpse, despite having housed far fewer people.</p>
 <p class="chapter-paragraph">Pulling his gas mask up, Warden inhaled the cold air, grimaced, and then put it back on. "Let's get inside as quickly as we can. Be careful — there will be many abominations in the ruins. Jest, get the map."</p>
@@ -107,6 +112,19 @@
             </div>
         </div>
     </div>
+    <div id="comment-modal" class="modal" style="display: none;">
+        <div class="modal-content">
+            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1rem;">
+                <h3>Add Comment</h3>
+                <button class="close-btn" onclick="document.getElementById('comment-modal').style.display = 'none';">&times;</button>
+            </div>
+            <textarea id="comment-text" placeholder="Write your comment..." style="width: 100%; min-height: 100px; padding: 0.75rem; background: var(--card-bg); border: 1px solid var(--border); color: var(--text); border-radius: var(--radius); font-family: inherit; margin-bottom: 1rem; resize: vertical;"></textarea>
+            <button id="submit-comment-btn" class="btn" onclick="submitComment()">Post Comment</button>
+        </div>
+    </div>
+    <script src="https://www.gstatic.com/firebasejs/10.7.0/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.7.0/firebase-auth.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.7.0/firebase-firestore.js"></script>
     <script src="../js/main.js"></script>
 </body>
 </html>

@@ -14,6 +14,11 @@
                 <a href="../chapter-list.html">📚 Chapters</a>
                 <a href="../login.html">💾 Save</a>
                 <a href="https://www.webnovel.com/book/shadow-slave_17505878106372705" target="_blank" rel="noopener">🔗 Official Webnovel</a>
+                <div id="auth-container" style="gap: 0.5rem;">
+                    <button id="login-btn" class="btn btn-sm" style="background: var(--secondary);">Sign In</button>
+                    <button id="logout-btn" class="btn btn-sm" style="background: var(--accent); display: none;">Sign Out</button>
+                    <span id="user-display" style="color: var(--text-light); font-size: 0.9rem; align-self: center;"></span>
+                </div>
             </div>
         </nav>
     </header>
@@ -42,7 +47,7 @@
             </div>
         </div>
         
-        <div class="chapter-content">
+        <div class="chapter-content" data-chapter="1991">
             <p class="chapter-paragraph">An enormous Echo stood upon the desolate white plain, shining blindingly as its steel carapace reflected the radiance of the overcast sky. It was powerful enough to flatten fortresses and durable enough to endure Transcendent blows, towering above the sun-bleached bone like a steel behemoth.</p>
 <p class="chapter-paragraph">The gargantuan beast had four mighty legs, a broad back, and a flat head that rested on a long neck. However, it had not been created by the Nightmare Spell in the image of a fearsome abomination... instead, it had been forged by the King of Swords once — perhaps to serve an important purpose, perhaps simply out of boredom. Unless one wanted to bully the weak, the giant Echo was not suited well for battle. It was not swift enough to be of use in a serious battle, and while its carapace was durable, it was not nearly resilient enough to survive the many dreadful perils of the Dream Realm. At best, it could serve as a massive siege tower. At present, however, it served as a mobile redoubt for the command staff of the Sword Army... not because of its power or impregnable carapace, but simply because its height offered the King of Swords and his retinue a convenient vantage point to observe the battlefields. The Echo's long tail rested on the ground, serving as a bridge that one could use to reach the flat expanse of the creature's back — there were even guardrails installed on both sides of the ascending path to prevent people from falling down. On the back of the steel beast, the field headquarters of the Sword Army stood, composed of colorful tents and canvas pavilions... most of them black or vermilion, of course. This was where the King and his close aides resided when the army was on the march, and where the generals gathered to hold council.</p>
 <p class="chapter-paragraph">This arrangement was not at all as impressive as the Valor Keep in the main camp of the Sword Army, of course, but still far more comfortable and convenient than one would expect in the middle of an active war. Finally, there was another steep path leading from the back of the enormous Echo and up its long neck. A circular viewing platform was located on the other end of the path, resting atop the head of the steel behemoth. The posts of the decorative guardrail were fashioned to look like a crown, and the white plain of sun-bleached bone could be seen far below in stunning view. That was where Sunny had found himself on a hot summer day, hiding his grim expression behind Weaver's Mask as he observed the calamitous battlefield.</p>
@@ -112,6 +117,19 @@
             </div>
         </div>
     </div>
+    <div id="comment-modal" class="modal" style="display: none;">
+        <div class="modal-content">
+            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1rem;">
+                <h3>Add Comment</h3>
+                <button class="close-btn" onclick="document.getElementById('comment-modal').style.display = 'none';">&times;</button>
+            </div>
+            <textarea id="comment-text" placeholder="Write your comment..." style="width: 100%; min-height: 100px; padding: 0.75rem; background: var(--card-bg); border: 1px solid var(--border); color: var(--text); border-radius: var(--radius); font-family: inherit; margin-bottom: 1rem; resize: vertical;"></textarea>
+            <button id="submit-comment-btn" class="btn" onclick="submitComment()">Post Comment</button>
+        </div>
+    </div>
+    <script src="https://www.gstatic.com/firebasejs/10.7.0/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.7.0/firebase-auth.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.7.0/firebase-firestore.js"></script>
     <script src="../js/main.js"></script>
 </body>
 </html>

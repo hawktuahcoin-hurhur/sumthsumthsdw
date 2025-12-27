@@ -14,6 +14,11 @@
                 <a href="../chapter-list.html">📚 Chapters</a>
                 <a href="../login.html">💾 Save</a>
                 <a href="https://www.webnovel.com/book/shadow-slave_17505878106372705" target="_blank" rel="noopener">🔗 Official Webnovel</a>
+                <div id="auth-container" style="gap: 0.5rem;">
+                    <button id="login-btn" class="btn btn-sm" style="background: var(--secondary);">Sign In</button>
+                    <button id="logout-btn" class="btn btn-sm" style="background: var(--accent); display: none;">Sign Out</button>
+                    <span id="user-display" style="color: var(--text-light); font-size: 0.9rem; align-self: center;"></span>
+                </div>
             </div>
         </nav>
     </header>
@@ -42,7 +47,7 @@
             </div>
         </div>
         
-        <div class="chapter-content">
+        <div class="chapter-content" data-chapter="1085">
             <p class="chapter-paragraph">Sunny and Jet looked like quite the pair. Both were wearing black, which made for a stark contrast with their pale skin and raven hair... granted, Soul Reaper looked more imposing in her fitting black leather armor. Sunny, on the other hand, wore a simple silk tunic and a pair of dainty shoes. He was also unarmed.</p>
 <p class="chapter-paragraph">...Actually, he was perhaps the more threatening of the two. People were used to seeing Awakened wear suits of impregnable armor and wield powerful weapons. It was the sight of someone who didn't feel the need to do so, even in the deadly reaches of East Antarctica, that was truly frightening.</p>
 <p class="chapter-paragraph">He made the last jump, landing softly on the ground not too far away from Effie. From here, Sunny could sense hundreds of shadows somewhere nearby. He looked around, noticing mundane soldiers and Awakened hidden here and there along the river shore, all keeping watch on the surrounding area.</p>
@@ -135,6 +140,19 @@
             </div>
         </div>
     </div>
+    <div id="comment-modal" class="modal" style="display: none;">
+        <div class="modal-content">
+            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1rem;">
+                <h3>Add Comment</h3>
+                <button class="close-btn" onclick="document.getElementById('comment-modal').style.display = 'none';">&times;</button>
+            </div>
+            <textarea id="comment-text" placeholder="Write your comment..." style="width: 100%; min-height: 100px; padding: 0.75rem; background: var(--card-bg); border: 1px solid var(--border); color: var(--text); border-radius: var(--radius); font-family: inherit; margin-bottom: 1rem; resize: vertical;"></textarea>
+            <button id="submit-comment-btn" class="btn" onclick="submitComment()">Post Comment</button>
+        </div>
+    </div>
+    <script src="https://www.gstatic.com/firebasejs/10.7.0/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.7.0/firebase-auth.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.7.0/firebase-firestore.js"></script>
     <script src="../js/main.js"></script>
 </body>
 </html>

@@ -14,6 +14,11 @@
                 <a href="../chapter-list.html">📚 Chapters</a>
                 <a href="../login.html">💾 Save</a>
                 <a href="https://www.webnovel.com/book/shadow-slave_17505878106372705" target="_blank" rel="noopener">🔗 Official Webnovel</a>
+                <div id="auth-container" style="gap: 0.5rem;">
+                    <button id="login-btn" class="btn btn-sm" style="background: var(--secondary);">Sign In</button>
+                    <button id="logout-btn" class="btn btn-sm" style="background: var(--accent); display: none;">Sign Out</button>
+                    <span id="user-display" style="color: var(--text-light); font-size: 0.9rem; align-self: center;"></span>
+                </div>
             </div>
         </nav>
     </header>
@@ -42,7 +47,7 @@
             </div>
         </div>
         
-        <div class="chapter-content">
+        <div class="chapter-content" data-chapter="1077">
             <p class="chapter-paragraph">Summer had come to Antarctica. The winds still brought with them a piercing chill, but it was warm enough for the snow to thaw under direct sunlight. Gurgling streams of water turned East Antarctica into a land of countless brooks and numerous lakes, which all glistened in the sun or drowned in the shadows of the tall mountains.</p>
 <p class="chapter-paragraph">The sun itself was distant and cold. but it never disappeared from the blue expanse of the sky. Just like there had been no end to the night, now, there was no end to the day. The twilight of the long dawn had gradually turned into daylight, and now that October was in full swing, the whole continent was suffused with bright radiance... and would be for the next five months.</p>
 <p class="chapter-paragraph">The situation on the continent, however, was far from light. It was grim and dire, as if Antarctica was had submerged deeper into an endless cycle of dreadful nightmares... the Chain of Nightmares was escalating with each day, and the Evacuation Army was forced to take more and more desperate measures to withstand it.</p>
@@ -133,6 +138,19 @@
             </div>
         </div>
     </div>
+    <div id="comment-modal" class="modal" style="display: none;">
+        <div class="modal-content">
+            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1rem;">
+                <h3>Add Comment</h3>
+                <button class="close-btn" onclick="document.getElementById('comment-modal').style.display = 'none';">&times;</button>
+            </div>
+            <textarea id="comment-text" placeholder="Write your comment..." style="width: 100%; min-height: 100px; padding: 0.75rem; background: var(--card-bg); border: 1px solid var(--border); color: var(--text); border-radius: var(--radius); font-family: inherit; margin-bottom: 1rem; resize: vertical;"></textarea>
+            <button id="submit-comment-btn" class="btn" onclick="submitComment()">Post Comment</button>
+        </div>
+    </div>
+    <script src="https://www.gstatic.com/firebasejs/10.7.0/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.7.0/firebase-auth.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.7.0/firebase-firestore.js"></script>
     <script src="../js/main.js"></script>
 </body>
 </html>

@@ -14,6 +14,11 @@
                 <a href="../chapter-list.html">📚 Chapters</a>
                 <a href="../login.html">💾 Save</a>
                 <a href="https://www.webnovel.com/book/shadow-slave_17505878106372705" target="_blank" rel="noopener">🔗 Official Webnovel</a>
+                <div id="auth-container" style="gap: 0.5rem;">
+                    <button id="login-btn" class="btn btn-sm" style="background: var(--secondary);">Sign In</button>
+                    <button id="logout-btn" class="btn btn-sm" style="background: var(--accent); display: none;">Sign Out</button>
+                    <span id="user-display" style="color: var(--text-light); font-size: 0.9rem; align-self: center;"></span>
+                </div>
             </div>
         </nav>
     </header>
@@ -42,7 +47,7 @@
             </div>
         </div>
         
-        <div class="chapter-content">
+        <div class="chapter-content" data-chapter="2303">
             <p class="chapter-paragraph">The Jade Palace was vast. It was not quite the size of Bastion, which was a stone city in and of itself, but still complicated enough to be like an enormous labyrinth. Interestingly enough, while its exterior had at some point turned entirely black, its inner walls were still pristine and white, as if cut from flawless jade.</p>
 <p class="chapter-paragraph">There were countless halls, corridors, chambers, stairwells, and passages, all interconnected into a sprawling maze. Even more confusing was the fact that some sections of the palace seemed to have been built with humans in mind, while some were far more daunting in scale, clearly meant for creatures of towering size. Despite the fact that the beautiful palace had stood empty for thousands of years, it was still emanating a subtle feeling of elegant opulence and majesty. There were stone gardens within the black walls of Ravenheart, countless statues and intricate reliefs, great pools of icy water, and even bubbling hot springs. More than that, the Jade Palace stretched far underground — and lower still, its foundation opened into a vast system of ice caves that hid inside the lonesome mountain.</p>
 <p class="chapter-paragraph">Those caves had been where the Queen of Worms had kept her great army of dead puppets. Less than a hundred Awakened had made the Jade Palace their home during her mother's rule. Later, it became known as Ravenheart, serving as the Citadel of the Great Clan Song — tens of thousands of Awakened warriors were anchored to its Gateway then, with many Masters and Saints living under its roof. By now, there were hundreds of thousands of Awakened anchored at the Jade Palace, and although the retainers of Clan Song had scattered to serve Seishan and her sisters in various Citadels across the western reaches of the Dream Realm, Kai's subordinates took their place. Most of them were Nightsingers, who had been following Kai since the Southern Campaign. The rest of his staff was composed of local Awakened, government agents, emissaries of the Immortal Flame clan — some of whom had been retainers of the Valor clan before — and assistants sent over by the daughters of Ki Song. There were a few members of the Shadow Clan hidden among them, as well.</p>
@@ -123,6 +128,19 @@
             </div>
         </div>
     </div>
+    <div id="comment-modal" class="modal" style="display: none;">
+        <div class="modal-content">
+            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1rem;">
+                <h3>Add Comment</h3>
+                <button class="close-btn" onclick="document.getElementById('comment-modal').style.display = 'none';">&times;</button>
+            </div>
+            <textarea id="comment-text" placeholder="Write your comment..." style="width: 100%; min-height: 100px; padding: 0.75rem; background: var(--card-bg); border: 1px solid var(--border); color: var(--text); border-radius: var(--radius); font-family: inherit; margin-bottom: 1rem; resize: vertical;"></textarea>
+            <button id="submit-comment-btn" class="btn" onclick="submitComment()">Post Comment</button>
+        </div>
+    </div>
+    <script src="https://www.gstatic.com/firebasejs/10.7.0/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.7.0/firebase-auth.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.7.0/firebase-firestore.js"></script>
     <script src="../js/main.js"></script>
 </body>
 </html>

@@ -14,6 +14,11 @@
                 <a href="../chapter-list.html">📚 Chapters</a>
                 <a href="../login.html">💾 Save</a>
                 <a href="https://www.webnovel.com/book/shadow-slave_17505878106372705" target="_blank" rel="noopener">🔗 Official Webnovel</a>
+                <div id="auth-container" style="gap: 0.5rem;">
+                    <button id="login-btn" class="btn btn-sm" style="background: var(--secondary);">Sign In</button>
+                    <button id="logout-btn" class="btn btn-sm" style="background: var(--accent); display: none;">Sign Out</button>
+                    <span id="user-display" style="color: var(--text-light); font-size: 0.9rem; align-self: center;"></span>
+                </div>
             </div>
         </nav>
     </header>
@@ -42,7 +47,7 @@
             </div>
         </div>
         
-        <div class="chapter-content">
+        <div class="chapter-content" data-chapter="2275">
             <p class="chapter-paragraph">The insides of the Transcendent Devil... were strangely no different from the interior of an actual castle. The place did not even seem haunted or especially sinister — in fact, it was clean and neat, almost cozy. Of course, that was only because Awakened Kim had granted June the ability to see through the darkness that drowned the spacious corridors.</p>
 <p class="chapter-paragraph">He would not have wanted to wander them alone while carrying something as unreliable as a lantern. Overall, everything he had seen so far — the abyssal chasm of the hidden Dream Gate, the crumbling city resting under the dark expanse of a starless sky, the silent shadows populating its ancient streets, the black edifice of the magnificent temple, the towering black castle that possessed a malevolent life of its own — was more than worthy of being the domain of a dark deity. And June was about to meet that deity. Of course, he knew that Supremes were not really gods. However, from the point of view of a mundane human... or a mere Awakened, for that matter... they might as well have been. The King of Swords and the Queen of Worms had mostly kept their power hidden, but the Lady of the Ivory Tower was far more generous with her grace. She was rarely seen, but there was hardly a person in the world who had not felt the presence of her radiant power. Those of them who had fought in that fateful last battle of the Realm War knew how miraculous it was especially well. The power to nurture, the power to destroy...</p>
 <p class="chapter-paragraph">June had no doubt that, if Changing Star wanted to, she could annihilate the entire world in the incandescent inferno of her flames. She could also embrace all of humanity and carry them all to salvation.</p>
@@ -141,6 +146,19 @@
             </div>
         </div>
     </div>
+    <div id="comment-modal" class="modal" style="display: none;">
+        <div class="modal-content">
+            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1rem;">
+                <h3>Add Comment</h3>
+                <button class="close-btn" onclick="document.getElementById('comment-modal').style.display = 'none';">&times;</button>
+            </div>
+            <textarea id="comment-text" placeholder="Write your comment..." style="width: 100%; min-height: 100px; padding: 0.75rem; background: var(--card-bg); border: 1px solid var(--border); color: var(--text); border-radius: var(--radius); font-family: inherit; margin-bottom: 1rem; resize: vertical;"></textarea>
+            <button id="submit-comment-btn" class="btn" onclick="submitComment()">Post Comment</button>
+        </div>
+    </div>
+    <script src="https://www.gstatic.com/firebasejs/10.7.0/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.7.0/firebase-auth.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.7.0/firebase-firestore.js"></script>
     <script src="../js/main.js"></script>
 </body>
 </html>

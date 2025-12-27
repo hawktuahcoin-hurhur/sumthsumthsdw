@@ -14,6 +14,11 @@
                 <a href="../chapter-list.html">📚 Chapters</a>
                 <a href="../login.html">💾 Save</a>
                 <a href="https://www.webnovel.com/book/shadow-slave_17505878106372705" target="_blank" rel="noopener">🔗 Official Webnovel</a>
+                <div id="auth-container" style="gap: 0.5rem;">
+                    <button id="login-btn" class="btn btn-sm" style="background: var(--secondary);">Sign In</button>
+                    <button id="logout-btn" class="btn btn-sm" style="background: var(--accent); display: none;">Sign Out</button>
+                    <span id="user-display" style="color: var(--text-light); font-size: 0.9rem; align-self: center;"></span>
+                </div>
             </div>
         </nav>
     </header>
@@ -42,7 +47,7 @@
             </div>
         </div>
         
-        <div class="chapter-content">
+        <div class="chapter-content" data-chapter="2477">
             <p class="chapter-paragraph">The Mirage City Police Department was boiling. By the time Sunny arrived, the Homicide Division Captain wasn't screaming at his subordinates anymore—instead, he was being screamed at by someone higher up the chain. The same was probably happening in other Divisions, even if there was no real point. People just wanted to be seen being indignant to prove their loyalty. It seemed that an attempt on Mordret's life was at least a hundred times more important than the Nihilist and his seven victims. As if the whole Mirage City revolved around one person.</p>
 <p class="chapter-paragraph">Looking around with a frown, Sunny ignored the carnage and found Effie. She was leaning on the wall in the staff kitchen of the Homicide Division, munching on a flamboyant circle-shaped pastry with pink frosting and rainbow-colored sprinkles. There was a large, empty box in front of her, as well.</p>
 <p class="chapter-paragraph">“Oh, partner! Listen... I discovered these things called donuts. They are simply to die for!"</p>
@@ -170,6 +175,19 @@
             </div>
         </div>
     </div>
+    <div id="comment-modal" class="modal" style="display: none;">
+        <div class="modal-content">
+            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1rem;">
+                <h3>Add Comment</h3>
+                <button class="close-btn" onclick="document.getElementById('comment-modal').style.display = 'none';">&times;</button>
+            </div>
+            <textarea id="comment-text" placeholder="Write your comment..." style="width: 100%; min-height: 100px; padding: 0.75rem; background: var(--card-bg); border: 1px solid var(--border); color: var(--text); border-radius: var(--radius); font-family: inherit; margin-bottom: 1rem; resize: vertical;"></textarea>
+            <button id="submit-comment-btn" class="btn" onclick="submitComment()">Post Comment</button>
+        </div>
+    </div>
+    <script src="https://www.gstatic.com/firebasejs/10.7.0/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.7.0/firebase-auth.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.7.0/firebase-firestore.js"></script>
     <script src="../js/main.js"></script>
 </body>
 </html>

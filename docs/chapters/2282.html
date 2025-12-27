@@ -14,6 +14,11 @@
                 <a href="../chapter-list.html">📚 Chapters</a>
                 <a href="../login.html">💾 Save</a>
                 <a href="https://www.webnovel.com/book/shadow-slave_17505878106372705" target="_blank" rel="noopener">🔗 Official Webnovel</a>
+                <div id="auth-container" style="gap: 0.5rem;">
+                    <button id="login-btn" class="btn btn-sm" style="background: var(--secondary);">Sign In</button>
+                    <button id="logout-btn" class="btn btn-sm" style="background: var(--accent); display: none;">Sign Out</button>
+                    <span id="user-display" style="color: var(--text-light); font-size: 0.9rem; align-self: center;"></span>
+                </div>
             </div>
         </nav>
     </header>
@@ -42,7 +47,7 @@
             </div>
         </div>
         
-        <div class="chapter-content">
+        <div class="chapter-content" data-chapter="2282">
             <p class="chapter-paragraph">Far away, a mountain of shattered black stone towered above the sea of dust like a titanic gravestone. The ground around the gravestone was littered with the bones of numerous Nightmare Creatures that had perished here... the human bones were buried some distance away, protected from the elements by a barrow.</p>
 <p class="chapter-paragraph">A stone colossus was kneeling on the ground, unmoving, holding its severed hand gently in two titanic hands. These were the ruins of the Crimson Spire.</p>
 <p class="chapter-paragraph">Sunny — another one of his incarnations — was in the very heart of the ruins, sitting on the edge of a deep well with a thoughtful expression on his face. At the bottom of the deep well was a vast pool of black water. Its surface was perfectly still and flat, like that of a dreadful mirror made from pure darkness. Subtle ripples spread across the surface of the imprisoned ocean of darkness from time to time, as though it was straining to spill over the edges of the pool and break free. It was the Dark Sea. Once, a long time ago, the Dark Sea had seemed like a force of nature — as in something so inconceivably vast and overwhelmingly destructive that Sunny could not even fathom confronting it. He could barely survive battles with scavengers that hid from the sea and fed on the morbid gifts it left behind, while facing the beings that actually dwelled in the dark waters was a death sentence.</p>
@@ -114,6 +119,19 @@
             </div>
         </div>
     </div>
+    <div id="comment-modal" class="modal" style="display: none;">
+        <div class="modal-content">
+            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1rem;">
+                <h3>Add Comment</h3>
+                <button class="close-btn" onclick="document.getElementById('comment-modal').style.display = 'none';">&times;</button>
+            </div>
+            <textarea id="comment-text" placeholder="Write your comment..." style="width: 100%; min-height: 100px; padding: 0.75rem; background: var(--card-bg); border: 1px solid var(--border); color: var(--text); border-radius: var(--radius); font-family: inherit; margin-bottom: 1rem; resize: vertical;"></textarea>
+            <button id="submit-comment-btn" class="btn" onclick="submitComment()">Post Comment</button>
+        </div>
+    </div>
+    <script src="https://www.gstatic.com/firebasejs/10.7.0/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.7.0/firebase-auth.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.7.0/firebase-firestore.js"></script>
     <script src="../js/main.js"></script>
 </body>
 </html>

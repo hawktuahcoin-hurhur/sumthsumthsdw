@@ -14,6 +14,11 @@
                 <a href="../chapter-list.html">📚 Chapters</a>
                 <a href="../login.html">💾 Save</a>
                 <a href="https://www.webnovel.com/book/shadow-slave_17505878106372705" target="_blank" rel="noopener">🔗 Official Webnovel</a>
+                <div id="auth-container" style="gap: 0.5rem;">
+                    <button id="login-btn" class="btn btn-sm" style="background: var(--secondary);">Sign In</button>
+                    <button id="logout-btn" class="btn btn-sm" style="background: var(--accent); display: none;">Sign Out</button>
+                    <span id="user-display" style="color: var(--text-light); font-size: 0.9rem; align-self: center;"></span>
+                </div>
             </div>
         </nav>
     </header>
@@ -42,7 +47,7 @@
             </div>
         </div>
         
-        <div class="chapter-content">
+        <div class="chapter-content" data-chapter="1558">
             <p class="chapter-paragraph">Sunny stared at Cassie, struggling to believe how deep the roots of her mysterious scheme went. He noted recently that the blind girl's personality changed drastically after the cruel words he had thrown at her at the underground level of the Academy's medical complex, right after the Forgotten Shore.</p>
 <p class="chapter-paragraph">That was when she had begun to weave her spiderweb, most likely. Looking at the young woman sitting across from him, meeting his gaze with dark and defiant pride, he felt a chill running down his spine. '...Which one of us is worthy of being called the heir of Weaver, even?'</p>
 <p class="chapter-paragraph">Cassie had just as high of an affinity to fate as him, after all, if not higher. He took a deep breath, feeling stifled. "Yes... it was back then. Looking back, it didn't make a lot of sense, did it? You had just been burned by blindly believing a vision of yours, to catastrophic results. And yet, you seemed to not question the validity of us dying come winter, even though that vision of yours could only be called vague, at best."</p>
@@ -109,6 +114,19 @@
             </div>
         </div>
     </div>
+    <div id="comment-modal" class="modal" style="display: none;">
+        <div class="modal-content">
+            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1rem;">
+                <h3>Add Comment</h3>
+                <button class="close-btn" onclick="document.getElementById('comment-modal').style.display = 'none';">&times;</button>
+            </div>
+            <textarea id="comment-text" placeholder="Write your comment..." style="width: 100%; min-height: 100px; padding: 0.75rem; background: var(--card-bg); border: 1px solid var(--border); color: var(--text); border-radius: var(--radius); font-family: inherit; margin-bottom: 1rem; resize: vertical;"></textarea>
+            <button id="submit-comment-btn" class="btn" onclick="submitComment()">Post Comment</button>
+        </div>
+    </div>
+    <script src="https://www.gstatic.com/firebasejs/10.7.0/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.7.0/firebase-auth.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.7.0/firebase-firestore.js"></script>
     <script src="../js/main.js"></script>
 </body>
 </html>

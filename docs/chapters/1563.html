@@ -14,6 +14,11 @@
                 <a href="../chapter-list.html">📚 Chapters</a>
                 <a href="../login.html">💾 Save</a>
                 <a href="https://www.webnovel.com/book/shadow-slave_17505878106372705" target="_blank" rel="noopener">🔗 Official Webnovel</a>
+                <div id="auth-container" style="gap: 0.5rem;">
+                    <button id="login-btn" class="btn btn-sm" style="background: var(--secondary);">Sign In</button>
+                    <button id="logout-btn" class="btn btn-sm" style="background: var(--accent); display: none;">Sign Out</button>
+                    <span id="user-display" style="color: var(--text-light); font-size: 0.9rem; align-self: center;"></span>
+                </div>
             </div>
         </nav>
     </header>
@@ -42,7 +47,7 @@
             </div>
         </div>
         
-        <div class="chapter-content">
+        <div class="chapter-content" data-chapter="1563">
             <p class="chapter-paragraph">Sunny raced to the Source, afraid of the passage of time. It was ironic, really...</p>
 <p class="chapter-paragraph">Before the fateful conversation with Cassie, he had been tense and concerned about how the cohort would survive the battle for Verge. Now, however, he was concerned that they would destroy it too soon.</p>
 <p class="chapter-paragraph">He had been worried for Nephis, but now, he was wary of her. Changing Star seemed like something almost inevitable, now that his fate — or lack thereof — depended on how fierce and unrelenting her assault on the monstrous First Seeker would be. Human mind was funny that way. It was colored by what one desired, making the same thing appear entirely different depending on the circumstances. And so... Sunny needed to hurry. He guided the ketch, pushing the currents forward with the help of the Crown of Twilight. The graceful boat seemed to be gliding on the water, moving with incredible speed. The shore of Verge had long disappeared from view, and there was nothing in front of him except for the vast expanse of the Great River. The air itself felt different here, at the dawn of time. The waters were treacherous and full of peril. Now that Cassie wasn't with him, Sunny had no way of knowing where danger lurked. So, he remained as alert as possible, extending his shadow sense as far as he could. That caution saved his life on more than one occasion. The far reaches of the past, which corresponded to the very dawn of the Age of Gods, were not only full of bizarre and lethal hazards, but also of all kinds of harrowing Nightmare Creatures. This span of the Great River was just as dangerous as the far reaches of the future, where Sunny had faced the Azure Serpent, the Black Turtle, the Dark Butterfly, and the countless other abominations that had almost feasted on his flesh. There were Great Nightmare Creatures here, too, each of them vastly more powerful than Sunny was, despite all his growth. Most of them were faster than him, as well, and possessed senses that reached much further than his.</p>
@@ -104,6 +109,19 @@
             </div>
         </div>
     </div>
+    <div id="comment-modal" class="modal" style="display: none;">
+        <div class="modal-content">
+            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1rem;">
+                <h3>Add Comment</h3>
+                <button class="close-btn" onclick="document.getElementById('comment-modal').style.display = 'none';">&times;</button>
+            </div>
+            <textarea id="comment-text" placeholder="Write your comment..." style="width: 100%; min-height: 100px; padding: 0.75rem; background: var(--card-bg); border: 1px solid var(--border); color: var(--text); border-radius: var(--radius); font-family: inherit; margin-bottom: 1rem; resize: vertical;"></textarea>
+            <button id="submit-comment-btn" class="btn" onclick="submitComment()">Post Comment</button>
+        </div>
+    </div>
+    <script src="https://www.gstatic.com/firebasejs/10.7.0/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.7.0/firebase-auth.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.7.0/firebase-firestore.js"></script>
     <script src="../js/main.js"></script>
 </body>
 </html>

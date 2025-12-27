@@ -14,6 +14,11 @@
                 <a href="../chapter-list.html">📚 Chapters</a>
                 <a href="../login.html">💾 Save</a>
                 <a href="https://www.webnovel.com/book/shadow-slave_17505878106372705" target="_blank" rel="noopener">🔗 Official Webnovel</a>
+                <div id="auth-container" style="gap: 0.5rem;">
+                    <button id="login-btn" class="btn btn-sm" style="background: var(--secondary);">Sign In</button>
+                    <button id="logout-btn" class="btn btn-sm" style="background: var(--accent); display: none;">Sign Out</button>
+                    <span id="user-display" style="color: var(--text-light); font-size: 0.9rem; align-self: center;"></span>
+                </div>
             </div>
         </nav>
     </header>
@@ -42,7 +47,7 @@
             </div>
         </div>
         
-        <div class="chapter-content">
+        <div class="chapter-content" data-chapter="2089">
             <p class="chapter-paragraph">A quiet hiss escaped Sunny's mouth as he staggered back, barely escaping the blade of a diamond battleaxe. The Asura's movements were almost too fast to perceive, and its mind was so alien that he was struggling to fathom it with Shadow Dance. After all, the abominable golems were not living beings in the full sense, let alone sentient. They were suits of runic armor that had been corrupted by... whatever it was that inhabited the ancient stone now, malevolent and full of sinister will.</p>
 <p class="chapter-paragraph">Still, he could predict the movements of the Asuras to a certain degree by sensing the movements of their shadows. That was how Sunny was able to stay alive and destroy one Great Nightmare Creature after another. He had slain more Asuras than the rest of the Saints combined... but the battle wasn't over. Just like the harrowing battle between the King of Swords and Condemnation was not over, raging at the heart of the burning wasteland. Just a split second after Sunny evaded the blow, his enemy was already raising its hands to deliver another. However, he thrust his great mace forward, striking the enemy in the chest. A blunt weapon was not exactly meant to deliver thrusting attacks, but Sunny was not intending to deal damage with this one. Instead, he simply pushed the Asura back, using the considerable length of his mace to keep the creature at a distance. As a result, the diamond axe whistled past his mask, never managing to reach him. In the next moment, a black chain struck one of the Asura's hands with terrible force and wrapped itself around it. The chain was produced by using Shadow Manifestation, but unlike usual, it was not moving on its own — the power of manifested shadows was not sufficient to immobilize the Great Nightmare Creatures.</p>
 <p class="chapter-paragraph">Instead, another incarnation of Sunny was holding the chain, using all the dire strength of a Transcendent Terror to pull the Asura's arm down. Of course, the abomination was much more powerful than Sunny... but it did not have leverage, and neither did it have enough mass to overpower him. The chain slowed the ancient golem just long enough to create an opening. Stepping forward, Sunny grasped the shaft of his great mace closer to the middle while pushing its butt down. As a result, he effortlessly raised it over his head...</p>
@@ -107,6 +112,19 @@
             </div>
         </div>
     </div>
+    <div id="comment-modal" class="modal" style="display: none;">
+        <div class="modal-content">
+            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1rem;">
+                <h3>Add Comment</h3>
+                <button class="close-btn" onclick="document.getElementById('comment-modal').style.display = 'none';">&times;</button>
+            </div>
+            <textarea id="comment-text" placeholder="Write your comment..." style="width: 100%; min-height: 100px; padding: 0.75rem; background: var(--card-bg); border: 1px solid var(--border); color: var(--text); border-radius: var(--radius); font-family: inherit; margin-bottom: 1rem; resize: vertical;"></textarea>
+            <button id="submit-comment-btn" class="btn" onclick="submitComment()">Post Comment</button>
+        </div>
+    </div>
+    <script src="https://www.gstatic.com/firebasejs/10.7.0/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.7.0/firebase-auth.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.7.0/firebase-firestore.js"></script>
     <script src="../js/main.js"></script>
 </body>
 </html>

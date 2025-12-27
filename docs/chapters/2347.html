@@ -14,6 +14,11 @@
                 <a href="../chapter-list.html">📚 Chapters</a>
                 <a href="../login.html">💾 Save</a>
                 <a href="https://www.webnovel.com/book/shadow-slave_17505878106372705" target="_blank" rel="noopener">🔗 Official Webnovel</a>
+                <div id="auth-container" style="gap: 0.5rem;">
+                    <button id="login-btn" class="btn btn-sm" style="background: var(--secondary);">Sign In</button>
+                    <button id="logout-btn" class="btn btn-sm" style="background: var(--accent); display: none;">Sign Out</button>
+                    <span id="user-display" style="color: var(--text-light); font-size: 0.9rem; align-self: center;"></span>
+                </div>
             </div>
         </nav>
     </header>
@@ -42,7 +47,7 @@
             </div>
         </div>
         
-        <div class="chapter-content">
+        <div class="chapter-content" data-chapter="2347">
             <p class="chapter-paragraph">Sunny played hide and search with the Snow Worm by jumping between shadows while the mountain was falling apart around them. The creature's huge size made it difficult for him to destroy its body, but it also made it difficult for the creature to destroy him.</p>
 <p class="chapter-paragraph">The pale, segmented coils of the Snow Worm were wrapped around the entire mountain countless times over, expanding and constricting as they moved at great speed and slowly ground the mountain to dust. Because of their sheer mass and number, the Cursed Beast was its own obstacle when hunting down an foe as mobile as Sunny.</p>
 <p class="chapter-paragraph">The Snow Worm twisted its coils unpredictably to catch and crush Sunny between them. When two walls of pale flesh collided, violent shockwaves sent ripples across the sea of clouds, and the entire world seemed to shake. At the same time, its maw was pursuing Sunny, easily digging tunnels through the mountain or soaring into the sky to plummet down seconds later like a ghastly meteor.</p>
@@ -124,6 +129,19 @@
             </div>
         </div>
     </div>
+    <div id="comment-modal" class="modal" style="display: none;">
+        <div class="modal-content">
+            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1rem;">
+                <h3>Add Comment</h3>
+                <button class="close-btn" onclick="document.getElementById('comment-modal').style.display = 'none';">&times;</button>
+            </div>
+            <textarea id="comment-text" placeholder="Write your comment..." style="width: 100%; min-height: 100px; padding: 0.75rem; background: var(--card-bg); border: 1px solid var(--border); color: var(--text); border-radius: var(--radius); font-family: inherit; margin-bottom: 1rem; resize: vertical;"></textarea>
+            <button id="submit-comment-btn" class="btn" onclick="submitComment()">Post Comment</button>
+        </div>
+    </div>
+    <script src="https://www.gstatic.com/firebasejs/10.7.0/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.7.0/firebase-auth.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.7.0/firebase-firestore.js"></script>
     <script src="../js/main.js"></script>
 </body>
 </html>

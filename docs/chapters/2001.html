@@ -14,6 +14,11 @@
                 <a href="../chapter-list.html">📚 Chapters</a>
                 <a href="../login.html">💾 Save</a>
                 <a href="https://www.webnovel.com/book/shadow-slave_17505878106372705" target="_blank" rel="noopener">🔗 Official Webnovel</a>
+                <div id="auth-container" style="gap: 0.5rem;">
+                    <button id="login-btn" class="btn btn-sm" style="background: var(--secondary);">Sign In</button>
+                    <button id="logout-btn" class="btn btn-sm" style="background: var(--accent); display: none;">Sign Out</button>
+                    <span id="user-display" style="color: var(--text-light); font-size: 0.9rem; align-self: center;"></span>
+                </div>
             </div>
         </nav>
     </header>
@@ -42,7 +47,7 @@
             </div>
         </div>
         
-        <div class="chapter-content">
+        <div class="chapter-content" data-chapter="2001">
             <p class="chapter-paragraph">The battle between Sid and Felise was like a small calamity... one taking place within the terror of a much vaster cataclysm. The battlefield where hundreds of thousands of Awakened sought to destroy each other stretched from one horizon to another, strained by the great and violent forces they summoned into the world. Above them was the shroud of radiant clouds; beneath them were the bones of a dead deity.</p>
 <p class="chapter-paragraph">Sid and Felise had come a long way since the Forgotten Shore. Today, however, their winding paths crossed once again... only for one path to put an end to the other. Sid tasted blood in her mouth as Felise pushed her back. They moved with enough speed to make their furious clash appear like a blur — from time to time, groups of fighting Awakened soldiers got in their way, only to be violently tossed aside. Some survived... some were less fortunate. 'Curse it!'</p>
 <p class="chapter-paragraph">She drew on all her combat experience — few in the world had more of that than her — and all her skill. Her sword moved as if it was a living thing, deflecting blow after blow after blow. There was no holding back in this battle, so Sid abandoned all restraint, alternating between short bursts of incredible power, incredible resilience, and incredible speed — her Dormant, Awakened, and Ascended Abilities.</p>
@@ -126,6 +131,19 @@
             </div>
         </div>
     </div>
+    <div id="comment-modal" class="modal" style="display: none;">
+        <div class="modal-content">
+            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1rem;">
+                <h3>Add Comment</h3>
+                <button class="close-btn" onclick="document.getElementById('comment-modal').style.display = 'none';">&times;</button>
+            </div>
+            <textarea id="comment-text" placeholder="Write your comment..." style="width: 100%; min-height: 100px; padding: 0.75rem; background: var(--card-bg); border: 1px solid var(--border); color: var(--text); border-radius: var(--radius); font-family: inherit; margin-bottom: 1rem; resize: vertical;"></textarea>
+            <button id="submit-comment-btn" class="btn" onclick="submitComment()">Post Comment</button>
+        </div>
+    </div>
+    <script src="https://www.gstatic.com/firebasejs/10.7.0/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.7.0/firebase-auth.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.7.0/firebase-firestore.js"></script>
     <script src="../js/main.js"></script>
 </body>
 </html>

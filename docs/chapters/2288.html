@@ -14,6 +14,11 @@
                 <a href="../chapter-list.html">📚 Chapters</a>
                 <a href="../login.html">💾 Save</a>
                 <a href="https://www.webnovel.com/book/shadow-slave_17505878106372705" target="_blank" rel="noopener">🔗 Official Webnovel</a>
+                <div id="auth-container" style="gap: 0.5rem;">
+                    <button id="login-btn" class="btn btn-sm" style="background: var(--secondary);">Sign In</button>
+                    <button id="logout-btn" class="btn btn-sm" style="background: var(--accent); display: none;">Sign Out</button>
+                    <span id="user-display" style="color: var(--text-light); font-size: 0.9rem; align-self: center;"></span>
+                </div>
             </div>
         </nav>
     </header>
@@ -42,7 +47,7 @@
             </div>
         </div>
         
-        <div class="chapter-content">
+        <div class="chapter-content" data-chapter="2288">
             <p class="chapter-paragraph">The moment Slayer's first arrow hit the Millipede Queen, Sunny saw the Great Tyrant clearly for the first time. She was quite enormous, her bulbous body encased in glistening black chitin and decorated with beautiful patterns of orange-red, as if inlaid with burning embers. The first segment of her carapace flared at the back of her head, making it seem as if the appalling creature was wearing a crown. She had no eyes, so the front of her armored head was flawlessly smooth before opening into a monstrous, eerily human-like maw. That maw was now open, the last scream dying in its depths. The Millipede Queen was at least a hundred meters long, her segmented body quite thin in relation to its great length, and had been flowing across the tangled surface of the Burned Forest like a river of glistening darkness, her countless legs shredding the dead wood into splinters as she did. But now, the giant creature had come to an abrupt halt and fell in a mess of towering black coils... Her severed head was yet to hit the ground by the time Sunny heard a voice whispering into his ear:</p>
 <p class="chapter-paragraph">[You have slain an enemy.]</p>
 <p class="chapter-paragraph">He sighed in regret. Sunny had always missed the Nightmare Spell when the Handy Bracelet announced his kills. After all, unlike the Spell, this Memory of his was not omniscient — it did not know the names of the Nightmare Creatures he slayed, thus robbing him of the tantalizing tidbits of knowledge that were hidden in them.</p>
@@ -112,6 +117,19 @@
             </div>
         </div>
     </div>
+    <div id="comment-modal" class="modal" style="display: none;">
+        <div class="modal-content">
+            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1rem;">
+                <h3>Add Comment</h3>
+                <button class="close-btn" onclick="document.getElementById('comment-modal').style.display = 'none';">&times;</button>
+            </div>
+            <textarea id="comment-text" placeholder="Write your comment..." style="width: 100%; min-height: 100px; padding: 0.75rem; background: var(--card-bg); border: 1px solid var(--border); color: var(--text); border-radius: var(--radius); font-family: inherit; margin-bottom: 1rem; resize: vertical;"></textarea>
+            <button id="submit-comment-btn" class="btn" onclick="submitComment()">Post Comment</button>
+        </div>
+    </div>
+    <script src="https://www.gstatic.com/firebasejs/10.7.0/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.7.0/firebase-auth.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.7.0/firebase-firestore.js"></script>
     <script src="../js/main.js"></script>
 </body>
 </html>

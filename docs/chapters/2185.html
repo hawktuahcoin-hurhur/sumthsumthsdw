@@ -14,6 +14,11 @@
                 <a href="../chapter-list.html">📚 Chapters</a>
                 <a href="../login.html">💾 Save</a>
                 <a href="https://www.webnovel.com/book/shadow-slave_17505878106372705" target="_blank" rel="noopener">🔗 Official Webnovel</a>
+                <div id="auth-container" style="gap: 0.5rem;">
+                    <button id="login-btn" class="btn btn-sm" style="background: var(--secondary);">Sign In</button>
+                    <button id="logout-btn" class="btn btn-sm" style="background: var(--accent); display: none;">Sign Out</button>
+                    <span id="user-display" style="color: var(--text-light); font-size: 0.9rem; align-self: center;"></span>
+                </div>
             </div>
         </nav>
     </header>
@@ -42,7 +47,7 @@
             </div>
         </div>
         
-        <div class="chapter-content">
+        <div class="chapter-content" data-chapter="2185">
             <p class="chapter-paragraph">Seishan led Cassie into the depths of the cold structure. The deeper they went and the more gates they passed, the colder it became, until Cassie could not help but shiver. Eventually, complete silence enveloped them. 'Where is she?'</p>
 <p class="chapter-paragraph">Although Cassie was in a strange state and couldn't really control her Aspect, her Dormant Ability was still working — even if it was much more difficult to understand what it was telling her than usual. So, she was curious to see what the runes would tell her about the Queen. Chances were they were going to tell her very little, since someone as powerful as Ki Song would without a doubt have protected herself against curious diviners. Still, she hoped to learn something. Seishan placed a hand on Cassie's shoulder, forcing her to stop, then pressed down gently. Cassie had no choice but to kneel. The bag was taken off her head. She could not hear anything, she could not smell anything. Her Dormant Ability seemed to hint that there was no one in front of her. And yet, she felt it... a deep, profound presence that seemed to drown the entire world. As if there was an immense, ancient, terrifying beast hiding in the darkness right in front of her. Struggling against her dazed mind, Cassie reached toward the mark she had left on Seishan and activated it. Perhaps because they were so close, or perhaps purely by luck, she actually managed to maintain a tenuous hold on her Ascended Ability, this time...</p>
 <p class="chapter-paragraph">And shuddered.</p>
@@ -129,6 +134,19 @@
             </div>
         </div>
     </div>
+    <div id="comment-modal" class="modal" style="display: none;">
+        <div class="modal-content">
+            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1rem;">
+                <h3>Add Comment</h3>
+                <button class="close-btn" onclick="document.getElementById('comment-modal').style.display = 'none';">&times;</button>
+            </div>
+            <textarea id="comment-text" placeholder="Write your comment..." style="width: 100%; min-height: 100px; padding: 0.75rem; background: var(--card-bg); border: 1px solid var(--border); color: var(--text); border-radius: var(--radius); font-family: inherit; margin-bottom: 1rem; resize: vertical;"></textarea>
+            <button id="submit-comment-btn" class="btn" onclick="submitComment()">Post Comment</button>
+        </div>
+    </div>
+    <script src="https://www.gstatic.com/firebasejs/10.7.0/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.7.0/firebase-auth.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.7.0/firebase-firestore.js"></script>
     <script src="../js/main.js"></script>
 </body>
 </html>

@@ -14,6 +14,11 @@
                 <a href="../chapter-list.html">📚 Chapters</a>
                 <a href="../login.html">💾 Save</a>
                 <a href="https://www.webnovel.com/book/shadow-slave_17505878106372705" target="_blank" rel="noopener">🔗 Official Webnovel</a>
+                <div id="auth-container" style="gap: 0.5rem;">
+                    <button id="login-btn" class="btn btn-sm" style="background: var(--secondary);">Sign In</button>
+                    <button id="logout-btn" class="btn btn-sm" style="background: var(--accent); display: none;">Sign Out</button>
+                    <span id="user-display" style="color: var(--text-light); font-size: 0.9rem; align-self: center;"></span>
+                </div>
             </div>
         </nav>
     </header>
@@ -42,7 +47,7 @@
             </div>
         </div>
         
-        <div class="chapter-content">
+        <div class="chapter-content" data-chapter="2012">
             <p class="chapter-paragraph">The Lord of Shadows was faltering. It was hard to notice due to his fearsome appearance and the aura of cold arrogance emanating from the strangely graceful figure of the tenebrous colossus, but the mercenary Saint was losing ground. Already, his right hand was missing. Silent Stalker's arrow had pierced his onyx chest, and Beastmaster had poisoned his mind. Of course, the Lord of Shadows was too strong to be entranced by her power quickly... but his movements had slowed down, losing some of their deadly precision. Lonesome Howl could see it clearly, so she went for the kill. ...If that strange Transcendent form of his could even be killed like a living being. It bled darkness instead of blood, and was capable of splitting itself in half to avoid a blow. She had never seen anything like it. Of course, that was entirely the problem with the Lord of Shadows — no one seemed to know anything about him, including the true extent of his abilities. Clan Song had compiled an extensive database on all the living Saints — Clan Valor had as well, without a doubt. There were some secrets still kept hidden by the more cautious of the Transcendent champions, of course, but each of them was mostly a known existence. Except for the Lord of Shadows, who had come out of nowhere about a year ago.</p>
 <p class="chapter-paragraph">There was some information about him now, of course, gathered during the war. For example, they knew that his Transcendent form was not really that of an onyx giant — rather, it was a malleable mass of shadows that could seemingly take any form, the giant simply being the most common one he used. A troublesome Transformation, to say the least...</p>
 <p class="chapter-paragraph">But not an indestructible one. 'He might not bleed, but does he feel pain?'</p>
@@ -123,6 +128,19 @@
             </div>
         </div>
     </div>
+    <div id="comment-modal" class="modal" style="display: none;">
+        <div class="modal-content">
+            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1rem;">
+                <h3>Add Comment</h3>
+                <button class="close-btn" onclick="document.getElementById('comment-modal').style.display = 'none';">&times;</button>
+            </div>
+            <textarea id="comment-text" placeholder="Write your comment..." style="width: 100%; min-height: 100px; padding: 0.75rem; background: var(--card-bg); border: 1px solid var(--border); color: var(--text); border-radius: var(--radius); font-family: inherit; margin-bottom: 1rem; resize: vertical;"></textarea>
+            <button id="submit-comment-btn" class="btn" onclick="submitComment()">Post Comment</button>
+        </div>
+    </div>
+    <script src="https://www.gstatic.com/firebasejs/10.7.0/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.7.0/firebase-auth.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.7.0/firebase-firestore.js"></script>
     <script src="../js/main.js"></script>
 </body>
 </html>

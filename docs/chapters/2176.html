@@ -14,6 +14,11 @@
                 <a href="../chapter-list.html">📚 Chapters</a>
                 <a href="../login.html">💾 Save</a>
                 <a href="https://www.webnovel.com/book/shadow-slave_17505878106372705" target="_blank" rel="noopener">🔗 Official Webnovel</a>
+                <div id="auth-container" style="gap: 0.5rem;">
+                    <button id="login-btn" class="btn btn-sm" style="background: var(--secondary);">Sign In</button>
+                    <button id="logout-btn" class="btn btn-sm" style="background: var(--accent); display: none;">Sign Out</button>
+                    <span id="user-display" style="color: var(--text-light); font-size: 0.9rem; align-self: center;"></span>
+                </div>
             </div>
         </nav>
     </header>
@@ -42,7 +47,7 @@
             </div>
         </div>
         
-        <div class="chapter-content">
+        <div class="chapter-content" data-chapter="2176">
             <p class="chapter-paragraph">After Cassie ran out of essence and their conversation was interrupted, Sunny remained motionless, staring into the distance with a lost expression on his face. After a while, he looked down at his cup. "...My tea has turned cold."</p>
 <p class="chapter-paragraph">His voice was even.</p>
 <p class="chapter-paragraph">With a sigh, he brought the cup to his lips and took a leisurely sip, enjoying the darkly beautiful view of Godgrave and the vibrant, idyllic tranquility of the Ivory Island with a smile. Cassie's news was unexpected enough, but the momentary feeling of being lost Sunny had experienced was not because of it. Rather, it was because of what the news signified. The resolution of this dreadful, appalling war had been drawing near for a while... But now, it was here. The end had arrived. So, this was probably the last moment of peace he would get to experience until everything was over... quite possibly the last moment of peace he would get to experience for the rest of his life, since his life could very well end in a matter of days.</p>
@@ -116,6 +121,19 @@
             </div>
         </div>
     </div>
+    <div id="comment-modal" class="modal" style="display: none;">
+        <div class="modal-content">
+            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1rem;">
+                <h3>Add Comment</h3>
+                <button class="close-btn" onclick="document.getElementById('comment-modal').style.display = 'none';">&times;</button>
+            </div>
+            <textarea id="comment-text" placeholder="Write your comment..." style="width: 100%; min-height: 100px; padding: 0.75rem; background: var(--card-bg); border: 1px solid var(--border); color: var(--text); border-radius: var(--radius); font-family: inherit; margin-bottom: 1rem; resize: vertical;"></textarea>
+            <button id="submit-comment-btn" class="btn" onclick="submitComment()">Post Comment</button>
+        </div>
+    </div>
+    <script src="https://www.gstatic.com/firebasejs/10.7.0/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.7.0/firebase-auth.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.7.0/firebase-firestore.js"></script>
     <script src="../js/main.js"></script>
 </body>
 </html>

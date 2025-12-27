@@ -14,6 +14,11 @@
                 <a href="../chapter-list.html">📚 Chapters</a>
                 <a href="../login.html">💾 Save</a>
                 <a href="https://www.webnovel.com/book/shadow-slave_17505878106372705" target="_blank" rel="noopener">🔗 Official Webnovel</a>
+                <div id="auth-container" style="gap: 0.5rem;">
+                    <button id="login-btn" class="btn btn-sm" style="background: var(--secondary);">Sign In</button>
+                    <button id="logout-btn" class="btn btn-sm" style="background: var(--accent); display: none;">Sign Out</button>
+                    <span id="user-display" style="color: var(--text-light); font-size: 0.9rem; align-self: center;"></span>
+                </div>
             </div>
         </nav>
     </header>
@@ -42,7 +47,7 @@
             </div>
         </div>
         
-        <div class="chapter-content">
+        <div class="chapter-content" data-chapter="1551">
             <p class="chapter-paragraph">The five members of the cohort were gone, off to scout the approach to Verge. Sunny felt uneasy and worried about their safety, but not tremendously so. Each of them was a powerhouse in their own right, and possessed a wealth of experience when it came to moving stealthily through a region infested with Nightmare Creatures. Nephis, Kai, and Effie were veterans of the Forgotten Shore, where humans had been at the very bottom of the food chain. Effie, who had hunted in the Dark City alone for many years, was especially proficient in navigating dangerous terrain without alerting anyone or anything of her presence. Jet had already been a frightening existence before the Southern Campaign, and grew only more tenacious after going through the disastrous months in the Antarctic Center, followed by serving in the military reconnaissance in East Antarctica.</p>
 <p class="chapter-paragraph">Mordret was by far the most slippery of the five, so even if Sunny was inclined to care about his well-being, the bastard was the last person in the Tomb of Ariel he would be worried about. So, the scouts were more than capable of fulfilling their mission unscathed. If anything, Sunny was more concerned about himself and Cassie. The restlessness he had felt for the past few months reached an apex, telling him that something was about to happen. The Sin of Solace was not shy about voicing his opinion, either:</p>
 <p class="chapter-paragraph">"You've done it now, fool. What madness made you think that staying here alone with her was a good idea? It wasn't me, that's for sure. Now, you are completely defenseless against whatever new betrayal she had in mind, with no one to cover your back."</p>
@@ -115,6 +120,19 @@
             </div>
         </div>
     </div>
+    <div id="comment-modal" class="modal" style="display: none;">
+        <div class="modal-content">
+            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1rem;">
+                <h3>Add Comment</h3>
+                <button class="close-btn" onclick="document.getElementById('comment-modal').style.display = 'none';">&times;</button>
+            </div>
+            <textarea id="comment-text" placeholder="Write your comment..." style="width: 100%; min-height: 100px; padding: 0.75rem; background: var(--card-bg); border: 1px solid var(--border); color: var(--text); border-radius: var(--radius); font-family: inherit; margin-bottom: 1rem; resize: vertical;"></textarea>
+            <button id="submit-comment-btn" class="btn" onclick="submitComment()">Post Comment</button>
+        </div>
+    </div>
+    <script src="https://www.gstatic.com/firebasejs/10.7.0/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.7.0/firebase-auth.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.7.0/firebase-firestore.js"></script>
     <script src="../js/main.js"></script>
 </body>
 </html>

@@ -14,6 +14,11 @@
                 <a href="../chapter-list.html">📚 Chapters</a>
                 <a href="../login.html">💾 Save</a>
                 <a href="https://www.webnovel.com/book/shadow-slave_17505878106372705" target="_blank" rel="noopener">🔗 Official Webnovel</a>
+                <div id="auth-container" style="gap: 0.5rem;">
+                    <button id="login-btn" class="btn btn-sm" style="background: var(--secondary);">Sign In</button>
+                    <button id="logout-btn" class="btn btn-sm" style="background: var(--accent); display: none;">Sign Out</button>
+                    <span id="user-display" style="color: var(--text-light); font-size: 0.9rem; align-self: center;"></span>
+                </div>
             </div>
         </nav>
     </header>
@@ -42,7 +47,7 @@
             </div>
         </div>
         
-        <div class="chapter-content">
+        <div class="chapter-content" data-chapter="2563">
             <p class="chapter-paragraph">Sunny and Nephis had stood on this exact spot eleven years ago, waiting for the gates of the Academy to open for them... well, it had been eleven years for the world, but a full dozen for them, considering the time spent in the Tomb of Ariel.</p>
 <p class="chapter-paragraph">It was funny to think that they had not even known each other back then. They had not paid much attention to each other, either — Sunny had been busy thinking about the advice given to him by Jet during the drive from the police station, while Nephis was listening to music and looking at the walls of the Academy with an aloof expression.</p>
 <p class="chapter-paragraph">They had just become Sleepers. And now, twelve years later... they were both Supreme. They were demigods wielding power so terrifying that the towering walls of the Acadely, which had seemed impossible to breach once, were not even worth thinking about. Sunny and Nephis were capable of conquering all of Earth now — or destroying it, if they so wished.</p>
@@ -128,6 +133,19 @@ Then, hearing someone opening the door, he dissolved into the shadows. His job h
             </div>
         </div>
     </div>
+    <div id="comment-modal" class="modal" style="display: none;">
+        <div class="modal-content">
+            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1rem;">
+                <h3>Add Comment</h3>
+                <button class="close-btn" onclick="document.getElementById('comment-modal').style.display = 'none';">&times;</button>
+            </div>
+            <textarea id="comment-text" placeholder="Write your comment..." style="width: 100%; min-height: 100px; padding: 0.75rem; background: var(--card-bg); border: 1px solid var(--border); color: var(--text); border-radius: var(--radius); font-family: inherit; margin-bottom: 1rem; resize: vertical;"></textarea>
+            <button id="submit-comment-btn" class="btn" onclick="submitComment()">Post Comment</button>
+        </div>
+    </div>
+    <script src="https://www.gstatic.com/firebasejs/10.7.0/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.7.0/firebase-auth.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.7.0/firebase-firestore.js"></script>
     <script src="../js/main.js"></script>
 </body>
 </html>

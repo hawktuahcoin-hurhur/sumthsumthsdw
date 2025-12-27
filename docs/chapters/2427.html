@@ -14,6 +14,11 @@
                 <a href="../chapter-list.html">📚 Chapters</a>
                 <a href="../login.html">💾 Save</a>
                 <a href="https://www.webnovel.com/book/shadow-slave_17505878106372705" target="_blank" rel="noopener">🔗 Official Webnovel</a>
+                <div id="auth-container" style="gap: 0.5rem;">
+                    <button id="login-btn" class="btn btn-sm" style="background: var(--secondary);">Sign In</button>
+                    <button id="logout-btn" class="btn btn-sm" style="background: var(--accent); display: none;">Sign Out</button>
+                    <span id="user-display" style="color: var(--text-light); font-size: 0.9rem; align-self: center;"></span>
+                </div>
             </div>
         </nav>
     </header>
@@ -42,7 +47,7 @@
             </div>
         </div>
         
-        <div class="chapter-content">
+        <div class="chapter-content" data-chapter="2427">
             <p class="chapter-paragraph">Aiko was in a great mood as she hailed a carriage, which was her preferred method of moving around Bastion. Moving around Bastion was somewhat of a complicated matter, actually. There was already a grand project in the works to simplify it - special tramways meant for street cars were being embedded into the main streets, strengthened by primitive sorcery. The rails were cast from a special alloy that allowed them to channel essence, while the trams themselves were enchanted to move by absorbing it.</p>
 <p class="chapter-paragraph">Now that the Rivergate Hydro had gone operational, though, there were talks of discarding the magical street cars in favor of good old-fashioned electric trams. Aiko suspected that, in the end, both types were going to be implemented, with enchanted tramways serving as the thoroughfares of the public transport network while more mundane ones would branch out from them as satellite outlets. The first street car was supposed to be launched quite soon.</p>
 <p class="chapter-paragraph">Before that happened, though, citizens of Bastion had six main ways to get around the city. The first one was to use a ferry and cross the lake. Naturally, that could only get one to a different location on the lakeshore - however, considering that the city surrounded the lake like a ring, it was often faster to travel by water before continuing on foot than to make the entire journey while never leaving the land.</p>
@@ -116,6 +121,19 @@
             </div>
         </div>
     </div>
+    <div id="comment-modal" class="modal" style="display: none;">
+        <div class="modal-content">
+            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1rem;">
+                <h3>Add Comment</h3>
+                <button class="close-btn" onclick="document.getElementById('comment-modal').style.display = 'none';">&times;</button>
+            </div>
+            <textarea id="comment-text" placeholder="Write your comment..." style="width: 100%; min-height: 100px; padding: 0.75rem; background: var(--card-bg); border: 1px solid var(--border); color: var(--text); border-radius: var(--radius); font-family: inherit; margin-bottom: 1rem; resize: vertical;"></textarea>
+            <button id="submit-comment-btn" class="btn" onclick="submitComment()">Post Comment</button>
+        </div>
+    </div>
+    <script src="https://www.gstatic.com/firebasejs/10.7.0/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.7.0/firebase-auth.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.7.0/firebase-firestore.js"></script>
     <script src="../js/main.js"></script>
 </body>
 </html>

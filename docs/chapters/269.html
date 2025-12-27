@@ -14,6 +14,11 @@
                 <a href="../chapter-list.html">📚 Chapters</a>
                 <a href="../login.html">💾 Save</a>
                 <a href="https://www.webnovel.com/book/shadow-slave_17505878106372705" target="_blank" rel="noopener">🔗 Official Webnovel</a>
+                <div id="auth-container" style="gap: 0.5rem;">
+                    <button id="login-btn" class="btn btn-sm" style="background: var(--secondary);">Sign In</button>
+                    <button id="logout-btn" class="btn btn-sm" style="background: var(--accent); display: none;">Sign Out</button>
+                    <span id="user-display" style="color: var(--text-light); font-size: 0.9rem; align-self: center;"></span>
+                </div>
             </div>
         </nav>
     </header>
@@ -42,7 +47,7 @@
             </div>
         </div>
         
-        <div class="chapter-content">
+        <div class="chapter-content" data-chapter="269">
             <p class="chapter-paragraph">The black blade fell down, missing Nephis only by a hair's breadth. She rolled back and performed an impossible handspring, launching herself into the air from the ground. Landing on the marble floor with an effortless grace of a trained acrobat, Changing Star slid back a few meters and came to a stop some distance away from the devil.</p>
 <p class="chapter-paragraph">But he was just as fast... no, much faster. The giant was already lunging forward to skewer her on the tip of his terrible greatsword. She shifted slightly, dodging the deadly attack, a dashed forward along the vast length of the black blade. Her sword flashed through the air and impacted against the vambrace of the menacing armor, leaving a deep scratch on its dark surface.</p>
 <p class="chapter-paragraph">...Everything was happening so fast that other members of the cohort were having trouble joining the fight. The Stone Saint had just landed on the marble floor a moment ago and was currently rising back to her feet. Effie had recovered from receiving the full brunt of the Black Knight's first attack and was rushing forward, but she was still a few meters away.</p>
@@ -135,6 +140,19 @@
             </div>
         </div>
     </div>
+    <div id="comment-modal" class="modal" style="display: none;">
+        <div class="modal-content">
+            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1rem;">
+                <h3>Add Comment</h3>
+                <button class="close-btn" onclick="document.getElementById('comment-modal').style.display = 'none';">&times;</button>
+            </div>
+            <textarea id="comment-text" placeholder="Write your comment..." style="width: 100%; min-height: 100px; padding: 0.75rem; background: var(--card-bg); border: 1px solid var(--border); color: var(--text); border-radius: var(--radius); font-family: inherit; margin-bottom: 1rem; resize: vertical;"></textarea>
+            <button id="submit-comment-btn" class="btn" onclick="submitComment()">Post Comment</button>
+        </div>
+    </div>
+    <script src="https://www.gstatic.com/firebasejs/10.7.0/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.7.0/firebase-auth.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.7.0/firebase-firestore.js"></script>
     <script src="../js/main.js"></script>
 </body>
 </html>

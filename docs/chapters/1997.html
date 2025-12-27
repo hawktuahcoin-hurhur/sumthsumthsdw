@@ -14,6 +14,11 @@
                 <a href="../chapter-list.html">📚 Chapters</a>
                 <a href="../login.html">💾 Save</a>
                 <a href="https://www.webnovel.com/book/shadow-slave_17505878106372705" target="_blank" rel="noopener">🔗 Official Webnovel</a>
+                <div id="auth-container" style="gap: 0.5rem;">
+                    <button id="login-btn" class="btn btn-sm" style="background: var(--secondary);">Sign In</button>
+                    <button id="logout-btn" class="btn btn-sm" style="background: var(--accent); display: none;">Sign Out</button>
+                    <span id="user-display" style="color: var(--text-light); font-size: 0.9rem; align-self: center;"></span>
+                </div>
             </div>
         </nav>
     </header>
@@ -42,7 +47,7 @@
             </div>
         </div>
         
-        <div class="chapter-content">
+        <div class="chapter-content" data-chapter="1997">
             <p class="chapter-paragraph">The pilgrims were consumed by the tidal wave of steel warriors, only managing to fell the vanguard of unfeeling Echoes. There were more of them on other parts of the battlefield, but here at the epicenter of the calamitous clash between the two great armies, the Knights of Valor were too shrewd and callous to allow the dead to rise en masse. The indomitable formation of the Sword Army elites surged forward like an iron wave, crashing into the Seventh Legion and shattering its offensive line. However, not long after, the momentum of the Valor forces stalled. And then, it was exhausted entirely, leaving them in a deadly mire. Their enemy was not to not be trifled with, either — the seven Royal Legions consisted of the best warriors of the Song Domain, and among them, the Seventh Legion was the fiercest.</p>
 <p class="chapter-paragraph">It only lost to the First Legion, perhaps, which had vanished into the darkness of the Spine Ocean and was not present on the battlefield today. After suffering the initial blow, the broken formation of the Song warriors did not buckle, and the warriors themselves did not lose themselves to fear. They were not routed — instead, they descended upon the Knights of Valor and their auxiliary forces like a deadly swarm, burning with wicked resolve and primal fury.</p>
 <p class="chapter-paragraph">These men and women were neither enthralled by the promise of glory nor intoxicated by the raucous hymns of war. However, they weren't willing to taste the bitterness of defeat, either. ...A wide swath of the hellish battlefield turned into an even harsher hell, with thousands of powerful Awakened and hundreds of fearsome Masters clashing in a deadly melee. The cacophony of deafening thunderclaps, the litany of human screams, and the violent tremors of the bloodied ground fused into a nightmarish choir of destruction, as if the world itself was in the throes of death — or rebirth, maybe. Perhaps it was the dead deity of Godgrave that was being reborn, its ancient bones soaked by human blood. In any case, the warriors of both the Sword Army and the Song Army seemed to have forgotten themselves, consumed by the dire and macabre necessity of battle. Their previous doubts were washed away by the shock and awe of the harrowing battlefield, and their minds were hollowed by the dreadful, demented noises of the disastrous havoc. The world had gone insane. Nôv(el)B\\jnn</p>
@@ -113,6 +118,19 @@
             </div>
         </div>
     </div>
+    <div id="comment-modal" class="modal" style="display: none;">
+        <div class="modal-content">
+            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1rem;">
+                <h3>Add Comment</h3>
+                <button class="close-btn" onclick="document.getElementById('comment-modal').style.display = 'none';">&times;</button>
+            </div>
+            <textarea id="comment-text" placeholder="Write your comment..." style="width: 100%; min-height: 100px; padding: 0.75rem; background: var(--card-bg); border: 1px solid var(--border); color: var(--text); border-radius: var(--radius); font-family: inherit; margin-bottom: 1rem; resize: vertical;"></textarea>
+            <button id="submit-comment-btn" class="btn" onclick="submitComment()">Post Comment</button>
+        </div>
+    </div>
+    <script src="https://www.gstatic.com/firebasejs/10.7.0/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.7.0/firebase-auth.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.7.0/firebase-firestore.js"></script>
     <script src="../js/main.js"></script>
 </body>
 </html>

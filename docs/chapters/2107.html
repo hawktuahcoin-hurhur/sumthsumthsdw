@@ -14,6 +14,11 @@
                 <a href="../chapter-list.html">📚 Chapters</a>
                 <a href="../login.html">💾 Save</a>
                 <a href="https://www.webnovel.com/book/shadow-slave_17505878106372705" target="_blank" rel="noopener">🔗 Official Webnovel</a>
+                <div id="auth-container" style="gap: 0.5rem;">
+                    <button id="login-btn" class="btn btn-sm" style="background: var(--secondary);">Sign In</button>
+                    <button id="logout-btn" class="btn btn-sm" style="background: var(--accent); display: none;">Sign Out</button>
+                    <span id="user-display" style="color: var(--text-light); font-size: 0.9rem; align-self: center;"></span>
+                </div>
             </div>
         </nav>
     </header>
@@ -42,7 +47,7 @@
             </div>
         </div>
         
-        <div class="chapter-content">
+        <div class="chapter-content" data-chapter="2107">
             <p class="chapter-paragraph">Leaping from one drifting obsidian island to another and using his wings to glide across the wider gaps between them, Sunny swiftly reached a vantage point from where he could see the torso of the shadow of Condemnation. Far below, the Leech had burrowed into the side of the colossus, having already consumed a vast swath of its nebulous body. The seething mass of darkness was twisting and rippling, hundreds of appalling maws biting hungrily into the shadow of the Cursed Tyrant. It seemed that the Dark One did not care what exactly it was devouring — pieces of obsidian, shimmering light, or deep shadows. Although it seemed as if the Leech was feasting on the body of Condemnation, what it was truly devouring was Condemnation's essence — the very invisible, insidious force that held the great colossus together. A bit higher, just under the chest of the Cursed One's shadow, the Vulture had already extricated its body from one of the two enormous fangs, and was close to liberating itself from the second. The creature was separated from Sunny by a vertical drop of almost an entire kilometer, but due to its massive size, that distance did not seem significant at all... if anything, it felt negligible. Sunny hesitated for a moment. '...How am I even supposed to kill that thing?'</p>
 <p class="chapter-paragraph">As the last resort, he could attack the Vulture with his bare hands — gods knew that the spiked gauntlets of the Onyx Mantle were lethal weapons in and of themselves. However, ripping the vast body of the appalling creature to shreds with bare hands seemed like a lot of work.</p>
 <p class="chapter-paragraph">And the Vulture was not going to simply allow Sunny to attack it freely, either. His thoughts were suddenly interrupted by a thunderous thunderclap that slammed into Sunny like a physical wall, making him stagger and struggle to keep his balance. The thunderclap came from somewhere to his left — there, hidden from view by the massive neck of Condemnation, the mysterious archer was currently battling the Thing. Looking that way, Sunny saw pieces of shattered obsidian soaring high into the black sky before plunging down to rain upon the ground like a destructive hail. Cursing inwardly, he took a step forward and plummeted down, as well. Using both the dire might of his tenebrous wings and the [Feather of Truth] to accelerate his descent, Sunny pierced the radiance of the river of essence and fell upon the Vulture like a black comet. Force equaled mass timed by acceleration, and he possessed plenty of both. More than that, he was a Transcendent being, and therefore his existence pushed against the mystical laws of the world, not just the laws of physics. Perhaps using himself as a projectile was not the wisest of plans, but that way, the force unleashed by his impact against the Dark One was going to be truly devastating — as well as bring him close enough to tear at the appalling creature with his onyx claws. Sunny had tensed his body in anticipation of a bone-breaking collision, relying on Bone Weave to keep him whole. However, to his surprise, the actual impact was far less violent than he had anticipated and hoped for. The vast body of the Vulture gave in and enveloped Sunny like a cold, porous cloth, surrounding him from all sides and suffocating him. Suddenly, he was embraced and blinded by darkness, bound by its chilling expanse, struggling to wrestle his body free. At first, the cold darkness was simply there, enveloping him like a dreadful cocoon. But then, it rippled and gave birth to countless tendrils that slithered across the surface of the Onyx Mantle, searching hungrily for a way in.</p>
@@ -105,6 +110,19 @@
             </div>
         </div>
     </div>
+    <div id="comment-modal" class="modal" style="display: none;">
+        <div class="modal-content">
+            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1rem;">
+                <h3>Add Comment</h3>
+                <button class="close-btn" onclick="document.getElementById('comment-modal').style.display = 'none';">&times;</button>
+            </div>
+            <textarea id="comment-text" placeholder="Write your comment..." style="width: 100%; min-height: 100px; padding: 0.75rem; background: var(--card-bg); border: 1px solid var(--border); color: var(--text); border-radius: var(--radius); font-family: inherit; margin-bottom: 1rem; resize: vertical;"></textarea>
+            <button id="submit-comment-btn" class="btn" onclick="submitComment()">Post Comment</button>
+        </div>
+    </div>
+    <script src="https://www.gstatic.com/firebasejs/10.7.0/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.7.0/firebase-auth.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.7.0/firebase-firestore.js"></script>
     <script src="../js/main.js"></script>
 </body>
 </html>

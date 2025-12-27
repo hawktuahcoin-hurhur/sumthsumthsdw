@@ -14,6 +14,11 @@
                 <a href="../chapter-list.html">📚 Chapters</a>
                 <a href="../login.html">💾 Save</a>
                 <a href="https://www.webnovel.com/book/shadow-slave_17505878106372705" target="_blank" rel="noopener">🔗 Official Webnovel</a>
+                <div id="auth-container" style="gap: 0.5rem;">
+                    <button id="login-btn" class="btn btn-sm" style="background: var(--secondary);">Sign In</button>
+                    <button id="logout-btn" class="btn btn-sm" style="background: var(--accent); display: none;">Sign Out</button>
+                    <span id="user-display" style="color: var(--text-light); font-size: 0.9rem; align-self: center;"></span>
+                </div>
             </div>
         </nav>
     </header>
@@ -42,7 +47,7 @@
             </div>
         </div>
         
-        <div class="chapter-content">
+        <div class="chapter-content" data-chapter="2286">
             <p class="chapter-paragraph">As Nightmare leaped across the tangled surface of the charred deadfall and landed on the fallen trunk of an enormous tree, easily hundreds of meters across, champions of the Shadow Legion surged forward. The rushing millipedes cowered as the aura of dread surrounding the black steed washed over them like a cold wave. A split second later, Saint's dark blade fell, slicing the chitin like paper. Not far behind her, something massive moved, the ground shaking as it did — as if a dark hill was moving across the fallen trees. Then, the towering figure opened its four arms wide and let out a low, terrifying roar that reverberated across the battlefield like the voice of an erupting volcano. Infernal flames ignited in the depths of the steel giant's maw, and his eyes blazed with fire. ...Fiend had hit a growth spurt in the wake of the war in Godgrave.</p>
 <p class="chapter-paragraph">The tiny imp used to be no taller than Sunny's knee, but now, he towered above the battlefield at more than forty meters in height, his powerful body encased in an impenetrable steel carapace and littered with countless sharp spikes — like a hellish colossus cast from numerous great swords.</p>
 <p class="chapter-paragraph">As the red flames burning within him flared to life, Fiend lowered his torso and lunged forward, crushing the millipedes under his feet and slicing them apart with his enormous, chillingly sharp claws. A moment later, King Daeron entered the fray, wearing a regal suit of armor forged of shadows and wielding a heavy mace. Wind Flower, twin shadows of Solvane, and the seven Saints of Song were not far behind him — some as humans wielding sharp weapons, some having assumed their Transcendent forms. The latter, too, were wearing armor forged to fit their bestial forms by Anvil's shadow. So were the shades of the Great Nightmare Creatures Sunny had slain in Godgrave. The old predators of the abominable jungle had always been powerful and deadly, but now that their dreadful bodies were protected by armor forged of shadows, their claws and fangs turned to even deadlier weapons, they were both more resilient and far more devastating.</p>
@@ -113,6 +118,19 @@
             </div>
         </div>
     </div>
+    <div id="comment-modal" class="modal" style="display: none;">
+        <div class="modal-content">
+            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1rem;">
+                <h3>Add Comment</h3>
+                <button class="close-btn" onclick="document.getElementById('comment-modal').style.display = 'none';">&times;</button>
+            </div>
+            <textarea id="comment-text" placeholder="Write your comment..." style="width: 100%; min-height: 100px; padding: 0.75rem; background: var(--card-bg); border: 1px solid var(--border); color: var(--text); border-radius: var(--radius); font-family: inherit; margin-bottom: 1rem; resize: vertical;"></textarea>
+            <button id="submit-comment-btn" class="btn" onclick="submitComment()">Post Comment</button>
+        </div>
+    </div>
+    <script src="https://www.gstatic.com/firebasejs/10.7.0/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.7.0/firebase-auth.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.7.0/firebase-firestore.js"></script>
     <script src="../js/main.js"></script>
 </body>
 </html>

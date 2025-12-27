@@ -14,6 +14,11 @@
                 <a href="../chapter-list.html">📚 Chapters</a>
                 <a href="../login.html">💾 Save</a>
                 <a href="https://www.webnovel.com/book/shadow-slave_17505878106372705" target="_blank" rel="noopener">🔗 Official Webnovel</a>
+                <div id="auth-container" style="gap: 0.5rem;">
+                    <button id="login-btn" class="btn btn-sm" style="background: var(--secondary);">Sign In</button>
+                    <button id="logout-btn" class="btn btn-sm" style="background: var(--accent); display: none;">Sign Out</button>
+                    <span id="user-display" style="color: var(--text-light); font-size: 0.9rem; align-self: center;"></span>
+                </div>
             </div>
         </nav>
     </header>
@@ -42,7 +47,7 @@
             </div>
         </div>
         
-        <div class="chapter-content">
+        <div class="chapter-content" data-chapter="609">
             <p class="chapter-paragraph">Sunny tore the Chain Worm apart, pieces of flesh and puddles of blood covering the red stones of the arena like a ghastly carpet. Then, shrouded in impenetrable shadows, he thrust his hands into the mangled carcass of the slain abomination and ripped three bloody soul shards out.</p>
 <p class="chapter-paragraph">...Ironically, killing the Fallen Demon had not been too hard for him. A long time ago, Master Roan had described these vile creatures as incredibly formidable and deadly opponents, someone that even he would not have wanted to face alone. But that was because Master Roan was a human.</p>
 <p class="chapter-paragraph">Chain Worms fed on metal, and as such, steel weapons and armor were useless against them. Sunny would have been in trouble if he was still in his human body, and most of his arsenal of Memories suddenly became ineffective. However, he was a demon now — one of the shadowspawn, or Shadow's kin, or whatever it was he had been turned into.</p>
@@ -150,6 +155,19 @@
             </div>
         </div>
     </div>
+    <div id="comment-modal" class="modal" style="display: none;">
+        <div class="modal-content">
+            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1rem;">
+                <h3>Add Comment</h3>
+                <button class="close-btn" onclick="document.getElementById('comment-modal').style.display = 'none';">&times;</button>
+            </div>
+            <textarea id="comment-text" placeholder="Write your comment..." style="width: 100%; min-height: 100px; padding: 0.75rem; background: var(--card-bg); border: 1px solid var(--border); color: var(--text); border-radius: var(--radius); font-family: inherit; margin-bottom: 1rem; resize: vertical;"></textarea>
+            <button id="submit-comment-btn" class="btn" onclick="submitComment()">Post Comment</button>
+        </div>
+    </div>
+    <script src="https://www.gstatic.com/firebasejs/10.7.0/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.7.0/firebase-auth.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.7.0/firebase-firestore.js"></script>
     <script src="../js/main.js"></script>
 </body>
 </html>

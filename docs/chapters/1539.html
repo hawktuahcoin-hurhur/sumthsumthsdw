@@ -14,6 +14,11 @@
                 <a href="../chapter-list.html">📚 Chapters</a>
                 <a href="../login.html">💾 Save</a>
                 <a href="https://www.webnovel.com/book/shadow-slave_17505878106372705" target="_blank" rel="noopener">🔗 Official Webnovel</a>
+                <div id="auth-container" style="gap: 0.5rem;">
+                    <button id="login-btn" class="btn btn-sm" style="background: var(--secondary);">Sign In</button>
+                    <button id="logout-btn" class="btn btn-sm" style="background: var(--accent); display: none;">Sign Out</button>
+                    <span id="user-display" style="color: var(--text-light); font-size: 0.9rem; align-self: center;"></span>
+                </div>
             </div>
         </nav>
     </header>
@@ -42,7 +47,7 @@
             </div>
         </div>
         
-        <div class="chapter-content">
+        <div class="chapter-content" data-chapter="1539">
             <p class="chapter-paragraph">Sunny was in his quarters, going over the plan for altering the Transcendent charm. Outside, Fallen Grace was bathed in the beautiful glow of the iridescent water. The short night had descended on the world, shrouding the sky in absolute darkness. In that dark hour, Cassie was walking along the corridors of the temple — which wasn't that strange, in and of itself, if not for the fact that she was alone. Usually, the two deaf guards would be following behind her, but they were nowhere to be seen. The only thing accompanying the blind girl was the shadow Sunny had sent to keep an eye on her. Back in his quarters, he straightened and frowned, distracted from envisioning the complicated tapestry of the charm's spellweave. 'What is she up to?'</p>
 <p class="chapter-paragraph">Cassie had not given him any reason to feel worried in these past two months... honestly, monitoring her movements was an afterthought by now. Sunny had certainly hoped that it would remain that way. Feeling a bit somber, he glanced at the motionless figure standing a few meters away. The Sin of Solace was staring at him silently, not bothering to say anything. However, his gaze expressed more than enough. Sunny winced, then looked away. "Don't you glare at me. I'm sure it's nothing."</p>
 <p class="chapter-paragraph">He said that... but did not command the shadow to back away. Instead, he dedicated more of his attention to observing Cassie. The blind girl certainly did not seem pensive or secretive. She calmly walked along the winding stone corridors, tracing her fingers on the wall. Her other hand was holding the leather-bound journal. 'Maybe her guards are asleep.'</p>
@@ -110,6 +115,19 @@
             </div>
         </div>
     </div>
+    <div id="comment-modal" class="modal" style="display: none;">
+        <div class="modal-content">
+            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1rem;">
+                <h3>Add Comment</h3>
+                <button class="close-btn" onclick="document.getElementById('comment-modal').style.display = 'none';">&times;</button>
+            </div>
+            <textarea id="comment-text" placeholder="Write your comment..." style="width: 100%; min-height: 100px; padding: 0.75rem; background: var(--card-bg); border: 1px solid var(--border); color: var(--text); border-radius: var(--radius); font-family: inherit; margin-bottom: 1rem; resize: vertical;"></textarea>
+            <button id="submit-comment-btn" class="btn" onclick="submitComment()">Post Comment</button>
+        </div>
+    </div>
+    <script src="https://www.gstatic.com/firebasejs/10.7.0/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.7.0/firebase-auth.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.7.0/firebase-firestore.js"></script>
     <script src="../js/main.js"></script>
 </body>
 </html>

@@ -14,6 +14,11 @@
                 <a href="../chapter-list.html">📚 Chapters</a>
                 <a href="../login.html">💾 Save</a>
                 <a href="https://www.webnovel.com/book/shadow-slave_17505878106372705" target="_blank" rel="noopener">🔗 Official Webnovel</a>
+                <div id="auth-container" style="gap: 0.5rem;">
+                    <button id="login-btn" class="btn btn-sm" style="background: var(--secondary);">Sign In</button>
+                    <button id="logout-btn" class="btn btn-sm" style="background: var(--accent); display: none;">Sign Out</button>
+                    <span id="user-display" style="color: var(--text-light); font-size: 0.9rem; align-self: center;"></span>
+                </div>
             </div>
         </nav>
     </header>
@@ -42,7 +47,7 @@
             </div>
         </div>
         
-        <div class="chapter-content">
+        <div class="chapter-content" data-chapter="1324">
             <p class="chapter-paragraph">The time storm raged all around them. The current of the Great River, which had always been calm and constant, turned into a furious tide... being carried and tossed around by it, the ketch flew forward with terrible speed. Tall waves rose and fell, and hurricane winds howled like frenzied beasts. Everything around them was drowning in a boiling fog. Blinded by it, deafened by the roaring thunderclaps, the three of them had lost all sense of time and direction.</p>
 <p class="chapter-paragraph">There was only the feeling of the wet deck beneath their feet, the soaring and plummeting of the wooden boat, and the physical strain of enduring the cataclysmic fury of the storm. Faced with its inconceivable wrath, Sunny couldn't help but feel how tiny and insignificant he was in the face of the unnatural disaster. ...And that was with Ananke holding the worst of it at bay, as well. The eerie, deeply distressing feeling of the immutable laws of the world turning vague and volatile was still there, muted but indescribably oppressive. He felt sickened, both physically and mentally. It was as if the solid foundation of his very being had suddenly been replaced by shifting quicksand, leaving him shaking and unstable.</p>
 <p class="chapter-paragraph">Perhaps that was what madness felt like. 'Damnation...'</p>
@@ -107,6 +112,19 @@
             </div>
         </div>
     </div>
+    <div id="comment-modal" class="modal" style="display: none;">
+        <div class="modal-content">
+            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1rem;">
+                <h3>Add Comment</h3>
+                <button class="close-btn" onclick="document.getElementById('comment-modal').style.display = 'none';">&times;</button>
+            </div>
+            <textarea id="comment-text" placeholder="Write your comment..." style="width: 100%; min-height: 100px; padding: 0.75rem; background: var(--card-bg); border: 1px solid var(--border); color: var(--text); border-radius: var(--radius); font-family: inherit; margin-bottom: 1rem; resize: vertical;"></textarea>
+            <button id="submit-comment-btn" class="btn" onclick="submitComment()">Post Comment</button>
+        </div>
+    </div>
+    <script src="https://www.gstatic.com/firebasejs/10.7.0/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.7.0/firebase-auth.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.7.0/firebase-firestore.js"></script>
     <script src="../js/main.js"></script>
 </body>
 </html>

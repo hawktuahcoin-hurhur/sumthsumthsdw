@@ -14,6 +14,11 @@
                 <a href="../chapter-list.html">📚 Chapters</a>
                 <a href="../login.html">💾 Save</a>
                 <a href="https://www.webnovel.com/book/shadow-slave_17505878106372705" target="_blank" rel="noopener">🔗 Official Webnovel</a>
+                <div id="auth-container" style="gap: 0.5rem;">
+                    <button id="login-btn" class="btn btn-sm" style="background: var(--secondary);">Sign In</button>
+                    <button id="logout-btn" class="btn btn-sm" style="background: var(--accent); display: none;">Sign Out</button>
+                    <span id="user-display" style="color: var(--text-light); font-size: 0.9rem; align-self: center;"></span>
+                </div>
             </div>
         </nav>
     </header>
@@ -42,7 +47,7 @@
             </div>
         </div>
         
-        <div class="chapter-content">
+        <div class="chapter-content" data-chapter="2449">
             <p class="chapter-paragraph">Sunny climbed out of the water and rose to his feet, looking at the desolate, moonlit landscape of True Bastion.</p>
 <p class="chapter-paragraph">The ruins of the great castle he and Cassie had explored once were completely gone, melted into a vast, eerily smooth plain of pale rock. Here and there, deep fractures marred its surface, harboring cold darkness. The rock itself was still radiating unbearable heat, making the waters of the lake seethe and boil—swimming to shore had not been a pleasant experience, to say the least. There used to be a dark, twisted forest on the other side of the lake; now, there was only cinders and ash, with towering bones protruding into the broken sky like charred pillars.</p>
 <p class="chapter-paragraph">A shattered moon was bathing the devastated land in silver light, reflecting from the restless surface of the dark water. The landscape felt eerie and alien, bearing little resemblance to the bustling city on the other side of the reflections. The fallen tower where Cassie used to wait for Sunny on their ventures into the Mirror Maze was gone. The walls of the castle were gone, as well—so were the ruins of the main keep that had served the King of Swords as a forge once.</p>
@@ -139,6 +144,19 @@
             </div>
         </div>
     </div>
+    <div id="comment-modal" class="modal" style="display: none;">
+        <div class="modal-content">
+            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1rem;">
+                <h3>Add Comment</h3>
+                <button class="close-btn" onclick="document.getElementById('comment-modal').style.display = 'none';">&times;</button>
+            </div>
+            <textarea id="comment-text" placeholder="Write your comment..." style="width: 100%; min-height: 100px; padding: 0.75rem; background: var(--card-bg); border: 1px solid var(--border); color: var(--text); border-radius: var(--radius); font-family: inherit; margin-bottom: 1rem; resize: vertical;"></textarea>
+            <button id="submit-comment-btn" class="btn" onclick="submitComment()">Post Comment</button>
+        </div>
+    </div>
+    <script src="https://www.gstatic.com/firebasejs/10.7.0/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.7.0/firebase-auth.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.7.0/firebase-firestore.js"></script>
     <script src="../js/main.js"></script>
 </body>
 </html>

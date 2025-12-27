@@ -14,6 +14,11 @@
                 <a href="../chapter-list.html">📚 Chapters</a>
                 <a href="../login.html">💾 Save</a>
                 <a href="https://www.webnovel.com/book/shadow-slave_17505878106372705" target="_blank" rel="noopener">🔗 Official Webnovel</a>
+                <div id="auth-container" style="gap: 0.5rem;">
+                    <button id="login-btn" class="btn btn-sm" style="background: var(--secondary);">Sign In</button>
+                    <button id="logout-btn" class="btn btn-sm" style="background: var(--accent); display: none;">Sign Out</button>
+                    <span id="user-display" style="color: var(--text-light); font-size: 0.9rem; align-self: center;"></span>
+                </div>
             </div>
         </nav>
     </header>
@@ -42,7 +47,7 @@
             </div>
         </div>
         
-        <div class="chapter-content">
+        <div class="chapter-content" data-chapter="2278">
             <p class="chapter-paragraph">Sunny had little to do with most affairs discussed this morning, so he only listened to the meeting half-heartedly.</p>
 <p class="chapter-paragraph">Cassie was delivering a concise report on various issues. "...I received the initial status update from the Night Garden. It is indeed being somewhat suppressed by the laws of the waking world, but not outside of our expectations. Jet managed to get it under control with relatively little trouble, so she proceeded along the planned course. Their speed is greatly diminished, though. Clearing the Northeastern Corridor and reaching Australia will take them no less than a week. What is more, the vessel seems incapable of replenishing its fuel — whatever it might be — in the waking world. They will have to return to the Dream Realm before the end of the month, at least for a few days."</p>
 <p class="chapter-paragraph">"The agricultural research in Ravenheart is proceeding smoothly. Saint Bliss has requested additional reinforcements stationed at the laboratory in case of an unexpected containment breach — Helie is there at the moment, so I asked her to stick around. It should be fine, but the seismic readings coming from the depths of the volcano are somewhat concerning. We know that a powerful Nightmare Creature emerged from it once in the past... Kai is monitoring the situation and will let us know if there is a real threat. Hopefully, we can deal with whatever comes before an earthquake or an eruption happens."</p>
@@ -114,6 +119,19 @@
             </div>
         </div>
     </div>
+    <div id="comment-modal" class="modal" style="display: none;">
+        <div class="modal-content">
+            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1rem;">
+                <h3>Add Comment</h3>
+                <button class="close-btn" onclick="document.getElementById('comment-modal').style.display = 'none';">&times;</button>
+            </div>
+            <textarea id="comment-text" placeholder="Write your comment..." style="width: 100%; min-height: 100px; padding: 0.75rem; background: var(--card-bg); border: 1px solid var(--border); color: var(--text); border-radius: var(--radius); font-family: inherit; margin-bottom: 1rem; resize: vertical;"></textarea>
+            <button id="submit-comment-btn" class="btn" onclick="submitComment()">Post Comment</button>
+        </div>
+    </div>
+    <script src="https://www.gstatic.com/firebasejs/10.7.0/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.7.0/firebase-auth.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.7.0/firebase-firestore.js"></script>
     <script src="../js/main.js"></script>
 </body>
 </html>

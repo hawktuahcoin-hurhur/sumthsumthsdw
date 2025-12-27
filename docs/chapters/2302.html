@@ -14,6 +14,11 @@
                 <a href="../chapter-list.html">📚 Chapters</a>
                 <a href="../login.html">💾 Save</a>
                 <a href="https://www.webnovel.com/book/shadow-slave_17505878106372705" target="_blank" rel="noopener">🔗 Official Webnovel</a>
+                <div id="auth-container" style="gap: 0.5rem;">
+                    <button id="login-btn" class="btn btn-sm" style="background: var(--secondary);">Sign In</button>
+                    <button id="logout-btn" class="btn btn-sm" style="background: var(--accent); display: none;">Sign Out</button>
+                    <span id="user-display" style="color: var(--text-light); font-size: 0.9rem; align-self: center;"></span>
+                </div>
             </div>
         </nav>
     </header>
@@ -42,7 +47,7 @@
             </div>
         </div>
         
-        <div class="chapter-content">
+        <div class="chapter-content" data-chapter="2302">
             <p class="chapter-paragraph">Kai raised an eyebrow. "How so?"</p>
 <p class="chapter-paragraph">Sunny shrugged. "Well, for one, there are structures carved into the main vent and into the walls of the magma chamber. I guess the entire thing was inhabited once, in the past."</p>
 <p class="chapter-paragraph">The structures were too damaged and deformed by the passage of time and the extreme environment, so Sunny did not glimpse a lot about who had built them and why. However, the ruins looked almost like the remains of an ancient city, or at least an inhabited complex. The few edifices that were somewhat intact reminded him of the Jade Palace and the great stone bridge in front of it. Interestingly enough, the city seemed to have possessed a form of defensive fortifications. Those fortifications had not been built to protect it from the enemies coming down the vents of the volcano, though... instead, they were facing the depths of the magma chamber, as if guarding the ruins from something that could come from the molten depths of the earth. Sunny had cooled off enough to dismiss his helmet. Summoning the Endless Spring, he poured cold water onto his sweaty face and smiled. "Oh, and there are ancient bones littering every fissure and crevice there. Considering that they had not been turned to ash by the lava, the creatures they had belonged to must have been quite powerful. And there were quite... quite a lot of them."</p>
@@ -131,6 +136,19 @@
             </div>
         </div>
     </div>
+    <div id="comment-modal" class="modal" style="display: none;">
+        <div class="modal-content">
+            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1rem;">
+                <h3>Add Comment</h3>
+                <button class="close-btn" onclick="document.getElementById('comment-modal').style.display = 'none';">&times;</button>
+            </div>
+            <textarea id="comment-text" placeholder="Write your comment..." style="width: 100%; min-height: 100px; padding: 0.75rem; background: var(--card-bg); border: 1px solid var(--border); color: var(--text); border-radius: var(--radius); font-family: inherit; margin-bottom: 1rem; resize: vertical;"></textarea>
+            <button id="submit-comment-btn" class="btn" onclick="submitComment()">Post Comment</button>
+        </div>
+    </div>
+    <script src="https://www.gstatic.com/firebasejs/10.7.0/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.7.0/firebase-auth.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.7.0/firebase-firestore.js"></script>
     <script src="../js/main.js"></script>
 </body>
 </html>

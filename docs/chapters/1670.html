@@ -14,6 +14,11 @@
                 <a href="../chapter-list.html">📚 Chapters</a>
                 <a href="../login.html">💾 Save</a>
                 <a href="https://www.webnovel.com/book/shadow-slave_17505878106372705" target="_blank" rel="noopener">🔗 Official Webnovel</a>
+                <div id="auth-container" style="gap: 0.5rem;">
+                    <button id="login-btn" class="btn btn-sm" style="background: var(--secondary);">Sign In</button>
+                    <button id="logout-btn" class="btn btn-sm" style="background: var(--accent); display: none;">Sign Out</button>
+                    <span id="user-display" style="color: var(--text-light); font-size: 0.9rem; align-self: center;"></span>
+                </div>
             </div>
         </nav>
     </header>
@@ -42,7 +47,7 @@
             </div>
         </div>
         
-        <div class="chapter-content">
+        <div class="chapter-content" data-chapter="1670">
             <p class="chapter-paragraph">The Fragment of the Shadow Realm was vast, its darkness drowning not only the surface of the dead god's sternum, but also swallowing a considerable stretch of the abominable jungle thriving in its hollow depths. The Dream Curse had lulled the Nightmare Creatures populating the area to sleep, so it was relatively safe.</p>
 <p class="chapter-paragraph">Sunny and Nephis moved with sufficient speed, reaching the edges of the Fragment in a matter of hours. They could have been much faster, of course, but he used that time to teach her about the dangers of what lay beyond.</p>
 <p class="chapter-paragraph">"The jungle is hidden from the gaze of the sky, but it is much more dangerous than the surface. The Nightmare Creatures of Godgrave are all born on the surface, yet only those who are strong enough to survive there descend into the Hollows. Here, they can exist indefinitely... in theory. In practice, they are all cannibals. The competition for water and nourishment is fierce, so the inhabitants of the jungle constantly fight and devour each other.”</p>
@@ -143,6 +148,19 @@
             </div>
         </div>
     </div>
+    <div id="comment-modal" class="modal" style="display: none;">
+        <div class="modal-content">
+            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1rem;">
+                <h3>Add Comment</h3>
+                <button class="close-btn" onclick="document.getElementById('comment-modal').style.display = 'none';">&times;</button>
+            </div>
+            <textarea id="comment-text" placeholder="Write your comment..." style="width: 100%; min-height: 100px; padding: 0.75rem; background: var(--card-bg); border: 1px solid var(--border); color: var(--text); border-radius: var(--radius); font-family: inherit; margin-bottom: 1rem; resize: vertical;"></textarea>
+            <button id="submit-comment-btn" class="btn" onclick="submitComment()">Post Comment</button>
+        </div>
+    </div>
+    <script src="https://www.gstatic.com/firebasejs/10.7.0/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.7.0/firebase-auth.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.7.0/firebase-firestore.js"></script>
     <script src="../js/main.js"></script>
 </body>
 </html>

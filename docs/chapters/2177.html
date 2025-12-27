@@ -14,6 +14,11 @@
                 <a href="../chapter-list.html">📚 Chapters</a>
                 <a href="../login.html">💾 Save</a>
                 <a href="https://www.webnovel.com/book/shadow-slave_17505878106372705" target="_blank" rel="noopener">🔗 Official Webnovel</a>
+                <div id="auth-container" style="gap: 0.5rem;">
+                    <button id="login-btn" class="btn btn-sm" style="background: var(--secondary);">Sign In</button>
+                    <button id="logout-btn" class="btn btn-sm" style="background: var(--accent); display: none;">Sign Out</button>
+                    <span id="user-display" style="color: var(--text-light); font-size: 0.9rem; align-self: center;"></span>
+                </div>
             </div>
         </nav>
     </header>
@@ -42,7 +47,7 @@
             </div>
         </div>
         
-        <div class="chapter-content">
+        <div class="chapter-content" data-chapter="2177">
             <p class="chapter-paragraph">Far away, near the ruined Citadel at Vanishing Lake, the Lord of Shadows was observing the troops coldly. The soldiers were getting ready for the final stage of the clandestine assault — some were leaving to clear the last stretch of the path to the surface, others were preparing to receive the additional forces from the siege camp. The attack on the Lesser Crossing would most likely happen in a matter of days... actually, now that Jest had gone and made a mess, the plan would most likely be accelerated. The Lesser Crossing would fall, and the Song Army would retreat to the edges of the Collarbone Plain. The territory of the Song Domain in Godgrave would dwindle, and the territory of the Sword Domain would spread, enveloping it from all sides. Ki Song would be faced with an uncomfortable choice. She would have to either abandon the main camp of her army and retreat to the sole Citadel in Godgrave that was under her control, abandon the Citadel to make her last stand at the fortified camp, or split her forces to try and protect both.</p>
 <p class="chapter-paragraph">The disadvantage of splitting her forces was obvious enough. Abandoning the Citadel would only diminish her power further, while at the same time giving Anvil an opportunity to expand his. The main camp of the Song Army seemed like the least painful sacrifice... but only at first glance. The main camp was not only the logistical hub where all the supply chains came together, but also the gateway to the Song Domain. If it was abandoned, nothing would prevent Anvil from simply descending from Godgrave into the western reaches of the Dream Realm and wreaking havoc in the basin of the River of Tears, where most of Ki Song's Citadels were located. So, Sunny thought that she would most likely concentrate her forces in the main camp. After the Two Crossings fell, the camp would be surrounded in a day or two.</p>
 <p class="chapter-paragraph">And once it was surrounded, the Sovereigns would clash directly. Ki Song would have no other choice but to enter the fray herself, driven into the corner as she was. ...And at that time, Sunny and Nephis would have to enter the fray, as well, finally facing the Sovereigns in battle. Of course, ideally, that would only happen once both Anvil and Ki Song had exhausted each other's powers, dealt each other countless wounds, and one of them was on the verge of being killed. Sunny's face grew somber behind Weaver's Mask. '...But would Nephis be willing to go through with it?'</p>
@@ -109,6 +114,19 @@
             </div>
         </div>
     </div>
+    <div id="comment-modal" class="modal" style="display: none;">
+        <div class="modal-content">
+            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1rem;">
+                <h3>Add Comment</h3>
+                <button class="close-btn" onclick="document.getElementById('comment-modal').style.display = 'none';">&times;</button>
+            </div>
+            <textarea id="comment-text" placeholder="Write your comment..." style="width: 100%; min-height: 100px; padding: 0.75rem; background: var(--card-bg); border: 1px solid var(--border); color: var(--text); border-radius: var(--radius); font-family: inherit; margin-bottom: 1rem; resize: vertical;"></textarea>
+            <button id="submit-comment-btn" class="btn" onclick="submitComment()">Post Comment</button>
+        </div>
+    </div>
+    <script src="https://www.gstatic.com/firebasejs/10.7.0/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.7.0/firebase-auth.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.7.0/firebase-firestore.js"></script>
     <script src="../js/main.js"></script>
 </body>
 </html>

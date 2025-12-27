@@ -14,6 +14,11 @@
                 <a href="../chapter-list.html">📚 Chapters</a>
                 <a href="../login.html">💾 Save</a>
                 <a href="https://www.webnovel.com/book/shadow-slave_17505878106372705" target="_blank" rel="noopener">🔗 Official Webnovel</a>
+                <div id="auth-container" style="gap: 0.5rem;">
+                    <button id="login-btn" class="btn btn-sm" style="background: var(--secondary);">Sign In</button>
+                    <button id="logout-btn" class="btn btn-sm" style="background: var(--accent); display: none;">Sign Out</button>
+                    <span id="user-display" style="color: var(--text-light); font-size: 0.9rem; align-self: center;"></span>
+                </div>
             </div>
         </nav>
     </header>
@@ -42,7 +47,7 @@
             </div>
         </div>
         
-        <div class="chapter-content">
+        <div class="chapter-content" data-chapter="1065">
             <p class="chapter-paragraph">Nightware was flying across the twilight plain, ignoring all obstacles. He cut through the snow, maneuvered between giant boulders, crested hills, and jumped across deep canyons, his steel hooves sending sparks flying from the weathered stone. The dark destrier was swift like a shadow, moving with innate grace and incredible speed.</p>
 <p class="chapter-paragraph">Sunny was sitting in the saddle, holding Jet. She was basically in his embrace... in the past, being so close to her would have made his blood boil, but right now, he did not feel anything. Not just because Soul Reaper was cold and lifeless like a corpse, but also because his heart was just as cold, and just as lifeless.</p>
 <p class="chapter-paragraph">He did not feel much of anything right now, except for deep, dark rancor. There was no time to, either. Sunny might have joked about how this journey would be akin to a picnic, but in truth, their situation was still dire. East Antarctica was teeming with Nightmare Creatures, and he was not conceited enough to think himself capable of slaughtering entire hordes of them.</p>
@@ -125,6 +130,19 @@
             </div>
         </div>
     </div>
+    <div id="comment-modal" class="modal" style="display: none;">
+        <div class="modal-content">
+            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1rem;">
+                <h3>Add Comment</h3>
+                <button class="close-btn" onclick="document.getElementById('comment-modal').style.display = 'none';">&times;</button>
+            </div>
+            <textarea id="comment-text" placeholder="Write your comment..." style="width: 100%; min-height: 100px; padding: 0.75rem; background: var(--card-bg); border: 1px solid var(--border); color: var(--text); border-radius: var(--radius); font-family: inherit; margin-bottom: 1rem; resize: vertical;"></textarea>
+            <button id="submit-comment-btn" class="btn" onclick="submitComment()">Post Comment</button>
+        </div>
+    </div>
+    <script src="https://www.gstatic.com/firebasejs/10.7.0/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.7.0/firebase-auth.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.7.0/firebase-firestore.js"></script>
     <script src="../js/main.js"></script>
 </body>
 </html>

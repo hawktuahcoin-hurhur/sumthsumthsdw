@@ -14,6 +14,11 @@
                 <a href="../chapter-list.html">📚 Chapters</a>
                 <a href="../login.html">💾 Save</a>
                 <a href="https://www.webnovel.com/book/shadow-slave_17505878106372705" target="_blank" rel="noopener">🔗 Official Webnovel</a>
+                <div id="auth-container" style="gap: 0.5rem;">
+                    <button id="login-btn" class="btn btn-sm" style="background: var(--secondary);">Sign In</button>
+                    <button id="logout-btn" class="btn btn-sm" style="background: var(--accent); display: none;">Sign Out</button>
+                    <span id="user-display" style="color: var(--text-light); font-size: 0.9rem; align-self: center;"></span>
+                </div>
             </div>
         </nav>
     </header>
@@ -42,7 +47,7 @@
             </div>
         </div>
         
-        <div class="chapter-content">
+        <div class="chapter-content" data-chapter="2667">
             <p class="chapter-paragraph">Jet, Naeve, and Bloodwave were spread out across the deck of the Night Garden, ready to defend it if the detestable dwellers of the Eternal City broke through the shield of severing starlight that surrounded the living ship, as well as the fierce barrage of the obsidian cannons.</p>
 <p class="chapter-paragraph">Nightwalker was steering the ship, while Aether was sitting on the floor of the runic hall with his legs crossed and his eyes closed, seemingly meditating. His skin glowed with a pale silver radiance, and his white hair moved faintly in the wind. He was controlling the radiance of Storm God's Lighthouse to slash and sever any Nightmare Creature that attempted to leap onto the deck of the Night Garden.</p>
 <p class="chapter-paragraph">His Aspect had always been powerful — granted, it was most effective at night — but here in the Eternal City, which was illuminated by the Lighthouse and the silver spires reflecting its light, it became especially lethal... lethal enough to keep most of the abominations at bay, at least.</p>
@@ -133,6 +138,19 @@
             </div>
         </div>
     </div>
+    <div id="comment-modal" class="modal" style="display: none;">
+        <div class="modal-content">
+            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1rem;">
+                <h3>Add Comment</h3>
+                <button class="close-btn" onclick="document.getElementById('comment-modal').style.display = 'none';">&times;</button>
+            </div>
+            <textarea id="comment-text" placeholder="Write your comment..." style="width: 100%; min-height: 100px; padding: 0.75rem; background: var(--card-bg); border: 1px solid var(--border); color: var(--text); border-radius: var(--radius); font-family: inherit; margin-bottom: 1rem; resize: vertical;"></textarea>
+            <button id="submit-comment-btn" class="btn" onclick="submitComment()">Post Comment</button>
+        </div>
+    </div>
+    <script src="https://www.gstatic.com/firebasejs/10.7.0/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.7.0/firebase-auth.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.7.0/firebase-firestore.js"></script>
     <script src="../js/main.js"></script>
 </body>
 </html>

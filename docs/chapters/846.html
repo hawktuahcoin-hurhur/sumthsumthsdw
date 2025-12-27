@@ -14,6 +14,11 @@
                 <a href="../chapter-list.html">📚 Chapters</a>
                 <a href="../login.html">💾 Save</a>
                 <a href="https://www.webnovel.com/book/shadow-slave_17505878106372705" target="_blank" rel="noopener">🔗 Official Webnovel</a>
+                <div id="auth-container" style="gap: 0.5rem;">
+                    <button id="login-btn" class="btn btn-sm" style="background: var(--secondary);">Sign In</button>
+                    <button id="logout-btn" class="btn btn-sm" style="background: var(--accent); display: none;">Sign Out</button>
+                    <span id="user-display" style="color: var(--text-light); font-size: 0.9rem; align-self: center;"></span>
+                </div>
             </div>
         </nav>
     </header>
@@ -42,7 +47,7 @@
             </div>
         </div>
         
-        <div class="chapter-content">
+        <div class="chapter-content" data-chapter="846">
             <p class="chapter-paragraph">In early April, Antarctica was enveloped by eternal twilight. The sun seemed to have frozen in place as it plunged behind the horizon, painting a persistent line of vibrant scarlet in the cold purple sky. Stuck between night and day, the Southern Quadrant was slowly slipping into the embrace of pure darkness that would last for many months.</p>
 <p class="chapter-paragraph">The behavior of the moon was strange and erratic, as well. It remained in the sky for several weeks, then disappeared without a trace for long stretches of time. The radiant tapestry of Aurora Australis sometimes appeared to keep it company. Sunny had heard that the Southern Lights were breathtakingly beautiful, but he was yet to witness them himself.</p>
 <p class="chapter-paragraph">In any case, he did not care about heavenly miracles right now. All he cared about was whether his soldiers would be able to see the enemy clearly. Even though the long night had not descended yet, it was already hard enough to discern important details in the dim twilight. For that reason, Kim was currently channeling his vision to the rest of the cohort.</p>
@@ -136,6 +141,19 @@
             </div>
         </div>
     </div>
+    <div id="comment-modal" class="modal" style="display: none;">
+        <div class="modal-content">
+            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1rem;">
+                <h3>Add Comment</h3>
+                <button class="close-btn" onclick="document.getElementById('comment-modal').style.display = 'none';">&times;</button>
+            </div>
+            <textarea id="comment-text" placeholder="Write your comment..." style="width: 100%; min-height: 100px; padding: 0.75rem; background: var(--card-bg); border: 1px solid var(--border); color: var(--text); border-radius: var(--radius); font-family: inherit; margin-bottom: 1rem; resize: vertical;"></textarea>
+            <button id="submit-comment-btn" class="btn" onclick="submitComment()">Post Comment</button>
+        </div>
+    </div>
+    <script src="https://www.gstatic.com/firebasejs/10.7.0/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.7.0/firebase-auth.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.7.0/firebase-firestore.js"></script>
     <script src="../js/main.js"></script>
 </body>
 </html>

@@ -14,6 +14,11 @@
                 <a href="../chapter-list.html">📚 Chapters</a>
                 <a href="../login.html">💾 Save</a>
                 <a href="https://www.webnovel.com/book/shadow-slave_17505878106372705" target="_blank" rel="noopener">🔗 Official Webnovel</a>
+                <div id="auth-container" style="gap: 0.5rem;">
+                    <button id="login-btn" class="btn btn-sm" style="background: var(--secondary);">Sign In</button>
+                    <button id="logout-btn" class="btn btn-sm" style="background: var(--accent); display: none;">Sign Out</button>
+                    <span id="user-display" style="color: var(--text-light); font-size: 0.9rem; align-self: center;"></span>
+                </div>
             </div>
         </nav>
     </header>
@@ -42,7 +47,7 @@
             </div>
         </div>
         
-        <div class="chapter-content">
+        <div class="chapter-content" data-chapter="1329">
             <p class="chapter-paragraph">As Nephis steered the ketch toward the wall of darkness, Sunny had some time to prepare himself mentally for the arduous struggle that lay ahead of them. He also had time to observe Ananke closer. What he saw... did not bode well. Despite being an adult — and someone hundreds of years old, at that — the priestess had regained the body of a young child. Looking at her youthful appearance, it was hard to remember how ancient, decrepit, and frail she had been once, when they met her in the far future.</p>
 <p class="chapter-paragraph">But the change was not exactly a benevolent one. Despite being full of vitality, Ananke had obviously grown much weaker. Her immature body was not as strong and physically capable as it had been before... but, worse than that, the differences went deeper than that. As Sunny observed the child priestess, he slowly realized that her mind had been affected by her turning into a child, as well. It was as though her head could not contain the mature consciousness of an experienced adult anymore. Nor could her heart handle the powerful emotions of one with the same composure. Ananke had not really turned dull or less intelligent, but... there was a certain infantile straightforwardness to how she spoke and behaved now. Her eyes, which had always been wise, seemed slightly naive, as well. Her mind slowly regressing. Sunny felt cold claws grip his heart. 'Curse it...'</p>
 <p class="chapter-paragraph">He gritted his teeth and looked down, but then forced himself to straighten. 'Fine. It's fine. She has taken care of us enough... we'll take care of her, now.'</p>
@@ -115,6 +120,19 @@
             </div>
         </div>
     </div>
+    <div id="comment-modal" class="modal" style="display: none;">
+        <div class="modal-content">
+            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1rem;">
+                <h3>Add Comment</h3>
+                <button class="close-btn" onclick="document.getElementById('comment-modal').style.display = 'none';">&times;</button>
+            </div>
+            <textarea id="comment-text" placeholder="Write your comment..." style="width: 100%; min-height: 100px; padding: 0.75rem; background: var(--card-bg); border: 1px solid var(--border); color: var(--text); border-radius: var(--radius); font-family: inherit; margin-bottom: 1rem; resize: vertical;"></textarea>
+            <button id="submit-comment-btn" class="btn" onclick="submitComment()">Post Comment</button>
+        </div>
+    </div>
+    <script src="https://www.gstatic.com/firebasejs/10.7.0/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.7.0/firebase-auth.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.7.0/firebase-firestore.js"></script>
     <script src="../js/main.js"></script>
 </body>
 </html>

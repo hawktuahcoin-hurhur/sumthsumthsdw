@@ -14,6 +14,11 @@
                 <a href="../chapter-list.html">📚 Chapters</a>
                 <a href="../login.html">💾 Save</a>
                 <a href="https://www.webnovel.com/book/shadow-slave_17505878106372705" target="_blank" rel="noopener">🔗 Official Webnovel</a>
+                <div id="auth-container" style="gap: 0.5rem;">
+                    <button id="login-btn" class="btn btn-sm" style="background: var(--secondary);">Sign In</button>
+                    <button id="logout-btn" class="btn btn-sm" style="background: var(--accent); display: none;">Sign Out</button>
+                    <span id="user-display" style="color: var(--text-light); font-size: 0.9rem; align-self: center;"></span>
+                </div>
             </div>
         </nav>
     </header>
@@ -42,7 +47,7 @@
             </div>
         </div>
         
-        <div class="chapter-content">
+        <div class="chapter-content" data-chapter="2636">
             <p class="chapter-paragraph">Sunny had dismissed the Marvelous Mimic from the Forgotten Shore while four of his incarnations were inside, and then summoned it to the Eternal City. That was how five of his avatars ended up at the bottom of the Stormsea at the same time. He called upon the Shadow Legion and summoned the Puppeteer to gain a flawless measure of control over his shades. Mind Weave allowed him to issue countless commands at the same time, so he could control all of his shades individually... but at the end of the day, he was still issuing orders.</p>
 <p class="chapter-paragraph">With the great Moth controlling the shades like marionettes, though, Sunny could do more. Instead of giving endless commands to make his shades do what he wanted ther to, he only needed to command one — and as long as an incarnation of his was wrappec around the Puppeteer, the entire Shadow Legion became no different from an extension of his body.</p>
 <p class="chapter-paragraph">That meant that he was not limited to giving orders anymore, he could control his shades like he did his body. The cohesion of the Shadow Legion was therefore nearly flawless now, and more than that, every shade — even those of mindless beasts — could fight with the same skill and technique Sunny possessed.</p>
@@ -132,6 +137,19 @@
             </div>
         </div>
     </div>
+    <div id="comment-modal" class="modal" style="display: none;">
+        <div class="modal-content">
+            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1rem;">
+                <h3>Add Comment</h3>
+                <button class="close-btn" onclick="document.getElementById('comment-modal').style.display = 'none';">&times;</button>
+            </div>
+            <textarea id="comment-text" placeholder="Write your comment..." style="width: 100%; min-height: 100px; padding: 0.75rem; background: var(--card-bg); border: 1px solid var(--border); color: var(--text); border-radius: var(--radius); font-family: inherit; margin-bottom: 1rem; resize: vertical;"></textarea>
+            <button id="submit-comment-btn" class="btn" onclick="submitComment()">Post Comment</button>
+        </div>
+    </div>
+    <script src="https://www.gstatic.com/firebasejs/10.7.0/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.7.0/firebase-auth.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.7.0/firebase-firestore.js"></script>
     <script src="../js/main.js"></script>
 </body>
 </html>

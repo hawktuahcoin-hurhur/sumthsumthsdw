@@ -14,6 +14,11 @@
                 <a href="../chapter-list.html">📚 Chapters</a>
                 <a href="../login.html">💾 Save</a>
                 <a href="https://www.webnovel.com/book/shadow-slave_17505878106372705" target="_blank" rel="noopener">🔗 Official Webnovel</a>
+                <div id="auth-container" style="gap: 0.5rem;">
+                    <button id="login-btn" class="btn btn-sm" style="background: var(--secondary);">Sign In</button>
+                    <button id="logout-btn" class="btn btn-sm" style="background: var(--accent); display: none;">Sign Out</button>
+                    <span id="user-display" style="color: var(--text-light); font-size: 0.9rem; align-self: center;"></span>
+                </div>
             </div>
         </nav>
     </header>
@@ -42,7 +47,7 @@
             </div>
         </div>
         
-        <div class="chapter-content">
+        <div class="chapter-content" data-chapter="2200">
             <p class="chapter-paragraph">As the war dragged on, a great number of people had been killed in the fierce clashes between the two invading armies — and perhaps an even greater number of Nightmare Creatures had perished to human blades. Many, if not most of them, became puppets of the Queen of Worms. The Sword Army had destroyed countless pilgrims, and yet, their number only continued to grow. That was why time was an ally of the Song Domain — the longer the war continued, the more advantage it gained. That advantage had already played a large role in the siege of the Greater Crossing Stronghold. Pilgrims made for convenient meat shields for the defenders of the fortress, sacrificing their bodies to lessen the losses suffered by the Song Army, while at the same time increasing the losses suffered by the forces of the Sword Domain. And yet, the pilgrims had never been a decisive factor in the battles between the two human armies.</p>
 <p class="chapter-paragraph">...Today, that could very well change. Ki Song had amassed a secret army of the dead at the bottom of the abyssal chasm, and now, that army crawled from the darkness. A tide of ashen corpses poured from the depths, climbing the puppeteered corpses of the monstrous worms like siege towers. Sunny gritted his teeth as the wind carried the shouts of the officers to his ears from the ground. They were desperately trying to assemble the army into a solid battle formation in time, but it was hopeless. The avalanche of the ashen dead had caught them by surprise.</p>
 <p class="chapter-paragraph">Before the disorganized soldiers could form into a proper line, the dead tide was upon them. Ashen corpses tore into the vulnerable mass of humans like hungry wolves, ripping into their armor and their flesh with bare hands — as well as with fangs, claws, and mandibles, since there were plenty of dead Nightmare Creatures among them. This time, there was something different about the pilgrims. It seemed... it seemed that the Queen was not holding herself back anymore. Before, her puppets were a little sluggish and somewhat easy to deal with. But now, they moved with great precision and skill, no less deadly than seasoned Awakened warriors were... no, in fact, it was as if each of them possessed skill and combat awareness that were far greater than those of ordinary soldiers.</p>
@@ -106,6 +111,19 @@
             </div>
         </div>
     </div>
+    <div id="comment-modal" class="modal" style="display: none;">
+        <div class="modal-content">
+            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1rem;">
+                <h3>Add Comment</h3>
+                <button class="close-btn" onclick="document.getElementById('comment-modal').style.display = 'none';">&times;</button>
+            </div>
+            <textarea id="comment-text" placeholder="Write your comment..." style="width: 100%; min-height: 100px; padding: 0.75rem; background: var(--card-bg); border: 1px solid var(--border); color: var(--text); border-radius: var(--radius); font-family: inherit; margin-bottom: 1rem; resize: vertical;"></textarea>
+            <button id="submit-comment-btn" class="btn" onclick="submitComment()">Post Comment</button>
+        </div>
+    </div>
+    <script src="https://www.gstatic.com/firebasejs/10.7.0/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.7.0/firebase-auth.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.7.0/firebase-firestore.js"></script>
     <script src="../js/main.js"></script>
 </body>
 </html>

@@ -14,6 +14,11 @@
                 <a href="../chapter-list.html">📚 Chapters</a>
                 <a href="../login.html">💾 Save</a>
                 <a href="https://www.webnovel.com/book/shadow-slave_17505878106372705" target="_blank" rel="noopener">🔗 Official Webnovel</a>
+                <div id="auth-container" style="gap: 0.5rem;">
+                    <button id="login-btn" class="btn btn-sm" style="background: var(--secondary);">Sign In</button>
+                    <button id="logout-btn" class="btn btn-sm" style="background: var(--accent); display: none;">Sign Out</button>
+                    <span id="user-display" style="color: var(--text-light); font-size: 0.9rem; align-self: center;"></span>
+                </div>
             </div>
         </nav>
     </header>
@@ -42,7 +47,7 @@
             </div>
         </div>
         
-        <div class="chapter-content">
+        <div class="chapter-content" data-chapter="2015">
             <p class="chapter-paragraph">As the battle continued, Sunny felt the pressure mounting. His towering Shell moved like a hurricane, endlessly besieged by the seven Saints. Lonesome Howl, Saint Ceres, and the Jackal led the harrowing onslaught, never faltering or slowing down. The beautiful harpy, Siord, and the Saint of Sorrow alternated between circling above him and diving down to deliver devastating blows. Their presence was especially oppressive, because it added an entire new plane to the battle. Even when the winged Saints were not plummeting from the blinding radiance of the sky to attack Sunny, the mere fact that they were somewhere above stifled his movements. There were Silent Stalker and Beastmaster, as well. The former was a deadly threat due to how relentless and penetrating her arrows were. She was eerily accurate and elusive, too, never allowing him to get close. The latter was the source of great hardship. Not only was she controlling countless Nightmare Creatures to tip the balance of the Transcendent battle in favor of the Song Domain, but she was also subjecting Sunny to two different types of mental manipulation at the same time. There was her sling and its explosive shots to deal with, as well.</p>
 <p class="chapter-paragraph">Sunny's power was slowly dwindling. He could not allow himself to use the Shadow Lantern — not even because he was wary of the deadly arrows flying out of its stone gate, but because he was wary of the mysterious archer escaping the Shadow Realm.</p>
 <p class="chapter-paragraph">Who knew what that creature was, and what havoc it would cause once unleashed upon humanity? Skinwalker was already bad enough, and Sunny did not wish to be responsible for letting another ancient fiend loose in human settlements. Without the Shadow Lantern, though, his source element was feeble and scarce in this radiant land. He had already used most of the shadows around him to construct the Shadow Shell. Now, with every blow it received, the Shell was consuming itself to repair the damage. It wasn't going to last much longer... unless he managed to diminish the number of his enemies soon. But Sunny was still hesitating, unsure if he was willing to kill Saints. In the end, however... the choice was made for him. It was shortly after he leaped over the three-headed canine and crouched, using her massive body as a shield against Silent Stalker's arrows. His tail shot back, piercing her thigh, two of his hands swatted the harpy and the gargoyle away, while a third picked up the corpse of a lumbering Nightmare Creature — one of Bestmaster's thralls who had been slain in the battle between the great armies — and tossed it forward like a cannonball.</p>
@@ -118,6 +123,19 @@
             </div>
         </div>
     </div>
+    <div id="comment-modal" class="modal" style="display: none;">
+        <div class="modal-content">
+            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1rem;">
+                <h3>Add Comment</h3>
+                <button class="close-btn" onclick="document.getElementById('comment-modal').style.display = 'none';">&times;</button>
+            </div>
+            <textarea id="comment-text" placeholder="Write your comment..." style="width: 100%; min-height: 100px; padding: 0.75rem; background: var(--card-bg); border: 1px solid var(--border); color: var(--text); border-radius: var(--radius); font-family: inherit; margin-bottom: 1rem; resize: vertical;"></textarea>
+            <button id="submit-comment-btn" class="btn" onclick="submitComment()">Post Comment</button>
+        </div>
+    </div>
+    <script src="https://www.gstatic.com/firebasejs/10.7.0/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.7.0/firebase-auth.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.7.0/firebase-firestore.js"></script>
     <script src="../js/main.js"></script>
 </body>
 </html>

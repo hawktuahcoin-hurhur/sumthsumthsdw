@@ -14,6 +14,11 @@
                 <a href="../chapter-list.html">📚 Chapters</a>
                 <a href="../login.html">💾 Save</a>
                 <a href="https://www.webnovel.com/book/shadow-slave_17505878106372705" target="_blank" rel="noopener">🔗 Official Webnovel</a>
+                <div id="auth-container" style="gap: 0.5rem;">
+                    <button id="login-btn" class="btn btn-sm" style="background: var(--secondary);">Sign In</button>
+                    <button id="logout-btn" class="btn btn-sm" style="background: var(--accent); display: none;">Sign Out</button>
+                    <span id="user-display" style="color: var(--text-light); font-size: 0.9rem; align-self: center;"></span>
+                </div>
             </div>
         </nav>
     </header>
@@ -42,7 +47,7 @@
             </div>
         </div>
         
-        <div class="chapter-content">
+        <div class="chapter-content" data-chapter="1585">
             <p class="chapter-paragraph">Sunny looked at the ceiling, extending his shadow sense upward. At the same time, he allowed his mind to drift back to the very end of the Nightmare. ...And what a Nightmare it had been. Sunny did not know how long he had spent wandering the dreadful currents of the Great River, trying to escape the Tomb of Ariel. The last cycle had taken... how long was it? Close to a year? And that was only his subjective time. For some people, like Cassie and Mordret, it had lasted for much longer. But that was only the final of the countless cycles. So, he could not even guess how long of a journey it had been. What he did know, however, was that it ended in the very heart of the Estuary, past the silent lake where Ariel's heretical testament had been inscribed. Near the forgotten grave of the Demon of Oblivion...</p>
 <p class="chapter-paragraph">Where a Cursed Terror had been waiting for him, hidden in the darkness. That Terror...</p>
 <p class="chapter-paragraph">Sunny was more or less sure who it was. 'The loathsome Thieving Bird, hated both by the gods and the beings of the Void...'</p>
@@ -116,6 +121,19 @@
             </div>
         </div>
     </div>
+    <div id="comment-modal" class="modal" style="display: none;">
+        <div class="modal-content">
+            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1rem;">
+                <h3>Add Comment</h3>
+                <button class="close-btn" onclick="document.getElementById('comment-modal').style.display = 'none';">&times;</button>
+            </div>
+            <textarea id="comment-text" placeholder="Write your comment..." style="width: 100%; min-height: 100px; padding: 0.75rem; background: var(--card-bg); border: 1px solid var(--border); color: var(--text); border-radius: var(--radius); font-family: inherit; margin-bottom: 1rem; resize: vertical;"></textarea>
+            <button id="submit-comment-btn" class="btn" onclick="submitComment()">Post Comment</button>
+        </div>
+    </div>
+    <script src="https://www.gstatic.com/firebasejs/10.7.0/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.7.0/firebase-auth.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.7.0/firebase-firestore.js"></script>
     <script src="../js/main.js"></script>
 </body>
 </html>

@@ -14,6 +14,11 @@
                 <a href="../chapter-list.html">📚 Chapters</a>
                 <a href="../login.html">💾 Save</a>
                 <a href="https://www.webnovel.com/book/shadow-slave_17505878106372705" target="_blank" rel="noopener">🔗 Official Webnovel</a>
+                <div id="auth-container" style="gap: 0.5rem;">
+                    <button id="login-btn" class="btn btn-sm" style="background: var(--secondary);">Sign In</button>
+                    <button id="logout-btn" class="btn btn-sm" style="background: var(--accent); display: none;">Sign Out</button>
+                    <span id="user-display" style="color: var(--text-light); font-size: 0.9rem; align-self: center;"></span>
+                </div>
             </div>
         </nav>
     </header>
@@ -42,7 +47,7 @@
             </div>
         </div>
         
-        <div class="chapter-content">
+        <div class="chapter-content" data-chapter="2183">
             <p class="chapter-paragraph">Cassie did not know what Seishan had mixed into the wine, but the effect was truly sinister. She felt dazed, as if her head was spinning — even though it wasn't. Her body felt overly sensitive, but at the same time sluggish and hard to control. She could just barely prevent herself from swaying while taking a step. It was almost as if she was drunk. Actually, Cassie would not know, since she had never been drunk before. She had not tasted alcohol prior to becoming an Awakened, and later, her body was too resilient to be intoxicated easily. The memories of those under the influences of substances were usually jumbled and confusing, too, while her Ascended Ability only granted her access to the mark's senses, not their mind. So, she could only imagine.</p>
 <p class="chapter-paragraph">If that was what being drunk felt like... she wanted none of it. 'Ah. How vile.'</p>
 <p class="chapter-paragraph">Much worse than her dazed condition was the fact that her soul was in the same state — that was why the strange drug Seishan had made her drink was so startling and sinister. Cassie could barely control her Aspect. In fact, she was not sure if she could control it at all... trying to activate her Aspect Abilities made her dizzy, and the input she received from them was fragmented at best, and unreliable at worst. She could not get a grasp on her essence, either, which now flowed freely and refused to follow her will.</p>
@@ -122,6 +127,19 @@
             </div>
         </div>
     </div>
+    <div id="comment-modal" class="modal" style="display: none;">
+        <div class="modal-content">
+            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1rem;">
+                <h3>Add Comment</h3>
+                <button class="close-btn" onclick="document.getElementById('comment-modal').style.display = 'none';">&times;</button>
+            </div>
+            <textarea id="comment-text" placeholder="Write your comment..." style="width: 100%; min-height: 100px; padding: 0.75rem; background: var(--card-bg); border: 1px solid var(--border); color: var(--text); border-radius: var(--radius); font-family: inherit; margin-bottom: 1rem; resize: vertical;"></textarea>
+            <button id="submit-comment-btn" class="btn" onclick="submitComment()">Post Comment</button>
+        </div>
+    </div>
+    <script src="https://www.gstatic.com/firebasejs/10.7.0/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.7.0/firebase-auth.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.7.0/firebase-firestore.js"></script>
     <script src="../js/main.js"></script>
 </body>
 </html>

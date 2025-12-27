@@ -14,6 +14,11 @@
                 <a href="../chapter-list.html">📚 Chapters</a>
                 <a href="../login.html">💾 Save</a>
                 <a href="https://www.webnovel.com/book/shadow-slave_17505878106372705" target="_blank" rel="noopener">🔗 Official Webnovel</a>
+                <div id="auth-container" style="gap: 0.5rem;">
+                    <button id="login-btn" class="btn btn-sm" style="background: var(--secondary);">Sign In</button>
+                    <button id="logout-btn" class="btn btn-sm" style="background: var(--accent); display: none;">Sign Out</button>
+                    <span id="user-display" style="color: var(--text-light); font-size: 0.9rem; align-self: center;"></span>
+                </div>
             </div>
         </nav>
     </header>
@@ -42,7 +47,7 @@
             </div>
         </div>
         
-        <div class="chapter-content">
+        <div class="chapter-content" data-chapter="1938">
             <p class="chapter-paragraph">It took Orum a few days to arrange his affairs and prepare to depart for Rivergate. He was not a pillar of humanity by any means, but he was still a very wealthy man — even if the worst happened, his sister and her kids would not want for anything. They shared his high rank in the controversial citizenship system established by the government a few years back, as well.</p>
 <p class="chapter-paragraph">That said, Orum was not planning on dying in some godforsaken corner of the Dream Realm on the way to the Jade Palace. He was not arrogant, but he was confident in himself. Seasoned Awakened like him were few and far between — in the whole world, there were maybe only a few dozen.</p>
 <p class="chapter-paragraph">He had not only survived, but also thrived during the darkest days of humanity. So, the Nightmare Spell would have to work really hard to bring him down. Leaving his body in a sleeping pod and walking through the gates of his Citadel, Orum traveled south. Traversing the wilderness reminded him of his younger days, but he did not allow nostalgia to make him complacent. A couple of weeks later, he arrived at the edges of an ancient forest.</p>
@@ -148,6 +153,19 @@
             </div>
         </div>
     </div>
+    <div id="comment-modal" class="modal" style="display: none;">
+        <div class="modal-content">
+            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1rem;">
+                <h3>Add Comment</h3>
+                <button class="close-btn" onclick="document.getElementById('comment-modal').style.display = 'none';">&times;</button>
+            </div>
+            <textarea id="comment-text" placeholder="Write your comment..." style="width: 100%; min-height: 100px; padding: 0.75rem; background: var(--card-bg); border: 1px solid var(--border); color: var(--text); border-radius: var(--radius); font-family: inherit; margin-bottom: 1rem; resize: vertical;"></textarea>
+            <button id="submit-comment-btn" class="btn" onclick="submitComment()">Post Comment</button>
+        </div>
+    </div>
+    <script src="https://www.gstatic.com/firebasejs/10.7.0/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.7.0/firebase-auth.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.7.0/firebase-firestore.js"></script>
     <script src="../js/main.js"></script>
 </body>
 </html>

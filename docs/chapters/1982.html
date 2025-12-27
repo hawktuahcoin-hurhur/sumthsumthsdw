@@ -14,6 +14,11 @@
                 <a href="../chapter-list.html">📚 Chapters</a>
                 <a href="../login.html">💾 Save</a>
                 <a href="https://www.webnovel.com/book/shadow-slave_17505878106372705" target="_blank" rel="noopener">🔗 Official Webnovel</a>
+                <div id="auth-container" style="gap: 0.5rem;">
+                    <button id="login-btn" class="btn btn-sm" style="background: var(--secondary);">Sign In</button>
+                    <button id="logout-btn" class="btn btn-sm" style="background: var(--accent); display: none;">Sign Out</button>
+                    <span id="user-display" style="color: var(--text-light); font-size: 0.9rem; align-self: center;"></span>
+                </div>
             </div>
         </nav>
     </header>
@@ -42,7 +47,7 @@
             </div>
         </div>
         
-        <div class="chapter-content">
+        <div class="chapter-content" data-chapter="1982">
             <p class="chapter-paragraph">There were no mirrors in true Bastion. Even the Great Mirror Morgan had used to switch the illusory realm with reality only existed within the illusion.</p>
 <p class="chapter-paragraph">And that was for a good reason. The Others.</p>
 <p class="chapter-paragraph">Reflections had a mind of their own in true Bastion. There were strange, alien, and harrowing beings populating the mirrors here, and they could sometimes enter the real world uninvited. Morgan did not know the details, but she knew that her family had suffered greatly, and had paid dearly, for laying claim to the stronghold of the Demon of Imagination in the distant past. This topic was a taboo that not even the elders dared to discuss. All that she knew was that the Great Mirror had to be covered at all times, and that one had to be careful around reflective surfaces in true Bastion — especially the lake itself. There was a set of rules one had to follow here and a set of prohibitions one had to adhere to, lest they wanted to lose their lives and put the lives of others in danger.</p>
@@ -115,6 +120,19 @@
             </div>
         </div>
     </div>
+    <div id="comment-modal" class="modal" style="display: none;">
+        <div class="modal-content">
+            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1rem;">
+                <h3>Add Comment</h3>
+                <button class="close-btn" onclick="document.getElementById('comment-modal').style.display = 'none';">&times;</button>
+            </div>
+            <textarea id="comment-text" placeholder="Write your comment..." style="width: 100%; min-height: 100px; padding: 0.75rem; background: var(--card-bg); border: 1px solid var(--border); color: var(--text); border-radius: var(--radius); font-family: inherit; margin-bottom: 1rem; resize: vertical;"></textarea>
+            <button id="submit-comment-btn" class="btn" onclick="submitComment()">Post Comment</button>
+        </div>
+    </div>
+    <script src="https://www.gstatic.com/firebasejs/10.7.0/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.7.0/firebase-auth.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.7.0/firebase-firestore.js"></script>
     <script src="../js/main.js"></script>
 </body>
 </html>

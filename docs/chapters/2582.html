@@ -14,6 +14,11 @@
                 <a href="../chapter-list.html">📚 Chapters</a>
                 <a href="../login.html">💾 Save</a>
                 <a href="https://www.webnovel.com/book/shadow-slave_17505878106372705" target="_blank" rel="noopener">🔗 Official Webnovel</a>
+                <div id="auth-container" style="gap: 0.5rem;">
+                    <button id="login-btn" class="btn btn-sm" style="background: var(--secondary);">Sign In</button>
+                    <button id="logout-btn" class="btn btn-sm" style="background: var(--accent); display: none;">Sign Out</button>
+                    <span id="user-display" style="color: var(--text-light); font-size: 0.9rem; align-self: center;"></span>
+                </div>
             </div>
         </nav>
     </header>
@@ -42,7 +47,7 @@
             </div>
         </div>
         
-        <div class="chapter-content">
+        <div class="chapter-content" data-chapter="2582">
             <p class="chapter-paragraph">Stepping through the shadows, Sunny found himself at the summit of the tallest pagoda of the Great Citadel. The towering palace was actually built inside and around the main mast of the Night Garden, surrounding its lower part with a cascade of tiled roofs and graceful terraces.</p>
 <p class="chapter-paragraph">The terraces themselves were gardens, with emerald grass covering their expanse and ancient trees swaying in the cool breeze. The summit was like a grove, the leaves whispering as they moved above the surface of a quiet pond. This high, there was nothing but the masts of the titanic vessels and the stars above it, so the water reflected the starlit sky, seeming like a fragment of it.</p>
 <p class="chapter-paragraph">Jet was sitting on the soft grass, leaning against the trunk of a tall tree as she gazed at the distant constellations. She seemed to have adjusted to her life aboard the Night Garden well; she appeared more at ease than usual, at least, enjoying the rare moment of silence in comfortable solitude. Her usual government uniform was gone, replaced by an armor Memory that resembled a wetsuit crafted from the inky-black skin of an unknown sea monster. The thing was similar to the Memories that members of the House of Night usually wore into battle, and was far more practical than conventional armor when fighting in the depths...</p>
@@ -148,6 +153,19 @@
             </div>
         </div>
     </div>
+    <div id="comment-modal" class="modal" style="display: none;">
+        <div class="modal-content">
+            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1rem;">
+                <h3>Add Comment</h3>
+                <button class="close-btn" onclick="document.getElementById('comment-modal').style.display = 'none';">&times;</button>
+            </div>
+            <textarea id="comment-text" placeholder="Write your comment..." style="width: 100%; min-height: 100px; padding: 0.75rem; background: var(--card-bg); border: 1px solid var(--border); color: var(--text); border-radius: var(--radius); font-family: inherit; margin-bottom: 1rem; resize: vertical;"></textarea>
+            <button id="submit-comment-btn" class="btn" onclick="submitComment()">Post Comment</button>
+        </div>
+    </div>
+    <script src="https://www.gstatic.com/firebasejs/10.7.0/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.7.0/firebase-auth.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.7.0/firebase-firestore.js"></script>
     <script src="../js/main.js"></script>
 </body>
 </html>

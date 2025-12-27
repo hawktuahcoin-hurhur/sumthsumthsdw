@@ -14,6 +14,11 @@
                 <a href="../chapter-list.html">📚 Chapters</a>
                 <a href="../login.html">💾 Save</a>
                 <a href="https://www.webnovel.com/book/shadow-slave_17505878106372705" target="_blank" rel="noopener">🔗 Official Webnovel</a>
+                <div id="auth-container" style="gap: 0.5rem;">
+                    <button id="login-btn" class="btn btn-sm" style="background: var(--secondary);">Sign In</button>
+                    <button id="logout-btn" class="btn btn-sm" style="background: var(--accent); display: none;">Sign Out</button>
+                    <span id="user-display" style="color: var(--text-light); font-size: 0.9rem; align-self: center;"></span>
+                </div>
             </div>
         </nav>
     </header>
@@ -42,7 +47,7 @@
             </div>
         </div>
         
-        <div class="chapter-content">
+        <div class="chapter-content" data-chapter="1993">
             <p class="chapter-paragraph">Far below, the battle seemed to be hanging in a fragile balance. The battle lines were twisted and broken, and in some places, all pretense of order had been lost. Countless Awakened warriors were intertwined in a chaotic melee there, having forgotten all about discipline and battle formations. Blood was spilling on the ground, and a litany of desperate voices was drowning in the deafening clangor of steel.</p>
 <p class="chapter-paragraph">In other places, stalwart officers were still maintaining a semblance of control. The forces of the Sword Army were pushing the forces of Song on the left flank of the grand formation, while its right flank was being pushed back instead. In the center, a furious tug of war was boiling, with neither side managing to gain ground. At first glance, the soldiers of the Sword Domain were in a better position. That had been true throughout the war. The warriors of the Song Domain did not lack courage, determination, or martial prowess... in fact, Sunny had often been stunned by their tenacious resolve. Their powers and tactics were often strange, insidious, and wild, bringing with them a sense of lethal peril.</p>
 <p class="chapter-paragraph">They were chillingly fearless in the face of death, and viciously ruthless when they needed to be. And yet, they were simply no match for the soldiers of the Sword Army. The army of the Sword Domain was better equipped, better trained, and better able to maintain discipline in dire situations. Even if each individual warrior fighting under the banner of the King of Swords was not more powerful than the warriors of Song, together, they made for a much tougher and deadlier force. It was partially because Clan Valor and its vassals had been in power for much longer than Clan Song, and therefore possessed a much richer martial tradition. The core of the Sword Army had been forged in the successive subjugation campaigns that brought vast regions of the Dream Realm under human control, after all, and while Ki Song had led a historic conquest of her own, its scope and length did not compare.</p>
@@ -108,6 +113,19 @@
             </div>
         </div>
     </div>
+    <div id="comment-modal" class="modal" style="display: none;">
+        <div class="modal-content">
+            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1rem;">
+                <h3>Add Comment</h3>
+                <button class="close-btn" onclick="document.getElementById('comment-modal').style.display = 'none';">&times;</button>
+            </div>
+            <textarea id="comment-text" placeholder="Write your comment..." style="width: 100%; min-height: 100px; padding: 0.75rem; background: var(--card-bg); border: 1px solid var(--border); color: var(--text); border-radius: var(--radius); font-family: inherit; margin-bottom: 1rem; resize: vertical;"></textarea>
+            <button id="submit-comment-btn" class="btn" onclick="submitComment()">Post Comment</button>
+        </div>
+    </div>
+    <script src="https://www.gstatic.com/firebasejs/10.7.0/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.7.0/firebase-auth.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.7.0/firebase-firestore.js"></script>
     <script src="../js/main.js"></script>
 </body>
 </html>

@@ -14,6 +14,11 @@
                 <a href="../chapter-list.html">📚 Chapters</a>
                 <a href="../login.html">💾 Save</a>
                 <a href="https://www.webnovel.com/book/shadow-slave_17505878106372705" target="_blank" rel="noopener">🔗 Official Webnovel</a>
+                <div id="auth-container" style="gap: 0.5rem;">
+                    <button id="login-btn" class="btn btn-sm" style="background: var(--secondary);">Sign In</button>
+                    <button id="logout-btn" class="btn btn-sm" style="background: var(--accent); display: none;">Sign Out</button>
+                    <span id="user-display" style="color: var(--text-light); font-size: 0.9rem; align-self: center;"></span>
+                </div>
             </div>
         </nav>
     </header>
@@ -42,7 +47,7 @@
             </div>
         </div>
         
-        <div class="chapter-content">
+        <div class="chapter-content" data-chapter="2358">
             <p class="chapter-paragraph">With a sigh, Kai walked over to the altar and placed the Snow Beast figure - the one they had retrieved after slaying Abundance - on its surface. Sunny watched him intently, wondering if the figure would still have to be tossed into the volcano. And how would it have worked if the Shrine of Truth belonged to the Snow Domain, instead? There would be no pit filled with smoke here if it had been, after all. However, he did not have to worry. Almost as soon as Kai placed the figure on the altar, it began to glow. Then, luminous fissures appeared on the surface of the flawless white jade, and a second later, it suddenly exploded into a swirling mass of ash.</p>
 <p class="chapter-paragraph">"Huh..."</p>
 <p class="chapter-paragraph">Before either of them could react, the ash swirled around Kai... and then suddenly flowed right into him, disappearing into his chest. Neither Sunny nor Kai moved for a few moments. Eventually, Kai coughed and waved his hand in front of him. "Great. More ash..."</p>
@@ -133,6 +138,19 @@
             </div>
         </div>
     </div>
+    <div id="comment-modal" class="modal" style="display: none;">
+        <div class="modal-content">
+            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1rem;">
+                <h3>Add Comment</h3>
+                <button class="close-btn" onclick="document.getElementById('comment-modal').style.display = 'none';">&times;</button>
+            </div>
+            <textarea id="comment-text" placeholder="Write your comment..." style="width: 100%; min-height: 100px; padding: 0.75rem; background: var(--card-bg); border: 1px solid var(--border); color: var(--text); border-radius: var(--radius); font-family: inherit; margin-bottom: 1rem; resize: vertical;"></textarea>
+            <button id="submit-comment-btn" class="btn" onclick="submitComment()">Post Comment</button>
+        </div>
+    </div>
+    <script src="https://www.gstatic.com/firebasejs/10.7.0/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.7.0/firebase-auth.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.7.0/firebase-firestore.js"></script>
     <script src="../js/main.js"></script>
 </body>
 </html>

@@ -302,6 +302,15 @@ input:-webkit-autofill {
     outline-offset: 0;
 }
 
+.chapter-content .tts-word-active {
+    background: rgba(0, 212, 255, 0.4);
+    color: #fff;
+    padding: 0.1em 0.2em;
+    border-radius: 2px;
+    font-weight: 500;
+    transition: background 0.05s ease;
+}
+
 .chapter-nav {
     display: flex;
     justify-content: space-between;
@@ -918,6 +927,79 @@ input:-webkit-autofill {
     border: 1px solid rgba(0, 212, 255, 0.2);
 }
 
+/* Comment System & Modals */
+#comment-modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.7);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 2000;
+}
+
+#comment-modal .modal-content {
+    background: var(--card-bg);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    padding: 2rem;
+    max-width: 500px;
+    width: 90vw;
+    max-height: 80vh;
+    overflow-y: auto;
+}
+
+#comment-modal h3 {
+    margin-bottom: 1rem;
+    color: var(--text);
+}
+
+.paragraph-comments {
+    margin-top: 1rem;
+    padding: 1rem;
+    background: rgba(255, 255, 255, 0.03);
+    border-left: 2px solid var(--secondary);
+    border-radius: var(--radius);
+    font-size: 0.9rem;
+    color: var(--text);
+}
+
+.paragraph-comments > div {
+    margin-bottom: 0.75rem;
+    padding-bottom: 0.75rem;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.paragraph-comments > div:last-child {
+    margin-bottom: 0;
+    border-bottom: none;
+    padding-bottom: 0;
+}
+
+.close-btn {
+    background: none;
+    border: none;
+    color: var(--text);
+    font-size: 1.5rem;
+    cursor: pointer;
+    padding: 0;
+    line-height: 1;
+}
+
+#auth-container {
+    display: flex !important;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.btn-sm {
+    padding: 0.5rem 1rem;
+    font-size: 0.85rem;
+}
+
 /* Responsive */
 @media (max-width: 1024px) {
     main.with-sidebar {
@@ -1393,11 +1475,73 @@ const TTS = {{
         return text.replace(/\\s+/g, ' ');
     }},
 
+    clearHighlight() {{
+        // Clear word-by-word highlights
+        document.querySelectorAll('.tts-word-active').forEach(span => {{
+            const parent = span.parentNode;
+            if (!parent) return;
+            const text = span.textContent;
+            parent.replaceChild(document.createTextNode(text), span);
+            parent.normalize();
+        }});
+        // Clear paragraph highlights
+        if (this.paragraphs) {{
+            this.paragraphs.forEach(p => p.classList.remove('tts-active'));
+        }}
+    }},
+
+    highlightWord(wordIndex) {{
+        // Find and highlight the word at wordIndex
+        const container = document.querySelector('.chapter-content');
+        if (!container) return;
+        
+        let currentWord = 0;
+        const targetWord = wordIndex;
+        
+        const walkDOM = (node) => {{
+            if (node.nodeType === 3) {{ // Text node
+                const text = node.textContent;
+                const words = text.match(/\\b\\w+\\b|\\s+/g) || [];
+                const newSpans = [];
+                
+                for (const word of words) {{
+                    if (word.match(/\\s/)) {{
+                        newSpans.push(document.createTextNode(word));
+                    }} else {{
+                        if (currentWord === targetWord) {{
+                            const span = document.createElement('span');
+                            span.className = 'tts-word-active';
+                            span.textContent = word;
+                            newSpans.push(span);
+                        }} else {{
+                            newSpans.push(document.createTextNode(word));
+                        }}
+                        currentWord++;
+                    }}
+                }}
+                
+                if (newSpans.length > 0) {{
+                    node.parentNode.replaceChild(newSpans[0], node);
+                    let prev = newSpans[0];
+                    for (let i = 1; i < newSpans.length; i++) {{
+                        prev.parentNode.insertBefore(newSpans[i], prev.nextSibling);
+                        prev = newSpans[i];
+                    }}
+                }}
+            }} else if (node.nodeType === 1) {{ // Element node
+                Array.from(node.childNodes).forEach(child => walkDOM(child));
+            }}
+        }};
+        
+        walkDOM(container);
+    }},
+
     stop() {{
         if (!this.supported()) return;
         window.speechSynthesis.cancel();
         this.utterance = null;
         this.index = 0;
+        this.wordIndex = 0;
         this.clearHighlight();
     }},
 
@@ -1425,8 +1569,19 @@ const TTS = {{
 
         this.utterance = u;
         this.setHighlight(this.index);
+        this.wordIndex = 0;
+
+        u.onboundary = (event) => {{
+            if (event.name === 'word') {{
+                this.clearHighlight();
+                this.setHighlight(this.index);
+                this.highlightWord(this.wordIndex);
+                this.wordIndex++;
+            }}
+        }};
 
         u.onend = () => {{
+            this.wordIndex = 0;
             this.index += 1;
             this.speakCurrent(rate);
         }};
@@ -1442,6 +1597,7 @@ const TTS = {{
         this.stop();
         this.loadParagraphs();
         this.index = 0;
+        this.wordIndex = 0;
         this.speakCurrent(rate);
     }},
 
@@ -1628,6 +1784,185 @@ function initChapterList() {{
     }}
 }}
 
+// Firebase Integration
+const FirebaseConfig = {{
+    apiKey: "YOUR_FIREBASE_API_KEY",
+    authDomain: "YOUR_FIREBASE_PROJECT_ID.firebaseapp.com",
+    projectId: "YOUR_FIREBASE_PROJECT_ID",
+    storageBucket: "YOUR_FIREBASE_PROJECT_ID.appspot.com",
+    messagingSenderId: "YOUR_MESSAGING_SENDER_ID",
+    appId: "YOUR_APP_ID"
+}};
+
+let currentUser = null;
+let db = null;
+
+async function initFirebase() {{
+    try {{
+        firebase.initializeApp(FirebaseConfig);
+        db = firebase.firestore();
+        
+        firebase.auth().onAuthStateChanged(user => {{
+            currentUser = user;
+            updateAuthUI();
+            if (user) {{
+                loadComments();
+            }}
+        }});
+    }} catch (e) {{
+        console.log('Firebase not configured. To enable auth & comments, set up Firebase config in the code.');
+    }}
+}}
+
+function updateAuthUI() {{
+    const loginBtn = document.getElementById('login-btn');
+    const logoutBtn = document.getElementById('logout-btn');
+    const userDisplay = document.getElementById('user-display');
+    const authContainer = document.getElementById('auth-container');
+    
+    if (!authContainer) return;
+    
+    if (currentUser) {{
+        loginBtn.style.display = 'none';
+        logoutBtn.style.display = 'block';
+        userDisplay.textContent = currentUser.email ? currentUser.email.split('@')[0] : 'User';
+        authContainer.style.display = 'flex';
+    }} else {{
+        loginBtn.style.display = 'block';
+        logoutBtn.style.display = 'none';
+        userDisplay.textContent = '';
+    }}
+}}
+
+async function handleLogin() {{
+    if (!firebase) {{
+        alert('Firebase not configured');
+        return;
+    }}
+    const provider = new firebase.auth.GoogleAuthProvider();
+    try {{
+        await firebase.auth().signInWithPopup(provider);
+    }} catch (e) {{
+        alert('Login failed: ' + e.message);
+    }}
+}}
+
+async function handleLogout() {{
+    try {{
+        await firebase.auth().signOut();
+    }} catch (e) {{
+        alert('Logout failed: ' + e.message);
+    }}
+}}
+
+let currentCommentChapter = null;
+let currentCommentParagraph = null;
+
+function showCommentModal(chapterNum, paragraphIndex) {{
+    if (!currentUser) {{
+        alert('Please sign in to comment');
+        return;
+    }}
+    currentCommentChapter = chapterNum;
+    currentCommentParagraph = paragraphIndex;
+    document.getElementById('comment-text').value = '';
+    document.getElementById('comment-modal').style.display = 'block';
+}}
+
+async function submitComment() {{
+    const text = document.getElementById('comment-text').value.trim();
+    if (!text || !currentUser || !db) {{
+        alert('Error: Could not submit comment');
+        return;
+    }}
+    
+    try {{
+        await db.collection('comments').add({{
+            chapter: currentCommentChapter,
+            paragraph: currentCommentParagraph,
+            userId: currentUser.uid,
+            email: currentUser.email,
+            text: text,
+            timestamp: new Date(),
+            likes: 0
+        }});
+        document.getElementById('comment-modal').style.display = 'none';
+        loadComments();
+    }} catch (e) {{
+        alert('Error posting comment: ' + e.message);
+    }}
+}}
+
+async function loadComments() {{
+    if (!db) return;
+    
+    const chapterNum = document.querySelector('[data-chapter]')?.dataset.chapter;
+    if (!chapterNum) return;
+    
+    try {{
+        const snapshot = await db.collection('comments')
+            .where('chapter', '==', parseInt(chapterNum))
+            .orderBy('timestamp', 'desc')
+            .get();
+        
+        const paragraphs = document.querySelectorAll('.chapter-paragraph');
+        paragraphs.forEach((p, idx) => {{
+            const commentsBucket = p.querySelector('.paragraph-comments');
+            if (commentsBucket) commentsBucket.remove();
+            
+            const paraComments = snapshot.docs.filter(doc => doc.data().paragraph === idx);
+            if (paraComments.length > 0) {{
+                const container = document.createElement('div');
+                container.className = 'paragraph-comments';
+                container.style.cssText = `
+                    margin-top: 1rem;
+                    padding: 1rem;
+                    background: rgba(255, 255, 255, 0.03);
+                    border-left: 2px solid var(--secondary);
+                    border-radius: 0;
+                    font-size: 0.9rem;
+                `;
+                
+                paraComments.forEach(doc => {{
+                    const data = doc.data();
+                    const commentEl = document.createElement('div');
+                    commentEl.style.marginBottom = '0.75rem';
+                    commentEl.innerHTML = `
+                        <div style="color: var(--primary); font-weight: 500;">${{data.email.split('@')[0]}}</div>
+                        <div style="color: var(--text-light); font-size: 0.8rem; margin-bottom: 0.25rem;">${{new Date(data.timestamp.toDate()).toLocaleDateString()}}</div>
+                        <div>${{data.text}}</div>
+                    `;
+                    container.appendChild(commentEl);
+                }});
+                
+                p.parentNode.insertBefore(container, p.nextSibling);
+            }}
+        }});
+    }} catch (e) {{
+        console.log('Comments not available:', e.message);
+    }}
+}}
+
+// Setup event listeners and handlers
+document.addEventListener('DOMContentLoaded', () => {{
+    // Auth handlers
+    const loginBtn = document.getElementById('login-btn');
+    const logoutBtn = document.getElementById('logout-btn');
+    if (loginBtn) loginBtn.addEventListener('click', handleLogin);
+    if (logoutBtn) logoutBtn.addEventListener('click', handleLogout);
+    
+    // Comment system: add click handlers to paragraphs
+    document.querySelectorAll('.chapter-paragraph').forEach((p, idx) => {{
+        p.style.cursor = 'pointer';
+        p.addEventListener('click', () => {{
+            showCommentModal(document.querySelector('[data-chapter]')?.dataset.chapter, idx);
+        }});
+    }});
+    
+    // Initialize Firebase
+    initFirebase();
+}});
+
 // Keyboard navigation
 document.addEventListener('keydown', (e) => {{
     if (e.key === 'ArrowRight') {{
@@ -1713,6 +2048,11 @@ def get_base_template():
                 <a href="{chapters_path}">📚 Chapters</a>
                 <a href="{login_path}">💾 Save</a>
                 <a href="https://www.webnovel.com/book/shadow-slave_17505878106372705" target="_blank" rel="noopener">🔗 Official Webnovel</a>
+                <div id="auth-container" style="gap: 0.5rem;">
+                    <button id="login-btn" class="btn btn-sm" style="background: var(--secondary);">Sign In</button>
+                    <button id="logout-btn" class="btn btn-sm" style="background: var(--accent); display: none;">Sign Out</button>
+                    <span id="user-display" style="color: var(--text-light); font-size: 0.9rem; align-self: center;"></span>
+                </div>
             </div>
         </nav>
     </header>
@@ -1720,6 +2060,19 @@ def get_base_template():
         {content}
     </main>
     {chat_widget}
+    <div id="comment-modal" class="modal" style="display: none;">
+        <div class="modal-content">
+            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1rem;">
+                <h3>Add Comment</h3>
+                <button class="close-btn" onclick="document.getElementById('comment-modal').style.display = 'none';">&times;</button>
+            </div>
+            <textarea id="comment-text" placeholder="Write your comment..." style="width: 100%; min-height: 100px; padding: 0.75rem; background: var(--card-bg); border: 1px solid var(--border); color: var(--text); border-radius: var(--radius); font-family: inherit; margin-bottom: 1rem; resize: vertical;"></textarea>
+            <button id="submit-comment-btn" class="btn" onclick="submitComment()">Post Comment</button>
+        </div>
+    </div>
+    <script src="https://www.gstatic.com/firebasejs/10.7.0/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.7.0/firebase-auth.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.7.0/firebase-firestore.js"></script>
     <script src="{js_path}"></script>
 </body>
 </html>'''
@@ -1814,7 +2167,7 @@ def generate_chapter(chapter, prev_num, next_num, total):
             </div>
         </div>
         
-        <div class="chapter-content">
+        <div class="chapter-content" data-chapter="{chapter['chapter_number']}">
             {content_html}
         </div>
         

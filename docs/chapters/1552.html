@@ -14,6 +14,11 @@
                 <a href="../chapter-list.html">📚 Chapters</a>
                 <a href="../login.html">💾 Save</a>
                 <a href="https://www.webnovel.com/book/shadow-slave_17505878106372705" target="_blank" rel="noopener">🔗 Official Webnovel</a>
+                <div id="auth-container" style="gap: 0.5rem;">
+                    <button id="login-btn" class="btn btn-sm" style="background: var(--secondary);">Sign In</button>
+                    <button id="logout-btn" class="btn btn-sm" style="background: var(--accent); display: none;">Sign Out</button>
+                    <span id="user-display" style="color: var(--text-light); font-size: 0.9rem; align-self: center;"></span>
+                </div>
             </div>
         </nav>
     </header>
@@ -42,7 +47,7 @@
             </div>
         </div>
         
-        <div class="chapter-content">
+        <div class="chapter-content" data-chapter="1552">
             <p class="chapter-paragraph">'What is she doing?'</p>
 <p class="chapter-paragraph">Laying in the darkness while pretending to sleep, Sunny suppressed the desire to frown. Cassie had left the runic circle, picked up the Guiding Light, and slowly walked across the deck. As she did, a hurricane of white sparks rose around her, slowly forming into a humanoid figure. It was the echo of the Defiled sybil she had received in Fallen Grace. The eerie thing had survived Twilight, although just barely. Now, her wounds were healed. Even her flowing red dress mended itself, as did her veil. The Echo followed the blind seer, the hem of her red garment hovering a couple centimeters above the ancient wood. Just like always, her movements were too smooth to be the result of walking. Sunny had seen what was hiding behind that dress once, and he never wanted to see it again. Nevertheless, he continued watching. By then, Cassie had passed the sacred tree and was most of the way to the bow of the ship, near Ananke's ketch. She did not, however, proceed any further. Stopping near the ketch, she silently gave a command to her Echo. Soon, the boat was lowered into the water. The masts were affixed in their grooves, and the sails were raised. Gliding down with the help of the Quiet Dancer, Cassie took a seat at the helmsman's bench and summoned a different Memory. It was a wooden staff she had used on the Forgotten Shore — one of the three Memories from her First Nightmare. The Endless Spring was now with Sunny, the Evertwine was with Nephis, and only the staff remained in Cassie's own soul arsenal. Its enchantment was capable of summoning wind. Aiming the staff at the sails of the ketch, Cassie activated the enchantment and sent the boat moving away from the Chain Breaker. Sunny's shadow, of course, was already hiding under one of the masts. Back in his cabin, Sunny continued to pretend to be asleep. The night was silent, with only the sound of waves breaking against the hull of the Chain Breaker disturbing the quiet. The water glowed softly, and bathed in that glow, Ananke's ketch was slowly traveling along the shore of the frozen land. '...Goddammit.'</p>
 <p class="chapter-paragraph">Although Sunny was more or less certain that Cassie was hiding something, he had hoped to be proven wrong until the very last moment. However, he had been right all along. "You mean I was right."</p>
@@ -107,6 +112,19 @@
             </div>
         </div>
     </div>
+    <div id="comment-modal" class="modal" style="display: none;">
+        <div class="modal-content">
+            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1rem;">
+                <h3>Add Comment</h3>
+                <button class="close-btn" onclick="document.getElementById('comment-modal').style.display = 'none';">&times;</button>
+            </div>
+            <textarea id="comment-text" placeholder="Write your comment..." style="width: 100%; min-height: 100px; padding: 0.75rem; background: var(--card-bg); border: 1px solid var(--border); color: var(--text); border-radius: var(--radius); font-family: inherit; margin-bottom: 1rem; resize: vertical;"></textarea>
+            <button id="submit-comment-btn" class="btn" onclick="submitComment()">Post Comment</button>
+        </div>
+    </div>
+    <script src="https://www.gstatic.com/firebasejs/10.7.0/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.7.0/firebase-auth.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.7.0/firebase-firestore.js"></script>
     <script src="../js/main.js"></script>
 </body>
 </html>

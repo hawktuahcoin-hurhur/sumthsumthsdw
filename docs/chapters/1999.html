@@ -14,6 +14,11 @@
                 <a href="../chapter-list.html">📚 Chapters</a>
                 <a href="../login.html">💾 Save</a>
                 <a href="https://www.webnovel.com/book/shadow-slave_17505878106372705" target="_blank" rel="noopener">🔗 Official Webnovel</a>
+                <div id="auth-container" style="gap: 0.5rem;">
+                    <button id="login-btn" class="btn btn-sm" style="background: var(--secondary);">Sign In</button>
+                    <button id="logout-btn" class="btn btn-sm" style="background: var(--accent); display: none;">Sign Out</button>
+                    <span id="user-display" style="color: var(--text-light); font-size: 0.9rem; align-self: center;"></span>
+                </div>
             </div>
         </nav>
     </header>
@@ -42,7 +47,7 @@
             </div>
         </div>
         
-        <div class="chapter-content">
+        <div class="chapter-content" data-chapter="1999">
             <p class="chapter-paragraph">As Rain was struggling to fight her way toward Tamar, Tamar was struggling to contend against her fearsome enemy. Both she and the young Feather Knight seemed to have fully saturated cores, possessed exceptional combat skill, and were stellar at controlling their essence — at least to the degree Awakened could. As a result, their physical prowess was truly superhuman, and their clash seemed like a whirlwind of steel that rolled across the battlefield, colliding with other warriors to consume them from time to time. However, Rain could still make out the details of the fight, and while the power of the two Legacies were roughly equal, Tamar was obviously at a disadvantage due to being younger and less experienced. At first glance, it looked like she was actually pushing the Feather Knight back... however, Rain could not fail to notice that Tamar's adversary had not used her Aspect yet. Either it had nothing to do with combat, or she was waiting for the right time to unleash her Abilities. The battle promised to be long and exhausting, after all, and powerful Aspect Abilities consumed a lot of essence — any Awakened soldier knew to ration their essence in a fight. Augmenting one's body, using one's Awakened Ability, and activating the enchantments of one's Memories — those were the things that they only resorted to when necessary during prolonged battles. If given a choice. ...And while the young knight seemed to still have the luxury of the choice, Tamar did not, already exhibiting bursts of startling speed as often as she could. That was the only reason she was managing to keep, for now.</p>
 <p class="chapter-paragraph">Rain had hoped that their clash would take the two Legacies closer to her, but they only seemed to moving further away. 'Damn it!'</p>
 <p class="chapter-paragraph">She did not know what to do.</p>
@@ -122,6 +127,19 @@
             </div>
         </div>
     </div>
+    <div id="comment-modal" class="modal" style="display: none;">
+        <div class="modal-content">
+            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1rem;">
+                <h3>Add Comment</h3>
+                <button class="close-btn" onclick="document.getElementById('comment-modal').style.display = 'none';">&times;</button>
+            </div>
+            <textarea id="comment-text" placeholder="Write your comment..." style="width: 100%; min-height: 100px; padding: 0.75rem; background: var(--card-bg); border: 1px solid var(--border); color: var(--text); border-radius: var(--radius); font-family: inherit; margin-bottom: 1rem; resize: vertical;"></textarea>
+            <button id="submit-comment-btn" class="btn" onclick="submitComment()">Post Comment</button>
+        </div>
+    </div>
+    <script src="https://www.gstatic.com/firebasejs/10.7.0/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.7.0/firebase-auth.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.7.0/firebase-firestore.js"></script>
     <script src="../js/main.js"></script>
 </body>
 </html>

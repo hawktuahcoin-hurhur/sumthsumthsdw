@@ -14,6 +14,11 @@
                 <a href="../chapter-list.html">📚 Chapters</a>
                 <a href="../login.html">💾 Save</a>
                 <a href="https://www.webnovel.com/book/shadow-slave_17505878106372705" target="_blank" rel="noopener">🔗 Official Webnovel</a>
+                <div id="auth-container" style="gap: 0.5rem;">
+                    <button id="login-btn" class="btn btn-sm" style="background: var(--secondary);">Sign In</button>
+                    <button id="logout-btn" class="btn btn-sm" style="background: var(--accent); display: none;">Sign Out</button>
+                    <span id="user-display" style="color: var(--text-light); font-size: 0.9rem; align-self: center;"></span>
+                </div>
             </div>
         </nav>
     </header>
@@ -42,7 +47,7 @@
             </div>
         </div>
         
-        <div class="chapter-content">
+        <div class="chapter-content" data-chapter="2170">
             <p class="chapter-paragraph">Jest was facing a dilemma, and one that did not have an obvious answer. He did not know whether the young man in front of him was truly Anvil of Valor. He could not risk killing him before finding out the truth, either...</p>
 <p class="chapter-paragraph">And there was no sure way to find the truth. So, he could only try his best in the absence of a reliable solution. The only reasonable theory Jest had at the moment was that Anvil was somehow expelled from the Seed without conquering the Nightmare. So, he was still an Awakened. His physical and spiritual bodies had not yet fused as a result — one was in the waking world, and one was here in Bastion. Therefore...</p>
 <p class="chapter-paragraph">If the young man was indeed Anvil, bringing him back to the waking world would result in the physical body awakening inside the sleeping pod. That would prove his identity. If Anvil's physical body remained asleep... that would give them more information, too. It was not a great plan, but it was at least something. So, that was what they did. After telling Gwyn the truth, they hurried to bring Anvil back to the throne room, arriving there just before the first Awakened started to enter the main keep. The young man did not resist — he showed a cold and disdainful expression when being ordered to follow, but responded well to being cajoled by Gwyn. That was in line with how Anvil would have behaved in his usual state. None of them had the right to order him around, after all, but he would usually easily agree to their requests. The young man... the thing... was eerily similar to Anvil that Jest knew. It was to the point that he had to keep reminding himself that there was a possibility that the person he was looking at could turn out to be an impostor.</p>
@@ -116,6 +121,19 @@
             </div>
         </div>
     </div>
+    <div id="comment-modal" class="modal" style="display: none;">
+        <div class="modal-content">
+            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1rem;">
+                <h3>Add Comment</h3>
+                <button class="close-btn" onclick="document.getElementById('comment-modal').style.display = 'none';">&times;</button>
+            </div>
+            <textarea id="comment-text" placeholder="Write your comment..." style="width: 100%; min-height: 100px; padding: 0.75rem; background: var(--card-bg); border: 1px solid var(--border); color: var(--text); border-radius: var(--radius); font-family: inherit; margin-bottom: 1rem; resize: vertical;"></textarea>
+            <button id="submit-comment-btn" class="btn" onclick="submitComment()">Post Comment</button>
+        </div>
+    </div>
+    <script src="https://www.gstatic.com/firebasejs/10.7.0/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.7.0/firebase-auth.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.7.0/firebase-firestore.js"></script>
     <script src="../js/main.js"></script>
 </body>
 </html>

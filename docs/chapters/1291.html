@@ -14,6 +14,11 @@
                 <a href="../chapter-list.html">📚 Chapters</a>
                 <a href="../login.html">💾 Save</a>
                 <a href="https://www.webnovel.com/book/shadow-slave_17505878106372705" target="_blank" rel="noopener">🔗 Official Webnovel</a>
+                <div id="auth-container" style="gap: 0.5rem;">
+                    <button id="login-btn" class="btn btn-sm" style="background: var(--secondary);">Sign In</button>
+                    <button id="logout-btn" class="btn btn-sm" style="background: var(--accent); display: none;">Sign Out</button>
+                    <span id="user-display" style="color: var(--text-light); font-size: 0.9rem; align-self: center;"></span>
+                </div>
             </div>
         </nav>
     </header>
@@ -42,7 +47,7 @@
             </div>
         </div>
         
-        <div class="chapter-content">
+        <div class="chapter-content" data-chapter="1291">
             <p class="chapter-paragraph">Shadow Dance... was both the Legacy of his Aspect and a battle art Sunny had invented. That battle art was insidious, shapeless, and ever-changing... its purpose was to steal that which made the enemy strong and use it to destroy them. The first step of Shadow Dance was the foundation of this ability. Sunny had mastered it during his bitter battle with Nephis, whom he knew all too well. It allowed him to peer into the very essence of the enemy's battle style and gain an almost supernatural understanding of what they would do, as well as the ability to mimic it. The second step was a continuation of the first. It was the same in all aspects except for scale. Assuming the persona of Mongrel, Sunny had battled countless Awakened and absorbed their styles in order to make his ability more ubiquitous. He had mastered it during the final battle of the Dream Tournament, facing Morgan. That breakthrough deepened his understanding of the fundamental, governing principles of battle, which in turn allowed him to shadow unfamiliar and sophisticated battle styles much faster, and with greater ease. He also gained the ability to intuitively sense the unique ways in which his opponents utilized their soul essence to make those styles possible. The third step was different. It expanded on the first two, broadening the scope of Shadow Dance by redefining what a battle style was. Outwardly, that simply meant that Sunny had begun including Nightmare Creatures in the ranks of enemies he shadowed. Inwardly, however, the distinction was much greater. The third step had more to do with Sunny himself than with his enemies. After plunging into the alien and perverse minds of various abominations in the Red Colosseum, he still found himself falling short of an epiphany. That was because Sunny had to let go of his own sense of self to truly be able to shadow things that were innately different from him. He had to become more like the shapeless, formless shadows. He had managed to pass this impossible test because of the battle with Nightmare. The third mastery vastly broadened and improved his ability to shadow his enemies, as well as giving him the ability to perceive the flow of essence within them clearly. However, it also made Shadow Dance a double-edged sword — Sunny had found it easy to get lost in the form of an adversary, forgetting himself forever. The best defense against this risk was his True Name, which served as the anchor of his soul. ...And now, there was the fourth step.</p>
 <p class="chapter-paragraph">'It is even more dangerous.'</p>
 <p class="chapter-paragraph">Sunny still felt the lingering remnants of the Azure Serpent paint his perception of the world. After delving into the form of the mad beast so deeply, he struggled to shake it off.</p>
@@ -108,6 +113,19 @@
             </div>
         </div>
     </div>
+    <div id="comment-modal" class="modal" style="display: none;">
+        <div class="modal-content">
+            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1rem;">
+                <h3>Add Comment</h3>
+                <button class="close-btn" onclick="document.getElementById('comment-modal').style.display = 'none';">&times;</button>
+            </div>
+            <textarea id="comment-text" placeholder="Write your comment..." style="width: 100%; min-height: 100px; padding: 0.75rem; background: var(--card-bg); border: 1px solid var(--border); color: var(--text); border-radius: var(--radius); font-family: inherit; margin-bottom: 1rem; resize: vertical;"></textarea>
+            <button id="submit-comment-btn" class="btn" onclick="submitComment()">Post Comment</button>
+        </div>
+    </div>
+    <script src="https://www.gstatic.com/firebasejs/10.7.0/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.7.0/firebase-auth.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.7.0/firebase-firestore.js"></script>
     <script src="../js/main.js"></script>
 </body>
 </html>

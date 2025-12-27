@@ -14,6 +14,11 @@
                 <a href="../chapter-list.html">📚 Chapters</a>
                 <a href="../login.html">💾 Save</a>
                 <a href="https://www.webnovel.com/book/shadow-slave_17505878106372705" target="_blank" rel="noopener">🔗 Official Webnovel</a>
+                <div id="auth-container" style="gap: 0.5rem;">
+                    <button id="login-btn" class="btn btn-sm" style="background: var(--secondary);">Sign In</button>
+                    <button id="logout-btn" class="btn btn-sm" style="background: var(--accent); display: none;">Sign Out</button>
+                    <span id="user-display" style="color: var(--text-light); font-size: 0.9rem; align-self: center;"></span>
+                </div>
             </div>
         </nav>
     </header>
@@ -42,7 +47,7 @@
             </div>
         </div>
         
-        <div class="chapter-content">
+        <div class="chapter-content" data-chapter="1286">
             <p class="chapter-paragraph">Dusk... Sybil of the Fallen Grace. Sunny shivered. Of course, he remembered who Dusk was. He was wearing a tunic called Shroud of Graceless Dusk, after all — the Transcendent Memory of the Sixth Tier he had received for slaying the Terror of LO49. ...That damned horror. If he were to try and assign numbers to the enemies he had faced in Antarctica based on how many mental scars they left him with, the beautiful flower of floating white silk would be squarely placed second, right behind the Winter Beast. Even Goliath, who had literally killed him, did not leave as harrowing of an impression. Of course, Dusk was most likely neither dead nor corrupted yet in the Nightmare. She was still a human, and seemed to be ruling a place called Fallen Grace. Since Sunny and Nephis wanted to reach the civilization of the Great River and find the sybils, this destination was perfect. ...It was a little bit too perfect, even. Ananke had answered one of the most important questions they had. The improbable coincidence of them finding her ketch just when they needed it was no coincidence at all. She had come knowingly, expecting to find them. But who was it that had instructed her where to find them? In her dreams, no less? Who was pulling the strings of this Nightmare behind the scenes?</p>
 <p class="chapter-paragraph">'Is it, perhaps, the last sybil herself?' Sunny frowned, knowing that he would not find the answer any time soon. The earliest opportunity was probably going to be when he came face-to-face with the Sybil of the Fallen Grace... again. He sighed. "...Fallen Grace? How far is that?"</p>
 <p class="chapter-paragraph">Old Ananke hesitated for a few moments. "It is far. Very, very far. So far that I won't be able to guide you all the way there."</p>
@@ -127,6 +132,19 @@
             </div>
         </div>
     </div>
+    <div id="comment-modal" class="modal" style="display: none;">
+        <div class="modal-content">
+            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1rem;">
+                <h3>Add Comment</h3>
+                <button class="close-btn" onclick="document.getElementById('comment-modal').style.display = 'none';">&times;</button>
+            </div>
+            <textarea id="comment-text" placeholder="Write your comment..." style="width: 100%; min-height: 100px; padding: 0.75rem; background: var(--card-bg); border: 1px solid var(--border); color: var(--text); border-radius: var(--radius); font-family: inherit; margin-bottom: 1rem; resize: vertical;"></textarea>
+            <button id="submit-comment-btn" class="btn" onclick="submitComment()">Post Comment</button>
+        </div>
+    </div>
+    <script src="https://www.gstatic.com/firebasejs/10.7.0/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.7.0/firebase-auth.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.7.0/firebase-firestore.js"></script>
     <script src="../js/main.js"></script>
 </body>
 </html>

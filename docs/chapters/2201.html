@@ -14,6 +14,11 @@
                 <a href="../chapter-list.html">📚 Chapters</a>
                 <a href="../login.html">💾 Save</a>
                 <a href="https://www.webnovel.com/book/shadow-slave_17505878106372705" target="_blank" rel="noopener">🔗 Official Webnovel</a>
+                <div id="auth-container" style="gap: 0.5rem;">
+                    <button id="login-btn" class="btn btn-sm" style="background: var(--secondary);">Sign In</button>
+                    <button id="logout-btn" class="btn btn-sm" style="background: var(--accent); display: none;">Sign Out</button>
+                    <span id="user-display" style="color: var(--text-light); font-size: 0.9rem; align-self: center;"></span>
+                </div>
             </div>
         </nav>
     </header>
@@ -42,7 +47,7 @@
             </div>
         </div>
         
-        <div class="chapter-content">
+        <div class="chapter-content" data-chapter="2201">
             <p class="chapter-paragraph">The Song Army faced the same hardship their enemy had faced during countless assaults on the great fortress in the past. There were no ramparts on the eastern side of the chasm, but the chasm itself remained — crossing it under the barrage of enemy arrows and launching an attack from the shaky bridges was a task that would thrust any strategist into despair, and Seishan was no different from Nephis in that regard. That was the purpose the tide of the ashen dead had served. While the Sword Army was distracted by repelling their ghastly attack, the garrison of the Greater Crossing Stronghold had time to brave the chasm. The besieging army had used war engines to shoot mighty steel cables over the abyssal gorge, which then served as supports to build hanging bridges. As time went on, the sappers improved and iterated upon both the war engines and the structure of the bridges, making them easier to raise and harder to bring down. The assaults started when the cables shot over the chasm, and ended when all bridges were destroyed. The Song Army, however, did not possess the war engines, and neither did they have a storied contingent of seasoned, crafty sappers to build them. They cut themselves from the other side of the chasm the moment they destroyed the original bridge that had connected Collarbone Plain to the Breastbone Reach in the past. That did not stop them today, though. While the pilgrims and the Sword Army clashed, the ash worms continued to crawl up the slopes of the chasm. Now that their bodies had already served their purpose and delivered the hidden army of puppets to the surface, they were free to move. The abominable creatures tangled with each other, fusing body to body with the help of their circular suckers. The seething mass of ashen flesh reached across the dark abyss, while more worms crawled across its surface to extend it further.</p>
 <p class="chapter-paragraph">There was one slithering tendril of ash worms rising from the eastern slope of the chasm and stretching west, and another rising from the western slope of the chasm, right below the gates of the great fortress, and stretching east. The two met above the darkness of the chasm, and merged together. Just then, the towering gates of the Greater Crossing Stronghold opened. Human soldiers poured from inside, followed by the thralls of Beastmaster. The Nightmare Creatures were used as beasts of burden, hauling fragments of the dismantled wall behind them. The soldiers were military engineers — while the Song Army did not have as many sappers, it did have some, even if they were not as skilled and ingenious as their counterparts in the enemy camp.</p>
 <p class="chapter-paragraph">The sappers laid the lumber that had once comprised the proud walls of the impregnable fortress atop the mass of ash worm puppets, swiftly turning it into the deck of a great bridge.</p>
@@ -129,6 +134,19 @@
             </div>
         </div>
     </div>
+    <div id="comment-modal" class="modal" style="display: none;">
+        <div class="modal-content">
+            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1rem;">
+                <h3>Add Comment</h3>
+                <button class="close-btn" onclick="document.getElementById('comment-modal').style.display = 'none';">&times;</button>
+            </div>
+            <textarea id="comment-text" placeholder="Write your comment..." style="width: 100%; min-height: 100px; padding: 0.75rem; background: var(--card-bg); border: 1px solid var(--border); color: var(--text); border-radius: var(--radius); font-family: inherit; margin-bottom: 1rem; resize: vertical;"></textarea>
+            <button id="submit-comment-btn" class="btn" onclick="submitComment()">Post Comment</button>
+        </div>
+    </div>
+    <script src="https://www.gstatic.com/firebasejs/10.7.0/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.7.0/firebase-auth.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.7.0/firebase-firestore.js"></script>
     <script src="../js/main.js"></script>
 </body>
 </html>

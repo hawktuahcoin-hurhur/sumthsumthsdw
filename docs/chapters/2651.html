@@ -14,6 +14,11 @@
                 <a href="../chapter-list.html">📚 Chapters</a>
                 <a href="../login.html">💾 Save</a>
                 <a href="https://www.webnovel.com/book/shadow-slave_17505878106372705" target="_blank" rel="noopener">🔗 Official Webnovel</a>
+                <div id="auth-container" style="gap: 0.5rem;">
+                    <button id="login-btn" class="btn btn-sm" style="background: var(--secondary);">Sign In</button>
+                    <button id="logout-btn" class="btn btn-sm" style="background: var(--accent); display: none;">Sign Out</button>
+                    <span id="user-display" style="color: var(--text-light); font-size: 0.9rem; align-self: center;"></span>
+                </div>
             </div>
         </nav>
     </header>
@@ -42,7 +47,7 @@
             </div>
         </div>
         
-        <div class="chapter-content">
+        <div class="chapter-content" data-chapter="2651">
             <p class="chapter-paragraph">The Lighthouse was a place unlike any Sunny had ever seen, and it made him feel uncomfortable. The reason for his unease was simple — there were no shadows on the small island surrounding the great tower, and none within. There were clouds of vapor swirling around the Lighthouse, and that vapor was suffused by the brilliant silver light. Every tiny droplet of water was reflecting the radiance, making the light omnidirectional —which meant that there was nowhere on the island where light was absent, and therefore no place for shadows to nestle.</p>
 <p class="chapter-paragraph">So, Sunny could not use Shadow Step to travel there.</p>
 <p class="chapter-paragraph">This was a new kind of obstacle for him. In fact, Sunny had not even been aware that his powers could be suppressed this way, so he was quite stumped. Luckily, he still possessed the Shadow Lantern, so returning to the Night Garden was not going to be a problem — but they would still have to brave the dark waters washing the shores of the Eternal City to reach the Lighthouse.</p>
@@ -137,6 +142,19 @@
             </div>
         </div>
     </div>
+    <div id="comment-modal" class="modal" style="display: none;">
+        <div class="modal-content">
+            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1rem;">
+                <h3>Add Comment</h3>
+                <button class="close-btn" onclick="document.getElementById('comment-modal').style.display = 'none';">&times;</button>
+            </div>
+            <textarea id="comment-text" placeholder="Write your comment..." style="width: 100%; min-height: 100px; padding: 0.75rem; background: var(--card-bg); border: 1px solid var(--border); color: var(--text); border-radius: var(--radius); font-family: inherit; margin-bottom: 1rem; resize: vertical;"></textarea>
+            <button id="submit-comment-btn" class="btn" onclick="submitComment()">Post Comment</button>
+        </div>
+    </div>
+    <script src="https://www.gstatic.com/firebasejs/10.7.0/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.7.0/firebase-auth.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.7.0/firebase-firestore.js"></script>
     <script src="../js/main.js"></script>
 </body>
 </html>

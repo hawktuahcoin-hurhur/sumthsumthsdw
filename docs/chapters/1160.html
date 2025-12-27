@@ -14,6 +14,11 @@
                 <a href="../chapter-list.html">📚 Chapters</a>
                 <a href="../login.html">💾 Save</a>
                 <a href="https://www.webnovel.com/book/shadow-slave_17505878106372705" target="_blank" rel="noopener">🔗 Official Webnovel</a>
+                <div id="auth-container" style="gap: 0.5rem;">
+                    <button id="login-btn" class="btn btn-sm" style="background: var(--secondary);">Sign In</button>
+                    <button id="logout-btn" class="btn btn-sm" style="background: var(--accent); display: none;">Sign Out</button>
+                    <span id="user-display" style="color: var(--text-light); font-size: 0.9rem; align-self: center;"></span>
+                </div>
             </div>
         </nav>
     </header>
@@ -42,7 +47,7 @@
             </div>
         </div>
         
-        <div class="chapter-content">
+        <div class="chapter-content" data-chapter="1160">
             <p class="chapter-paragraph">They ended up spending three idle days on the Shipwreck Island. It had long been cleansed of the feral Sailor Dolls by the Fire Keepers, and no new Nightmare Creatures made it their home since. The five Masters remained on the island when it was low, and sought shelter on the flying ship when it rose high enough to become affected by the Crushing.</p>
 <p class="chapter-paragraph">Imp was devouring the steel colossus with startling speed while they rested and relaxed. Sunny had not had an opportunity to truly let go of his worries in a long, long time, so this change of pace was most welcome. Vacationing in the Dream Realm was not really one's idea of fun, but they made the most of it.</p>
 <p class="chapter-paragraph">Effie seemed to have regained her appetite, although she was still being picky about her food - it seemed that the military rations had left an unforgettable impression on the gluttonous huntress. As a result, the mountain of snacks she had brought over from the waking world was disappearing at a slower pace than the husk of the Sun Prince. She even shared some with the rest of them, which was both pleasant and a huge shock.</p>
@@ -117,6 +122,19 @@
             </div>
         </div>
     </div>
+    <div id="comment-modal" class="modal" style="display: none;">
+        <div class="modal-content">
+            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1rem;">
+                <h3>Add Comment</h3>
+                <button class="close-btn" onclick="document.getElementById('comment-modal').style.display = 'none';">&times;</button>
+            </div>
+            <textarea id="comment-text" placeholder="Write your comment..." style="width: 100%; min-height: 100px; padding: 0.75rem; background: var(--card-bg); border: 1px solid var(--border); color: var(--text); border-radius: var(--radius); font-family: inherit; margin-bottom: 1rem; resize: vertical;"></textarea>
+            <button id="submit-comment-btn" class="btn" onclick="submitComment()">Post Comment</button>
+        </div>
+    </div>
+    <script src="https://www.gstatic.com/firebasejs/10.7.0/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.7.0/firebase-auth.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.7.0/firebase-firestore.js"></script>
     <script src="../js/main.js"></script>
 </body>
 </html>

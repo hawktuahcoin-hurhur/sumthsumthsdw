@@ -14,6 +14,11 @@
                 <a href="../chapter-list.html">📚 Chapters</a>
                 <a href="../login.html">💾 Save</a>
                 <a href="https://www.webnovel.com/book/shadow-slave_17505878106372705" target="_blank" rel="noopener">🔗 Official Webnovel</a>
+                <div id="auth-container" style="gap: 0.5rem;">
+                    <button id="login-btn" class="btn btn-sm" style="background: var(--secondary);">Sign In</button>
+                    <button id="logout-btn" class="btn btn-sm" style="background: var(--accent); display: none;">Sign Out</button>
+                    <span id="user-display" style="color: var(--text-light); font-size: 0.9rem; align-self: center;"></span>
+                </div>
             </div>
         </nav>
     </header>
@@ -42,7 +47,7 @@
             </div>
         </div>
         
-        <div class="chapter-content">
+        <div class="chapter-content" data-chapter="1178">
             <p class="chapter-paragraph">Although both clans were assembling their armies with urgent haste, it was not an easy thing to move a military force across East Antarctica. The wilderness was infested with countless abominations, and Nightmare Gates were everywhere, making every route slow and dangerous.</p>
 <p class="chapter-paragraph">Clan Valor was in a slightly better position because they had coincidentally pulled most of their forces together prior to Mordret's revelation, in order to destroy a migrating horde of Nightmare Creatures. Still, there were many warriors and assets that had been left behind in the siege capitals, who now had to join the main body of the great clan's contingent.</p>
 <p class="chapter-paragraph">There was Saint Tyris, for example... the fact that Dire Fang had been able to join Silent Stalker in ambushing Whispering Blade proved that she alone was not enough to contain the enemy Transcendent, so there was no point in keeping her in a distant government siege capital. So, Sky Tide had been recalled, and was en route to join the war party.</p>
@@ -138,6 +143,19 @@
             </div>
         </div>
     </div>
+    <div id="comment-modal" class="modal" style="display: none;">
+        <div class="modal-content">
+            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1rem;">
+                <h3>Add Comment</h3>
+                <button class="close-btn" onclick="document.getElementById('comment-modal').style.display = 'none';">&times;</button>
+            </div>
+            <textarea id="comment-text" placeholder="Write your comment..." style="width: 100%; min-height: 100px; padding: 0.75rem; background: var(--card-bg); border: 1px solid var(--border); color: var(--text); border-radius: var(--radius); font-family: inherit; margin-bottom: 1rem; resize: vertical;"></textarea>
+            <button id="submit-comment-btn" class="btn" onclick="submitComment()">Post Comment</button>
+        </div>
+    </div>
+    <script src="https://www.gstatic.com/firebasejs/10.7.0/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.7.0/firebase-auth.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.7.0/firebase-firestore.js"></script>
     <script src="../js/main.js"></script>
 </body>
 </html>

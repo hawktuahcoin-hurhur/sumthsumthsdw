@@ -14,6 +14,11 @@
                 <a href="../chapter-list.html">📚 Chapters</a>
                 <a href="../login.html">💾 Save</a>
                 <a href="https://www.webnovel.com/book/shadow-slave_17505878106372705" target="_blank" rel="noopener">🔗 Official Webnovel</a>
+                <div id="auth-container" style="gap: 0.5rem;">
+                    <button id="login-btn" class="btn btn-sm" style="background: var(--secondary);">Sign In</button>
+                    <button id="logout-btn" class="btn btn-sm" style="background: var(--accent); display: none;">Sign Out</button>
+                    <span id="user-display" style="color: var(--text-light); font-size: 0.9rem; align-self: center;"></span>
+                </div>
             </div>
         </nav>
     </header>
@@ -42,7 +47,7 @@
             </div>
         </div>
         
-        <div class="chapter-content">
+        <div class="chapter-content" data-chapter="1983">
             <p class="chapter-paragraph">In any case, Mordret could not eradicate them without resorting to extreme measures that would not only put him at great risk, but also result in dire losses among his vessels. And it was not time yet for that. So, eventually, he chose to retreat. Watching the grotesque leviathans resurface and swim away, Morgan exhaled tiredly and leaned on her sword. They had not won, exactly... but had not lost, either. It was a reason to celebrate, and yet she was not in a festive mood.</p>
 <p class="chapter-paragraph">She knew that this first battle was merely the beginning. The battle for Bastion had not ended, it was just starting... of course, its nature would change after tonight's bloodshed. It would become a war of attrition. ...And it had. There had been many battles since then. Morgan and her Saints held the ruins of the castle, while Mordret settled in the forest. He had to battle the Nightmare Creatures dwelling there constantly — which was a boon for Morgan, since his vessels had already been damaged during the assaults on the ruins, and were now being worn down further by the endless onslaught of abominations. But it was also a curse, because the same Nightmare Creatures would be then taken by her brother and sent to wear the defenders of the castle down, in turn. If there was one mercy, it was that he seemed reluctant to control more bodies than he already controlled. Therefore, if the Nightmare Creatures attacked, the Transcendent vessels of the Prince of Nothing were absent, and vice versa.</p>
 <p class="chapter-paragraph">Morgan just hoped that her brother was being drained and ground to dust by having to survive all these soul duels, just like the rest of them were being slowly battered to the ground. Athena's prodigious strength and Nightingale's startling archery skill were of immense help in the battles against the taken forest dwellers, while Soul Reaper and the Saints of Night were indispensable when battling the human vessels of her brother. Morgan herself had long abandoned caution and went all-out in every battle as well. Her Aspect was both formidable and versatile, as was her Transcendent Ability. Therefore, she was a devastating presence on the battlefield no matter what enemies they faced. Somehow, they survived a week of the siege, and then another. In the process, her brother had attempted to sneakily circle around Bastion and stage an attack on the Citadels of the Sword Domain located deeper inland. In response, Morgan and Saint Kai launch an attack on Night Garden, almost managing to claim it before falling into a trap set for them there by Mordret. That trap was the being he had left to guard the beached Great Citadel... a single Reflection of his, which would not usually pose a real threat to two Saints as powerful as Morgan and Kai were...</p>
@@ -103,6 +108,19 @@
             </div>
         </div>
     </div>
+    <div id="comment-modal" class="modal" style="display: none;">
+        <div class="modal-content">
+            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1rem;">
+                <h3>Add Comment</h3>
+                <button class="close-btn" onclick="document.getElementById('comment-modal').style.display = 'none';">&times;</button>
+            </div>
+            <textarea id="comment-text" placeholder="Write your comment..." style="width: 100%; min-height: 100px; padding: 0.75rem; background: var(--card-bg); border: 1px solid var(--border); color: var(--text); border-radius: var(--radius); font-family: inherit; margin-bottom: 1rem; resize: vertical;"></textarea>
+            <button id="submit-comment-btn" class="btn" onclick="submitComment()">Post Comment</button>
+        </div>
+    </div>
+    <script src="https://www.gstatic.com/firebasejs/10.7.0/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.7.0/firebase-auth.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.7.0/firebase-firestore.js"></script>
     <script src="../js/main.js"></script>
 </body>
 </html>

@@ -14,6 +14,11 @@
                 <a href="../chapter-list.html">📚 Chapters</a>
                 <a href="../login.html">💾 Save</a>
                 <a href="https://www.webnovel.com/book/shadow-slave_17505878106372705" target="_blank" rel="noopener">🔗 Official Webnovel</a>
+                <div id="auth-container" style="gap: 0.5rem;">
+                    <button id="login-btn" class="btn btn-sm" style="background: var(--secondary);">Sign In</button>
+                    <button id="logout-btn" class="btn btn-sm" style="background: var(--accent); display: none;">Sign Out</button>
+                    <span id="user-display" style="color: var(--text-light); font-size: 0.9rem; align-self: center;"></span>
+                </div>
             </div>
         </nav>
     </header>
@@ -42,7 +47,7 @@
             </div>
         </div>
         
-        <div class="chapter-content">
+        <div class="chapter-content" data-chapter="1981">
             <p class="chapter-paragraph">There was no way to defend Bastion from the Prince of Nothing — not the city on the shores of the Mirror Lake, certainly, and most likely not even the castle itself. As a strategist, Morgan was quite adept at evaluating both the strength of the enemy and that of her own — therefore, she knew that her side was lacking. Achieving victory did not seem like a realistic outcome. It was very likely that she had not been sent here to achieve victory, to begin with. Buying her father enough time to defeat Ki Song seemed far more likely of a purpose. So, Morgan had done two things after returning to Bastion from Rivergate. First, she had claimed the Citadel for herself to gain control over it. Second, she went to a vast underground chamber hidden deep below the castle, in the heart of a stone maze very few people knew existed, and even fewer still were allowed to enter. There, a great mirror stood, towering above the floor at dozens of meters in height. Its frame was composed of two immense stone pillars, and it was covered entirely by black cloth, reflecting nothing.</p>
 <p class="chapter-paragraph">Morgan hesitated for a few moments, then took a deep breath and pulled the cloth down. It flowed to the floor like a black waterfall, revealing the dark edifice of the ancient mirror. The vast underground chamber was drowning in darkness, so one would have expected to see nothing reflecting in the great mirror. However, instead, pale moonlight poured out of it, illuminating Morgan's pale face. Inside the mirror, a devastated version of Bastion seemed to be drifting in the beautiful night sky. Countless stars shone on the surface of the still water, made pale and bleak by the radiant shards of the broken moon. Dreadful beings hid in the cold lake, and there was no city on the distant shore. Instead, an ancient forest stood where the city should have been, teeming with harrowing beasts. That was the true face of Bastion. And, unlike the illusory one humans of the waking world had inhabited, it was a place that Morgan could defend. So, taking another breath, she closed her eyes, concentrated on her connection to the Great Citadel... And made reality and illusion switch places. Soon, a sunlit city that sprawled on the shore of a beautiful lake was reflecting in the dark mirror, instead, seen from the walls of an immense and magnificent castle. She sighed, gritted her teeth tightly, and used her authority over the Citadel to break free of the illusion.</p>
 <p class="chapter-paragraph">A moment later, Morgan disappeared from the underground chamber and found herself standing in a ruined hall with a tall dais and crumbled dome. There was no sunlight here, but the eerie scene was bathed in moonlight.</p>
@@ -111,6 +116,19 @@
             </div>
         </div>
     </div>
+    <div id="comment-modal" class="modal" style="display: none;">
+        <div class="modal-content">
+            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1rem;">
+                <h3>Add Comment</h3>
+                <button class="close-btn" onclick="document.getElementById('comment-modal').style.display = 'none';">&times;</button>
+            </div>
+            <textarea id="comment-text" placeholder="Write your comment..." style="width: 100%; min-height: 100px; padding: 0.75rem; background: var(--card-bg); border: 1px solid var(--border); color: var(--text); border-radius: var(--radius); font-family: inherit; margin-bottom: 1rem; resize: vertical;"></textarea>
+            <button id="submit-comment-btn" class="btn" onclick="submitComment()">Post Comment</button>
+        </div>
+    </div>
+    <script src="https://www.gstatic.com/firebasejs/10.7.0/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.7.0/firebase-auth.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.7.0/firebase-firestore.js"></script>
     <script src="../js/main.js"></script>
 </body>
 </html>

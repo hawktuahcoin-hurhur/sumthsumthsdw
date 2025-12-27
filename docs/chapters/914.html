@@ -14,6 +14,11 @@
                 <a href="../chapter-list.html">📚 Chapters</a>
                 <a href="../login.html">💾 Save</a>
                 <a href="https://www.webnovel.com/book/shadow-slave_17505878106372705" target="_blank" rel="noopener">🔗 Official Webnovel</a>
+                <div id="auth-container" style="gap: 0.5rem;">
+                    <button id="login-btn" class="btn btn-sm" style="background: var(--secondary);">Sign In</button>
+                    <button id="logout-btn" class="btn btn-sm" style="background: var(--accent); display: none;">Sign Out</button>
+                    <span id="user-display" style="color: var(--text-light); font-size: 0.9rem; align-self: center;"></span>
+                </div>
             </div>
         </nav>
     </header>
@@ -42,7 +47,7 @@
             </div>
         </div>
         
-        <div class="chapter-content">
+        <div class="chapter-content" data-chapter="914">
             <p class="chapter-paragraph">In the end, they stayed in the derelict bunker for three days. The vehicles of the convoy had turned out to be in a worse state than Sunny had thought, so it took a lot of work for Kim and Samara to get them in shape with Quentin's help. The patchwork repairs they implemented were not pretty, but at least the transports were not going to fall apart on the road, stranding dozens of refugees and bringing the convoy to a halting stop.</p>
 <p class="chapter-paragraph">In the freezing cold of the polar night, stopping meant death. That was without even considering the swarms of Nightmare Creatures prowling in the dark... the world itself was more than happy to kill them.</p>
 <p class="chapter-paragraph">Throughout these few days, Sunny continued to monitor the surroundings and diligently updating his map. The four shadows spent a lot of time either climbing mountains or hiding on their icy summits. He knew for a fact that shadows did not experience getting cold... and yet, Sunny could not shake the feeling that the gazes they threw at him from time to time were less friendly than usual.</p>
@@ -132,6 +137,19 @@
             </div>
         </div>
     </div>
+    <div id="comment-modal" class="modal" style="display: none;">
+        <div class="modal-content">
+            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1rem;">
+                <h3>Add Comment</h3>
+                <button class="close-btn" onclick="document.getElementById('comment-modal').style.display = 'none';">&times;</button>
+            </div>
+            <textarea id="comment-text" placeholder="Write your comment..." style="width: 100%; min-height: 100px; padding: 0.75rem; background: var(--card-bg); border: 1px solid var(--border); color: var(--text); border-radius: var(--radius); font-family: inherit; margin-bottom: 1rem; resize: vertical;"></textarea>
+            <button id="submit-comment-btn" class="btn" onclick="submitComment()">Post Comment</button>
+        </div>
+    </div>
+    <script src="https://www.gstatic.com/firebasejs/10.7.0/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.7.0/firebase-auth.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.7.0/firebase-firestore.js"></script>
     <script src="../js/main.js"></script>
 </body>
 </html>

@@ -14,6 +14,11 @@
                 <a href="../chapter-list.html">📚 Chapters</a>
                 <a href="../login.html">💾 Save</a>
                 <a href="https://www.webnovel.com/book/shadow-slave_17505878106372705" target="_blank" rel="noopener">🔗 Official Webnovel</a>
+                <div id="auth-container" style="gap: 0.5rem;">
+                    <button id="login-btn" class="btn btn-sm" style="background: var(--secondary);">Sign In</button>
+                    <button id="logout-btn" class="btn btn-sm" style="background: var(--accent); display: none;">Sign Out</button>
+                    <span id="user-display" style="color: var(--text-light); font-size: 0.9rem; align-self: center;"></span>
+                </div>
             </div>
         </nav>
     </header>
@@ -42,7 +47,7 @@
             </div>
         </div>
         
-        <div class="chapter-content">
+        <div class="chapter-content" data-chapter="2554">
             <p class="chapter-paragraph">Sunny had been able to sense what his other incarnations were doing in Mirage City. Similarly, his other incarnations had been spectators of his strange adventure — therefore, the information shared by Mordret reached Nephis and Cassie almost immediately after he himself received it.</p>
 <p class="chapter-paragraph">The news of a supposedly immediate threat posed by Asterion was not a great shock, even if they had to reevaluate how dangerous he truly was. In truth, both Sunny and Nephis had a feeling that they would have to confront the third Sovereign sooner or later, so they had taken steps to prepare for his eventual emergence.</p>
 <p class="chapter-paragraph">Mordret's warning came mere days before their own network caught the traces of the Dreamspawn — in fact, if not for the chaos caused by the winter solstice, they would have received the report containing the first clues even earlier. But now that they knew what they were looking for, the investigation had been accelerated.</p>
@@ -144,6 +149,19 @@ Cassie faced them then, and said in a grave tone: "It's a pandemic."</p>
             </div>
         </div>
     </div>
+    <div id="comment-modal" class="modal" style="display: none;">
+        <div class="modal-content">
+            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1rem;">
+                <h3>Add Comment</h3>
+                <button class="close-btn" onclick="document.getElementById('comment-modal').style.display = 'none';">&times;</button>
+            </div>
+            <textarea id="comment-text" placeholder="Write your comment..." style="width: 100%; min-height: 100px; padding: 0.75rem; background: var(--card-bg); border: 1px solid var(--border); color: var(--text); border-radius: var(--radius); font-family: inherit; margin-bottom: 1rem; resize: vertical;"></textarea>
+            <button id="submit-comment-btn" class="btn" onclick="submitComment()">Post Comment</button>
+        </div>
+    </div>
+    <script src="https://www.gstatic.com/firebasejs/10.7.0/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.7.0/firebase-auth.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.7.0/firebase-firestore.js"></script>
     <script src="../js/main.js"></script>
 </body>
 </html>

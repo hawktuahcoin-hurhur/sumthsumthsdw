@@ -14,6 +14,11 @@
                 <a href="../chapter-list.html">📚 Chapters</a>
                 <a href="../login.html">💾 Save</a>
                 <a href="https://www.webnovel.com/book/shadow-slave_17505878106372705" target="_blank" rel="noopener">🔗 Official Webnovel</a>
+                <div id="auth-container" style="gap: 0.5rem;">
+                    <button id="login-btn" class="btn btn-sm" style="background: var(--secondary);">Sign In</button>
+                    <button id="logout-btn" class="btn btn-sm" style="background: var(--accent); display: none;">Sign Out</button>
+                    <span id="user-display" style="color: var(--text-light); font-size: 0.9rem; align-self: center;"></span>
+                </div>
             </div>
         </nav>
     </header>
@@ -42,7 +47,7 @@
             </div>
         </div>
         
-        <div class="chapter-content">
+        <div class="chapter-content" data-chapter="2403">
             <p class="chapter-paragraph">On the slope above Sunny, Condemnation was absorbing the strands of silk into the vastness of its tenebrous body. The mighty black tendrils binding its limbs had already been assimilated, tearing as the towering giant broke free of their hold.</p>
 <p class="chapter-paragraph">So were the lower segments of the Puppeteer's legs - four of its legs, at least, which had been thrust into Condemnation's chest. The giant moth let out a peculiar clicking sound as its limbs snapped, rivers of eerie black ichor flowing out of the awful wounds like a tide. Everywhere the drops of dark liquid fell, the slope of the mountain itself seethed and boiled, giving birth to monstrous apparitions.</p>
 <p class="chapter-paragraph">Losing its purchase on the body of Condemnation, the detestable moth should have plummeted down from a great height. However, instead, it was flattened against the towering shade's titanic chest, slowly drowning in it, as if attracted by the pull of an irresistible force.</p>
@@ -144,6 +149,19 @@
             </div>
         </div>
     </div>
+    <div id="comment-modal" class="modal" style="display: none;">
+        <div class="modal-content">
+            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1rem;">
+                <h3>Add Comment</h3>
+                <button class="close-btn" onclick="document.getElementById('comment-modal').style.display = 'none';">&times;</button>
+            </div>
+            <textarea id="comment-text" placeholder="Write your comment..." style="width: 100%; min-height: 100px; padding: 0.75rem; background: var(--card-bg); border: 1px solid var(--border); color: var(--text); border-radius: var(--radius); font-family: inherit; margin-bottom: 1rem; resize: vertical;"></textarea>
+            <button id="submit-comment-btn" class="btn" onclick="submitComment()">Post Comment</button>
+        </div>
+    </div>
+    <script src="https://www.gstatic.com/firebasejs/10.7.0/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.7.0/firebase-auth.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.7.0/firebase-firestore.js"></script>
     <script src="../js/main.js"></script>
 </body>
 </html>

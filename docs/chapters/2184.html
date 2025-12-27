@@ -14,6 +14,11 @@
                 <a href="../chapter-list.html">📚 Chapters</a>
                 <a href="../login.html">💾 Save</a>
                 <a href="https://www.webnovel.com/book/shadow-slave_17505878106372705" target="_blank" rel="noopener">🔗 Official Webnovel</a>
+                <div id="auth-container" style="gap: 0.5rem;">
+                    <button id="login-btn" class="btn btn-sm" style="background: var(--secondary);">Sign In</button>
+                    <button id="logout-btn" class="btn btn-sm" style="background: var(--accent); display: none;">Sign Out</button>
+                    <span id="user-display" style="color: var(--text-light); font-size: 0.9rem; align-self: center;"></span>
+                </div>
             </div>
         </nav>
     </header>
@@ -42,7 +47,7 @@
             </div>
         </div>
         
-        <div class="chapter-content">
+        <div class="chapter-content" data-chapter="2184">
             <p class="chapter-paragraph">After some time, the Nightmare Creature landed. Cassie was in such a poor state that she almost rolled off its carapace — luckily, Seishan extended a hand to catch her. As they descended from the beast's back, Cassie could feel the solid surface of the ancient bone under her feet once more. The bone was the same, and the heat was the same... but the wind was different. That was because they weren't on the First Rib anymore, and thus were not shielded from the winds rolling down the slopes of the Hollow Mountains anymore. They had arrived on the Collarbone Plain. The Great Crossing Stronghold — and the Queen of Worms — had to be close now. Which meant that this could very well be Cassie's last chance to talk to Seishan. However, she remained silent, knowing that being too obvious would only be harmful. The seeds she wanted to plant had already been planted... the soil was already made rich by the senseless war. Now, all she had to do was wait for the rains to come, and see the seeds she had sown sprout to life. ...Hopefully. Another reason why Cassie remained silent was that, soon enough, they were surrounded by the sound of steps. She shivered, suddenly overcome by an eerie sense of incongruity... because those steps sounded like they were made by humans, and yet, there were no other subtle sounds that humans always made to accompany them. No breathing. No heartbeat. No rustle of clothes or scraping of armor from the small gestures people usually made. 'Pilgrims.'</p>
 <p class="chapter-paragraph">Dozens of pilgrims gathered around them, serving as a silent escort.</p>
 <p class="chapter-paragraph">Surrounded by the dead from all sides, Cassie was led across the bone plain by Seishan. Step. Step. Another step. Her chains rattled quietly. Soon enough, a nearly overwhelming sea of sounds and smells washed over her, and Cassie realized that they were nearing the Greater Crossing Stronghold.</p>
@@ -125,6 +130,19 @@
             </div>
         </div>
     </div>
+    <div id="comment-modal" class="modal" style="display: none;">
+        <div class="modal-content">
+            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1rem;">
+                <h3>Add Comment</h3>
+                <button class="close-btn" onclick="document.getElementById('comment-modal').style.display = 'none';">&times;</button>
+            </div>
+            <textarea id="comment-text" placeholder="Write your comment..." style="width: 100%; min-height: 100px; padding: 0.75rem; background: var(--card-bg); border: 1px solid var(--border); color: var(--text); border-radius: var(--radius); font-family: inherit; margin-bottom: 1rem; resize: vertical;"></textarea>
+            <button id="submit-comment-btn" class="btn" onclick="submitComment()">Post Comment</button>
+        </div>
+    </div>
+    <script src="https://www.gstatic.com/firebasejs/10.7.0/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.7.0/firebase-auth.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.7.0/firebase-firestore.js"></script>
     <script src="../js/main.js"></script>
 </body>
 </html>

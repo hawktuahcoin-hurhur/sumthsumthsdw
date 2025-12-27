@@ -14,6 +14,11 @@
                 <a href="../chapter-list.html">📚 Chapters</a>
                 <a href="../login.html">💾 Save</a>
                 <a href="https://www.webnovel.com/book/shadow-slave_17505878106372705" target="_blank" rel="noopener">🔗 Official Webnovel</a>
+                <div id="auth-container" style="gap: 0.5rem;">
+                    <button id="login-btn" class="btn btn-sm" style="background: var(--secondary);">Sign In</button>
+                    <button id="logout-btn" class="btn btn-sm" style="background: var(--accent); display: none;">Sign Out</button>
+                    <span id="user-display" style="color: var(--text-light); font-size: 0.9rem; align-self: center;"></span>
+                </div>
             </div>
         </nav>
     </header>
@@ -42,7 +47,7 @@
             </div>
         </div>
         
-        <div class="chapter-content">
+        <div class="chapter-content" data-chapter="1883">
             <p class="chapter-paragraph">It took them four days to reach the designated area, which was a bit longer than Sunny had expected. His estimations had not accounted for the torrential flood that drowned the Hollows, turning the vast subterranean jungle into a darkly beautiful land of abundant rivers, deep lakes, and overgrown vermilion islands. Great pillars of pale light poured from above here and there, illuminating the wet foliage and the glistening surface of flowing water.</p>
 <p class="chapter-paragraph">The flooding had caused the entire ecosystem of the Hollows to come alive. Many weaker Nightmare Creatures were forced to flee their dens and lairs because of the flooding, migrating to elevated ground in search of safety — there were fearsome predators lurking in the water, having waited a long time for the chance to hunt and gorge themselves once again.</p>
 <p class="chapter-paragraph">However, the migrating abominations were easy prey for the stronger horrors who ruled the highlands, and many ended up devoured anyway. The Hollows were always a cruel place, but for these last few days, they had become a scene of unimaginable carnage. Rivers of blood were being spilled under the shroud of scarlet leaves, and terrible wails resounded from the. darkness without end.</p>
@@ -140,6 +145,19 @@
             </div>
         </div>
     </div>
+    <div id="comment-modal" class="modal" style="display: none;">
+        <div class="modal-content">
+            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1rem;">
+                <h3>Add Comment</h3>
+                <button class="close-btn" onclick="document.getElementById('comment-modal').style.display = 'none';">&times;</button>
+            </div>
+            <textarea id="comment-text" placeholder="Write your comment..." style="width: 100%; min-height: 100px; padding: 0.75rem; background: var(--card-bg); border: 1px solid var(--border); color: var(--text); border-radius: var(--radius); font-family: inherit; margin-bottom: 1rem; resize: vertical;"></textarea>
+            <button id="submit-comment-btn" class="btn" onclick="submitComment()">Post Comment</button>
+        </div>
+    </div>
+    <script src="https://www.gstatic.com/firebasejs/10.7.0/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.7.0/firebase-auth.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.7.0/firebase-firestore.js"></script>
     <script src="../js/main.js"></script>
 </body>
 </html>

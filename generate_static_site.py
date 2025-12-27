@@ -1896,7 +1896,11 @@ function showPopupBlocked() {{
     if (el) el.style.display = 'flex';
 }}
 
+let loginInProgress = false;
+
 function handleLogin() {{
+    if (loginInProgress) return;
+    
     try {{
         if (typeof firebase === 'undefined' || !firebase.auth) {{
             console.log('Firebase not ready yet');
@@ -1904,32 +1908,28 @@ function handleLogin() {{
             return;
         }}
 
-    // Open a first-party popup that performs redirect auth inside it.
-    // This avoids cases where the provider popup can't communicate back to this window.
-    const authUrl = window.location.pathname.includes('/chapters/')
-        ? new URL('../auth.html', window.location.href).toString()
-        : new URL('auth.html', window.location.href).toString();
+        loginInProgress = true;
+        const provider = new firebase.auth.GoogleAuthProvider();
+        provider.setCustomParameters({{ prompt: 'select_account' }});
 
-        pendingLoginSuccess = true;
-        const w = window.open(
-            authUrl,
-            'ssAuth',
-            'popup=yes,width=520,height=720,left=120,top=80'
-        );
-
-        if (!w) {{
-            // Popup blocked: do NOT redirect away; ask user to allow popups.
-            pendingLoginSuccess = false;
-            showPopupBlocked();
-            return;
-        }}
-
-        try {{
-            w.focus();
-        }} catch (e) {{ /* ignore */ }}
+        firebase.auth().signInWithPopup(provider)
+            .then((result) => {{
+                loginInProgress = false;
+                if (result && result.user) {{
+                    showLoginSuccess();
+                }}
+            }})
+            .catch((err) => {{
+                loginInProgress = false;
+                console.log('Auth error:', err && err.code, err && err.message);
+                // Only show popup-blocked for actual popup issues
+                if (err && (err.code === 'auth/popup-blocked' || err.code === 'auth/popup-closed-by-user')) {{
+                    showPopupBlocked();
+                }}
+            }});
     }} catch (e) {{
+        loginInProgress = false;
         console.log('Login error:', e && e.message ? e.message : String(e));
-        pendingLoginSuccess = false;
         showPopupBlocked();
     }}
 }}

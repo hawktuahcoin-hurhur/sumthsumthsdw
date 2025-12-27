@@ -12,28 +12,21 @@
             <a href="index.html" class="logo">📖 Shadow Slave</a>
             <div class="nav-links">
                 <a href="chapter-list.html">📚 Chapters</a>
-                <a href="login.html">💾 Save</a>
-                <a href="https://www.webnovel.com/book/shadow-slave_17505878106372705" target="_blank" rel="noopener">🔗 Official Webnovel</a>
-                <div id="auth-container" style="display: flex; align-items: center; gap: 0.5rem;">
-                    <button id="login-btn" class="btn btn-sm" style="background: var(--secondary);" onclick="handleLogin()">Sign In</button>
-                    <button id="profile-btn" class="btn btn-sm" style="background: var(--primary); display: none;" onclick="showProfile()">👤 Profile</button>
-                    <button id="logout-btn" class="btn btn-sm" style="background: var(--accent); display: none;" onclick="handleLogout()">Sign Out</button>
-                </div>
             </div>
         </nav>
     </header>
     <main>
-        
-    <div class="login-container" style="max-width: 520px;">
-        <h1>🔐 Signing you in…</h1>
-        <p style="color: var(--text-light); margin-top: 0.5rem;">
-            If this window doesn’t close automatically, finish the Google sign-in and return.
-        </p>
-        <div class="login-info" style="margin-top: 1.5rem;">
-            <p><strong>Tip:</strong> If you don’t see Google sign-in, allow popups for this site.</p>
+        <div class="login-container" style="max-width: 520px;">
+            <h1>🔐 Signing you in…</h1>
+            <p style="color: var(--text-light); margin-top: 0.5rem;">
+                If this window doesn't close automatically, finish the Google sign-in and return.
+            </p>
+            <div class="login-info" style="margin-top: 1.5rem;">
+                <p><strong>Tip:</strong> If you don't see Google sign-in, allow popups for this site.</p>
+            </div>
+            <button class="btn" style="margin-top: 1.5rem;" onclick="window.close()">Close</button>
         </div>
-        <button class="btn" style="margin-top: 1.5rem;" onclick="window.close()">Close</button>
-    </div>
+    </main>
 
     <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-app-compat.js"></script>
     <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-auth-compat.js"></script>
@@ -81,71 +74,5 @@
         });
     })();
     </script>
-    
-    </main>
-    
-    <div class="ai-chat-widget">
-        <button class="ai-chat-button" title="AI Assistant">🤖</button>
-        <div class="ai-chat-panel">
-            <div class="ai-chat-header">
-                <h3>🤖 Shadow Slave Guide</h3>
-                <button class="ai-chat-close">&times;</button>
-            </div>
-            <div class="ai-chat-messages"></div>
-            <div class="ai-chat-input">
-                <input type="text" placeholder="Ask about characters, terms...">
-                <button>Send</button>
-            </div>
-        </div>
-    </div>
-    <div id="comment-modal" class="modal" style="display: none;">
-        <div class="modal-content">
-            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1rem;">
-                <h3>Add Comment</h3>
-                <button class="close-btn" onclick="document.getElementById('comment-modal').style.display = 'none';">&times;</button>
-            </div>
-            <textarea id="comment-text" placeholder="Write your comment..." style="width: 100%; min-height: 100px; padding: 0.75rem; background: var(--card-bg); border: 1px solid var(--border); color: var(--text); border-radius: var(--radius); font-family: inherit; margin-bottom: 1rem; resize: vertical;"></textarea>
-            <button id="submit-comment-btn" class="btn" onclick="submitComment()">Post Comment</button>
-        </div>
-    </div>
-    <div id="profile-modal" class="modal" style="display: none;">
-        <div class="modal-content" style="text-align: center;">
-            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1.5rem;">
-                <h3>👤 Your Profile</h3>
-                <button class="close-btn" onclick="document.getElementById('profile-modal').style.display = 'none';">&times;</button>
-            </div>
-            <div id="profile-avatar" style="width: 80px; height: 80px; border-radius: 50%; background: var(--secondary); margin: 0 auto 1rem; display: flex; align-items: center; justify-content: center; font-size: 2rem;">👤</div>
-            <div id="profile-name" style="font-size: 1.25rem; font-weight: 600; margin-bottom: 0.5rem;"></div>
-            <div id="profile-email" style="color: var(--text-light); margin-bottom: 1.5rem;"></div>
-            <div style="background: rgba(255,255,255,0.05); padding: 1rem; border-radius: var(--radius); margin-bottom: 1.5rem;">
-                <div style="display: flex; justify-content: space-between; margin-bottom: 0.5rem;"><span>Chapters Read:</span><span id="profile-chapters">0</span></div>
-                <div style="display: flex; justify-content: space-between;"><span>Last Chapter:</span><span id="profile-last">None</span></div>
-            </div>
-            <button class="btn" style="background: var(--accent); width: 100%;" onclick="handleLogout(); document.getElementById('profile-modal').style.display = 'none';">Sign Out</button>
-        </div>
-    </div>
-    <div id="login-success-modal" class="modal" style="display: none;">
-        <div class="modal-content" style="text-align: center;">
-            <div style="font-size: 3rem; margin-bottom: 1rem;">✅</div>
-            <h3 style="margin-bottom: 0.5rem;">Welcome!</h3>
-            <p id="login-success-name" style="color: var(--text-light); margin-bottom: 1.5rem;"></p>
-            <p style="margin-bottom: 1.5rem;">You're now signed in. You can comment on chapters and your progress will be synced.</p>
-            <button class="btn" style="width: 100%;" onclick="document.getElementById('login-success-modal').style.display = 'none';">Continue Reading</button>
-        </div>
-    </div>
-    <div id="popup-blocked-modal" class="modal" style="display: none;">
-        <div class="modal-content" style="text-align: center;">
-            <div style="font-size: 3rem; margin-bottom: 1rem;">🪟</div>
-            <h3 style="margin-bottom: 0.5rem;">Allow popups to sign in</h3>
-            <p style="color: var(--text-light); margin-bottom: 1.25rem;">
-                Your browser blocked the sign-in popup. Please allow popups for this site, then try again.
-            </p>
-            <button class="btn" style="width: 100%;" onclick="document.getElementById('popup-blocked-modal').style.display = 'none';">OK</button>
-        </div>
-    </div>
-    <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-app-compat.js"></script>
-    <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-auth-compat.js"></script>
-    <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-firestore-compat.js"></script>
-    <script src="js/main.js"></script>
 </body>
 </html>

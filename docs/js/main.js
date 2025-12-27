@@ -2459,8 +2459,10 @@ const WikiSidebar = {
             }
             const preview = this.truncate(previewText, 100);
             
+            // Use single-quoted HTML attribute and JSON.stringify to safely handle apostrophes in item names.
+            const safeName = JSON.stringify(item.name);
             return `
-                <div class="wiki-item ${isNew ? 'new-this-chapter' : ''}" onclick="WikiSidebar.openModal('${item.name.replace(/'/g, "\'")}')">
+                <div class="wiki-item ${isNew ? 'new-this-chapter' : ''}" onclick='WikiSidebar.openModal(${safeName})'>
                     <h4>${item.name} ${newBadge || rankBadge || typeBadge || categoryBadge}</h4>
                     <div class="description-preview">${preview}</div>
                     <div class="click-hint">Click for more →</div>
@@ -2911,14 +2913,14 @@ function updateAuthUI() {
     if (!authContainer) return;
     
     if (currentUser) {
-        loginBtn.style.display = 'none';
+        if (loginBtn) loginBtn.style.display = 'none';
         if (profileBtn) profileBtn.style.display = 'block';
-        logoutBtn.style.display = 'block';
+        if (logoutBtn) logoutBtn.style.display = 'block';
         authContainer.style.display = 'flex';
     } else {
-        loginBtn.style.display = 'block';
+        if (loginBtn) loginBtn.style.display = 'block';
         if (profileBtn) profileBtn.style.display = 'none';
-        logoutBtn.style.display = 'none';
+        if (logoutBtn) logoutBtn.style.display = 'none';
     }
 }
 
@@ -2938,7 +2940,8 @@ function showProfile() {
         avatarEl.innerHTML = `<img src="${currentUser.photoURL}" style="width: 100%; height: 100%; border-radius: 50%; object-fit: cover;" />`;
     }
     
-    document.getElementById('profile-modal').style.display = 'flex';
+    const modal = document.getElementById('profile-modal');
+    if (modal) modal.style.display = 'flex';
 }
 
 function showLoginSuccess() {
@@ -2946,7 +2949,8 @@ function showLoginSuccess() {
     if (nameEl && currentUser) {
         nameEl.textContent = 'Hello, ' + (currentUser.displayName || currentUser.email.split('@')[0]) + '!';
     }
-    document.getElementById('login-success-modal').style.display = 'flex';
+    const modal = document.getElementById('login-success-modal');
+    if (modal) modal.style.display = 'flex';
 }
 
 function showPopupBlocked() {
@@ -2955,10 +2959,12 @@ function showPopupBlocked() {
 }
 
 function handleLogin() {
-    if (!firebase || !firebase.auth) {
-        console.log('Firebase not ready yet');
-        return;
-    }
+    try {
+        if (typeof firebase === 'undefined' || !firebase.auth) {
+            console.log('Firebase not ready yet');
+            showPopupBlocked();
+            return;
+        }
 
     // Open a first-party popup that performs redirect auth inside it.
     // This avoids cases where the provider popup can't communicate back to this window.
@@ -2966,23 +2972,28 @@ function handleLogin() {
         ? new URL('../auth.html', window.location.href).toString()
         : new URL('auth.html', window.location.href).toString();
 
-    pendingLoginSuccess = true;
-    const w = window.open(
-        authUrl,
-        'ssAuth',
-        'popup=yes,width=520,height=720,left=120,top=80'
-    );
+        pendingLoginSuccess = true;
+        const w = window.open(
+            authUrl,
+            'ssAuth',
+            'popup=yes,width=520,height=720,left=120,top=80'
+        );
 
-    if (!w) {
-        // Popup blocked: do NOT redirect away; ask user to allow popups.
+        if (!w) {
+            // Popup blocked: do NOT redirect away; ask user to allow popups.
+            pendingLoginSuccess = false;
+            showPopupBlocked();
+            return;
+        }
+
+        try {
+            w.focus();
+        } catch (e) { /* ignore */ }
+    } catch (e) {
+        console.log('Login error:', e && e.message ? e.message : String(e));
         pendingLoginSuccess = false;
         showPopupBlocked();
-        return;
     }
-
-    try {
-        w.focus();
-    } catch (e) { /* ignore */ }
 }
 
 async function handleLogout() {

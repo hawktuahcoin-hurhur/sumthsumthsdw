@@ -1397,8 +1397,10 @@ const WikiSidebar = {{
             }}
             const preview = this.truncate(previewText, 100);
             
+            // Use single-quoted HTML attribute and JSON.stringify to safely handle apostrophes in item names.
+            const safeName = JSON.stringify(item.name);
             return `
-                <div class="wiki-item ${{isNew ? 'new-this-chapter' : ''}}" onclick="WikiSidebar.openModal('${{item.name.replace(/'/g, "\\'")}}')">
+                <div class="wiki-item ${{isNew ? 'new-this-chapter' : ''}}" onclick='WikiSidebar.openModal(${{safeName}})'>
                     <h4>${{item.name}} ${{newBadge || rankBadge || typeBadge || categoryBadge}}</h4>
                     <div class="description-preview">${{preview}}</div>
                     <div class="click-hint">Click for more →</div>
@@ -1849,14 +1851,14 @@ function updateAuthUI() {{
     if (!authContainer) return;
     
     if (currentUser) {{
-        loginBtn.style.display = 'none';
+        if (loginBtn) loginBtn.style.display = 'none';
         if (profileBtn) profileBtn.style.display = 'block';
-        logoutBtn.style.display = 'block';
+        if (logoutBtn) logoutBtn.style.display = 'block';
         authContainer.style.display = 'flex';
     }} else {{
-        loginBtn.style.display = 'block';
+        if (loginBtn) loginBtn.style.display = 'block';
         if (profileBtn) profileBtn.style.display = 'none';
-        logoutBtn.style.display = 'none';
+        if (logoutBtn) logoutBtn.style.display = 'none';
     }}
 }}
 
@@ -1876,7 +1878,8 @@ function showProfile() {{
         avatarEl.innerHTML = `<img src="${{currentUser.photoURL}}" style="width: 100%; height: 100%; border-radius: 50%; object-fit: cover;" />`;
     }}
     
-    document.getElementById('profile-modal').style.display = 'flex';
+    const modal = document.getElementById('profile-modal');
+    if (modal) modal.style.display = 'flex';
 }}
 
 function showLoginSuccess() {{
@@ -1884,7 +1887,8 @@ function showLoginSuccess() {{
     if (nameEl && currentUser) {{
         nameEl.textContent = 'Hello, ' + (currentUser.displayName || currentUser.email.split('@')[0]) + '!';
     }}
-    document.getElementById('login-success-modal').style.display = 'flex';
+    const modal = document.getElementById('login-success-modal');
+    if (modal) modal.style.display = 'flex';
 }}
 
 function showPopupBlocked() {{
@@ -1893,10 +1897,12 @@ function showPopupBlocked() {{
 }}
 
 function handleLogin() {{
-    if (!firebase || !firebase.auth) {{
-        console.log('Firebase not ready yet');
-        return;
-    }}
+    try {{
+        if (typeof firebase === 'undefined' || !firebase.auth) {{
+            console.log('Firebase not ready yet');
+            showPopupBlocked();
+            return;
+        }}
 
     // Open a first-party popup that performs redirect auth inside it.
     // This avoids cases where the provider popup can't communicate back to this window.
@@ -1904,23 +1910,28 @@ function handleLogin() {{
         ? new URL('../auth.html', window.location.href).toString()
         : new URL('auth.html', window.location.href).toString();
 
-    pendingLoginSuccess = true;
-    const w = window.open(
-        authUrl,
-        'ssAuth',
-        'popup=yes,width=520,height=720,left=120,top=80'
-    );
+        pendingLoginSuccess = true;
+        const w = window.open(
+            authUrl,
+            'ssAuth',
+            'popup=yes,width=520,height=720,left=120,top=80'
+        );
 
-    if (!w) {{
-        // Popup blocked: do NOT redirect away; ask user to allow popups.
+        if (!w) {{
+            // Popup blocked: do NOT redirect away; ask user to allow popups.
+            pendingLoginSuccess = false;
+            showPopupBlocked();
+            return;
+        }}
+
+        try {{
+            w.focus();
+        }} catch (e) {{ /* ignore */ }}
+    }} catch (e) {{
+        console.log('Login error:', e && e.message ? e.message : String(e));
         pendingLoginSuccess = false;
         showPopupBlocked();
-        return;
     }}
-
-    try {{
-        w.focus();
-    }} catch (e) {{ /* ignore */ }}
 }}
 
 async function handleLogout() {{
@@ -2174,9 +2185,9 @@ def get_base_template():
     <div id="popup-blocked-modal" class="modal" style="display: none;">
         <div class="modal-content" style="text-align: center;">
             <div style="font-size: 3rem; margin-bottom: 1rem;">🪟</div>
-            <h3 style="margin-bottom: 0.5rem;">Allow popups to sign in</h3>
+            <h3 style="margin-bottom: 0.5rem;">Sign-in couldn’t start</h3>
             <p style="color: var(--text-light); margin-bottom: 1.25rem;">
-                Your browser blocked the sign-in popup. Please allow popups for this site, then try again.
+                If your browser blocked the sign-in popup, allow popups for this site and try again.
             </p>
             <button class="btn" style="width: 100%;" onclick="document.getElementById('popup-blocked-modal').style.display = 'none';">OK</button>
         </div>
@@ -2390,6 +2401,91 @@ def generate_auth_popup():
     </script>
     '''
 
+def generate_auth_popup_standalone():
+    """
+    Returns a COMPLETE standalone HTML page for auth.html.
+    This is NOT wrapped by render() because we need a minimal page
+    without main.js or duplicate Firebase scripts.
+    """
+    return '''<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sign In - Shadow Slave</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <header>
+        <nav>
+            <a href="index.html" class="logo">📖 Shadow Slave</a>
+            <div class="nav-links">
+                <a href="chapter-list.html">📚 Chapters</a>
+            </div>
+        </nav>
+    </header>
+    <main>
+        <div class="login-container" style="max-width: 520px;">
+            <h1>🔐 Signing you in…</h1>
+            <p style="color: var(--text-light); margin-top: 0.5rem;">
+                If this window doesn't close automatically, finish the Google sign-in and return.
+            </p>
+            <div class="login-info" style="margin-top: 1.5rem;">
+                <p><strong>Tip:</strong> If you don't see Google sign-in, allow popups for this site.</p>
+            </div>
+            <button class="btn" style="margin-top: 1.5rem;" onclick="window.close()">Close</button>
+        </div>
+    </main>
+
+    <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-auth-compat.js"></script>
+    <script>
+    (function () {
+        const FirebaseConfig = {
+            apiKey: "AIzaSyAx2KtNj6znY8ivypcV5fcQzeNzntevKMU",
+            authDomain: "shadowslaveread.firebaseapp.com",
+            projectId: "shadowslaveread",
+            storageBucket: "shadowslaveread.firebasestorage.app",
+            messagingSenderId: "956677381164",
+            appId: "1:956677381164:web:04832a90c7b82402cbc589"
+        };
+
+        try {
+            firebase.initializeApp(FirebaseConfig);
+        } catch (e) {
+            // ignore double-init
+        }
+
+        const provider = new firebase.auth.GoogleAuthProvider();
+        provider.setCustomParameters({ prompt: 'select_account' });
+
+        function signalSuccess() {
+            try {
+                if ('BroadcastChannel' in window) {
+                    new BroadcastChannel('ss-auth').postMessage({ type: 'login-success', t: Date.now() });
+                }
+            } catch (e) {}
+            try {
+                localStorage.setItem('ss-auth-event', JSON.stringify({ type: 'login-success', t: Date.now() }));
+            } catch (e) {}
+        }
+
+        firebase.auth().getRedirectResult().then((result) => {
+            if (result && result.user) {
+                signalSuccess();
+                setTimeout(() => window.close(), 250);
+                return;
+            }
+            // Start the redirect flow inside the popup.
+            return firebase.auth().signInWithRedirect(provider);
+        }).catch((err) => {
+            console.log('Auth popup error:', err && err.code, err && err.message);
+        });
+    })();
+    </script>
+</body>
+</html>'''
+
 def main():
     print("📚 Generating static site with Wiki Sidebar...")
     
@@ -2439,8 +2535,8 @@ def main():
     (OUTPUT_DIR / 'login.html').write_text(render('Save Progress - Shadow Slave', generate_login()))
     print("   ✓ login.html")
 
-    # Auth popup helper
-    (OUTPUT_DIR / 'auth.html').write_text(render('Sign In - Shadow Slave', generate_auth_popup()))
+    # Auth popup helper (standalone, no main.js)
+    (OUTPUT_DIR / 'auth.html').write_text(generate_auth_popup_standalone())
     print("   ✓ auth.html")
     
     # Chapters with sidebar

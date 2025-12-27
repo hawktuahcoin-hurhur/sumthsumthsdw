@@ -11,31 +11,36 @@
         "Devil of Antarctica",
         "Master Sunless"
       ],
-      "description": "The main protagonist. A frail orphan from the outskirts with pale skin and dark circles under his eyes. Awakens with the Shadow Slave Aspect, which grants him control over shadows, the ability to summon Shadow Echoes, and an ever-growing army of shadows. His Flaw 'Clear Conscience' means he cannot lie. Known for his cunning mind, dark humor, and survival instinct.",
+      "search_terms": [
+        "Sunny",
+        "Sunless",
+        "Lost from Light",
+        "Lord Shadow",
+        "Mongrel",
+        "Devil of Antarctica",
+        "Master Sunless"
+      ],
+      "description": "The main protagonist. An orphan from the outskirts who awakens with the Shadow Slave Aspect. His Flaw 'Clear Conscience' means he cannot lie.",
       "type": "protagonist",
       "aspect": "Shadow Slave",
-      "flaw": "Clear Conscience (Cannot Lie)",
+      "flaw": "Clear Conscience",
       "clan": "None",
       "rank_progression": [
         {
           "rank": "Sleeper",
-          "from_chapter": 1,
-          "description": "Marked by the Nightmare Spell"
+          "from_chapter": 1
         },
         {
           "rank": "Awakened",
-          "from_chapter": 351,
-          "description": "Survived the Forgotten Shore"
+          "from_chapter": 351
         },
         {
           "rank": "Ascended",
-          "from_chapter": 640,
-          "description": "Completed Second Nightmare in Kingdom of Hope"
+          "from_chapter": 640
         },
         {
           "rank": "Master",
-          "from_chapter": 751,
-          "description": "Known as Master Sunless, teaches at Academy"
+          "from_chapter": 751
         }
       ]
     },
@@ -45,39 +50,39 @@
       "aliases": [
         "Changing Star",
         "Neph",
-        "Princess of Valor",
         "Light Bringer"
       ],
-      "description": "A beautiful silver-haired girl with burning grey eyes from Clan Valor. Daughter of the Broken Sword. Her Aspect 'Changing Star' (later 'Light Bringer') allows her to ignite with inner fire that both empowers and harms her. Her Flaw 'Pristine Soul' means she must suffer to use her power. One of the most powerful Awakened of her generation.",
+      "search_terms": [
+        "Nephis",
+        "Changing Star",
+        "Neph",
+        "Light Bringer"
+      ],
+      "description": "A silver-haired girl from Clan Valor. Her Aspect allows her to ignite with inner fire. Her Flaw means she must suffer to use her power.",
       "type": "main",
-      "aspect": "Changing Star / Light Bringer",
-      "flaw": "Pristine Soul (Must suffer to use power)",
+      "aspect": "Changing Star",
+      "flaw": "Pristine Soul",
       "clan": "Valor",
       "rank_progression": [
         {
           "rank": "Sleeper",
-          "from_chapter": 24,
-          "description": "First encounter at the Academy"
+          "from_chapter": 24
         },
         {
           "rank": "Awakened",
-          "from_chapter": 351,
-          "description": "Survived the Forgotten Shore"
+          "from_chapter": 351
         },
         {
           "rank": "Ascended",
-          "from_chapter": 500,
-          "description": "Advanced through the Dream Realm"
+          "from_chapter": 500
         },
         {
           "rank": "Master",
-          "from_chapter": 1100,
-          "description": "Achieved Master rank"
+          "from_chapter": 1100
         },
         {
           "rank": "Saint",
-          "from_chapter": 1700,
-          "description": "Achieved legendary Saint rank"
+          "from_chapter": 1700
         }
       ]
     },
@@ -86,35 +91,35 @@
       "first_appearance": 36,
       "aliases": [
         "Cassia",
-        "The Oracle",
-        "Song's Prophetess",
         "Blind Oracle",
         "The Seer"
       ],
-      "description": "A blind girl with the gift of prophecy. Her visions of the future are terrifyingly accurate but come at great cost. Despite her gentle and kind nature, she carries heavy burdens and dark secrets. Uses a golden rope to guide herself. Later becomes associated with Clan Song.",
+      "search_terms": [
+        "Cassie",
+        "Cassia",
+        "blind girl",
+        "oracle"
+      ],
+      "description": "A blind girl with the gift of prophecy. Her visions are terrifyingly accurate. Later associated with Clan Song.",
       "type": "main",
       "aspect": "Oracle",
       "clan": "Song",
       "rank_progression": [
         {
           "rank": "Sleeper",
-          "from_chapter": 36,
-          "description": "Blind seer met on the Forgotten Shore"
+          "from_chapter": 36
         },
         {
           "rank": "Awakened",
-          "from_chapter": 351,
-          "description": "Survived alongside the cohort"
+          "from_chapter": 351
         },
         {
           "rank": "Ascended",
-          "from_chapter": 800,
-          "description": "Advanced with prophetic powers growing"
+          "from_chapter": 800
         },
         {
           "rank": "Master",
-          "from_chapter": 1132,
-          "description": "Reached Master rank with Clan Song"
+          "from_chapter": 1132
         }
       ]
     },
@@ -123,28 +128,28 @@
       "first_appearance": 115,
       "aliases": [
         "Nightingale",
-        "The Singer",
-        "The Charmer"
+        "The Singer"
       ],
-      "description": "A handsome young man with a beautiful singing voice and charming personality. Found trapped in a well on the Forgotten Shore. His Aspect 'Nightingale' gives his voice special powers. Despite his pleasant exterior, he harbors dark secrets about his past.",
+      "search_terms": [
+        "Kai",
+        "Nightingale"
+      ],
+      "description": "A handsome young man found in a well on the Forgotten Shore. His Aspect 'Nightingale' gives his voice special powers.",
       "type": "main",
       "aspect": "Nightingale",
       "clan": "None",
       "rank_progression": [
         {
           "rank": "Sleeper",
-          "from_chapter": 115,
-          "description": "Found in a well on the Forgotten Shore"
+          "from_chapter": 115
         },
         {
           "rank": "Awakened",
-          "from_chapter": 351,
-          "description": "Escaped the Forgotten Shore"
+          "from_chapter": 351
         },
         {
           "rank": "Ascended",
-          "from_chapter": 750,
-          "description": "Advanced rank"
+          "from_chapter": 750
         }
       ]
     },
@@ -156,30 +161,31 @@
         "Raised by Wolves",
         "The Glutton"
       ],
-      "description": "A fierce warrior with incredible physical strength and an even more incredible appetite. First encountered throwing a bone at Sunny in Dark City. Despite her brash and lazy exterior, she is fiercely loyal and surprisingly perceptive. One of Sunny's closest friends.",
+      "search_terms": [
+        "Effie",
+        "Athena",
+        "Raised by Wolves"
+      ],
+      "description": "A fierce warrior with incredible strength and appetite. First encountered in Dark City. One of Sunny's closest friends.",
       "type": "main",
       "aspect": "Raised by Wolves",
       "clan": "None",
       "rank_progression": [
         {
           "rank": "Sleeper",
-          "from_chapter": 126,
-          "description": "First encountered in Dark City tower"
+          "from_chapter": 126
         },
         {
           "rank": "Awakened",
-          "from_chapter": 351,
-          "description": "Survived with the cohort"
+          "from_chapter": 351
         },
         {
           "rank": "Ascended",
-          "from_chapter": 650,
-          "description": "Advanced rank"
+          "from_chapter": 650
         },
         {
           "rank": "Master",
-          "from_chapter": 1100,
-          "description": "Achieved Master rank"
+          "from_chapter": 1100
         }
       ]
     },
@@ -187,28 +193,26 @@
       "name": "Caster",
       "first_appearance": 21,
       "aliases": [
-        "The Quiet One",
         "Legacy of Song"
       ],
-      "description": "A Legacy from Clan Song who initially seems arrogant and calculating. Proved to be a capable leader during the Forgotten Shore. Has complicated relationships with the cohort and hidden depths.",
+      "search_terms": [
+        "Caster"
+      ],
+      "description": "A Legacy from Clan Song. Initially seems arrogant but proves to be a capable leader during the Forgotten Shore.",
       "type": "main",
-      "aspect": "Unknown",
       "clan": "Song",
       "rank_progression": [
         {
           "rank": "Sleeper",
-          "from_chapter": 21,
-          "description": "Met at the Academy as a Legacy"
+          "from_chapter": 21
         },
         {
           "rank": "Awakened",
-          "from_chapter": 351,
-          "description": "Survived the Forgotten Shore"
+          "from_chapter": 351
         },
         {
           "rank": "Ascended",
-          "from_chapter": 600,
-          "description": "Advanced with Clan Song resources"
+          "from_chapter": 600
         }
       ]
     },
@@ -216,27 +220,27 @@
       "name": "Rain",
       "first_appearance": 1,
       "aliases": [
-        "Sunny's Sister",
-        "Little Rain"
+        "Sunny's Sister"
       ],
-      "description": "Sunny's younger sister whom he desperately tries to protect. Living in the outskirts, she represents Sunny's main motivation for surviving. Her potential awakening becomes a major plot point.",
+      "search_terms": [
+        "Rain",
+        "sister"
+      ],
+      "description": "Sunny's younger sister. Living in the outskirts, she represents Sunny's main motivation for surviving.",
       "type": "main",
       "clan": "None",
       "rank_progression": [
         {
           "rank": "Human",
-          "from_chapter": 1,
-          "description": "Sunny's beloved younger sister in the outskirts"
+          "from_chapter": 1
         },
         {
           "rank": "Sleeper",
-          "from_chapter": 800,
-          "description": "Marked by the Nightmare Spell"
+          "from_chapter": 800
         },
         {
           "rank": "Awakened",
-          "from_chapter": 1000,
-          "description": "Survives her First Nightmare"
+          "from_chapter": 1000
         }
       ]
     },
@@ -244,23 +248,28 @@
       "name": "Shadow",
       "first_appearance": 2,
       "aliases": [
-        "The Rogue",
         "Sunny's Shadow",
         "Sentient Shadow"
       ],
-      "description": "Sunny's own shadow which gained sentience due to his Aspect. Mischievous and sometimes defiant, but ultimately loyal. Can act independently, shape-shift, and has its own distinct sarcastic personality.",
+      "search_terms": [
+        "shadow",
+        "his shadow"
+      ],
+      "description": "Sunny's own shadow which gained sentience. Mischievous and sometimes defiant, but ultimately loyal.",
       "type": "companion"
     },
     {
       "name": "Stone Saint",
       "first_appearance": 103,
       "aliases": [
-        "Saint",
-        "The Stone Saint",
-        "Shadow Saint",
-        "Silent Guardian"
+        "Saint"
       ],
-      "description": "Sunny's most powerful Echo. An ancient female Saint whose body turned to stone, she now serves as Sunny's primary combat shadow. Silent but deadly, she wields incredible power and is fiercely loyal.",
+      "search_terms": [
+        "Stone Saint",
+        "stone statue",
+        "stone woman"
+      ],
+      "description": "Sunny's most powerful Echo. An ancient female Saint whose body turned to stone, now serves as Sunny's primary combat shadow.",
       "type": "echo"
     },
     {
@@ -268,31 +277,13 @@
       "first_appearance": 358,
       "aliases": [
         "Serpent",
-        "The Serpent",
-        "Nightmare Serpent"
+        "The Serpent"
       ],
-      "description": "A massive serpentine creature that Sunny binds as an Echo. Once ruled the waters near the Forgotten Shore. Serves as transportation and a powerful ally in battle.",
-      "type": "echo"
-    },
-    {
-      "name": "Nightmare",
-      "first_appearance": 486,
-      "aliases": [
-        "The Steed",
-        "Shadow Horse",
-        "Dark Steed"
+      "search_terms": [
+        "Soul Serpent",
+        "Serpent"
       ],
-      "description": "A fearsome nightmare creature that becomes one of Sunny's shadow Echoes. A terrifying black steed that can traverse impossible terrain at incredible speeds.",
-      "type": "echo"
-    },
-    {
-      "name": "Fiend",
-      "first_appearance": 97,
-      "aliases": [
-        "Blood Fiend",
-        "The Demon"
-      ],
-      "description": "A terrifying Nightmare Creature that Sunny encounters and eventually binds. Known for its ferocity in combat.",
+      "description": "A massive serpentine creature that Sunny binds as an Echo. Serves as transportation and a powerful ally.",
       "type": "echo"
     },
     {
@@ -302,7 +293,12 @@
         "The Teacher",
         "Old Man"
       ],
-      "description": "An older slave during Sunny's First Nightmare in the Black Mountain. Appears kind and knowledgeable but is calculating. Teaches Sunny valuable lessons about trust and survival.",
+      "search_terms": [
+        "Scholar",
+        "old man",
+        "teacher"
+      ],
+      "description": "An older slave during Sunny's First Nightmare on the Black Mountain. Appears kind but calculating.",
       "type": "supporting"
     },
     {
@@ -311,7 +307,10 @@
       "aliases": [
         "The Thief"
       ],
-      "description": "A fellow slave during the First Nightmare. A cunning but unfortunate soul who meets a tragic end early in the story.",
+      "search_terms": [
+        "Shifty"
+      ],
+      "description": "A fellow slave during the First Nightmare. Meets a tragic end early in the story.",
       "type": "minor"
     },
     {
@@ -321,7 +320,11 @@
         "Auro",
         "Auro of the Nine"
       ],
-      "description": "A legendary Sleeper who fought valiantly during the First Nightmare on the Black Mountain. Sunny witnesses his heroic struggle against the Mountain King.",
+      "search_terms": [
+        "Hero",
+        "Auro"
+      ],
+      "description": "A legendary Sleeper who fought valiantly during the First Nightmare on the Black Mountain.",
       "type": "historical"
     },
     {
@@ -331,7 +334,11 @@
         "The Tyrant",
         "Black Mountain Tyrant"
       ],
-      "description": "A massive Nightmare Creature that rules the Black Mountain. The main antagonist of Sunny's First Nightmare. An Awakened-rank tyrant of terrifying power.",
+      "search_terms": [
+        "Mountain King",
+        "tyrant"
+      ],
+      "description": "A massive Nightmare Creature that rules the Black Mountain. The main antagonist of Sunny's First Nightmare.",
       "type": "creature"
     },
     {
@@ -339,16 +346,19 @@
       "first_appearance": 98,
       "aliases": [
         "The Host",
-        "Bright Lord",
-        "King of the Castle"
+        "Bright Lord"
       ],
-      "description": "The tyrannical ruler of the Bright Castle on the Forgotten Shore. Once a hero, corrupted by power and desperation. Maintains order through fear and an iron fist. His fall marks a major turning point.",
+      "search_terms": [
+        "Gunlaug",
+        "Bright Lord",
+        "Host"
+      ],
+      "description": "The tyrannical ruler of the Bright Castle on the Forgotten Shore. Maintains order through fear.",
       "type": "antagonist",
       "rank_progression": [
         {
           "rank": "Ascended",
-          "from_chapter": 98,
-          "description": "Tyrant ruler of Bright Castle"
+          "from_chapter": 98
         }
       ]
     },
@@ -356,10 +366,13 @@
       "name": "Harus",
       "first_appearance": 143,
       "aliases": [
-        "The Hunchback",
-        "Gunlaug's Advisor"
+        "The Hunchback"
       ],
-      "description": "Gunlaug's cunning advisor with a hunched back. Despite his unassuming appearance, he is dangerous and calculating. A master manipulator.",
+      "search_terms": [
+        "Harus",
+        "hunchback"
+      ],
+      "description": "Gunlaug's cunning advisor. Despite his unassuming appearance, he is dangerous and calculating.",
       "type": "antagonist"
     },
     {
@@ -368,7 +381,10 @@
       "aliases": [
         "The Huntress"
       ],
-      "description": "A skilled hunter from the Bright Castle who becomes an ally to Sunny's cohort. Brave and resourceful.",
+      "search_terms": [
+        "Gemma"
+      ],
+      "description": "A skilled hunter from the Bright Castle who becomes an ally to Sunny's cohort.",
       "type": "supporting"
     },
     {
@@ -377,7 +393,10 @@
       "aliases": [
         "The Healer"
       ],
-      "description": "A healer at the Bright Castle who helps Sunny and his companions. Compassionate despite the harsh circumstances.",
+      "search_terms": [
+        "Harper"
+      ],
+      "description": "A healer at the Bright Castle who helps Sunny and his companions.",
       "type": "supporting"
     },
     {
@@ -387,14 +406,17 @@
         "Soul Reaper",
         "Master Jet"
       ],
-      "description": "A powerful Master who becomes Sunny's mentor in the waking world. Cold and efficient in battle, but deeply cares for her students. Her Aspect 'Soul Reaper' makes her deadly. Teaches Sunny essential combat skills.",
+      "search_terms": [
+        "Jet",
+        "Soul Reaper"
+      ],
+      "description": "A powerful Master who becomes Sunny's mentor. Cold in battle but cares for her students.",
       "type": "mentor",
       "aspect": "Soul Reaper",
       "rank_progression": [
         {
           "rank": "Master",
-          "from_chapter": 17,
-          "description": "Government Master and combat instructor"
+          "from_chapter": 17
         }
       ]
     },
@@ -405,7 +427,11 @@
         "Julius",
         "The Professor"
       ],
-      "description": "An instructor at the Awakened Academy who teaches Sleepers about the Dream Realm and survival. Knowledgeable and somewhat eccentric.",
+      "search_terms": [
+        "Julius",
+        "Teacher Julius"
+      ],
+      "description": "An instructor at the Awakened Academy who teaches about the Dream Realm.",
       "type": "mentor"
     },
     {
@@ -414,22 +440,23 @@
       "aliases": [
         "Prince of Nothing",
         "Mirror Beast",
-        "The Reflection",
-        "The Lost Prince"
+        "The Reflection"
       ],
-      "description": "A terrifying and mysterious figure with the ability to possess bodies through reflections. One of the most dangerous beings Sunny encounters. Has connections to Clan Valor and a tragic past.",
+      "search_terms": [
+        "Mordret",
+        "Prince of Nothing"
+      ],
+      "description": "A terrifying figure with the ability to possess bodies through reflections. Has connections to Clan Valor.",
       "type": "antagonist",
       "aspect": "Reflection",
       "rank_progression": [
         {
           "rank": "Corrupted",
-          "from_chapter": 438,
-          "description": "First encountered, trapped and dangerous"
+          "from_chapter": 438
         },
         {
           "rank": "Saint",
-          "from_chapter": 1500,
-          "description": "Achieves Saint-level power"
+          "from_chapter": 1500
         }
       ]
     },
@@ -437,35 +464,18 @@
       "name": "Noctis",
       "first_appearance": 381,
       "aliases": [
-        "The Dark One",
         "Shadow Lord",
-        "Lord of Night",
-        "Shadow Sovereign"
+        "Lord of Night"
       ],
-      "description": "An ancient Sovereign connected to shadow powers. Has deep connections to Sunny's Aspect and the nature of shadows themselves. One of the most powerful beings in existence.",
+      "search_terms": [
+        "Noctis"
+      ],
+      "description": "An ancient Sovereign connected to shadow powers. Has deep connections to Sunny's Aspect.",
       "type": "legendary",
       "rank_progression": [
         {
           "rank": "Sovereign",
-          "from_chapter": 381,
-          "description": "One of the ancient god-like Sovereigns"
-        }
-      ]
-    },
-    {
-      "name": "Valor Matriarch",
-      "first_appearance": 223,
-      "aliases": [
-        "Matriarch",
-        "Lady of Valor"
-      ],
-      "description": "The powerful leader of Clan Valor. Nephis's grandmother and a key political figure among the Great Clans. Commands immense respect and power.",
-      "type": "supporting",
-      "rank_progression": [
-        {
-          "rank": "Saint",
-          "from_chapter": 223,
-          "description": "Leader of Clan Valor, one of the Seven Saints"
+          "from_chapter": 381
         }
       ]
     },
@@ -476,13 +486,15 @@
         "The Song Patriarch",
         "Lord Song"
       ],
-      "description": "The patriarch of Clan Song. A powerful figure who leads one of the Great Clans with wisdom and foresight.",
+      "search_terms": [
+        "Ki Song"
+      ],
+      "description": "The patriarch of Clan Song. A powerful figure who leads one of the Great Clans.",
       "type": "supporting",
       "rank_progression": [
         {
           "rank": "Saint",
-          "from_chapter": 367,
-          "description": "Leader of Clan Song"
+          "from_chapter": 367
         }
       ]
     },
@@ -490,16 +502,17 @@
       "name": "Whispering Blade",
       "first_appearance": 804,
       "aliases": [
-        "The Blade",
-        "Valor's Sword"
+        "The Blade"
       ],
-      "description": "A powerful Saint of Clan Valor. Known for his deadly blade techniques and unwavering loyalty to the clan.",
+      "search_terms": [
+        "Whispering Blade"
+      ],
+      "description": "A powerful Saint of Clan Valor. Known for deadly blade techniques.",
       "type": "supporting",
       "rank_progression": [
         {
           "rank": "Saint",
-          "from_chapter": 804,
-          "description": "One of Clan Valor's most powerful Saints"
+          "from_chapter": 804
         }
       ]
     },
@@ -507,10 +520,12 @@
       "name": "Broken Sword",
       "first_appearance": 27,
       "aliases": [
-        "Nephis's Father",
-        "Valor's Shame"
+        "Nephis's Father"
       ],
-      "description": "Nephis's father, a disgraced warrior of Clan Valor. His story is intertwined with Nephis's motivation and the clan's dark secrets.",
+      "search_terms": [
+        "Broken Sword"
+      ],
+      "description": "Nephis's father, a disgraced warrior of Clan Valor. His story is intertwined with Nephis's motivation.",
       "type": "historical"
     },
     {
@@ -518,59 +533,64 @@
       "first_appearance": 81,
       "aliases": [
         "The First Weaver",
-        "Creator",
         "Fate Weaver"
       ],
-      "description": "A primordial entity responsible for weaving the fundamental fabric of reality. Connected to fate, destiny, and the very structure of the Dream Realm. One of the most mysterious beings.",
+      "search_terms": [
+        "Weaver"
+      ],
+      "description": "A primordial entity responsible for weaving the fundamental fabric of reality. Connected to fate and destiny.",
       "type": "entity"
     },
     {
       "name": "Ananke",
       "first_appearance": 1284,
       "aliases": [
-        "The Weaver of Fate",
-        "Inevitability",
-        "The Riverborn Guide"
+        "Inevitability"
       ],
-      "description": "A mysterious entity associated with fate and inevitability. Encountered in the Tomb of Ariel. One of the most enigmatic beings in the Dream Realm.",
-      "type": "entity"
-    },
-    {
-      "name": "Hope",
-      "first_appearance": 455,
-      "aliases": [
-        "Demon of Hope",
-        "Demon of Imagination",
-        "Mirage",
-        "The Dreamer"
+      "search_terms": [
+        "Ananke"
       ],
-      "description": "A powerful Daemon who created the Kingdom of Hope. Known for creating illusions and imaginary constructs. Her story is one of tragedy and beauty.",
+      "description": "A mysterious entity associated with fate and inevitability. Encountered in the Tomb of Ariel.",
       "type": "entity"
     },
     {
       "name": "Sun God",
       "first_appearance": 353,
       "aliases": [
-        "Lord of Light",
-        "The Burning One"
+        "Lord of Light"
       ],
-      "description": "An ancient deity of immense power associated with light and fire. His wrath destroyed Hope's kingdom. One of the divine beings of the old world.",
+      "search_terms": [
+        "Sun God",
+        "Lord of Light"
+      ],
+      "description": "An ancient deity of immense power associated with light and fire. One of the divine beings of the old world.",
+      "type": "entity"
+    },
+    {
+      "name": "War God",
+      "first_appearance": 2,
+      "aliases": [],
+      "search_terms": [
+        "War God"
+      ],
+      "description": "An ancient deity associated with battle and conflict. Worshipped in ancient times.",
       "type": "entity"
     },
     {
       "name": "Dread Lord",
       "first_appearance": 1309,
       "aliases": [
-        "Lord of Dread",
         "The Tyrant of Twilight"
       ],
-      "description": "A powerful and fearsome ruler encountered in Twilight. Commands respect and fear from all who know of him. A major antagonist in the later story.",
+      "search_terms": [
+        "Dread Lord"
+      ],
+      "description": "A powerful ruler encountered in Twilight. Commands fear from all who know of him.",
       "type": "antagonist",
       "rank_progression": [
         {
           "rank": "Saint",
-          "from_chapter": 1309,
-          "description": "Powerful ruler of Twilight"
+          "from_chapter": 1309
         }
       ]
     },
@@ -578,28 +598,24 @@
       "name": "Soul Stealer",
       "first_appearance": 1309,
       "aliases": [
-        "The Thief of Souls"
+        "Thief of Souls"
       ],
-      "description": "A terrifying being with the power to steal souls. One of the major threats in the later story, found in Twilight.",
+      "search_terms": [
+        "Soul Stealer"
+      ],
+      "description": "A terrifying being with the power to steal souls. Found in Twilight.",
       "type": "antagonist"
     },
     {
       "name": "Undying Slaughter",
       "first_appearance": 1309,
       "aliases": [
-        "The Immortal Killer"
+        "The Immortal"
       ],
-      "description": "A fearsome being that cannot be killed by conventional means. Encountered in Twilight alongside the Dread Lord.",
-      "type": "antagonist"
-    },
-    {
-      "name": "Revel",
-      "first_appearance": 1856,
-      "aliases": [
-        "The Mad One",
-        "The Berserker"
+      "search_terms": [
+        "Undying Slaughter"
       ],
-      "description": "A powerful and dangerous opponent encountered in the War arc. Known for incredible combat prowess and berserker fury.",
+      "description": "A fearsome being that cannot be killed by conventional means. Encountered in Twilight.",
       "type": "antagonist"
     },
     {
@@ -608,40 +624,44 @@
       "aliases": [
         "Lady Morgan"
       ],
-      "description": "A powerful figure from Clan Valor with connections to Nephis's past. Plays a significant role in clan politics and has her own agenda.",
+      "search_terms": [
+        "Morgan"
+      ],
+      "description": "A powerful figure from Clan Valor with connections to Nephis's past.",
       "type": "supporting",
       "rank_progression": [
         {
           "rank": "Master",
-          "from_chapter": 545,
-          "description": "Clan Valor Master"
+          "from_chapter": 545
         }
       ]
     },
     {
       "name": "Solvane",
       "first_appearance": 520,
-      "aliases": [
-        "The Scholar"
+      "aliases": [],
+      "search_terms": [
+        "Solvane"
       ],
-      "description": "A knowledgeable character encountered in the Chained Isles. Provides important information about the Kingdom of Hope.",
+      "description": "A character encountered in the Chained Isles. Provides information about the Kingdom of Hope.",
       "type": "supporting"
     },
     {
       "name": "Belle",
       "first_appearance": 777,
-      "aliases": [
-        "The Beauty",
-        "The Charmer"
+      "aliases": [],
+      "search_terms": [
+        "Belle"
       ],
-      "description": "An Awakened with charm-based abilities. Encountered during Sunny's government work.",
+      "description": "An Awakened with charm-based abilities encountered during Sunny's work.",
       "type": "supporting"
     },
     {
       "name": "Samara",
       "first_appearance": 822,
-      "aliases": [
-        "The Warrior"
+      "aliases": [],
+      "search_terms": [
+        "Samara"
       ],
       "description": "A skilled warrior who joins Sunny's team during the Antarctic campaign.",
       "type": "supporting"
@@ -652,31 +672,36 @@
       "aliases": [
         "Master Naeve"
       ],
-      "description": "A Master-rank Awakened encountered during government operations. Skilled and professional.",
+      "search_terms": [
+        "Naeve"
+      ],
+      "description": "A Master-rank Awakened encountered during government operations.",
       "type": "supporting",
       "rank_progression": [
         {
           "rank": "Master",
-          "from_chapter": 831,
-          "description": "Government Master"
+          "from_chapter": 831
         }
       ]
     },
     {
       "name": "Sybil",
       "first_appearance": 1021,
-      "aliases": [
-        "The Prophetess"
+      "aliases": [],
+      "search_terms": [
+        "Sybil"
       ],
-      "description": "A character with prophetic abilities encountered later in the story.",
+      "description": "A character with prophetic abilities encountered in the later story.",
       "type": "supporting"
     },
     {
       "name": "Asterion",
       "first_appearance": 367,
       "aliases": [
-        "The Bull",
-        "The Guardian"
+        "The Bull"
+      ],
+      "search_terms": [
+        "Asterion"
       ],
       "description": "A powerful being associated with ancient labyrinths and protection.",
       "type": "supporting"
@@ -684,45 +709,52 @@
     {
       "name": "Dire Fang",
       "first_appearance": 1102,
-      "aliases": [
-        "The Beast"
+      "aliases": [],
+      "search_terms": [
+        "Dire Fang"
       ],
       "description": "A fearsome creature or warrior encountered in the later arcs.",
       "type": "supporting"
     },
     {
       "name": "Sid",
-      "first_appearance": 1998,
-      "aliases": [
-        "The Warrior"
+      "first_appearance": 1607,
+      "aliases": [],
+      "search_terms": [
+        "Sid"
       ],
-      "description": "A fierce warrior whose final battle with Felise takes place during the Great War. Their confrontation spans the battlefield.",
+      "description": "A warrior whose battles take place during the Great War arc.",
       "type": "supporting"
     },
     {
       "name": "Felise",
       "first_appearance": 1998,
-      "aliases": [
-        "The Rival"
+      "aliases": [],
+      "search_terms": [
+        "Felise"
       ],
-      "description": "A warrior locked in deadly combat with Sid during the Great War. Their rivalry culminates in an epic confrontation.",
+      "description": "A warrior locked in combat with Sid during the Great War.",
       "type": "antagonist"
     },
     {
-      "name": "Carapace Demon",
-      "first_appearance": 63,
-      "aliases": [
-        "Shell Demon",
-        "Armored Beast"
+      "name": "Revel",
+      "first_appearance": 237,
+      "aliases": [],
+      "search_terms": [
+        "Revel"
       ],
-      "description": "Nightmare Creatures with hard armored shells. Common but dangerous foes on the Forgotten Shore. Come in various ranks.",
-      "type": "creature"
+      "description": "A character encountered in the story.",
+      "type": "supporting"
     },
     {
       "name": "Carapace Scavenger",
       "first_appearance": 33,
       "aliases": [
         "Scavenger"
+      ],
+      "search_terms": [
+        "Carapace Scavenger",
+        "scavenger"
       ],
       "description": "The weakest variant of Carapace creatures. Pack hunters that feed on corpses.",
       "type": "creature"
@@ -731,96 +763,135 @@
       "name": "Carapace Centurion",
       "first_appearance": 52,
       "aliases": [
-        "Centurion",
-        "Elite Shell Beast"
+        "Centurion"
       ],
-      "description": "A more powerful variant of the Carapace Demon. Commands lesser creatures and poses a significant threat.",
+      "search_terms": [
+        "Carapace Centurion",
+        "centurion"
+      ],
+      "description": "A more powerful variant of the Carapace. Commands lesser creatures.",
+      "type": "creature"
+    },
+    {
+      "name": "Carapace Demon",
+      "first_appearance": 63,
+      "aliases": [
+        "Shell Demon"
+      ],
+      "search_terms": [
+        "Carapace Demon"
+      ],
+      "description": "Nightmare Creatures with hard armored shells. Common foes on the Forgotten Shore.",
       "type": "creature"
     },
     {
       "name": "Blood Fiend",
       "first_appearance": 97,
-      "aliases": [
-        "The Bloody One"
+      "aliases": [],
+      "search_terms": [
+        "Blood Fiend",
+        "Fiend"
       ],
-      "description": "A terrifying Nightmare Creature that hunts in the darkness. Extremely dangerous and aggressive.",
+      "description": "A terrifying Nightmare Creature that hunts in the darkness. Extremely dangerous.",
       "type": "creature"
     },
     {
       "name": "Spire Messenger",
       "first_appearance": 132,
       "aliases": [
-        "Messenger",
-        "Flying Horror"
+        "Messenger"
       ],
-      "description": "Flying Nightmare Creatures that soar through the Dream Realm. Fast and deadly.",
+      "search_terms": [
+        "Spire Messenger",
+        "messenger"
+      ],
+      "description": "Flying Nightmare Creatures that soar through the Dream Realm.",
       "type": "creature"
     },
     {
       "name": "Fallen Titan",
       "first_appearance": 953,
       "aliases": [
-        "Titan",
-        "The Giant"
+        "Titan"
       ],
-      "description": "Massive Nightmare Creatures of devastating power. Can destroy cities and challenge Saints.",
+      "search_terms": [
+        "Fallen Titan",
+        "Titan"
+      ],
+      "description": "Massive Nightmare Creatures of devastating power. Can destroy cities.",
       "type": "creature"
     },
     {
       "name": "Clan Valor",
-      "first_appearance": 244,
+      "first_appearance": 24,
       "aliases": [
-        "The Warborn",
         "House Valor"
       ],
-      "description": "One of the Great Clans, known for producing powerful warriors. Nephis's clan. Values strength and honor above all. Led by the Matriarch.",
+      "search_terms": [
+        "Clan Valor",
+        "Valor"
+      ],
+      "description": "One of the Great Clans. Nephis's clan. Values strength and honor.",
       "type": "organization"
     },
     {
       "name": "Clan Song",
-      "first_appearance": 308,
+      "first_appearance": 21,
       "aliases": [
-        "The Singers",
         "House Song"
       ],
-      "description": "One of the Great Clans, known for their prophecies and oracles. Cassie and Caster are associated with them. Masters of foresight.",
+      "search_terms": [
+        "Clan Song",
+        "Song"
+      ],
+      "description": "One of the Great Clans. Known for prophecies and oracles. Cassie and Caster's clan.",
       "type": "organization"
     },
     {
       "name": "Great Clans",
       "first_appearance": 353,
       "aliases": [
-        "The Seven Clans",
-        "Noble Houses"
+        "Seven Clans"
       ],
-      "description": "The most powerful families that control much of human society. Include Valor, Song, Night, and others. Command enormous resources and political power.",
+      "search_terms": [
+        "Great Clan",
+        "seven clan"
+      ],
+      "description": "The most powerful families that control much of human society.",
       "type": "organization"
     },
     {
       "name": "Government",
       "first_appearance": 17,
       "aliases": [
-        "The Authority",
-        "Human Government"
+        "The Authority"
       ],
-      "description": "The governing body of human civilization. Manages Awakened forces and coordinates the defense against Nightmare Creatures.",
+      "search_terms": [
+        "government",
+        "authority"
+      ],
+      "description": "The governing body of human civilization. Manages Awakened forces.",
       "type": "organization"
     },
     {
       "name": "First Irregular Company",
       "first_appearance": 814,
       "aliases": [
-        "The Irregulars",
-        "Sunny's Company"
+        "The Irregulars"
       ],
-      "description": "A special military unit formed for the Antarctic Campaign. Led by or including Sunny, they take on the most dangerous missions.",
+      "search_terms": [
+        "First Irregular",
+        "Irregular Company"
+      ],
+      "description": "A special military unit formed for the Antarctic Campaign.",
       "type": "organization"
     },
     {
       "name": "Night Temple",
       "first_appearance": 403,
-      "aliases": [
-        "Temple of Night"
+      "aliases": [],
+      "search_terms": [
+        "Night Temple"
       ],
       "description": "A mysterious organization or location associated with shadow and darkness.",
       "type": "organization"
@@ -828,90 +899,111 @@
     {
       "name": "Song Army",
       "first_appearance": 1844,
-      "aliases": [
-        "Clan Song's Forces"
+      "aliases": [],
+      "search_terms": [
+        "Song Army"
       ],
       "description": "The military forces of Clan Song, deployed during the Great War.",
       "type": "organization"
     },
     {
       "name": "Puppeteer's Shroud",
-      "first_appearance": 24,
+      "first_appearance": 15,
       "aliases": [
         "The Shroud",
         "Silk Armor"
       ],
-      "description": "Sunny's signature armor Memory obtained from his First Nightmare. A silk armor that can transform, repair itself, and protect against attacks. Awakened rank.",
+      "search_terms": [
+        "Puppeteer's Shroud",
+        "Shroud",
+        "silk armor"
+      ],
+      "description": "Sunny's signature armor Memory. A silk armor that can transform and protect.",
       "type": "memory"
     },
     {
       "name": "Midnight Shard",
       "first_appearance": 74,
       "aliases": [
-        "The Shard",
-        "Shadow Blade"
+        "The Shard"
       ],
-      "description": "A dark blade Memory that Sunny wields. Can extend and retract like a shadow. One of his primary weapons.",
-      "type": "memory"
-    },
-    {
-      "name": "Cruel Sight",
-      "first_appearance": 415,
-      "aliases": [
-        "The Eye",
-        "All-Seeing"
+      "search_terms": [
+        "Midnight Shard"
       ],
-      "description": "A Memory that enhances Sunny's perception and sight. Allows him to see through deceptions and darkness.",
-      "type": "memory"
-    },
-    {
-      "name": "Covetous Coffer",
-      "first_appearance": 428,
-      "aliases": [
-        "The Coffer",
-        "Storage Memory"
-      ],
-      "description": "A Memory that provides extra-dimensional storage. Sunny uses it to carry equipment and resources.",
-      "type": "memory"
-    },
-    {
-      "name": "Shadow Lantern",
-      "first_appearance": 653,
-      "aliases": [
-        "The Lantern",
-        "Light of Shadows"
-      ],
-      "description": "A powerful Divine-rank Memory that Sunny acquires. Can open gates between realms and control shadow and light.",
-      "type": "memory"
-    },
-    {
-      "name": "Sin of Solace",
-      "first_appearance": 869,
-      "aliases": [
-        "Solace",
-        "The Sword of Sin"
-      ],
-      "description": "A powerful sword Memory with its own consciousness. One of Sunny's signature weapons in later arcs. Has a dark history.",
-      "type": "memory"
-    },
-    {
-      "name": "Mantle of the Underworld",
-      "first_appearance": 377,
-      "aliases": [
-        "The Mantle",
-        "Death's Cloak"
-      ],
-      "description": "A Memory associated with the underworld and death. Provides powerful protective and offensive capabilities.",
+      "description": "A dark blade Memory that Sunny wields. One of his primary weapons.",
       "type": "memory"
     },
     {
       "name": "Weaver's Mask",
       "first_appearance": 278,
       "aliases": [
-        "The Mask",
-        "Face of Fate"
+        "The Mask"
       ],
-      "description": "A mysterious Memory connected to the Weaver. Grants Sunny unique abilities related to perception and identity.",
+      "search_terms": [
+        "Weaver's Mask"
+      ],
+      "description": "A mysterious Memory connected to the Weaver. Grants unique abilities.",
+      "type": "memory"
+    },
+    {
+      "name": "Mantle of the Underworld",
+      "first_appearance": 377,
+      "aliases": [
+        "The Mantle"
+      ],
+      "search_terms": [
+        "Mantle of the Underworld"
+      ],
+      "description": "A Memory associated with the underworld and death.",
+      "type": "memory"
+    },
+    {
+      "name": "Cruel Sight",
+      "first_appearance": 415,
+      "aliases": [
+        "The Eye"
+      ],
+      "search_terms": [
+        "Cruel Sight"
+      ],
+      "description": "A Memory that enhances Sunny's perception. Allows him to see through deceptions.",
+      "type": "memory"
+    },
+    {
+      "name": "Covetous Coffer",
+      "first_appearance": 428,
+      "aliases": [
+        "The Coffer"
+      ],
+      "search_terms": [
+        "Covetous Coffer"
+      ],
+      "description": "A Memory that provides extra-dimensional storage.",
+      "type": "memory"
+    },
+    {
+      "name": "Shadow Lantern",
+      "first_appearance": 653,
+      "aliases": [
+        "The Lantern"
+      ],
+      "search_terms": [
+        "Shadow Lantern"
+      ],
+      "description": "A powerful Divine-rank Memory. Can open gates between realms.",
+      "type": "memory"
+    },
+    {
+      "name": "Sin of Solace",
+      "first_appearance": 869,
+      "aliases": [
+        "Solace"
+      ],
+      "search_terms": [
+        "Sin of Solace",
+        "Solace"
+      ],
+      "description": "A powerful sword Memory with its own consciousness. Has a dark history.",
       "type": "memory"
     }
   ],
@@ -920,569 +1012,780 @@
       "name": "Nightmare Spell",
       "first_appearance": 1,
       "category": "world",
-      "description": "The mysterious force that descended upon Earth, bringing the Dream Realm and Nightmare Creatures. It grants humans the chance to become Awakened through surviving Nightmares. Changed humanity forever."
+      "search_terms": [
+        "Nightmare Spell",
+        "Spell"
+      ],
+      "description": "The mysterious force that brought the Dream Realm and Nightmare Creatures to Earth."
     },
     {
       "name": "Dream Realm",
       "first_appearance": 1,
       "category": "world",
-      "description": "A parallel dimension where Nightmare Creatures originate. Connected to Earth through the Nightmare Spell. Contains countless dangers, ancient secrets, and powerful treasures."
-    },
-    {
-      "name": "Waking World",
-      "first_appearance": 319,
-      "category": "world",
-      "description": "The real world, as opposed to the Dream Realm. Where humanity struggles to survive against Gates and invading Nightmare Creatures."
-    },
-    {
-      "name": "First Nightmare",
-      "first_appearance": 1,
-      "category": "world",
-      "description": "The trial every Sleeper must survive to become Awakened. A dangerous journey through the Dream Realm where death is common but survival grants power."
-    },
-    {
-      "name": "Second Nightmare",
-      "first_appearance": 17,
-      "category": "world",
-      "description": "The trial to advance from Awakened to Ascended. More dangerous than the First, with lower survival rates. Sunny completes his in the Kingdom of Hope."
-    },
-    {
-      "name": "Third Nightmare",
-      "first_appearance": 15,
-      "category": "world",
-      "description": "The trial to advance from Ascended to Master. Survival rate is extremely low. Only the most powerful attempt it."
-    },
-    {
-      "name": "Fourth Nightmare",
-      "first_appearance": 81,
-      "category": "world",
-      "description": "The trial to advance from Master to Saint. Legendary in difficulty. Few ever attempt it, fewer survive."
+      "search_terms": [
+        "Dream Realm"
+      ],
+      "description": "A parallel dimension where Nightmare Creatures originate. Contains dangers and treasures."
     },
     {
       "name": "Nightmare Creature",
       "first_appearance": 1,
       "category": "creatures",
-      "description": "Monstrous beings from the Dream Realm that threaten humanity. Range from weak Dormant to god-like Unholy. Killing them yields soul shards and sometimes Memories."
-    },
-    {
-      "name": "Nightmare Gate",
-      "first_appearance": 484,
-      "category": "world",
-      "description": "Portals between the real world and Dream Realm. Can appear randomly or be created. When open, Nightmare Creatures can invade."
-    },
-    {
-      "name": "Seed of Nightmare",
-      "first_appearance": 459,
-      "category": "world",
-      "description": "Locations where the Dream Realm bleeds into reality, spawning Nightmare Creatures. Must be destroyed or contained before they grow."
-    },
-    {
-      "name": "Sleeper",
-      "first_appearance": 17,
-      "category": "ranks",
-      "description": "A human marked by the Nightmare Spell but who hasn't yet undergone their First Nightmare. Training at academies to prepare for their trial."
+      "search_terms": [
+        "Nightmare Creature",
+        "creature",
+        "monster"
+      ],
+      "description": "Monstrous beings from the Dream Realm that threaten humanity."
     },
     {
       "name": "Awakened",
       "first_appearance": 1,
       "category": "ranks",
-      "description": "Humans who survived their First Nightmare and gained supernatural powers. The second rank of power. Can use Aspects and Memories."
+      "search_terms": [
+        "Awakened"
+      ],
+      "description": "Humans who survived their First Nightmare and gained supernatural powers."
     },
     {
-      "name": "Ascended",
-      "first_appearance": 9,
-      "category": "ranks",
-      "description": "The third rank of power for humans. Represents significant growth from Awakened. Can challenge Fallen creatures and access greater power."
-    },
-    {
-      "name": "Master",
-      "first_appearance": 15,
-      "category": "ranks",
-      "description": "The fourth rank of power. Masters are elite Awakened with multiple soul cores. Can fight Corrupted creatures. Sunny becomes Master in Chapter 751."
-    },
-    {
-      "name": "Saint",
-      "first_appearance": 9,
-      "category": "ranks",
-      "description": "The fifth rank of power. Saints possess god-like abilities and are extremely rare. Can manifest Domains that reshape reality around them."
-    },
-    {
-      "name": "Sovereign",
-      "first_appearance": 368,
-      "category": "ranks",
-      "description": "The highest known rank. Sovereigns are god-like beings with reality-warping powers. Only a handful exist in all of history."
-    },
-    {
-      "name": "Dormant",
-      "first_appearance": 2,
-      "category": "ranks",
-      "description": "The lowest class of Nightmare Creatures. Weak individually but dangerous in numbers. Also the first rank of Memories."
-    },
-    {
-      "name": "Fallen",
-      "first_appearance": 8,
-      "category": "ranks",
-      "description": "Third rank of Nightmare Creatures. Powerful and challenging for most Awakened to face alone."
-    },
-    {
-      "name": "Corrupted",
-      "first_appearance": 15,
-      "category": "ranks",
-      "description": "Fourth rank of Nightmare Creatures. Twisted and especially dangerous. Require Master-level Awakened to defeat."
-    },
-    {
-      "name": "Titan",
-      "first_appearance": 23,
-      "category": "ranks",
-      "description": "The most powerful class of normal Nightmare Creatures. Can destroy cities and challenge Saints."
-    },
-    {
-      "name": "Unholy",
-      "first_appearance": 15,
-      "category": "ranks",
-      "description": "The highest rank of Nightmare Creatures. God-like beings of terrifying power."
-    },
-    {
-      "name": "Transcendent",
-      "first_appearance": 9,
-      "category": "ranks",
-      "description": "Fourth rank of Memories. Significantly more powerful than Ascended-rank items."
-    },
-    {
-      "name": "Supreme",
-      "first_appearance": 9,
-      "category": "ranks",
-      "description": "Fifth rank of Memories. Extremely rare and powerful."
-    },
-    {
-      "name": "Sacred",
-      "first_appearance": 3,
-      "category": "ranks",
-      "description": "Sixth rank of Memories. Nearly legendary in power."
-    },
-    {
-      "name": "Divine",
-      "first_appearance": 6,
-      "category": "ranks",
-      "description": "The highest rank of Memories. Incredibly rare and powerful. The Shadow Lantern is Divine rank."
+      "name": "First Nightmare",
+      "first_appearance": 1,
+      "category": "world",
+      "search_terms": [
+        "First Nightmare"
+      ],
+      "description": "The trial every Sleeper must survive to become Awakened."
     },
     {
       "name": "Aspect",
       "first_appearance": 1,
       "category": "powers",
-      "description": "The unique supernatural ability granted after becoming Awakened. Defines powers and fighting style. Each Aspect is unique to its bearer."
-    },
-    {
-      "name": "Flaw",
-      "first_appearance": 8,
-      "category": "powers",
-      "description": "A weakness or curse that comes with every Aspect. Can be deadly or merely inconvenient. Sunny's flaw 'Clear Conscience' prevents him from lying."
+      "search_terms": [
+        "Aspect"
+      ],
+      "description": "The unique supernatural ability granted after becoming Awakened."
     },
     {
       "name": "Soul Core",
       "first_appearance": 2,
       "category": "powers",
-      "description": "The source of an Awakened's power. Contains their essence and abilities. More cores mean more power. Awakened have one, Masters have multiple."
-    },
-    {
-      "name": "Memory",
-      "first_appearance": 5,
-      "category": "items",
-      "description": "Magical items created from the remnants of defeated Nightmare Creatures or powerful beings. Can be weapons, armor, or tools with supernatural properties."
-    },
-    {
-      "name": "Echo",
-      "first_appearance": 16,
-      "category": "powers",
-      "description": "Creatures bound to serve an Awakened, created from defeated Nightmare Creatures. Sunny's Echoes include Saint, Serpent, and Nightmare."
+      "search_terms": [
+        "soul core",
+        "core"
+      ],
+      "description": "The source of an Awakened's power. More cores mean more power."
     },
     {
       "name": "True Name",
       "first_appearance": 2,
       "category": "powers",
-      "description": "The fundamental name of a being that holds power over their existence. Knowing someone's True Name grants influence over them."
+      "search_terms": [
+        "True Name",
+        "true name"
+      ],
+      "description": "The fundamental name of a being that holds power over their existence."
     },
     {
-      "name": "Soul Sea",
-      "first_appearance": 16,
+      "name": "Dormant",
+      "first_appearance": 2,
+      "category": "ranks",
+      "search_terms": [
+        "Dormant"
+      ],
+      "description": "The lowest rank of Nightmare Creatures and Memories."
+    },
+    {
+      "name": "Memory",
+      "first_appearance": 5,
+      "category": "items",
+      "search_terms": [
+        "Memory"
+      ],
+      "description": "Magical items from defeated Nightmare Creatures. Can be weapons, armor, or tools."
+    },
+    {
+      "name": "Divine",
+      "first_appearance": 6,
       "category": "powers",
-      "description": "The inner realm where an Awakened's soul cores, Memories, and Echoes are stored. A personal dimension of power."
+      "search_terms": [
+        "Divine"
+      ],
+      "description": "The highest rank of Memories. Incredibly rare and powerful."
     },
     {
-      "name": "Soul Essence",
-      "first_appearance": 77,
+      "name": "Flaw",
+      "first_appearance": 8,
       "category": "powers",
-      "description": "The energy that powers Awakened abilities. Must be managed carefully in combat. Gained by killing creatures."
+      "search_terms": [
+        "Flaw"
+      ],
+      "description": "A weakness or curse that comes with every Aspect. Sunny cannot lie."
     },
     {
-      "name": "Domain",
-      "first_appearance": 61,
-      "category": "powers",
-      "description": "An area of absolute control that Saints can manifest. Within a Domain, the Saint's power is supreme."
+      "name": "Fallen",
+      "first_appearance": 8,
+      "category": "ranks",
+      "search_terms": [
+        "Fallen"
+      ],
+      "description": "Third rank of Nightmare Creatures. Challenging for Awakened."
     },
     {
-      "name": "Attribute",
-      "first_appearance": 1,
-      "category": "powers",
-      "description": "Fundamental stats like Strength, Agility, Perception that define an Awakened's capabilities. Increased by gaining power."
+      "name": "Ascended",
+      "first_appearance": 9,
+      "category": "ranks",
+      "search_terms": [
+        "Ascended"
+      ],
+      "description": "Third rank of power for humans. Requires completing Second Nightmare."
     },
     {
-      "name": "Legacy",
-      "first_appearance": 21,
-      "category": "society",
-      "description": "Descendants of powerful Awakened who inherit enhanced potential and resources. Often members of Great Clans with advantages from birth."
-    },
-    {
-      "name": "Lineage",
-      "first_appearance": 85,
-      "category": "society",
-      "description": "Inherited traits and powers from ancestors. Important for Legacy families and clan politics."
+      "name": "Saint",
+      "first_appearance": 9,
+      "category": "ranks",
+      "search_terms": [
+        "Saint"
+      ],
+      "description": "Fifth rank of power. Saints possess god-like abilities. Extremely rare."
     },
     {
       "name": "Shadow Slave",
       "first_appearance": 15,
       "category": "powers",
-      "description": "Sunny's unique Aspect. Allows him to control shadows, create shadow copies, command shadow Echoes, and build an army of shadows. His power grows with each bound shadow."
+      "search_terms": [
+        "Shadow Slave"
+      ],
+      "description": "Sunny's unique Aspect. Allows control over shadows and shadow Echoes."
     },
     {
-      "name": "Shadow Fragment",
-      "first_appearance": 34,
-      "category": "powers",
-      "description": "Resources Sunny collects by defeating enemies. Used to enhance his shadow abilities and bind new shadows."
+      "name": "Master",
+      "first_appearance": 15,
+      "category": "ranks",
+      "search_terms": [
+        "Master"
+      ],
+      "description": "Fourth rank of power. Elite Awakened with multiple soul cores."
     },
     {
-      "name": "Shadow Step",
-      "first_appearance": 28,
-      "category": "powers",
-      "description": "Sunny's ability to move instantly through shadows. Essential for combat and escape."
+      "name": "Corrupted",
+      "first_appearance": 15,
+      "category": "ranks",
+      "search_terms": [
+        "Corrupted"
+      ],
+      "description": "Fourth rank of Nightmare Creatures. Twisted and especially dangerous."
     },
     {
-      "name": "Shadow Dance",
-      "first_appearance": 187,
+      "name": "Echo",
+      "first_appearance": 16,
       "category": "powers",
-      "description": "Sunny's signature combat technique. Allows him to merge with shadows and strike from impossible angles."
+      "search_terms": [
+        "Echo"
+      ],
+      "description": "Creatures bound to serve an Awakened. Sunny's include Saint and Serpent."
     },
     {
-      "name": "Shadow Manifestation",
-      "first_appearance": 744,
+      "name": "Soul Sea",
+      "first_appearance": 16,
       "category": "powers",
-      "description": "Advanced shadow technique allowing creation of solid shadow constructs. Mastered as an Ascended."
+      "search_terms": [
+        "Soul Sea"
+      ],
+      "description": "Inner realm where Memories and Echoes are stored."
     },
     {
-      "name": "Bone Weave",
-      "first_appearance": 450,
-      "category": "powers",
-      "description": "An attribute Sunny gains that reinforces his body with shadow power. Makes him incredibly durable."
+      "name": "Sleeper",
+      "first_appearance": 17,
+      "category": "ranks",
+      "search_terms": [
+        "Sleeper"
+      ],
+      "description": "Human marked by the Spell but who hasn't survived First Nightmare yet."
     },
     {
-      "name": "Blood Weave",
-      "first_appearance": 83,
-      "category": "powers",
-      "description": "A technique involving the manipulation of blood and life force. Powerful but dangerous."
-    },
-    {
-      "name": "Soul Weave",
-      "first_appearance": 787,
-      "category": "powers",
-      "description": "Advanced technique involving manipulation of soul energy. Gained as Sunny grows in power."
+      "name": "Second Nightmare",
+      "first_appearance": 17,
+      "category": "world",
+      "search_terms": [
+        "Second Nightmare"
+      ],
+      "description": "Trial to advance from Awakened to Ascended. More dangerous."
     },
     {
       "name": "Clear Conscience",
       "first_appearance": 17,
       "category": "powers",
-      "description": "Sunny's Flaw. He cannot lie. This forces him to be creative with truth and misdirection."
+      "search_terms": [
+        "Clear Conscience",
+        "cannot lie"
+      ],
+      "description": "Sunny's Flaw. He cannot lie."
     },
     {
-      "name": "Daemon",
-      "first_appearance": 277,
-      "category": "creatures",
-      "description": "Powerful beings, neither fully Nightmare Creature nor human. Often ancient and mysterious. Examples include Hope and various gods."
-    },
-    {
-      "name": "Weave",
-      "first_appearance": 83,
-      "category": "world",
-      "description": "The fundamental structure underlying reality and the Dream Realm. Can be perceived and manipulated by powerful beings."
-    },
-    {
-      "name": "Sun God",
-      "first_appearance": 353,
-      "category": "entities",
-      "description": "An ancient deity of immense power. His wrath destroyed Hope's kingdom. Associated with light and divine judgment."
-    },
-    {
-      "name": "War God",
-      "first_appearance": 2,
-      "category": "entities",
-      "description": "An ancient deity associated with battle and conflict. Worshipped in ancient times."
-    },
-    {
-      "name": "Great Clans",
-      "first_appearance": 353,
+      "name": "Legacy",
+      "first_appearance": 21,
       "category": "society",
-      "description": "The most powerful families in human society. Control vast resources and political power. Include Valor, Song, Night, and others."
+      "search_terms": [
+        "Legacy"
+      ],
+      "description": "Descendants of powerful Awakened with enhanced potential."
+    },
+    {
+      "name": "Titan",
+      "first_appearance": 23,
+      "category": "ranks",
+      "search_terms": [
+        "Titan"
+      ],
+      "description": "Most powerful normal Nightmare Creatures. Can challenge Saints."
+    },
+    {
+      "name": "Shadow Step",
+      "first_appearance": 28,
+      "category": "powers",
+      "search_terms": [
+        "Shadow Step"
+      ],
+      "description": "Sunny's ability to move instantly through shadows."
+    },
+    {
+      "name": "Shadow Fragment",
+      "first_appearance": 34,
+      "category": "powers",
+      "search_terms": [
+        "shadow fragment"
+      ],
+      "description": "Resources Sunny collects to enhance shadow abilities."
     },
     {
       "name": "Cohort",
       "first_appearance": 55,
       "category": "society",
-      "description": "A group of Awakened who survived together. Bonds forged in the Dream Realm are strong. Sunny's cohort includes Nephis, Cassie, Kai, Effie, and Caster."
+      "search_terms": [
+        "cohort"
+      ],
+      "description": "A group of Awakened who survived together. Strong bonds."
     },
     {
-      "name": "Outskirts",
-      "first_appearance": 1,
-      "category": "society",
-      "description": "The poor, lawless districts on the edges of cities. Where Sunny grew up. Dangerous and impoverished."
+      "name": "Domain",
+      "first_appearance": 61,
+      "category": "powers",
+      "search_terms": [
+        "Domain"
+      ],
+      "description": "Area of absolute control that Saints can manifest."
     },
     {
-      "name": "Citadel",
-      "first_appearance": 23,
+      "name": "Fourth Nightmare",
+      "first_appearance": 81,
+      "category": "world",
+      "search_terms": [
+        "Fourth Nightmare"
+      ],
+      "description": "Trial to advance from Master to Saint. Few survive."
+    },
+    {
+      "name": "Weave",
+      "first_appearance": 83,
+      "category": "world",
+      "search_terms": [
+        "Weave"
+      ],
+      "description": "The fundamental structure underlying reality."
+    },
+    {
+      "name": "Blood Weave",
+      "first_appearance": 83,
+      "category": "powers",
+      "search_terms": [
+        "Blood Weave"
+      ],
+      "description": "Manipulation of blood and life force. Dangerous but powerful."
+    },
+    {
+      "name": "Lineage",
+      "first_appearance": 85,
       "category": "society",
-      "description": "Major fortified human settlements designed to withstand Nightmare Creature attacks. Centers of human civilization."
+      "search_terms": [
+        "Lineage"
+      ],
+      "description": "Inherited traits and powers from ancestors."
+    },
+    {
+      "name": "Shadow Dance",
+      "first_appearance": 187,
+      "category": "powers",
+      "search_terms": [
+        "Shadow Dance"
+      ],
+      "description": "Sunny's signature combat technique using shadows."
+    },
+    {
+      "name": "Daemon",
+      "first_appearance": 277,
+      "category": "creatures",
+      "search_terms": [
+        "Daemon",
+        "daemon"
+      ],
+      "description": "Powerful ancient beings. Neither Nightmare Creature nor human."
+    },
+    {
+      "name": "Great Clans",
+      "first_appearance": 353,
+      "category": "society",
+      "search_terms": [
+        "Great Clan"
+      ],
+      "description": "The most powerful families controlling human society."
+    },
+    {
+      "name": "Sovereign",
+      "first_appearance": 368,
+      "category": "ranks",
+      "search_terms": [
+        "Sovereign"
+      ],
+      "description": "Highest known rank. God-like beings with reality-warping powers."
+    },
+    {
+      "name": "Bone Weave",
+      "first_appearance": 450,
+      "category": "powers",
+      "search_terms": [
+        "Bone Weave"
+      ],
+      "description": "Reinforces Sunny's body with shadow power. Incredible durability."
+    },
+    {
+      "name": "Nightmare Gate",
+      "first_appearance": 484,
+      "category": "world",
+      "search_terms": [
+        "Nightmare Gate",
+        "Gate"
+      ],
+      "description": "Portals between real world and Dream Realm."
+    },
+    {
+      "name": "Shadow Manifestation",
+      "first_appearance": 744,
+      "category": "powers",
+      "search_terms": [
+        "Shadow Manifestation"
+      ],
+      "description": "Advanced technique creating solid shadow constructs."
+    },
+    {
+      "name": "Soul Weave",
+      "first_appearance": 787,
+      "category": "powers",
+      "search_terms": [
+        "Soul Weave"
+      ],
+      "description": "Advanced manipulation of soul energy."
     }
   ],
   "locations": [
     {
       "name": "Dream Realm",
       "first_appearance": 1,
-      "description": "A parallel dimension where Nightmare Creatures originate. Connected to Earth through the Nightmare Spell. Contains countless dangers, ancient civilizations, and powerful secrets."
-    },
-    {
-      "name": "Black Mountain",
-      "first_appearance": 15,
-      "description": "The location of Sunny's First Nightmare. A treacherous mountain ruled by the Mountain King. Where Sunny's journey truly begins."
-    },
-    {
-      "name": "Forgotten Shore",
-      "first_appearance": 34,
-      "description": "A dangerous coastal region where many Sleepers are sent for their First Nightmare. Features ruins of an ancient civilization, deadly creatures, the Bright Castle, and the Dark City."
-    },
-    {
-      "name": "Bright Castle",
-      "first_appearance": 124,
-      "description": "A fortified castle on the Forgotten Shore. The main safe haven for survivors, ruled tyrannically by Gunlaug. Its fall marks a major turning point."
-    },
-    {
-      "name": "Dark City",
-      "first_appearance": 126,
-      "description": "A massive ruined metropolis on the Forgotten Shore. Built by a lost civilization, now filled with powerful Nightmare Creatures and ancient secrets."
-    },
-    {
-      "name": "Labyrinth",
-      "first_appearance": 31,
-      "description": "A massive maze-like structure in the Dream Realm. Contains valuable treasures but is extremely dangerous to navigate."
-    },
-    {
-      "name": "Chained Isles",
-      "first_appearance": 378,
-      "description": "A region of floating islands held together by seven ancient chains. Connected to the Demon of Hope and the Kingdom of Hope."
-    },
-    {
-      "name": "Kingdom of Hope",
-      "first_appearance": 601,
-      "description": "A beautiful realm created by the Demon of Hope/Imagination. Where Sunny undergoes his Second Nightmare. Both wondrous and tragic."
-    },
-    {
-      "name": "Ivory Tower",
-      "first_appearance": 382,
-      "description": "A significant structure in the Chained Isles. Associated with knowledge, power, and ancient secrets."
-    },
-    {
-      "name": "Sky Below",
-      "first_appearance": 380,
-      "description": "The vast emptiness beneath the Chained Isles. Falling into it means certain death. A place of horror and mystery."
-    },
-    {
-      "name": "Tomb of Ariel",
-      "first_appearance": 1022,
-      "description": "An ancient structure where time flows differently. Home to the Riverborn and Outsiders. Contains secrets about the nature of time itself."
-    },
-    {
-      "name": "Great River",
-      "first_appearance": 923,
-      "description": "A massive river within the Tomb of Ariel where time flows strangely. The Riverborn live along its banks."
-    },
-    {
-      "name": "Twilight",
-      "first_appearance": 36,
-      "description": "A mysterious region between light and darkness. Home to the Dread Lord, Soul Stealer, and other dangers. A place of great power and terror."
-    },
-    {
-      "name": "Estuary",
-      "first_appearance": 630,
-      "description": "A location where the Great River meets other waters. A significant landmark in the Dream Realm."
-    },
-    {
-      "name": "Night Temple",
-      "first_appearance": 403,
-      "description": "A mysterious temple associated with darkness and shadow. Contains secrets related to Sunny's powers."
+      "search_terms": [
+        "Dream Realm"
+      ],
+      "description": "A parallel dimension where Nightmare Creatures originate."
     },
     {
       "name": "Outskirts",
       "first_appearance": 1,
-      "description": "The poor, lawless districts on the edges of cities. Sunny's birthplace and childhood home. Where Rain still lives."
+      "search_terms": [
+        "Outskirts",
+        "outskirts"
+      ],
+      "description": "The poor, lawless districts on the edges of cities. Sunny's birthplace."
+    },
+    {
+      "name": "Black Mountain",
+      "first_appearance": 4,
+      "search_terms": [
+        "Black Mountain"
+      ],
+      "description": "Location of Sunny's First Nightmare. Ruled by the Mountain King."
     },
     {
       "name": "Spell Academy",
       "first_appearance": 18,
-      "description": "Schools that train Sleepers before their First Nightmare. Where Sunny met Nephis, Caster, and learned about the Nightmare Spell."
-    },
-    {
-      "name": "Antarctic",
-      "first_appearance": 816,
-      "description": "The frozen continent, site of crucial battles against Nightmare Creatures. Where Sunny earns the title 'Devil of Antarctica'."
-    },
-    {
-      "name": "Falcon Scott",
-      "first_appearance": 843,
-      "description": "A research station in Antarctica that became the site of a massive siege against Nightmare Creatures. The Fall of Falcon Scott is a major event."
+      "search_terms": [
+        "Academy",
+        "Spell Academy"
+      ],
+      "description": "Schools that train Sleepers before their First Nightmare."
     },
     {
       "name": "Citadel",
       "first_appearance": 23,
-      "description": "Major fortified human settlements. Centers of civilization protected against Nightmare Creature incursions."
+      "search_terms": [
+        "Citadel"
+      ],
+      "description": "Major fortified human settlements designed to withstand attacks."
+    },
+    {
+      "name": "Labyrinth",
+      "first_appearance": 31,
+      "search_terms": [
+        "Labyrinth",
+        "labyrinth"
+      ],
+      "description": "A massive maze-like structure in the Dream Realm."
+    },
+    {
+      "name": "Forgotten Shore",
+      "first_appearance": 34,
+      "search_terms": [
+        "Forgotten Shore"
+      ],
+      "description": "A dangerous coastal region where Sleepers are sent for First Nightmare."
+    },
+    {
+      "name": "Twilight",
+      "first_appearance": 36,
+      "search_terms": [
+        "Twilight"
+      ],
+      "description": "A mysterious region between light and darkness. Home to powerful beings."
+    },
+    {
+      "name": "Bright Castle",
+      "first_appearance": 124,
+      "search_terms": [
+        "Bright Castle",
+        "castle"
+      ],
+      "description": "Fortified castle on the Forgotten Shore. Ruled by Gunlaug."
+    },
+    {
+      "name": "Dark City",
+      "first_appearance": 126,
+      "search_terms": [
+        "Dark City"
+      ],
+      "description": "Massive ruined metropolis on the Forgotten Shore filled with secrets."
+    },
+    {
+      "name": "Chained Isles",
+      "first_appearance": 378,
+      "search_terms": [
+        "Chained Isles"
+      ],
+      "description": "Region of floating islands held by seven ancient chains."
+    },
+    {
+      "name": "Sky Below",
+      "first_appearance": 380,
+      "search_terms": [
+        "Sky Below"
+      ],
+      "description": "The vast emptiness beneath the Chained Isles. Falling means death."
+    },
+    {
+      "name": "Ivory Tower",
+      "first_appearance": 382,
+      "search_terms": [
+        "Ivory Tower"
+      ],
+      "description": "Significant structure in the Chained Isles."
+    },
+    {
+      "name": "Night Temple",
+      "first_appearance": 403,
+      "search_terms": [
+        "Night Temple"
+      ],
+      "description": "A mysterious temple associated with darkness and shadow."
+    },
+    {
+      "name": "Kingdom of Hope",
+      "first_appearance": 601,
+      "search_terms": [
+        "Kingdom of Hope"
+      ],
+      "description": "Beautiful realm created by the Demon of Hope. Setting of Second Nightmare."
+    },
+    {
+      "name": "Estuary",
+      "first_appearance": 630,
+      "search_terms": [
+        "Estuary"
+      ],
+      "description": "A significant landmark where waters meet."
+    },
+    {
+      "name": "Antarctic",
+      "first_appearance": 754,
+      "search_terms": [
+        "Antarctic",
+        "Antarctica"
+      ],
+      "description": "Frozen continent, site of crucial battles. Devil of Antarctica title earned here."
+    },
+    {
+      "name": "Great River",
+      "first_appearance": 812,
+      "search_terms": [
+        "Great River"
+      ],
+      "description": "A massive river in the Tomb of Ariel where time flows strangely."
+    },
+    {
+      "name": "Falcon Scott",
+      "first_appearance": 843,
+      "search_terms": [
+        "Falcon Scott"
+      ],
+      "description": "Research station in Antarctica. Site of massive siege."
+    },
+    {
+      "name": "Tomb of Ariel",
+      "first_appearance": 1022,
+      "search_terms": [
+        "Tomb of Ariel"
+      ],
+      "description": "Ancient structure where time flows differently."
     }
   ],
   "events": [
     {
       "name": "Nightmare Spell Descends",
       "first_appearance": 1,
-      "description": "The cataclysmic event that changed humanity forever, bringing the Dream Realm and Nightmare Creatures to Earth. The beginning of a new era."
+      "search_terms": [
+        "Nightmare Spell",
+        "Spell descended"
+      ],
+      "description": "The cataclysmic event that changed humanity forever."
     },
     {
-      "name": "Sunny's First Nightmare Begins",
+      "name": "First Nightmare Begins",
       "first_appearance": 1,
-      "description": "Sunny enters the Dream Realm as a slave on the Black Mountain. The beginning of his transformation from outcast to legend."
+      "search_terms": [
+        "First Nightmare"
+      ],
+      "description": "Sunny enters the Dream Realm as a slave on the Black Mountain."
     },
     {
-      "name": "Battle with Mountain King",
+      "name": "Meeting Shifty",
+      "first_appearance": 2,
+      "search_terms": [
+        "Shifty"
+      ],
+      "description": "Sunny meets his fellow slave Shifty in the caravan."
+    },
+    {
+      "name": "Mountain King Defeated",
       "first_appearance": 6,
-      "description": "The climactic confrontation with the tyrant of the Black Mountain. Sunny witnesses Hero's sacrifice and gains the Puppeteer's Shroud."
+      "search_terms": [
+        "Mountain King"
+      ],
+      "description": "Sunny escapes the tyrant of the Black Mountain."
     },
     {
-      "name": "Shadow Slave Aspect Revealed",
+      "name": "Shadow Slave Revealed",
       "first_appearance": 15,
-      "description": "The Nightmare Spell reveals Sunny's unique Aspect: Shadow Slave. The moment that defines his entire journey."
+      "search_terms": [
+        "Shadow Slave"
+      ],
+      "description": "The Spell reveals Sunny's unique Aspect."
     },
     {
-      "name": "Clear Conscience Flaw Revealed",
+      "name": "Meeting Jet",
       "first_appearance": 17,
-      "description": "Sunny discovers his Flaw: he cannot lie. Three simple words that will shape every interaction he ever has."
+      "search_terms": [
+        "Jet"
+      ],
+      "description": "Sunny meets his mentor Master Jet."
     },
     {
-      "name": "Arrival on Forgotten Shore",
-      "first_appearance": 34,
-      "description": "Sunny's true First Nightmare begins on the desolate coast of the Forgotten Shore. A year of survival awaits."
+      "name": "Meeting Caster",
+      "first_appearance": 21,
+      "search_terms": [
+        "Caster"
+      ],
+      "description": "Sunny meets the Legacy from Clan Song."
     },
     {
       "name": "Meeting Nephis",
       "first_appearance": 24,
-      "description": "Sunny first encounters Nephis at the Academy. The beginning of their complex relationship."
+      "search_terms": [
+        "Nephis",
+        "Changing Star"
+      ],
+      "description": "Sunny first encounters Nephis at the Academy."
+    },
+    {
+      "name": "Arrival on Forgotten Shore",
+      "first_appearance": 34,
+      "search_terms": [
+        "Forgotten Shore"
+      ],
+      "description": "Sunny's true First Nightmare begins on the desolate coast."
     },
     {
       "name": "Meeting Cassie",
       "first_appearance": 36,
-      "description": "Sunny meets the blind oracle Cassie. Her prophecies will guide and haunt them all."
+      "search_terms": [
+        "Cassie"
+      ],
+      "description": "Sunny meets the blind oracle."
     },
     {
       "name": "Cohort Formation",
       "first_appearance": 55,
-      "description": "The cohort comes together: Sunny, Nephis, Cassie, Kai, Effie, and Caster unite to survive."
+      "search_terms": [
+        "cohort"
+      ],
+      "description": "The cohort comes together to survive."
     },
     {
       "name": "Stone Saint Acquired",
       "first_appearance": 103,
-      "description": "Sunny discovers and binds the Stone Saint Echo. His most powerful shadow is born."
+      "search_terms": [
+        "Stone Saint"
+      ],
+      "description": "Sunny binds his most powerful Echo."
+    },
+    {
+      "name": "Meeting Kai",
+      "first_appearance": 115,
+      "search_terms": [
+        "Kai",
+        "Nightingale"
+      ],
+      "description": "Sunny finds Kai trapped in a well."
+    },
+    {
+      "name": "Meeting Effie",
+      "first_appearance": 126,
+      "search_terms": [
+        "Effie"
+      ],
+      "description": "Sunny encounters Effie in Dark City."
     },
     {
       "name": "Fall of Gunlaug",
       "first_appearance": 280,
-      "description": "The tyrannical ruler of Bright Castle is finally defeated. The castle's fall forces the cohort to flee."
+      "search_terms": [
+        "Gunlaug"
+      ],
+      "description": "The tyrant of Bright Castle is defeated."
     },
     {
-      "name": "Escape from Forgotten Shore",
+      "name": "Escape from Shore",
       "first_appearance": 350,
-      "description": "The cohort's desperate journey to escape the Dream Realm and return to the waking world."
+      "search_terms": [
+        "escape",
+        "Forgotten Shore"
+      ],
+      "description": "The cohort escapes the Forgotten Shore."
     },
     {
       "name": "Sunny Becomes Awakened",
       "first_appearance": 351,
-      "description": "After surviving the horrors of the Forgotten Shore, Sunny officially becomes an Awakened with multiple shadow cores."
+      "search_terms": [
+        "Awakened",
+        "survived"
+      ],
+      "description": "Sunny officially becomes an Awakened."
     },
     {
       "name": "Soul Serpent Bound",
       "first_appearance": 358,
-      "description": "Sunny defeats and binds the Soul Serpent, gaining a powerful ally and transportation."
+      "search_terms": [
+        "Soul Serpent"
+      ],
+      "description": "Sunny binds the massive serpent."
+    },
+    {
+      "name": "Encountering Noctis",
+      "first_appearance": 381,
+      "search_terms": [
+        "Noctis"
+      ],
+      "description": "Sunny learns of the Shadow Sovereign."
     },
     {
       "name": "Meeting Mordret",
       "first_appearance": 438,
-      "description": "First encounter with the Prince of Nothing through a broken mirror. A terrifying connection is formed."
-    },
-    {
-      "name": "Discovery of Kingdom of Hope",
-      "first_appearance": 601,
-      "description": "Sunny enters the beautiful realm created by the Demon of Hope for his Second Nightmare."
+      "search_terms": [
+        "Mordret"
+      ],
+      "description": "First encounter with the Prince of Nothing."
     },
     {
       "name": "Second Nightmare Complete",
       "first_appearance": 640,
-      "description": "Sunny survives the nightmare within the Kingdom of Hope and becomes Ascended."
+      "search_terms": [
+        "Second Nightmare",
+        "Ascended"
+      ],
+      "description": "Sunny becomes Ascended."
     },
     {
       "name": "Master Sunless",
       "first_appearance": 751,
-      "description": "Sunny achieves Master rank and begins teaching at the Awakened Academy. His reputation grows."
+      "search_terms": [
+        "Master Sunless",
+        "Master"
+      ],
+      "description": "Sunny achieves Master rank."
     },
     {
-      "name": "First Irregular Company Formed",
-      "first_appearance": 814,
-      "description": "Sunny's special military unit is established for the Antarctic Campaign."
-    },
-    {
-      "name": "Antarctic Campaign Begins",
+      "name": "Antarctic Campaign",
       "first_appearance": 816,
-      "description": "A major military operation against Nightmare Creatures in Antarctica. Sunny leads the charge."
+      "search_terms": [
+        "Antarctic"
+      ],
+      "description": "Major military operation against Nightmare Creatures."
     },
     {
       "name": "Siege of Falcon Scott",
       "first_appearance": 843,
-      "description": "Desperate battle at the Antarctic research station. One of the largest battles against Nightmare Creatures."
+      "search_terms": [
+        "Falcon Scott",
+        "siege"
+      ],
+      "description": "Desperate battle at the research station."
     },
     {
       "name": "Devil of Antarctica",
       "first_appearance": 871,
-      "description": "Sunny earns his fearsome title through incredible feats during the Antarctic Campaign."
+      "search_terms": [
+        "Devil of Antarctica"
+      ],
+      "description": "Sunny earns his fearsome title."
     },
     {
       "name": "Entering Tomb of Ariel",
       "first_appearance": 1022,
-      "description": "Sunny enters the ancient tomb where time flows differently. Encounters with the Riverborn await."
+      "search_terms": [
+        "Tomb of Ariel"
+      ],
+      "description": "Sunny enters the ancient tomb."
     },
     {
       "name": "Meeting Ananke",
       "first_appearance": 1284,
-      "description": "Encounter with the mysterious entity of fate and inevitability in the Tomb."
+      "search_terms": [
+        "Ananke"
+      ],
+      "description": "Encounter with the entity of fate."
     },
     {
       "name": "Twilight Expedition",
       "first_appearance": 1309,
-      "description": "Journey to Twilight to confront the Dread Lord and Soul Stealer. A mission of rescue and revelation."
-    },
-    {
-      "name": "The Great War Begins",
-      "first_appearance": 1844,
-      "description": "Massive conflict erupts between human factions and Nightmare Creatures. The Song Army marches to war."
-    },
-    {
-      "name": "Sid vs Felise",
-      "first_appearance": 1998,
-      "description": "Epic confrontation between two warriors during the Great War. Their battle spans the battlefield."
-    },
-    {
-      "name": "A New Beginning",
-      "first_appearance": 2720,
-      "description": "The final chapter. Sunny faces his destiny as the story reaches its conclusion."
+      "search_terms": [
+        "Twilight",
+        "Dread Lord"
+      ],
+      "description": "Journey to confront the Dread Lord."
     }
   ]
 }

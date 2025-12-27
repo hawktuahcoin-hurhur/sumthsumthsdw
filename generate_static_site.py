@@ -662,12 +662,24 @@ const Storage = {{
 // Wiki Sidebar
 const WikiSidebar = {{
     currentChapter: 1,
+    chapterContent: '',
     
-    init(chapterNum) {{
+    init(chapterNum, chapterContent) {{
         this.currentChapter = chapterNum;
+        this.chapterContent = (chapterContent || '').toLowerCase();
         this.render();
         this.initTabs();
         this.initMobileToggle();
+    }},
+    
+    isItemMentioned(item) {{
+        // Check if any of the search terms appear in the chapter content
+        if (!item.search_terms || item.search_terms.length === 0) {{
+            // Fall back to name and aliases
+            const terms = [item.name, ...(item.aliases || [])];
+            return terms.some(term => this.chapterContent.includes(term.toLowerCase()));
+        }}
+        return item.search_terms.some(term => this.chapterContent.includes(term.toLowerCase()));
     }},
     
     render() {{
@@ -681,17 +693,18 @@ const WikiSidebar = {{
         const container = document.getElementById(containerId);
         if (!container) return;
         
-        const visible = items.filter(item => item.first_appearance <= this.currentChapter);
+        // Only show items that are mentioned in this chapter
+        const visible = items.filter(item => this.isItemMentioned(item));
         visible.sort((a, b) => b.first_appearance - a.first_appearance);
         
         if (visible.length === 0) {{
-            container.innerHTML = '<div class="wiki-empty">Nothing discovered yet in this chapter</div>';
+            container.innerHTML = '<div class="wiki-empty">No wiki entries mentioned in this chapter</div>';
             return;
         }}
         
         container.innerHTML = visible.map(item => {{
             const isNew = item.first_appearance === this.currentChapter;
-            const newBadge = isNew ? '<span class="badge new">NEW!</span>' : '';
+            const newBadge = isNew ? '<span class="badge new">FIRST!</span>' : '';
             const typeBadge = item.type ? `<span class="badge">${{item.type}}</span>` : '';
             const categoryBadge = item.category ? `<span class="badge">${{item.category}}</span>` : '';
             
@@ -896,7 +909,9 @@ function initChapterPage() {{
     if (match) {{
         const chapterNum = parseInt(match[1]);
         Storage.saveProgress(chapterNum);
-        WikiSidebar.init(chapterNum);
+        // Get chapter content from the page for wiki filtering
+        const chapterContent = document.querySelector('.chapter-content')?.textContent || '';
+        WikiSidebar.init(chapterNum, chapterContent);
     }}
 }}
 

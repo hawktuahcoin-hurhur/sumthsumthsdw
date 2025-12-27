@@ -1830,7 +1830,7 @@ const FirebaseConfig = {{
     apiKey: "AIzaSyAx2KtNj6znY8ivypcV5fcQzeNzntevKMU",
     authDomain: "shadowslaveread.firebaseapp.com",
     projectId: "shadowslaveread",
-    storageBucket: "shadowslaveread.firebasestorage.app",
+    storageBucket: "shadowslaveread.appspot.com",
     messagingSenderId: "956677381164",
     appId: "1:956677381164:web:04832a90c7b82402cbc589"
 }};
@@ -2678,7 +2678,7 @@ def generate_auth_popup():
             apiKey: "AIzaSyAx2KtNj6znY8ivypcV5fcQzeNzntevKMU",
             authDomain: "shadowslaveread.firebaseapp.com",
             projectId: "shadowslaveread",
-            storageBucket: "shadowslaveread.firebasestorage.app",
+            storageBucket: "shadowslaveread.appspot.com",
             messagingSenderId: "956677381164",
             appId: "1:956677381164:web:04832a90c7b82402cbc589"
         };
@@ -2762,7 +2762,7 @@ def generate_auth_popup_standalone():
             apiKey: "AIzaSyAx2KtNj6znY8ivypcV5fcQzeNzntevKMU",
             authDomain: "shadowslaveread.firebaseapp.com",
             projectId: "shadowslaveread",
-            storageBucket: "shadowslaveread.firebasestorage.app",
+            storageBucket: "shadowslaveread.appspot.com",
             messagingSenderId: "956677381164",
             appId: "1:956677381164:web:04832a90c7b82402cbc589"
         };

@@ -292,6 +292,12 @@ const WIKI_DATA = {
         "Raised by Wolves"
       ],
       "description": "A fierce warrior with incredible strength and appetite. First encountered in Dark City. One of Sunny's closest friends.",
+      "attributes": [
+        "Relentless frontline fighter",
+        "High endurance and strength",
+        "Loyal and protective",
+        "Tactical aggression"
+      ],
       "type": "main",
       "aspect": "Raised by Wolves",
       "clan": "None",
@@ -324,6 +330,12 @@ const WIKI_DATA = {
         "Caster"
       ],
       "description": "A Legacy from Clan Song. Initially seems arrogant but proves to be a capable leader during the Forgotten Shore.",
+      "attributes": [
+        "Leadership under pressure",
+        "Clan Song discipline",
+        "Strategic planner",
+        "Growth from arrogance to reliability"
+      ],
       "type": "main",
       "clan": "Song",
       "rank_progression": [
@@ -352,6 +364,11 @@ const WIKI_DATA = {
         "sister"
       ],
       "description": "Sunny's younger sister. Living in the outskirts, she represents Sunny's main motivation for surviving.",
+      "attributes": [
+        "Sunny's core motivation",
+        "Resilient despite hardship",
+        "Symbol of hope"
+      ],
       "type": "main",
       "clan": "None",
       "rank_progression": [
@@ -381,6 +398,11 @@ const WIKI_DATA = {
         "his shadow"
       ],
       "description": "Sunny's own shadow which gained sentience. Mischievous and sometimes defiant, but ultimately loyal.",
+      "attributes": [
+        "Sentient shadow",
+        "Mischievous but loyal",
+        "Acts independently"
+      ],
       "type": "companion"
     },
     {
@@ -395,6 +417,11 @@ const WIKI_DATA = {
         "stone woman"
       ],
       "description": "Sunny's most powerful Echo. An ancient female Saint whose body turned to stone, now serves as Sunny's primary combat shadow.",
+      "attributes": [
+        "Ancient Saint",
+        "Stone body",
+        "Primary combat echo"
+      ],
       "type": "echo"
     },
     {
@@ -409,6 +436,11 @@ const WIKI_DATA = {
         "Serpent"
       ],
       "description": "A massive serpentine creature that Sunny binds as an Echo. Serves as transportation and a powerful ally.",
+      "attributes": [
+        "Massive serpent",
+        "Transport and support",
+        "Powerful ally"
+      ],
       "type": "echo"
     },
     {
@@ -424,6 +456,10 @@ const WIKI_DATA = {
         "teacher"
       ],
       "description": "An older slave during Sunny's First Nightmare on the Black Mountain. Appears kind but calculating.",
+      "attributes": [
+        "Calculating mentor",
+        "Pragmatic survivor"
+      ],
       "type": "supporting"
     },
     {
@@ -436,6 +472,10 @@ const WIKI_DATA = {
         "Shifty"
       ],
       "description": "A fellow slave during the First Nightmare. Meets a tragic end early in the story.",
+      "attributes": [
+        "Resourceful",
+        "Tragic arc"
+      ],
       "type": "minor"
     },
     {
@@ -450,6 +490,10 @@ const WIKI_DATA = {
         "Auro"
       ],
       "description": "A legendary Sleeper who fought valiantly during the First Nightmare on the Black Mountain.",
+      "attributes": [
+        "Valiant Sleeper",
+        "Inspires resolve"
+      ],
       "type": "historical"
     },
     {
@@ -464,6 +508,11 @@ const WIKI_DATA = {
         "tyrant"
       ],
       "description": "A massive Nightmare Creature that rules the Black Mountain. The main antagonist of Sunny's First Nightmare.",
+      "attributes": [
+        "Tyrant of Black Mountain",
+        "Colossal strength",
+        "Territorial ruler"
+      ],
       "type": "creature"
     },
     {
@@ -479,6 +528,11 @@ const WIKI_DATA = {
         "Host"
       ],
       "description": "The tyrannical ruler of the Bright Castle on the Forgotten Shore. Maintains order through fear.",
+      "attributes": [
+        "Tyrant of Bright Castle",
+        "Uses fear for control",
+        "Ascended"
+      ],
       "type": "antagonist",
       "rank_progression": [
         {
@@ -498,6 +552,10 @@ const WIKI_DATA = {
         "hunchback"
       ],
       "description": "Gunlaug's cunning advisor. Despite his unassuming appearance, he is dangerous and calculating.",
+      "attributes": [
+        "Cunning strategist",
+        "Behind-the-scenes manipulator"
+      ],
       "type": "antagonist"
     },
     {
@@ -510,6 +568,10 @@ const WIKI_DATA = {
         "Gemma"
       ],
       "description": "A skilled hunter from the Bright Castle who becomes an ally to Sunny's cohort.",
+      "attributes": [
+        "Skilled huntress",
+        "Reliable ally"
+      ],
       "type": "supporting"
     },
     {
@@ -522,6 +584,10 @@ const WIKI_DATA = {
         "Harper"
       ],
       "description": "A healer at the Bright Castle who helps Sunny and his companions.",
+      "attributes": [
+        "Competent healer",
+        "Compassionate"
+      ],
       "type": "supporting"
     },
     {
@@ -536,6 +602,11 @@ const WIKI_DATA = {
         "Soul Reaper"
       ],
       "description": "A powerful Master who becomes Sunny's mentor. Cold in battle but cares for her students.",
+      "attributes": [
+        "Cold in battle, warm in duty",
+        "Mentor to future elites",
+        "Precise combat doctrine"
+      ],
       "type": "mentor",
       "aspect": "Soul Reaper",
       "rank_progression": [
@@ -557,6 +628,10 @@ const WIKI_DATA = {
         "Teacher Julius"
       ],
       "description": "An instructor at the Awakened Academy who teaches about the Dream Realm.",
+      "attributes": [
+        "Academic instructor",
+        "Explains Dream Realm fundamentals"
+      ],
       "type": "mentor"
     },
     {
@@ -572,6 +647,11 @@ const WIKI_DATA = {
         "Prince of Nothing"
       ],
       "description": "A terrifying figure with the ability to possess bodies through reflections. Has connections to Clan Valor.",
+      "attributes": [
+        "Reflection possession",
+        "Strategic and ruthless",
+        "Clan Valor ties"
+      ],
       "type": "antagonist",
       "aspect": "Reflection",
       "rank_progression": [
@@ -596,6 +676,11 @@ const WIKI_DATA = {
         "Noctis"
       ],
       "description": "An ancient Sovereign connected to shadow powers. Has deep connections to Sunny's Aspect.",
+      "attributes": [
+        "Shadow Sovereign",
+        "Ancient and enigmatic",
+        "Reality-adjacent influence"
+      ],
       "type": "legendary",
       "rank_progression": [
         {
@@ -615,6 +700,11 @@ const WIKI_DATA = {
         "Ki Song"
       ],
       "description": "The patriarch of Clan Song. A powerful figure who leads one of the Great Clans.",
+      "attributes": [
+        "Patriarch of Clan Song",
+        "Saint of prophecy",
+        "Measured authority"
+      ],
       "type": "supporting",
       "rank_progression": [
         {
@@ -633,6 +723,11 @@ const WIKI_DATA = {
         "Whispering Blade"
       ],
       "description": "A powerful Saint of Clan Valor. Known for deadly blade techniques.",
+      "attributes": [
+        "Saint of Valor",
+        "Deadly blade techniques",
+        "Strict discipline"
+      ],
       "type": "supporting",
       "rank_progression": [
         {
@@ -651,6 +746,10 @@ const WIKI_DATA = {
         "Broken Sword"
       ],
       "description": "Nephis's father, a disgraced warrior of Clan Valor. His story is intertwined with Nephis's motivation.",
+      "attributes": [
+        "Disgraced Valor warrior",
+        "Central to Nephis's resolve"
+      ],
       "type": "historical"
     },
     {
@@ -664,6 +763,10 @@ const WIKI_DATA = {
         "Weaver"
       ],
       "description": "A primordial entity responsible for weaving the fundamental fabric of reality. Connected to fate and destiny.",
+      "attributes": [
+        "Primordial weaver",
+        "Fate and Weave architect"
+      ],
       "type": "entity"
     },
     {
@@ -676,6 +779,10 @@ const WIKI_DATA = {
         "Ananke"
       ],
       "description": "A mysterious entity associated with fate and inevitability. Encountered in the Tomb of Ariel.",
+      "attributes": [
+        "Entity of inevitability",
+        "Tomb of Ariel encounter"
+      ],
       "type": "entity"
     },
     {
@@ -689,6 +796,10 @@ const WIKI_DATA = {
         "Lord of Light"
       ],
       "description": "An ancient deity of immense power associated with light and fire. One of the divine beings of the old world.",
+      "attributes": [
+        "Divinity of light and fire",
+        "Ancient world god"
+      ],
       "type": "entity"
     },
     {
@@ -699,6 +810,10 @@ const WIKI_DATA = {
         "War God"
       ],
       "description": "An ancient deity associated with battle and conflict. Worshipped in ancient times.",
+      "attributes": [
+        "Divinity of war",
+        "Ancient worship"
+      ],
       "type": "entity"
     },
     {
@@ -711,6 +826,11 @@ const WIKI_DATA = {
         "Dread Lord"
       ],
       "description": "A powerful ruler encountered in Twilight. Commands fear from all who know of him.",
+      "attributes": [
+        "Twilight tyrant",
+        "Commands fear",
+        "Saint-level threat"
+      ],
       "type": "antagonist",
       "rank_progression": [
         {
@@ -729,6 +849,10 @@ const WIKI_DATA = {
         "Soul Stealer"
       ],
       "description": "A terrifying being with the power to steal souls. Found in Twilight.",
+      "attributes": [
+        "Steals souls",
+        "Twilight presence"
+      ],
       "type": "antagonist"
     },
     {
@@ -741,6 +865,10 @@ const WIKI_DATA = {
         "Undying Slaughter"
       ],
       "description": "A fearsome being that cannot be killed by conventional means. Encountered in Twilight.",
+      "attributes": [
+        "Effectively immortal",
+        "Relentless combatant"
+      ],
       "type": "antagonist"
     },
     {
@@ -753,6 +881,10 @@ const WIKI_DATA = {
         "Morgan"
       ],
       "description": "A powerful figure from Clan Valor with connections to Nephis's past.",
+      "attributes": [
+        "Master of Valor",
+        "Influence on Nephis"
+      ],
       "type": "supporting",
       "rank_progression": [
         {
@@ -769,6 +901,10 @@ const WIKI_DATA = {
         "Solvane"
       ],
       "description": "A character encountered in the Chained Isles. Provides information about the Kingdom of Hope.",
+      "attributes": [
+        "Informed guide",
+        "Chained Isles native"
+      ],
       "type": "supporting"
     },
     {
@@ -779,6 +915,10 @@ const WIKI_DATA = {
         "Belle"
       ],
       "description": "An Awakened with charm-based abilities encountered during Sunny's work.",
+      "attributes": [
+        "Charm-based abilities",
+        "Social intuition"
+      ],
       "type": "supporting"
     },
     {
@@ -789,6 +929,10 @@ const WIKI_DATA = {
         "Samara"
       ],
       "description": "A skilled warrior who joins Sunny's team during the Antarctic campaign.",
+      "attributes": [
+        "Skilled Antarctic fighter",
+        "Team-oriented"
+      ],
       "type": "supporting"
     },
     {
@@ -801,6 +945,10 @@ const WIKI_DATA = {
         "Naeve"
       ],
       "description": "A Master-rank Awakened encountered during government operations.",
+      "attributes": [
+        "Government Master",
+        "Operational discipline"
+      ],
       "type": "supporting",
       "rank_progression": [
         {
@@ -817,6 +965,10 @@ const WIKI_DATA = {
         "Sybil"
       ],
       "description": "A character with prophetic abilities encountered in the later story.",
+      "attributes": [
+        "Prophetic insight",
+        "Reserved presence"
+      ],
       "type": "supporting"
     },
     {
@@ -829,6 +981,10 @@ const WIKI_DATA = {
         "Asterion"
       ],
       "description": "A powerful being associated with ancient labyrinths and protection.",
+      "attributes": [
+        "Labyrinth guardian",
+        "Protective force"
+      ],
       "type": "supporting"
     },
     {
@@ -839,6 +995,10 @@ const WIKI_DATA = {
         "Dire Fang"
       ],
       "description": "A fearsome creature or warrior encountered in the later arcs.",
+      "attributes": [
+        "Relentless",
+        "High-impact combatant"
+      ],
       "type": "supporting"
     },
     {
@@ -849,6 +1009,10 @@ const WIKI_DATA = {
         "Sid"
       ],
       "description": "A warrior whose battles take place during the Great War arc.",
+      "attributes": [
+        "Great War combatant",
+        "Persistent fighter"
+      ],
       "type": "supporting"
     },
     {
@@ -859,6 +1023,10 @@ const WIKI_DATA = {
         "Felise"
       ],
       "description": "A warrior locked in combat with Sid during the Great War.",
+      "attributes": [
+        "Opposes Sid",
+        "Determined adversary"
+      ],
       "type": "antagonist"
     },
     {
@@ -869,6 +1037,10 @@ const WIKI_DATA = {
         "Revel"
       ],
       "description": "A character encountered in the story.",
+      "attributes": [
+        "Brief appearance",
+        "Context-dependent role"
+      ],
       "type": "supporting"
     },
     {

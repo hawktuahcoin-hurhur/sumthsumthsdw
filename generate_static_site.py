@@ -345,10 +345,30 @@ a:hover { color: var(--secondary); }
     margin-bottom: 0.5rem;
     border-left: 3px solid var(--secondary);
     transition: all 0.3s;
+    cursor: pointer;
 }
 .wiki-item:hover {
     background: rgba(255, 255, 255, 0.08);
     border-left-color: var(--primary);
+    transform: translateX(3px);
+}
+.wiki-item .description-preview {
+    font-size: 0.8rem;
+    line-height: 1.4;
+    color: var(--text-light);
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+}
+.wiki-item .click-hint {
+    font-size: 0.65rem;
+    color: var(--primary);
+    opacity: 0.7;
+    margin-top: 0.3rem;
+}
+.wiki-item:hover .click-hint {
+    opacity: 1;
 }
 .wiki-item.new-this-chapter {
     border-left-color: var(--success);
@@ -387,6 +407,162 @@ a:hover { color: var(--secondary); }
 .wiki-item .description {
     font-size: 0.8rem;
     line-height: 1.4;
+    display: none;
+}
+
+/* Wiki Modal */
+.wiki-modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.85);
+    backdrop-filter: blur(5px);
+    z-index: 2000;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 0;
+    visibility: hidden;
+    transition: all 0.3s ease;
+}
+.wiki-modal-overlay.active {
+    opacity: 1;
+    visibility: visible;
+}
+.wiki-modal {
+    background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
+    border-radius: 16px;
+    max-width: 600px;
+    width: 90%;
+    max-height: 80vh;
+    overflow-y: auto;
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    transform: scale(0.9) translateY(20px);
+    transition: transform 0.3s ease;
+}
+.wiki-modal-overlay.active .wiki-modal {
+    transform: scale(1) translateY(0);
+}
+.wiki-modal-header {
+    padding: 1.5rem;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    position: sticky;
+    top: 0;
+    background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
+    z-index: 1;
+}
+.wiki-modal-header h2 {
+    color: var(--primary);
+    font-size: 1.5rem;
+    margin: 0;
+}
+.wiki-modal-header .badges {
+    display: flex;
+    gap: 0.5rem;
+    margin-top: 0.5rem;
+    flex-wrap: wrap;
+}
+.wiki-modal-header .badge {
+    font-size: 0.75rem;
+    padding: 0.25rem 0.6rem;
+    border-radius: 4px;
+    background: var(--secondary);
+    color: white;
+}
+.wiki-modal-header .badge.new { background: var(--success); }
+.wiki-modal-header .badge.rank { background: #fbbf24; color: #1a1a2e; }
+.wiki-modal-close {
+    background: none;
+    border: none;
+    color: var(--text-light);
+    font-size: 1.5rem;
+    cursor: pointer;
+    padding: 0.5rem;
+    transition: color 0.2s;
+}
+.wiki-modal-close:hover {
+    color: var(--primary);
+}
+.wiki-modal-body {
+    padding: 1.5rem;
+}
+.wiki-modal-aliases {
+    color: var(--text-light);
+    font-size: 0.9rem;
+    margin-bottom: 1rem;
+    font-style: italic;
+}
+.wiki-modal-description {
+    font-size: 1rem;
+    line-height: 1.7;
+    color: var(--text-color);
+    margin-bottom: 1.5rem;
+}
+.wiki-modal-meta {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+    gap: 0.75rem;
+    margin-bottom: 1.5rem;
+}
+.wiki-modal-meta-item {
+    background: rgba(255, 255, 255, 0.05);
+    padding: 0.75rem;
+    border-radius: 8px;
+    border-left: 3px solid var(--secondary);
+}
+.wiki-modal-meta-item label {
+    display: block;
+    font-size: 0.7rem;
+    color: var(--text-light);
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    margin-bottom: 0.25rem;
+}
+.wiki-modal-meta-item span {
+    color: var(--primary);
+    font-weight: 500;
+}
+.wiki-modal-rank-history {
+    background: rgba(251, 191, 36, 0.1);
+    border-radius: 8px;
+    padding: 1rem;
+    border: 1px solid rgba(251, 191, 36, 0.2);
+}
+.wiki-modal-rank-history h4 {
+    color: #fbbf24;
+    font-size: 0.9rem;
+    margin: 0 0 0.75rem 0;
+}
+.wiki-modal-rank-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+}
+.wiki-modal-rank-entry {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    background: rgba(0, 0, 0, 0.3);
+    padding: 0.5rem 0.75rem;
+    border-radius: 6px;
+}
+.wiki-modal-rank-entry.current {
+    background: rgba(251, 191, 36, 0.2);
+    border: 1px solid #fbbf24;
+}
+.wiki-modal-rank-entry .rank {
+    color: var(--primary);
+    font-weight: 600;
+}
+.wiki-modal-rank-entry .chapter {
+    color: var(--text-light);
+    font-size: 0.8rem;
 }
 .wiki-item .meta {
     font-size: 0.7rem;
@@ -663,23 +839,156 @@ const Storage = {{
 const WikiSidebar = {{
     currentChapter: 1,
     chapterContent: '',
+    allItems: [],
     
     init(chapterNum, chapterContent) {{
         this.currentChapter = chapterNum;
         this.chapterContent = (chapterContent || '').toLowerCase();
+        this.allItems = [
+            ...WIKI_DATA.characters.map(i => ({{...i, itemType: 'character'}})),
+            ...WIKI_DATA.terms.map(i => ({{...i, itemType: 'term'}})),
+            ...WIKI_DATA.locations.map(i => ({{...i, itemType: 'location'}})),
+            ...WIKI_DATA.events.map(i => ({{...i, itemType: 'event'}}))
+        ];
+        this.createModal();
         this.render();
         this.initTabs();
         this.initMobileToggle();
     }},
     
+    createModal() {{
+        if (document.getElementById('wiki-modal-overlay')) return;
+        const overlay = document.createElement('div');
+        overlay.id = 'wiki-modal-overlay';
+        overlay.className = 'wiki-modal-overlay';
+        overlay.innerHTML = `
+            <div class="wiki-modal">
+                <div class="wiki-modal-header">
+                    <div>
+                        <h2 id="wiki-modal-title"></h2>
+                        <div class="badges" id="wiki-modal-badges"></div>
+                    </div>
+                    <button class="wiki-modal-close" onclick="WikiSidebar.closeModal()">✕</button>
+                </div>
+                <div class="wiki-modal-body">
+                    <div id="wiki-modal-aliases" class="wiki-modal-aliases"></div>
+                    <div id="wiki-modal-description" class="wiki-modal-description"></div>
+                    <div id="wiki-modal-meta" class="wiki-modal-meta"></div>
+                    <div id="wiki-modal-ranks"></div>
+                </div>
+            </div>
+        `;
+        document.body.appendChild(overlay);
+        overlay.addEventListener('click', (e) => {{
+            if (e.target === overlay) this.closeModal();
+        }});
+        document.addEventListener('keydown', (e) => {{
+            if (e.key === 'Escape') this.closeModal();
+        }});
+    }},
+    
+    openModal(itemName) {{
+        const item = this.allItems.find(i => i.name === itemName);
+        if (!item) return;
+        
+        const overlay = document.getElementById('wiki-modal-overlay');
+        const isNew = item.first_appearance === this.currentChapter;
+        
+        // Title
+        document.getElementById('wiki-modal-title').textContent = item.name;
+        
+        // Badges
+        let badges = [];
+        if (isNew) badges.push('<span class="badge new">FIRST APPEARANCE!</span>');
+        if (item.type) badges.push(`<span class="badge">${{item.type}}</span>`);
+        if (item.category) badges.push(`<span class="badge">${{item.category}}</span>`);
+        
+        // Current rank badge
+        let currentRank = '';
+        if (item.rank_progression && item.rank_progression.length > 0) {{
+            const applicableRanks = item.rank_progression.filter(r => r.from_chapter <= this.currentChapter);
+            if (applicableRanks.length > 0) {{
+                currentRank = applicableRanks[applicableRanks.length - 1].rank;
+                badges.push(`<span class="badge rank">${{currentRank}}</span>`);
+            }}
+        }}
+        document.getElementById('wiki-modal-badges').innerHTML = badges.join('');
+        
+        // Aliases
+        const aliasesEl = document.getElementById('wiki-modal-aliases');
+        if (item.aliases && item.aliases.length > 0) {{
+            aliasesEl.innerHTML = `Also known as: ${{item.aliases.join(', ')}}`;
+            aliasesEl.style.display = 'block';
+        }} else {{
+            aliasesEl.style.display = 'none';
+        }}
+        
+        // Description
+        document.getElementById('wiki-modal-description').innerHTML = item.description;
+        
+        // Meta info
+        let metaItems = [];
+        metaItems.push(`<div class="wiki-modal-meta-item"><label>First Appearance</label><span>Chapter ${{item.first_appearance}}</span></div>`);
+        if (item.aspect && item.aspect !== 'N/A') {{
+            metaItems.push(`<div class="wiki-modal-meta-item"><label>Aspect</label><span>${{item.aspect}}</span></div>`);
+        }}
+        if (item.clan && item.clan !== 'N/A' && item.clan !== 'None') {{
+            metaItems.push(`<div class="wiki-modal-meta-item"><label>Clan</label><span>${{item.clan}}</span></div>`);
+        }}
+        if (item.itemType) {{
+            metaItems.push(`<div class="wiki-modal-meta-item"><label>Type</label><span style="text-transform:capitalize">${{item.itemType}}</span></div>`);
+        }}
+        document.getElementById('wiki-modal-meta').innerHTML = metaItems.join('');
+        
+        // Rank history
+        const ranksEl = document.getElementById('wiki-modal-ranks');
+        if (item.rank_progression && item.rank_progression.length > 0) {{
+            const visibleRanks = item.rank_progression.filter(r => r.from_chapter <= this.currentChapter);
+            if (visibleRanks.length > 0) {{
+                ranksEl.innerHTML = `
+                    <div class="wiki-modal-rank-history">
+                        <h4>⚔️ Rank Progression</h4>
+                        <div class="wiki-modal-rank-list">
+                            ${{visibleRanks.map(r => `
+                                <div class="wiki-modal-rank-entry ${{r.from_chapter === this.currentChapter ? 'current' : ''}}">
+                                    <span class="rank">${{r.rank}}</span>
+                                    <span class="chapter">Ch.${{r.from_chapter}}</span>
+                                </div>
+                            `).join('')}}
+                        </div>
+                    </div>
+                `;
+                ranksEl.style.display = 'block';
+            }} else {{
+                ranksEl.style.display = 'none';
+            }}
+        }} else {{
+            ranksEl.style.display = 'none';
+        }}
+        
+        overlay.classList.add('active');
+        document.body.style.overflow = 'hidden';
+    }},
+    
+    closeModal() {{
+        const overlay = document.getElementById('wiki-modal-overlay');
+        if (overlay) {{
+            overlay.classList.remove('active');
+            document.body.style.overflow = '';
+        }}
+    }},
+    
     isItemMentioned(item) {{
-        // Check if any of the search terms appear in the chapter content
         if (!item.search_terms || item.search_terms.length === 0) {{
-            // Fall back to name and aliases
             const terms = [item.name, ...(item.aliases || [])];
             return terms.some(term => this.chapterContent.includes(term.toLowerCase()));
         }}
         return item.search_terms.some(term => this.chapterContent.includes(term.toLowerCase()));
+    }},
+    
+    truncate(text, maxLen = 80) {{
+        if (text.length <= maxLen) return text;
+        return text.substring(0, maxLen).trim() + '...';
     }},
     
     render() {{
@@ -693,7 +1002,6 @@ const WikiSidebar = {{
         const container = document.getElementById(containerId);
         if (!container) return;
         
-        // Only show items that are mentioned in this chapter
         const visible = items.filter(item => this.isItemMentioned(item));
         visible.sort((a, b) => b.first_appearance - a.first_appearance);
         
@@ -704,77 +1012,35 @@ const WikiSidebar = {{
         
         container.innerHTML = visible.map(item => {{
             const isNew = item.first_appearance === this.currentChapter;
-            const newBadge = isNew ? '<span class="badge new">FIRST!</span>' : '';
+            const newBadge = isNew ? '<span class="badge new">NEW</span>' : '';
             const typeBadge = item.type ? `<span class="badge">${{item.type}}</span>` : '';
             const categoryBadge = item.category ? `<span class="badge">${{item.category}}</span>` : '';
             
-            let aliases = '';
-            if (item.aliases && item.aliases.length > 0) {{
-                aliases = `<div class="aliases">AKA: ${{item.aliases.join(', ')}}</div>`;
-            }}
-            
-            // Handle dynamic rank progression
-            let currentRank = '';
+            // Get current rank if applicable
             let rankBadge = '';
-            let rankUpgrade = false;
             if (item.rank_progression && item.rank_progression.length > 0) {{
-                // Find the current rank based on chapter
                 const applicableRanks = item.rank_progression.filter(r => r.from_chapter <= this.currentChapter);
                 if (applicableRanks.length > 0) {{
-                    const latestRank = applicableRanks[applicableRanks.length - 1];
-                    currentRank = latestRank.rank;
-                    // Check if rank just changed this chapter
-                    if (latestRank.from_chapter === this.currentChapter && applicableRanks.length > 1) {{
-                        rankUpgrade = true;
-                    }}
+                    const currentRank = applicableRanks[applicableRanks.length - 1].rank;
+                    const isUpgrade = applicableRanks[applicableRanks.length - 1].from_chapter === this.currentChapter && applicableRanks.length > 1;
+                    rankBadge = isUpgrade ? `<span class="badge" style="background:#fbbf24;color:#1a1a2e">⬆️ ${{currentRank}}</span>` : '';
                 }}
             }}
             
-            let meta = [];
-            if (currentRank) {{
-                const rankClass = rankUpgrade ? 'rank-upgrade' : '';
-                const upgradeIcon = rankUpgrade ? '⬆️ ' : '';
-                meta.push(`<span class="${{rankClass}}">${{upgradeIcon}}Rank: ${{currentRank}}</span>`);
-            }}
-            if (item.aspect && item.aspect !== 'N/A') meta.push(`<span>Aspect: ${{item.aspect}}</span>`);
-            if (item.clan && item.clan !== 'N/A' && item.clan !== 'None') meta.push(`<span>Clan: ${{item.clan}}</span>`);
-            meta.push(`<span>Ch.${{item.first_appearance}}</span>`);
-            
-            const metaHtml = meta.length > 0 ? `<div class="meta">${{meta.join('')}}</div>` : '';
-            
-            // Build rank history (spoiler-free)
-            let rankHistory = '';
-            if (item.rank_progression && item.rank_progression.length > 0) {{
-                const visibleRanks = item.rank_progression.filter(r => r.from_chapter <= this.currentChapter);
-                if (visibleRanks.length > 0) {{
-                    rankHistory = `<div class="rank-history">
-                        <div class="rank-title">Rank History:</div>
-                        ${{visibleRanks.map(r => `
-                            <div class="rank-entry ${{r.from_chapter === this.currentChapter ? 'current' : ''}}">
-                                <span class="rank-name">${{r.rank}}</span>
-                                <span class="rank-chapter">Ch.${{r.from_chapter}}</span>
-                            </div>
-                        `).join('')}}
-                    </div>`;
-                }}
-            }}
+            const preview = this.truncate(item.description, 60);
             
             return `
-                <div class="wiki-item ${{isNew ? 'new-this-chapter' : ''}} ${{rankUpgrade ? 'rank-upgraded' : ''}}">
-                    <h4>${{item.name}} ${{newBadge || typeBadge || categoryBadge}}</h4>
-                    ${{aliases}}
-                    <div class="description">${{item.description}}</div>
-                    ${{metaHtml}}
-                    ${{rankHistory}}
+                <div class="wiki-item ${{isNew ? 'new-this-chapter' : ''}}" onclick="WikiSidebar.openModal('${{item.name.replace(/'/g, "\\'")}}')">
+                    <h4>${{item.name}} ${{newBadge || rankBadge || typeBadge || categoryBadge}}</h4>
+                    <div class="description-preview">${{preview}}</div>
+                    <div class="click-hint">Click for more →</div>
                 </div>
             `;
         }}).join('');
         
-        // Update tab count
         const tab = document.querySelector(`[data-tab="${{type}}"]`);
         if (tab) {{
             const newCount = visible.filter(i => i.first_appearance === this.currentChapter).length;
-            const newIndicator = newCount > 0 ? ` (${{newCount}} new)` : '';
             tab.dataset.count = visible.length;
         }}
     }},

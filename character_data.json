@@ -41,6 +41,16 @@
         "Shadow Lantern",
         "Sin of Solace"
       ],
+      "explicit_powers": [
+        "Shadow Step",
+        "Shadow Dance",
+        "Bone Weave",
+        "Shadow Manifestation",
+        "Soul Weave",
+        "Soul Sea",
+        "Soul Core",
+        "True Name"
+      ],
       "description_progression": [
         {
           "from_chapter": 1,
@@ -113,6 +123,9 @@
       ],
       "echoes": [],
       "memories": [],
+      "explicit_powers": [
+        "Domain"
+      ],
       "description_progression": [
         {
           "from_chapter": 24,
@@ -184,6 +197,9 @@
       ],
       "echoes": [],
       "memories": [],
+      "explicit_powers": [
+        "Soul Sea"
+      ],
       "description_progression": [
         {
           "from_chapter": 36,
@@ -243,6 +259,7 @@
       ],
       "echoes": [],
       "memories": [],
+      "explicit_powers": [],
       "description_progression": [
         {
           "from_chapter": 115,

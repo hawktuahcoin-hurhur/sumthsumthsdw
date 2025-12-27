@@ -44,6 +44,16 @@ const WIKI_DATA = {
         "Shadow Lantern",
         "Sin of Solace"
       ],
+      "explicit_powers": [
+        "Shadow Step",
+        "Shadow Dance",
+        "Bone Weave",
+        "Shadow Manifestation",
+        "Soul Weave",
+        "Soul Sea",
+        "Soul Core",
+        "True Name"
+      ],
       "description_progression": [
         {
           "from_chapter": 1,
@@ -116,6 +126,9 @@ const WIKI_DATA = {
       ],
       "echoes": [],
       "memories": [],
+      "explicit_powers": [
+        "Domain"
+      ],
       "description_progression": [
         {
           "from_chapter": 24,
@@ -187,6 +200,9 @@ const WIKI_DATA = {
       ],
       "echoes": [],
       "memories": [],
+      "explicit_powers": [
+        "Soul Sea"
+      ],
       "description_progression": [
         {
           "from_chapter": 36,
@@ -246,6 +262,7 @@ const WIKI_DATA = {
       ],
       "echoes": [],
       "memories": [],
+      "explicit_powers": [],
       "description_progression": [
         {
           "from_chapter": 115,
@@ -2282,6 +2299,13 @@ const WikiSidebar = {
         // Co-mentioned terms in category "powers"
         const coTerms = this.coMentionedItems(item, 'term').filter(t => (t.category || '') === 'powers');
         coTerms.forEach(t => powerChips.push(t.name));
+        // Explicit powers mapping to terms (if present), filtered by current chapter
+        if (Array.isArray(item.explicit_powers) && item.explicit_powers.length > 0) {
+            const explicit = item.explicit_powers
+                .map(name => this.allItems.find(i => i.name === name && i.itemType === 'term' && (i.category || '') === 'powers'))
+                .filter(t => t && t.first_appearance <= this.currentChapter);
+            explicit.forEach(t => powerChips.push(`${t.name} (Ch.${t.first_appearance})`));
+        }
 
         const body = document.querySelector('.wiki-modal-body');
         body.querySelectorAll('.wiki-modal-section.dynamic').forEach(el => el.remove());

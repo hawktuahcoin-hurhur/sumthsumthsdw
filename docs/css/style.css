@@ -222,6 +222,50 @@ input:-webkit-autofill {
 }
 .chapter-meta { color: var(--text-light); font-size: 0.9rem; margin-top: 0.5rem; }
 
+/* Text-to-Speech */
+.tts-controls {
+    margin-top: 0.75rem;
+    display: flex;
+    gap: 0.5rem;
+    align-items: center;
+    flex-wrap: wrap;
+}
+.tts-controls .tts-btn {
+    padding: 0.45rem 0.7rem;
+    background: rgba(255, 255, 255, 0.04);
+    border: 1px solid var(--border);
+    color: var(--text);
+    cursor: pointer;
+    font: inherit;
+    border-radius: 0;
+}
+.tts-controls .tts-btn:hover {
+    background: rgba(255, 255, 255, 0.06);
+    border-color: var(--border-strong);
+}
+.tts-controls .tts-btn:disabled {
+    opacity: 0.45;
+    cursor: not-allowed;
+}
+.tts-controls .tts-rate-label {
+    display: inline-flex;
+    gap: 0.4rem;
+    align-items: center;
+    color: var(--text-light);
+    font-size: 0.85rem;
+}
+.tts-controls .tts-rate {
+    padding: 0.45rem 0.6rem;
+    background: rgba(255, 255, 255, 0.06);
+    border: 1px solid var(--border);
+    color: var(--text);
+    border-radius: 0;
+}
+.tts-unsupported {
+    color: var(--text-light);
+    font-size: 0.85rem;
+}
+
 .chapter-content {
     background: rgba(255, 255, 255, 0.02);
     padding: 2rem;

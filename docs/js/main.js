@@ -2395,6 +2395,10 @@ const WikiSidebar = {
     },
     
     isItemMentioned(item) {
+        // Hard gate: never show items before their first appearance
+        if (typeof item.first_appearance === 'number' && item.first_appearance > this.currentChapter) {
+            return false;
+        }
         if (!item.search_terms || item.search_terms.length === 0) {
             const terms = [item.name, ...(item.aliases || [])];
             return terms.some(term => this.chapterContent.includes(term.toLowerCase()));
@@ -2497,6 +2501,49 @@ const WikiSidebar = {
                 toggle.textContent = sidebar.classList.contains('mobile-open') ? '✕' : '📖';
             });
         }
+    }
+};
+
+// Text-to-Speech (Chapter pages)
+const TTS = {
+    utterance: null,
+    supported: () => (typeof window !== 'undefined' && 'speechSynthesis' in window && 'SpeechSynthesisUtterance' in window),
+
+    getText() {
+        const container = document.querySelector('.chapter-content');
+        if (!container) return '';
+        const text = (container.innerText || container.textContent || '').trim();
+        // Keep it simple: speak the raw chapter text
+        return text.replace(/\s+/g, ' ');
+    },
+
+    stop() {
+        if (!this.supported()) return;
+        window.speechSynthesis.cancel();
+        this.utterance = null;
+    },
+
+    speak(rate = 1.0) {
+        if (!this.supported()) return;
+        const text = this.getText();
+        if (!text) return;
+        this.stop();
+        const u = new SpeechSynthesisUtterance(text);
+        u.rate = Math.max(0.5, Math.min(2.0, Number(rate) || 1.0));
+        u.pitch = 1.0;
+        u.volume = 1.0;
+        this.utterance = u;
+        window.speechSynthesis.speak(u);
+    },
+
+    pause() {
+        if (!this.supported()) return;
+        if (window.speechSynthesis.speaking && !window.speechSynthesis.paused) window.speechSynthesis.pause();
+    },
+
+    resume() {
+        if (!this.supported()) return;
+        if (window.speechSynthesis.paused) window.speechSynthesis.resume();
     }
 };
 
@@ -2608,6 +2655,31 @@ function initChapterPage() {
         // Get chapter content from the page for wiki filtering
         const chapterContent = document.querySelector('.chapter-content')?.textContent || '';
         WikiSidebar.init(chapterNum, chapterContent);
+
+        // Init Text-to-Speech controls
+        const ttsRoot = document.querySelector('[data-tts]');
+        if (ttsRoot) {
+            const playBtn = ttsRoot.querySelector('.tts-play');
+            const pauseBtn = ttsRoot.querySelector('.tts-pause');
+            const resumeBtn = ttsRoot.querySelector('.tts-resume');
+            const stopBtn = ttsRoot.querySelector('.tts-stop');
+            const rateSel = ttsRoot.querySelector('.tts-rate');
+            const unsupported = ttsRoot.querySelector('.tts-unsupported');
+
+            const isSupported = TTS.supported();
+            if (!isSupported) {
+                if (unsupported) unsupported.style.display = '';
+                [playBtn, pauseBtn, resumeBtn, stopBtn, rateSel].forEach(el => { if (el) el.disabled = true; });
+            } else {
+                if (unsupported) unsupported.style.display = 'none';
+                if (playBtn) playBtn.addEventListener('click', () => TTS.speak(rateSel?.value || 1));
+                if (pauseBtn) pauseBtn.addEventListener('click', () => TTS.pause());
+                if (resumeBtn) resumeBtn.addEventListener('click', () => TTS.resume());
+                if (stopBtn) stopBtn.addEventListener('click', () => TTS.stop());
+
+                window.addEventListener('beforeunload', () => TTS.stop());
+            }
+        }
     }
 }
 

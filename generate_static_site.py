@@ -242,6 +242,50 @@ input:-webkit-autofill {
 }
 .chapter-meta { color: var(--text-light); font-size: 0.9rem; margin-top: 0.5rem; }
 
+/* Text-to-Speech */
+.tts-controls {
+    margin-top: 0.75rem;
+    display: flex;
+    gap: 0.5rem;
+    align-items: center;
+    flex-wrap: wrap;
+}
+.tts-controls .tts-btn {
+    padding: 0.45rem 0.7rem;
+    background: rgba(255, 255, 255, 0.04);
+    border: 1px solid var(--border);
+    color: var(--text);
+    cursor: pointer;
+    font: inherit;
+    border-radius: 0;
+}
+.tts-controls .tts-btn:hover {
+    background: rgba(255, 255, 255, 0.06);
+    border-color: var(--border-strong);
+}
+.tts-controls .tts-btn:disabled {
+    opacity: 0.45;
+    cursor: not-allowed;
+}
+.tts-controls .tts-rate-label {
+    display: inline-flex;
+    gap: 0.4rem;
+    align-items: center;
+    color: var(--text-light);
+    font-size: 0.85rem;
+}
+.tts-controls .tts-rate {
+    padding: 0.45rem 0.6rem;
+    background: rgba(255, 255, 255, 0.06);
+    border: 1px solid var(--border);
+    color: var(--text);
+    border-radius: 0;
+}
+.tts-unsupported {
+    color: var(--text-light);
+    font-size: 0.85rem;
+}
+
 .chapter-content {
     background: rgba(255, 255, 255, 0.02);
     padding: 2rem;
@@ -1201,6 +1245,10 @@ const WikiSidebar = {{
     }},
     
     isItemMentioned(item) {{
+        // Hard gate: never show items before their first appearance
+        if (typeof item.first_appearance === 'number' && item.first_appearance > this.currentChapter) {{
+            return false;
+        }}
         if (!item.search_terms || item.search_terms.length === 0) {{
             const terms = [item.name, ...(item.aliases || [])];
             return terms.some(term => this.chapterContent.includes(term.toLowerCase()));
@@ -1303,6 +1351,49 @@ const WikiSidebar = {{
                 toggle.textContent = sidebar.classList.contains('mobile-open') ? '✕' : '📖';
             }});
         }}
+    }}
+}};
+
+// Text-to-Speech (Chapter pages)
+const TTS = {{
+    utterance: null,
+    supported: () => (typeof window !== 'undefined' && 'speechSynthesis' in window && 'SpeechSynthesisUtterance' in window),
+
+    getText() {{
+        const container = document.querySelector('.chapter-content');
+        if (!container) return '';
+        const text = (container.innerText || container.textContent || '').trim();
+        // Keep it simple: speak the raw chapter text
+        return text.replace(/\\s+/g, ' ');
+    }},
+
+    stop() {{
+        if (!this.supported()) return;
+        window.speechSynthesis.cancel();
+        this.utterance = null;
+    }},
+
+    speak(rate = 1.0) {{
+        if (!this.supported()) return;
+        const text = this.getText();
+        if (!text) return;
+        this.stop();
+        const u = new SpeechSynthesisUtterance(text);
+        u.rate = Math.max(0.5, Math.min(2.0, Number(rate) || 1.0));
+        u.pitch = 1.0;
+        u.volume = 1.0;
+        this.utterance = u;
+        window.speechSynthesis.speak(u);
+    }},
+
+    pause() {{
+        if (!this.supported()) return;
+        if (window.speechSynthesis.speaking && !window.speechSynthesis.paused) window.speechSynthesis.pause();
+    }},
+
+    resume() {{
+        if (!this.supported()) return;
+        if (window.speechSynthesis.paused) window.speechSynthesis.resume();
     }}
 }};
 
@@ -1414,6 +1505,31 @@ function initChapterPage() {{
         // Get chapter content from the page for wiki filtering
         const chapterContent = document.querySelector('.chapter-content')?.textContent || '';
         WikiSidebar.init(chapterNum, chapterContent);
+
+        // Init Text-to-Speech controls
+        const ttsRoot = document.querySelector('[data-tts]');
+        if (ttsRoot) {{
+            const playBtn = ttsRoot.querySelector('.tts-play');
+            const pauseBtn = ttsRoot.querySelector('.tts-pause');
+            const resumeBtn = ttsRoot.querySelector('.tts-resume');
+            const stopBtn = ttsRoot.querySelector('.tts-stop');
+            const rateSel = ttsRoot.querySelector('.tts-rate');
+            const unsupported = ttsRoot.querySelector('.tts-unsupported');
+
+            const isSupported = TTS.supported();
+            if (!isSupported) {{
+                if (unsupported) unsupported.style.display = '';
+                [playBtn, pauseBtn, resumeBtn, stopBtn, rateSel].forEach(el => {{ if (el) el.disabled = true; }});
+            }} else {{
+                if (unsupported) unsupported.style.display = 'none';
+                if (playBtn) playBtn.addEventListener('click', () => TTS.speak(rateSel?.value || 1));
+                if (pauseBtn) pauseBtn.addEventListener('click', () => TTS.pause());
+                if (resumeBtn) resumeBtn.addEventListener('click', () => TTS.resume());
+                if (stopBtn) stopBtn.addEventListener('click', () => TTS.stop());
+
+                window.addEventListener('beforeunload', () => TTS.stop());
+            }}
+        }}
     }}
 }}
 
@@ -1621,6 +1737,21 @@ def generate_chapter(chapter, prev_num, next_num, total):
             <h1>{chapter['title']}</h1>
             <div class="chapter-meta">
                 Chapter {chapter['chapter_number']} of {total} • {word_count:,} words • {reading_time} min read
+            </div>
+            <div class="tts-controls" data-tts>
+                <button class="tts-btn tts-play" type="button">🔊 Play</button>
+                <button class="tts-btn tts-pause" type="button">⏸ Pause</button>
+                <button class="tts-btn tts-resume" type="button">▶ Resume</button>
+                <button class="tts-btn tts-stop" type="button">⏹ Stop</button>
+                <span class="tts-rate-label">Speed
+                    <select class="tts-rate">
+                        <option value="0.85">0.85×</option>
+                        <option value="1" selected>1×</option>
+                        <option value="1.15">1.15×</option>
+                        <option value="1.3">1.3×</option>
+                    </select>
+                </span>
+                <span class="tts-unsupported" style="display:none;">(TTS not supported in this browser)</span>
             </div>
         </div>
         

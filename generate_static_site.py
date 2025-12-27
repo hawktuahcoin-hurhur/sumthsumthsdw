@@ -1843,6 +1843,11 @@ async function initFirebase() {{
     try {{
         firebase.initializeApp(FirebaseConfig);
         db = firebase.firestore();
+        
+        // Initialize Storage
+        try {{
+            firebase.storage();
+        }} catch (e) {{ /* ignore if already initialized */ }}
 
         // Listen for login completion from the dedicated auth popup.
         try {{
@@ -2058,7 +2063,7 @@ async function saveBio() {{
 }}
 
 async function handleAvatarUpload(event) {{
-    if (!currentUser || !firebase.storage) return;
+    if (!currentUser || !db) return;
     
     const file = event.target.files[0];
     if (!file || !file.type.startsWith('image/')) return;
@@ -2070,29 +2075,37 @@ async function handleAvatarUpload(event) {{
     }}
     
     try {{
-        const storageRef = firebase.storage().ref();
-        const fileRef = storageRef.child(`avatars/${{currentUser.uid}}/${{Date.now()}}_${{file.name}}`);
+        const storage = firebase.storage();
+        const storageRef = storage.ref();
+        const fileName = `${{Date.now()}}_${{file.name.replace(/[^a-zA-Z0-9.-]/g, '')}}`;
+        const fileRef = storageRef.child(`avatars/${{currentUser.uid}}/${{fileName}}`);
         
         // Upload file
-        await fileRef.put(file);
+        const snapshot = await fileRef.put(file);
         
         // Get download URL
         const downloadUrl = await fileRef.getDownloadURL();
         
-        // Update user profile in Firestore
-        await db.collection('users').doc(currentUser.uid).update({{ customAvatarUrl: downloadUrl }});
+        // Update user profile in Firestore with merge to create doc if needed
+        await db.collection('users').doc(currentUser.uid).set(
+            {{ customAvatarUrl: downloadUrl }}, 
+            {{ merge: true }}
+        );
         
         // Update local profile
-        if (userProfile) userProfile.customAvatarUrl = downloadUrl;
+        if (userProfile) {{
+            userProfile.customAvatarUrl = downloadUrl;
+        }} else {{
+            userProfile = {{ customAvatarUrl: downloadUrl }};
+        }}
         
-        // Update avatar display
+        // Update avatar display immediately
         const avatarEl = document.getElementById('profile-avatar');
         if (avatarEl) {{
             avatarEl.innerHTML = `<img src=\"${{downloadUrl}}\" style=\"width: 100%; height: 100%; border-radius: 50%; object-fit: cover;\" />`;
         }}
     }} catch (e) {{
-        console.log('Avatar upload error:', e.message);
-        alert('Failed to upload avatar');
+        alert('Failed to upload avatar: ' + (e.message || 'Unknown error'));
     }}
     
     // Reset file input
@@ -2470,6 +2483,7 @@ def get_base_template():
     <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-app-compat.js"></script>
     <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-auth-compat.js"></script>
     <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-firestore-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-storage-compat.js"></script>
     <script src="{js_path}"></script>
 </body>
 </html>'''

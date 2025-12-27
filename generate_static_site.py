@@ -289,8 +289,8 @@ a:hover { color: var(--secondary); }
 /* Wiki Sidebar */
 .wiki-sidebar {
     background: var(--sidebar-bg);
-    border-radius: var(--radius);
-    border: 1px solid var(--border);
+    border-radius: 12px;
+    border: 1px solid rgba(255, 255, 255, 0.1);
     height: fit-content;
     position: sticky;
     top: 80px;
@@ -302,11 +302,13 @@ a:hover { color: var(--secondary); }
 
 .wiki-sidebar-header {
     padding: 1rem;
-    border-bottom: 1px solid var(--border);
-    background: transparent;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    background: rgba(0, 0, 0, 0.2);
 }
 .wiki-sidebar-header h3 {
-    color: var(--text);
+    background: linear-gradient(135deg, var(--primary), var(--secondary));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
     font-size: 1.1rem;
     margin-bottom: 0.25rem;
 }
@@ -317,8 +319,8 @@ a:hover { color: var(--secondary); }
 
 .wiki-tabs {
     display: flex;
-    border-bottom: 1px solid var(--border);
-    background: transparent;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    background: rgba(0, 0, 0, 0.1);
 }
 .wiki-tab {
     flex: 1;
@@ -328,14 +330,14 @@ a:hover { color: var(--secondary); }
     color: var(--text-light);
     cursor: pointer;
     font-size: 0.75rem;
-    transition: background 0.2s ease, color 0.2s ease;
+    transition: all 0.3s;
     border-bottom: 2px solid transparent;
 }
 .wiki-tab:hover { color: var(--text); background: rgba(255, 255, 255, 0.05); }
 .wiki-tab.active { 
     color: var(--primary); 
     border-bottom-color: var(--primary);
-    background: rgba(0, 212, 255, 0.06);
+    background: rgba(0, 212, 255, 0.1);
 }
 
 .wiki-content {
@@ -348,17 +350,18 @@ a:hover { color: var(--secondary); }
 .wiki-section.active { display: block; }
 
 .wiki-item {
-    background: rgba(255, 255, 255, 0.02);
+    background: rgba(255, 255, 255, 0.03);
     padding: 0.75rem;
-    border-radius: var(--radius);
+    border-radius: 8px;
     margin-bottom: 0.5rem;
     border-left: 3px solid var(--secondary);
-    transition: background 0.2s ease, border-left-color 0.2s ease;
+    transition: all 0.3s;
     cursor: pointer;
 }
 .wiki-item:hover {
-    background: rgba(255, 255, 255, 0.04);
+    background: rgba(255, 255, 255, 0.08);
     border-left-color: var(--primary);
+    transform: translateX(3px);
 }
 .wiki-item .description-preview {
     font-size: 0.8rem;
@@ -389,7 +392,7 @@ a:hover { color: var(--secondary); }
 }
 @keyframes rankGlow {
     0%, 100% { box-shadow: none; }
-    50% { box-shadow: none; }
+    50% { box-shadow: 0 0 15px rgba(251, 191, 36, 0.5); }
 }
 .wiki-item h4 {
     color: var(--primary);
@@ -402,7 +405,7 @@ a:hover { color: var(--secondary); }
 .wiki-item .badge {
     font-size: 0.65rem;
     padding: 0.15rem 0.4rem;
-    border-radius: var(--radius-sm);
+    border-radius: 4px;
     background: var(--secondary);
     color: white;
 }
@@ -425,43 +428,44 @@ a:hover { color: var(--secondary); }
     left: 0;
     right: 0;
     bottom: 0;
-    background: rgba(0, 0, 0, 0.75);
+    background: rgba(0, 0, 0, 0.85);
+    backdrop-filter: blur(5px);
     z-index: 2000;
     display: flex;
     align-items: center;
     justify-content: center;
     opacity: 0;
     visibility: hidden;
-    transition: opacity 0.2s ease, visibility 0.2s ease;
+    transition: all 0.3s ease;
 }
 .wiki-modal-overlay.active {
     opacity: 1;
     visibility: visible;
 }
 .wiki-modal {
-    background: var(--card-bg);
-    border-radius: var(--radius-lg);
+    background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
+    border-radius: 16px;
     max-width: 600px;
     width: 90%;
     max-height: 80vh;
     overflow-y: auto;
-    box-shadow: var(--shadow);
-    border: 1px solid var(--border);
-    transform: translateY(8px);
-    transition: transform 0.2s ease;
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    transform: scale(0.9) translateY(20px);
+    transition: transform 0.3s ease;
 }
 .wiki-modal-overlay.active .wiki-modal {
-    transform: translateY(0);
+    transform: scale(1) translateY(0);
 }
 .wiki-modal-header {
     padding: 1.5rem;
-    border-bottom: 1px solid var(--border);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
     display: flex;
     justify-content: space-between;
     align-items: flex-start;
     position: sticky;
     top: 0;
-    background: var(--card-bg);
+    background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
     z-index: 1;
 }
 .wiki-modal-header h2 {
@@ -478,7 +482,7 @@ a:hover { color: var(--secondary); }
 .wiki-modal-header .badge {
     font-size: 0.75rem;
     padding: 0.25rem 0.6rem;
-    border-radius: var(--radius-sm);
+    border-radius: 4px;
     background: var(--secondary);
     color: white;
 }
@@ -487,7 +491,7 @@ a:hover { color: var(--secondary); }
 .wiki-modal-close {
     background: none;
     border: none;
-    color: rgba(255, 255, 255, 0.55);
+    color: var(--text-light);
     font-size: 1.5rem;
     cursor: pointer;
     padding: 0.5rem;
@@ -514,9 +518,9 @@ a:hover { color: var(--secondary); }
 }
 .chip {
     padding: 0.35rem 0.6rem;
-    border-radius: var(--radius-sm);
-    background: rgba(255, 255, 255, 0.04);
-    border: 1px solid var(--border);
+    border-radius: 999px;
+    background: rgba(255, 255, 255, 0.08);
+    border: 1px solid rgba(255, 255, 255, 0.15);
     font-size: 0.8rem;
     color: var(--text);
 }
@@ -546,7 +550,7 @@ a:hover { color: var(--secondary); }
 .wiki-modal-meta-item {
     background: rgba(255, 255, 255, 0.05);
     padding: 0.75rem;
-    border-radius: var(--radius);
+    border-radius: 8px;
     border-left: 3px solid var(--secondary);
 }
 .wiki-modal-meta-item label {
@@ -563,7 +567,7 @@ a:hover { color: var(--secondary); }
 }
 .wiki-modal-rank-history {
     background: rgba(251, 191, 36, 0.1);
-    border-radius: var(--radius);
+    border-radius: 8px;
     padding: 1rem;
     border: 1px solid rgba(251, 191, 36, 0.2);
 }
@@ -583,7 +587,7 @@ a:hover { color: var(--secondary); }
     gap: 0.5rem;
     background: rgba(0, 0, 0, 0.3);
     padding: 0.5rem 0.75rem;
-    border-radius: var(--radius);
+    border-radius: 6px;
 }
 .wiki-modal-rank-entry.current {
     background: rgba(251, 191, 36, 0.2);
@@ -636,7 +640,7 @@ a:hover { color: var(--secondary); }
     margin-bottom: 0.25rem;
     padding: 0.15rem 0.4rem;
     background: rgba(255, 255, 255, 0.05);
-    border-radius: var(--radius-sm);
+    border-radius: 3px;
 }
 .rank-history .rank-entry.current {
     background: rgba(251, 191, 36, 0.2);
@@ -665,13 +669,12 @@ a:hover { color: var(--secondary); }
     left: 20px;
     width: 50px;
     height: 50px;
-    border-radius: var(--radius);
-    background: var(--card-bg);
-    border: 1px solid var(--border);
+    border-radius: 50%;
+    background: linear-gradient(135deg, var(--secondary), var(--primary));
+    border: none;
     cursor: pointer;
     font-size: 1.2rem;
-    color: var(--text);
-    box-shadow: none;
+    box-shadow: 0 4px 20px rgba(123, 44, 191, 0.4);
     z-index: 1000;
 }
 

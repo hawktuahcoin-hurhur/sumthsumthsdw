@@ -2890,9 +2890,11 @@ async function initFirebase() {
         
         firebase.auth().onAuthStateChanged(user => {
             currentUser = user;
+            userProfile = null;  // Reset profile cache on auth change
             updateAuthUI();
             if (!user) return;
 
+            loadUserProfile();  // Load user profile from Firestore
             loadComments();
             if (pendingLoginSuccess) {
                 pendingLoginSuccess = false;
@@ -2924,34 +2926,153 @@ function updateAuthUI() {
     }
 }
 
-function showProfile() {
+let userProfile = null;
+
+async function loadUserProfile() {
+    if (!currentUser || !db) return;
+    try {
+        const doc = await db.collection('users').doc(currentUser.uid).get();
+        if (doc.exists) {
+            userProfile = doc.data();
+        } else {
+            // Create default profile
+            userProfile = {
+                displayName: currentUser.displayName || '',
+                username: currentUser.email.split('@')[0],
+                bio: '',
+                createdAt: new Date(),
+                commentCount: 0
+            };
+            await db.collection('users').doc(currentUser.uid).set(userProfile);
+        }
+    } catch (e) {
+        userProfile = null;
+    }
+}
+
+async function showProfile() {
     const modal = document.getElementById('profile-modal');
     if (!modal) return;
     
-    const nameEl = document.getElementById('profile-name');
+    // Load user profile from Firestore if not cached
+    if (currentUser && !userProfile) {
+        await loadUserProfile();
+    }
+    
+    const displayNameEl = document.getElementById('profile-display-name');
+    const usernameEl = document.getElementById('profile-username');
     const emailEl = document.getElementById('profile-email');
     const chaptersEl = document.getElementById('profile-chapters');
     const lastEl = document.getElementById('profile-last');
+    const progressEl = document.getElementById('profile-progress');
+    const commentsEl = document.getElementById('profile-comments');
     const avatarEl = document.getElementById('profile-avatar');
+    const bioEl = document.getElementById('profile-bio');
+    const providerEl = document.getElementById('profile-provider');
+    const joinedEl = document.getElementById('profile-joined');
+    const editBioBtn = document.getElementById('edit-bio-btn');
+    
+    const totalChapters = 2720;
+    const readCount = Storage.getReadCount();
+    const lastChapter = Storage.getLastChapter();
+    const progress = Math.round((readCount / totalChapters) * 100);
     
     if (currentUser) {
-        if (nameEl) nameEl.textContent = currentUser.displayName || currentUser.email.split('@')[0];
+        const displayName = userProfile?.displayName || currentUser.displayName || currentUser.email.split('@')[0];
+        const username = userProfile?.username || currentUser.email.split('@')[0];
+        const bio = userProfile?.bio || 'No bio yet. Click Edit to add one!';
+        const commentCount = userProfile?.commentCount || 0;
+        
+        if (displayNameEl) displayNameEl.textContent = displayName;
+        if (usernameEl) usernameEl.textContent = '@' + username;
         if (emailEl) emailEl.textContent = currentUser.email;
+        if (bioEl) bioEl.textContent = bio;
+        if (commentsEl) commentsEl.textContent = commentCount;
+        if (editBioBtn) editBioBtn.style.display = 'inline-block';
+        
         if (avatarEl && currentUser.photoURL) {
             avatarEl.innerHTML = `<img src="${currentUser.photoURL}" style="width: 100%; height: 100%; border-radius: 50%; object-fit: cover;" />`;
         } else if (avatarEl) {
             avatarEl.innerHTML = '👤';
         }
+        
+        // Provider info
+        if (providerEl) {
+            const providerId = currentUser.providerData[0]?.providerId || 'unknown';
+            const providerNames = { 'google.com': 'Google', 'password': 'Email', 'github.com': 'GitHub' };
+            providerEl.textContent = providerNames[providerId] || providerId;
+        }
+        
+        // Join date
+        if (joinedEl) {
+            const createdAt = userProfile?.createdAt?.toDate?.() || currentUser.metadata?.creationTime;
+            if (createdAt) {
+                joinedEl.textContent = new Date(createdAt).toLocaleDateString('en-US', { month: 'short', year: 'numeric' });
+            }
+        }
     } else {
-        if (nameEl) nameEl.textContent = 'Guest';
-        if (emailEl) emailEl.textContent = 'Not signed in';
+        if (displayNameEl) displayNameEl.textContent = 'Guest';
+        if (usernameEl) usernameEl.textContent = '@guest';
+        if (emailEl) emailEl.textContent = 'Sign in to save your progress';
+        if (bioEl) bioEl.textContent = 'Sign in to create your profile!';
         if (avatarEl) avatarEl.innerHTML = '👤';
+        if (commentsEl) commentsEl.textContent = '0';
+        if (editBioBtn) editBioBtn.style.display = 'none';
+        if (providerEl) providerEl.textContent = '—';
+        if (joinedEl) joinedEl.textContent = '—';
     }
     
-    if (chaptersEl) chaptersEl.textContent = Storage.getReadCount();
-    if (lastEl) lastEl.textContent = Storage.getLastChapter() ? 'Chapter ' + Storage.getLastChapter() : 'None';
+    if (chaptersEl) chaptersEl.textContent = readCount;
+    if (lastEl) lastEl.textContent = lastChapter || '—';
+    if (progressEl) progressEl.textContent = progress + '%';
     
     modal.style.display = 'flex';
+}
+
+function toggleBioEdit() {
+    const bioText = document.getElementById('profile-bio');
+    const bioEdit = document.getElementById('bio-edit-container');
+    const bioInput = document.getElementById('bio-input');
+    
+    if (bioEdit.style.display === 'none') {
+        bioInput.value = userProfile?.bio || '';
+        bioText.style.display = 'none';
+        bioEdit.style.display = 'block';
+    } else {
+        bioText.style.display = 'block';
+        bioEdit.style.display = 'none';
+    }
+}
+
+async function saveBio() {
+    if (!currentUser || !db) return;
+    
+    const bioInput = document.getElementById('bio-input');
+    const bioText = document.getElementById('profile-bio');
+    const newBio = bioInput.value.trim().substring(0, 200);
+    
+    try {
+        await db.collection('users').doc(currentUser.uid).update({ bio: newBio });
+        if (userProfile) userProfile.bio = newBio;
+        if (bioText) bioText.textContent = newBio || 'No bio yet. Click Edit to add one!';
+        toggleBioEdit();
+    } catch (e) {
+        // If doc doesn't exist, create it
+        try {
+            await db.collection('users').doc(currentUser.uid).set({
+                displayName: currentUser.displayName || '',
+                username: currentUser.email.split('@')[0],
+                bio: newBio,
+                createdAt: new Date(),
+                commentCount: 0
+            });
+            userProfile = { bio: newBio };
+            if (bioText) bioText.textContent = newBio || 'No bio yet. Click Edit to add one!';
+            toggleBioEdit();
+        } catch (err) {
+            // ignore
+        }
+    }
 }
 
 function showLoginSuccess() {

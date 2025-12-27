@@ -1867,9 +1867,11 @@ async function initFirebase() {{
         
         firebase.auth().onAuthStateChanged(user => {{
             currentUser = user;
+            userProfile = null;  // Reset profile cache on auth change
             updateAuthUI();
             if (!user) return;
 
+            loadUserProfile();  // Load user profile from Firestore
             loadComments();
             if (pendingLoginSuccess) {{
                 pendingLoginSuccess = false;
@@ -1901,34 +1903,153 @@ function updateAuthUI() {{
     }}
 }}
 
-function showProfile() {{
+let userProfile = null;
+
+async function loadUserProfile() {{
+    if (!currentUser || !db) return;
+    try {{
+        const doc = await db.collection('users').doc(currentUser.uid).get();
+        if (doc.exists) {{
+            userProfile = doc.data();
+        }} else {{
+            // Create default profile
+            userProfile = {{
+                displayName: currentUser.displayName || '',
+                username: currentUser.email.split('@')[0],
+                bio: '',
+                createdAt: new Date(),
+                commentCount: 0
+            }};
+            await db.collection('users').doc(currentUser.uid).set(userProfile);
+        }}
+    }} catch (e) {{
+        userProfile = null;
+    }}
+}}
+
+async function showProfile() {{
     const modal = document.getElementById('profile-modal');
     if (!modal) return;
     
-    const nameEl = document.getElementById('profile-name');
+    // Load user profile from Firestore if not cached
+    if (currentUser && !userProfile) {{
+        await loadUserProfile();
+    }}
+    
+    const displayNameEl = document.getElementById('profile-display-name');
+    const usernameEl = document.getElementById('profile-username');
     const emailEl = document.getElementById('profile-email');
     const chaptersEl = document.getElementById('profile-chapters');
     const lastEl = document.getElementById('profile-last');
+    const progressEl = document.getElementById('profile-progress');
+    const commentsEl = document.getElementById('profile-comments');
     const avatarEl = document.getElementById('profile-avatar');
+    const bioEl = document.getElementById('profile-bio');
+    const providerEl = document.getElementById('profile-provider');
+    const joinedEl = document.getElementById('profile-joined');
+    const editBioBtn = document.getElementById('edit-bio-btn');
+    
+    const totalChapters = 2720;
+    const readCount = Storage.getReadCount();
+    const lastChapter = Storage.getLastChapter();
+    const progress = Math.round((readCount / totalChapters) * 100);
     
     if (currentUser) {{
-        if (nameEl) nameEl.textContent = currentUser.displayName || currentUser.email.split('@')[0];
+        const displayName = userProfile?.displayName || currentUser.displayName || currentUser.email.split('@')[0];
+        const username = userProfile?.username || currentUser.email.split('@')[0];
+        const bio = userProfile?.bio || 'No bio yet. Click Edit to add one!';
+        const commentCount = userProfile?.commentCount || 0;
+        
+        if (displayNameEl) displayNameEl.textContent = displayName;
+        if (usernameEl) usernameEl.textContent = '@' + username;
         if (emailEl) emailEl.textContent = currentUser.email;
+        if (bioEl) bioEl.textContent = bio;
+        if (commentsEl) commentsEl.textContent = commentCount;
+        if (editBioBtn) editBioBtn.style.display = 'inline-block';
+        
         if (avatarEl && currentUser.photoURL) {{
             avatarEl.innerHTML = `<img src="${{currentUser.photoURL}}" style="width: 100%; height: 100%; border-radius: 50%; object-fit: cover;" />`;
         }} else if (avatarEl) {{
             avatarEl.innerHTML = '👤';
         }}
+        
+        // Provider info
+        if (providerEl) {{
+            const providerId = currentUser.providerData[0]?.providerId || 'unknown';
+            const providerNames = {{ 'google.com': 'Google', 'password': 'Email', 'github.com': 'GitHub' }};
+            providerEl.textContent = providerNames[providerId] || providerId;
+        }}
+        
+        // Join date
+        if (joinedEl) {{
+            const createdAt = userProfile?.createdAt?.toDate?.() || currentUser.metadata?.creationTime;
+            if (createdAt) {{
+                joinedEl.textContent = new Date(createdAt).toLocaleDateString('en-US', {{ month: 'short', year: 'numeric' }});
+            }}
+        }}
     }} else {{
-        if (nameEl) nameEl.textContent = 'Guest';
-        if (emailEl) emailEl.textContent = 'Not signed in';
+        if (displayNameEl) displayNameEl.textContent = 'Guest';
+        if (usernameEl) usernameEl.textContent = '@guest';
+        if (emailEl) emailEl.textContent = 'Sign in to save your progress';
+        if (bioEl) bioEl.textContent = 'Sign in to create your profile!';
         if (avatarEl) avatarEl.innerHTML = '👤';
+        if (commentsEl) commentsEl.textContent = '0';
+        if (editBioBtn) editBioBtn.style.display = 'none';
+        if (providerEl) providerEl.textContent = '—';
+        if (joinedEl) joinedEl.textContent = '—';
     }}
     
-    if (chaptersEl) chaptersEl.textContent = Storage.getReadCount();
-    if (lastEl) lastEl.textContent = Storage.getLastChapter() ? 'Chapter ' + Storage.getLastChapter() : 'None';
+    if (chaptersEl) chaptersEl.textContent = readCount;
+    if (lastEl) lastEl.textContent = lastChapter || '—';
+    if (progressEl) progressEl.textContent = progress + '%';
     
     modal.style.display = 'flex';
+}}
+
+function toggleBioEdit() {{
+    const bioText = document.getElementById('profile-bio');
+    const bioEdit = document.getElementById('bio-edit-container');
+    const bioInput = document.getElementById('bio-input');
+    
+    if (bioEdit.style.display === 'none') {{
+        bioInput.value = userProfile?.bio || '';
+        bioText.style.display = 'none';
+        bioEdit.style.display = 'block';
+    }} else {{
+        bioText.style.display = 'block';
+        bioEdit.style.display = 'none';
+    }}
+}}
+
+async function saveBio() {{
+    if (!currentUser || !db) return;
+    
+    const bioInput = document.getElementById('bio-input');
+    const bioText = document.getElementById('profile-bio');
+    const newBio = bioInput.value.trim().substring(0, 200);
+    
+    try {{
+        await db.collection('users').doc(currentUser.uid).update({{ bio: newBio }});
+        if (userProfile) userProfile.bio = newBio;
+        if (bioText) bioText.textContent = newBio || 'No bio yet. Click Edit to add one!';
+        toggleBioEdit();
+    }} catch (e) {{
+        // If doc doesn't exist, create it
+        try {{
+            await db.collection('users').doc(currentUser.uid).set({{
+                displayName: currentUser.displayName || '',
+                username: currentUser.email.split('@')[0],
+                bio: newBio,
+                createdAt: new Date(),
+                commentCount: 0
+            }});
+            userProfile = {{ bio: newBio }};
+            if (bioText) bioText.textContent = newBio || 'No bio yet. Click Edit to add one!';
+            toggleBioEdit();
+        }} catch (err) {{
+            // ignore
+        }}
+    }}
 }}
 
 function showLoginSuccess() {{
@@ -2207,18 +2328,72 @@ def get_base_template():
         </div>
     </div>
     <div id="profile-modal" class="modal" style="display: none;">
-        <div class="modal-content" style="text-align: center;">
+        <div class="modal-content" style="max-width: 480px;">
             <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1.5rem;">
                 <h3>👤 Your Profile</h3>
                 <button class="close-btn" onclick="document.getElementById('profile-modal').style.display = 'none';">&times;</button>
             </div>
-            <div id="profile-avatar" style="width: 80px; height: 80px; border-radius: 50%; background: var(--secondary); margin: 0 auto 1rem; display: flex; align-items: center; justify-content: center; font-size: 2rem;">👤</div>
-            <div id="profile-name" style="font-size: 1.25rem; font-weight: 600; margin-bottom: 0.5rem;"></div>
-            <div id="profile-email" style="color: var(--text-light); margin-bottom: 1.5rem;"></div>
-            <div style="background: rgba(255,255,255,0.05); padding: 1rem; border-radius: var(--radius); margin-bottom: 1.5rem;">
-                <div style="display: flex; justify-content: space-between; margin-bottom: 0.5rem;"><span>Chapters Read:</span><span id="profile-chapters">0</span></div>
-                <div style="display: flex; justify-content: space-between;"><span>Last Chapter:</span><span id="profile-last">None</span></div>
+            
+            <!-- Profile Header -->
+            <div style="text-align: center; margin-bottom: 1.5rem;">
+                <div id="profile-avatar" style="width: 100px; height: 100px; border-radius: 50%; background: var(--secondary); margin: 0 auto 1rem; display: flex; align-items: center; justify-content: center; font-size: 2.5rem; overflow: hidden;">👤</div>
+                <div id="profile-display-name" style="font-size: 1.5rem; font-weight: 700; margin-bottom: 0.25rem;"></div>
+                <div id="profile-username" style="color: var(--primary); font-size: 0.95rem; margin-bottom: 0.5rem;"></div>
+                <div id="profile-email" style="color: var(--text-light); font-size: 0.85rem;"></div>
             </div>
+            
+            <!-- Bio Section -->
+            <div id="profile-bio-section" style="background: rgba(255,255,255,0.03); padding: 1rem; border-radius: var(--radius); margin-bottom: 1rem;">
+                <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.5rem;">
+                    <span style="font-weight: 600; font-size: 0.85rem; color: var(--text-light);">BIO</span>
+                    <button id="edit-bio-btn" class="btn btn-sm" style="padding: 0.25rem 0.5rem; font-size: 0.75rem;" onclick="toggleBioEdit()">Edit</button>
+                </div>
+                <p id="profile-bio" style="color: var(--text); font-size: 0.9rem; line-height: 1.5; margin: 0;">No bio yet...</p>
+                <div id="bio-edit-container" style="display: none;">
+                    <textarea id="bio-input" placeholder="Tell us about yourself..." style="width: 100%; min-height: 80px; padding: 0.75rem; background: var(--card-bg); border: 1px solid var(--border); color: var(--text); border-radius: var(--radius); font-family: inherit; margin-bottom: 0.5rem; resize: vertical;"></textarea>
+                    <div style="display: flex; gap: 0.5rem;">
+                        <button class="btn btn-sm" style="flex: 1;" onclick="saveBio()">Save</button>
+                        <button class="btn btn-sm" style="flex: 1; background: var(--border);" onclick="toggleBioEdit()">Cancel</button>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Reading Stats -->
+            <div style="background: rgba(255,255,255,0.03); padding: 1rem; border-radius: var(--radius); margin-bottom: 1rem;">
+                <div style="font-weight: 600; font-size: 0.85rem; color: var(--text-light); margin-bottom: 0.75rem;">📊 READING STATS</div>
+                <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 0.75rem;">
+                    <div style="text-align: center; padding: 0.75rem; background: rgba(255,255,255,0.03); border-radius: var(--radius);">
+                        <div id="profile-chapters" style="font-size: 1.5rem; font-weight: 700; color: var(--primary);">0</div>
+                        <div style="font-size: 0.75rem; color: var(--text-light);">Chapters Read</div>
+                    </div>
+                    <div style="text-align: center; padding: 0.75rem; background: rgba(255,255,255,0.03); border-radius: var(--radius);">
+                        <div id="profile-last" style="font-size: 1.5rem; font-weight: 700; color: var(--secondary);">—</div>
+                        <div style="font-size: 0.75rem; color: var(--text-light);">Last Chapter</div>
+                    </div>
+                    <div style="text-align: center; padding: 0.75rem; background: rgba(255,255,255,0.03); border-radius: var(--radius);">
+                        <div id="profile-progress" style="font-size: 1.5rem; font-weight: 700; color: var(--success);">0%</div>
+                        <div style="font-size: 0.75rem; color: var(--text-light);">Progress</div>
+                    </div>
+                    <div style="text-align: center; padding: 0.75rem; background: rgba(255,255,255,0.03); border-radius: var(--radius);">
+                        <div id="profile-comments" style="font-size: 1.5rem; font-weight: 700; color: var(--warning);">0</div>
+                        <div style="font-size: 0.75rem; color: var(--text-light);">Comments</div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Account Info -->
+            <div style="background: rgba(255,255,255,0.03); padding: 1rem; border-radius: var(--radius); margin-bottom: 1.5rem;">
+                <div style="font-weight: 600; font-size: 0.85rem; color: var(--text-light); margin-bottom: 0.75rem;">⚙️ ACCOUNT</div>
+                <div style="display: flex; justify-content: space-between; margin-bottom: 0.5rem; font-size: 0.9rem;">
+                    <span style="color: var(--text-light);">Provider</span>
+                    <span id="profile-provider" style="color: var(--text);">Google</span>
+                </div>
+                <div style="display: flex; justify-content: space-between; font-size: 0.9rem;">
+                    <span style="color: var(--text-light);">Member Since</span>
+                    <span id="profile-joined" style="color: var(--text);">—</span>
+                </div>
+            </div>
+            
             <button class="btn" style="background: var(--accent); width: 100%;" onclick="handleLogout(); document.getElementById('profile-modal').style.display = 'none';">Sign Out</button>
         </div>
     </div>

@@ -1786,12 +1786,12 @@ function initChapterList() {{
 
 // Firebase Integration
 const FirebaseConfig = {{
-    apiKey: "YOUR_FIREBASE_API_KEY",
-    authDomain: "YOUR_FIREBASE_PROJECT_ID.firebaseapp.com",
-    projectId: "YOUR_FIREBASE_PROJECT_ID",
-    storageBucket: "YOUR_FIREBASE_PROJECT_ID.appspot.com",
-    messagingSenderId: "YOUR_MESSAGING_SENDER_ID",
-    appId: "YOUR_APP_ID"
+    apiKey: "AIzaSyAx2KtNj6znY8ivypcV5fcQzeNzntevKMU",
+    authDomain: "shadowslaveread.firebaseapp.com",
+    projectId: "shadowslaveread",
+    storageBucket: "shadowslaveread.firebasestorage.app",
+    messagingSenderId: "956677381164",
+    appId: "1:956677381164:web:04832a90c7b82402cbc589"
 }};
 
 let currentUser = null;

@@ -2990,10 +2990,15 @@ async function showProfile() {
         if (commentsEl) commentsEl.textContent = commentCount;
         if (editBioBtn) editBioBtn.style.display = 'inline-block';
         
-        if (avatarEl && currentUser.photoURL) {
-            avatarEl.innerHTML = `<img src="${currentUser.photoURL}" style="width: 100%; height: 100%; border-radius: 50%; object-fit: cover;" />`;
-        } else if (avatarEl) {
-            avatarEl.innerHTML = '👤';
+        // Use custom avatar first, then Google avatar, then default
+        if (avatarEl) {
+            if (userProfile?.customAvatarUrl) {
+                avatarEl.innerHTML = `<img src="${userProfile.customAvatarUrl}" style="width: 100%; height: 100%; border-radius: 50%; object-fit: cover;" />`;
+            } else if (currentUser.photoURL) {
+                avatarEl.innerHTML = `<img src="${currentUser.photoURL}" style="width: 100%; height: 100%; border-radius: 50%; object-fit: cover;" />`;
+            } else {
+                avatarEl.innerHTML = '👤';
+            }
         }
         
         // Provider info
@@ -3073,6 +3078,48 @@ async function saveBio() {
             // ignore
         }
     }
+}
+
+async function handleAvatarUpload(event) {
+    if (!currentUser || !firebase.storage) return;
+    
+    const file = event.target.files[0];
+    if (!file || !file.type.startsWith('image/')) return;
+    
+    // Limit to 2MB
+    if (file.size > 2 * 1024 * 1024) {
+        alert('Image must be under 2MB');
+        return;
+    }
+    
+    try {
+        const storageRef = firebase.storage().ref();
+        const fileRef = storageRef.child(`avatars/${currentUser.uid}/${Date.now()}_${file.name}`);
+        
+        // Upload file
+        await fileRef.put(file);
+        
+        // Get download URL
+        const downloadUrl = await fileRef.getDownloadURL();
+        
+        // Update user profile in Firestore
+        await db.collection('users').doc(currentUser.uid).update({ customAvatarUrl: downloadUrl });
+        
+        // Update local profile
+        if (userProfile) userProfile.customAvatarUrl = downloadUrl;
+        
+        // Update avatar display
+        const avatarEl = document.getElementById('profile-avatar');
+        if (avatarEl) {
+            avatarEl.innerHTML = `<img src="${downloadUrl}" style="width: 100%; height: 100%; border-radius: 50%; object-fit: cover;" />`;
+        }
+    } catch (e) {
+        console.log('Avatar upload error:', e.message);
+        alert('Failed to upload avatar');
+    }
+    
+    // Reset file input
+    event.target.value = '';
 }
 
 function showLoginSuccess() {

@@ -1967,10 +1967,15 @@ async function showProfile() {{
         if (commentsEl) commentsEl.textContent = commentCount;
         if (editBioBtn) editBioBtn.style.display = 'inline-block';
         
-        if (avatarEl && currentUser.photoURL) {{
-            avatarEl.innerHTML = `<img src="${{currentUser.photoURL}}" style="width: 100%; height: 100%; border-radius: 50%; object-fit: cover;" />`;
-        }} else if (avatarEl) {{
-            avatarEl.innerHTML = '👤';
+        // Use custom avatar first, then Google avatar, then default
+        if (avatarEl) {{
+            if (userProfile?.customAvatarUrl) {{
+                avatarEl.innerHTML = `<img src="${{userProfile.customAvatarUrl}}" style="width: 100%; height: 100%; border-radius: 50%; object-fit: cover;" />`;
+            }} else if (currentUser.photoURL) {{
+                avatarEl.innerHTML = `<img src="${{currentUser.photoURL}}" style="width: 100%; height: 100%; border-radius: 50%; object-fit: cover;" />`;
+            }} else {{
+                avatarEl.innerHTML = '👤';
+            }}
         }}
         
         // Provider info
@@ -2050,6 +2055,48 @@ async function saveBio() {{
             // ignore
         }}
     }}
+}}
+
+async function handleAvatarUpload(event) {{
+    if (!currentUser || !firebase.storage) return;
+    
+    const file = event.target.files[0];
+    if (!file || !file.type.startsWith('image/')) return;
+    
+    // Limit to 2MB
+    if (file.size > 2 * 1024 * 1024) {{
+        alert('Image must be under 2MB');
+        return;
+    }}
+    
+    try {{
+        const storageRef = firebase.storage().ref();
+        const fileRef = storageRef.child(`avatars/${{currentUser.uid}}/${{Date.now()}}_${{file.name}}`);
+        
+        // Upload file
+        await fileRef.put(file);
+        
+        // Get download URL
+        const downloadUrl = await fileRef.getDownloadURL();
+        
+        // Update user profile in Firestore
+        await db.collection('users').doc(currentUser.uid).update({{ customAvatarUrl: downloadUrl }});
+        
+        // Update local profile
+        if (userProfile) userProfile.customAvatarUrl = downloadUrl;
+        
+        // Update avatar display
+        const avatarEl = document.getElementById('profile-avatar');
+        if (avatarEl) {{
+            avatarEl.innerHTML = `<img src=\"${{downloadUrl}}\" style=\"width: 100%; height: 100%; border-radius: 50%; object-fit: cover;\" />`;
+        }}
+    }} catch (e) {{
+        console.log('Avatar upload error:', e.message);
+        alert('Failed to upload avatar');
+    }}
+    
+    // Reset file input
+    event.target.value = '';
 }}
 
 function showLoginSuccess() {{
@@ -2336,7 +2383,11 @@ def get_base_template():
             
             <!-- Profile Header -->
             <div style="text-align: center; margin-bottom: 1.5rem;">
-                <div id="profile-avatar" style="width: 100px; height: 100px; border-radius: 50%; background: var(--secondary); margin: 0 auto 1rem; display: flex; align-items: center; justify-content: center; font-size: 2.5rem; overflow: hidden;">👤</div>
+                <div style="position: relative; width: 100px; height: 100px; margin: 0 auto 1rem;">
+                    <div id="profile-avatar" style="width: 100%; height: 100%; border-radius: 50%; background: var(--secondary); display: flex; align-items: center; justify-content: center; font-size: 2.5rem; overflow: hidden;">👤</div>
+                    <button id="avatar-upload-btn" onclick="document.getElementById('avatar-file-input').click()" style="position: absolute; bottom: 0; right: 0; width: 32px; height: 32px; border-radius: 50%; background: var(--primary); border: 2px solid var(--dark-bg); cursor: pointer; display: flex; align-items: center; justify-content: center; font-size: 0.8rem; padding: 0; color: var(--dark-bg);" title="Change avatar">📷</button>
+                    <input type="file" id="avatar-file-input" accept="image/*" style="display: none;" onchange="handleAvatarUpload(event)">
+                </div>
                 <div id="profile-display-name" style="font-size: 1.5rem; font-weight: 700; margin-bottom: 0.25rem;"></div>
                 <div id="profile-username" style="color: var(--primary); font-size: 0.95rem; margin-bottom: 0.5rem;"></div>
                 <div id="profile-email" style="color: var(--text-light); font-size: 0.85rem;"></div>

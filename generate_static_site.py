@@ -1817,24 +1817,52 @@ async function initFirebase() {{
 function updateAuthUI() {{
     const loginBtn = document.getElementById('login-btn');
     const logoutBtn = document.getElementById('logout-btn');
-    const userDisplay = document.getElementById('user-display');
+    const profileBtn = document.getElementById('profile-btn');
     const authContainer = document.getElementById('auth-container');
     
     if (!authContainer) return;
     
     if (currentUser) {{
         loginBtn.style.display = 'none';
+        if (profileBtn) profileBtn.style.display = 'block';
         logoutBtn.style.display = 'block';
-        userDisplay.textContent = currentUser.email ? currentUser.email.split('@')[0] : 'User';
         authContainer.style.display = 'flex';
     }} else {{
         loginBtn.style.display = 'block';
+        if (profileBtn) profileBtn.style.display = 'none';
         logoutBtn.style.display = 'none';
-        userDisplay.textContent = '';
     }}
 }}
 
+function showProfile() {{
+    if (!currentUser) return;
+    const nameEl = document.getElementById('profile-name');
+    const emailEl = document.getElementById('profile-email');
+    const chaptersEl = document.getElementById('profile-chapters');
+    const lastEl = document.getElementById('profile-last');
+    const avatarEl = document.getElementById('profile-avatar');
+    
+    if (nameEl) nameEl.textContent = currentUser.displayName || currentUser.email.split('@')[0];
+    if (emailEl) emailEl.textContent = currentUser.email;
+    if (chaptersEl) chaptersEl.textContent = Storage.getReadCount();
+    if (lastEl) lastEl.textContent = Storage.getLastChapter() ? 'Chapter ' + Storage.getLastChapter() : 'None';
+    if (avatarEl && currentUser.photoURL) {{
+        avatarEl.innerHTML = `<img src="${{currentUser.photoURL}}" style="width: 100%; height: 100%; border-radius: 50%; object-fit: cover;" />`;
+    }}
+    
+    document.getElementById('profile-modal').style.display = 'flex';
+}}
+
+function showLoginSuccess() {{
+    const nameEl = document.getElementById('login-success-name');
+    if (nameEl && currentUser) {{
+        nameEl.textContent = 'Hello, ' + (currentUser.displayName || currentUser.email.split('@')[0]) + '!';
+    }}
+    document.getElementById('login-success-modal').style.display = 'flex';
+}}
+
 let loginInProgress = false;
+let wasLoggedIn = false;
 
 async function handleLogin() {{
     if (loginInProgress) return;
@@ -1843,12 +1871,16 @@ async function handleLogin() {{
         return;
     }}
     loginInProgress = true;
+    wasLoggedIn = !!currentUser;
     const provider = new firebase.auth.GoogleAuthProvider();
     try {{
-        await firebase.auth().signInWithPopup(provider);
+        const result = await firebase.auth().signInWithPopup(provider);
+        if (result.user && !wasLoggedIn) {{
+            setTimeout(() => showLoginSuccess(), 300);
+        }}
     }} catch (e) {{
         if (e.code !== 'auth/cancelled-popup-request' && e.code !== 'auth/popup-closed-by-user') {{
-            alert('Login failed: ' + e.message);
+            console.error('Login error:', e);
         }}
     }} finally {{
         loginInProgress = false;
@@ -2058,8 +2090,8 @@ def get_base_template():
                 <a href="https://www.webnovel.com/book/shadow-slave_17505878106372705" target="_blank" rel="noopener">🔗 Official Webnovel</a>
                 <div id="auth-container" style="display: flex; align-items: center; gap: 0.5rem;">
                     <button id="login-btn" class="btn btn-sm" style="background: var(--secondary);" onclick="handleLogin()">Sign In</button>
+                    <button id="profile-btn" class="btn btn-sm" style="background: var(--primary); display: none;" onclick="showProfile()">👤 Profile</button>
                     <button id="logout-btn" class="btn btn-sm" style="background: var(--accent); display: none;" onclick="handleLogout()">Sign Out</button>
-                    <span id="user-display" style="color: var(--text-light); font-size: 0.9rem; align-self: center;"></span>
                 </div>
             </div>
         </nav>
@@ -2076,6 +2108,31 @@ def get_base_template():
             </div>
             <textarea id="comment-text" placeholder="Write your comment..." style="width: 100%; min-height: 100px; padding: 0.75rem; background: var(--card-bg); border: 1px solid var(--border); color: var(--text); border-radius: var(--radius); font-family: inherit; margin-bottom: 1rem; resize: vertical;"></textarea>
             <button id="submit-comment-btn" class="btn" onclick="submitComment()">Post Comment</button>
+        </div>
+    </div>
+    <div id="profile-modal" class="modal" style="display: none;">
+        <div class="modal-content" style="text-align: center;">
+            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1.5rem;">
+                <h3>👤 Your Profile</h3>
+                <button class="close-btn" onclick="document.getElementById('profile-modal').style.display = 'none';">&times;</button>
+            </div>
+            <div id="profile-avatar" style="width: 80px; height: 80px; border-radius: 50%; background: var(--secondary); margin: 0 auto 1rem; display: flex; align-items: center; justify-content: center; font-size: 2rem;">👤</div>
+            <div id="profile-name" style="font-size: 1.25rem; font-weight: 600; margin-bottom: 0.5rem;"></div>
+            <div id="profile-email" style="color: var(--text-light); margin-bottom: 1.5rem;"></div>
+            <div style="background: rgba(255,255,255,0.05); padding: 1rem; border-radius: var(--radius); margin-bottom: 1.5rem;">
+                <div style="display: flex; justify-content: space-between; margin-bottom: 0.5rem;"><span>Chapters Read:</span><span id="profile-chapters">0</span></div>
+                <div style="display: flex; justify-content: space-between;"><span>Last Chapter:</span><span id="profile-last">None</span></div>
+            </div>
+            <button class="btn" style="background: var(--accent); width: 100%;" onclick="handleLogout(); document.getElementById('profile-modal').style.display = 'none';">Sign Out</button>
+        </div>
+    </div>
+    <div id="login-success-modal" class="modal" style="display: none;">
+        <div class="modal-content" style="text-align: center;">
+            <div style="font-size: 3rem; margin-bottom: 1rem;">✅</div>
+            <h3 style="margin-bottom: 0.5rem;">Welcome!</h3>
+            <p id="login-success-name" style="color: var(--text-light); margin-bottom: 1.5rem;"></p>
+            <p style="margin-bottom: 1.5rem;">You're now signed in. You can comment on chapters and your progress will be synced.</p>
+            <button class="btn" style="width: 100%;" onclick="document.getElementById('login-success-modal').style.display = 'none';">Continue Reading</button>
         </div>
     </div>
     <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-app-compat.js"></script>

@@ -2879,24 +2879,52 @@ async function initFirebase() {
 function updateAuthUI() {
     const loginBtn = document.getElementById('login-btn');
     const logoutBtn = document.getElementById('logout-btn');
-    const userDisplay = document.getElementById('user-display');
+    const profileBtn = document.getElementById('profile-btn');
     const authContainer = document.getElementById('auth-container');
     
     if (!authContainer) return;
     
     if (currentUser) {
         loginBtn.style.display = 'none';
+        if (profileBtn) profileBtn.style.display = 'block';
         logoutBtn.style.display = 'block';
-        userDisplay.textContent = currentUser.email ? currentUser.email.split('@')[0] : 'User';
         authContainer.style.display = 'flex';
     } else {
         loginBtn.style.display = 'block';
+        if (profileBtn) profileBtn.style.display = 'none';
         logoutBtn.style.display = 'none';
-        userDisplay.textContent = '';
     }
 }
 
+function showProfile() {
+    if (!currentUser) return;
+    const nameEl = document.getElementById('profile-name');
+    const emailEl = document.getElementById('profile-email');
+    const chaptersEl = document.getElementById('profile-chapters');
+    const lastEl = document.getElementById('profile-last');
+    const avatarEl = document.getElementById('profile-avatar');
+    
+    if (nameEl) nameEl.textContent = currentUser.displayName || currentUser.email.split('@')[0];
+    if (emailEl) emailEl.textContent = currentUser.email;
+    if (chaptersEl) chaptersEl.textContent = Storage.getReadCount();
+    if (lastEl) lastEl.textContent = Storage.getLastChapter() ? 'Chapter ' + Storage.getLastChapter() : 'None';
+    if (avatarEl && currentUser.photoURL) {
+        avatarEl.innerHTML = `<img src="${currentUser.photoURL}" style="width: 100%; height: 100%; border-radius: 50%; object-fit: cover;" />`;
+    }
+    
+    document.getElementById('profile-modal').style.display = 'flex';
+}
+
+function showLoginSuccess() {
+    const nameEl = document.getElementById('login-success-name');
+    if (nameEl && currentUser) {
+        nameEl.textContent = 'Hello, ' + (currentUser.displayName || currentUser.email.split('@')[0]) + '!';
+    }
+    document.getElementById('login-success-modal').style.display = 'flex';
+}
+
 let loginInProgress = false;
+let wasLoggedIn = false;
 
 async function handleLogin() {
     if (loginInProgress) return;
@@ -2905,12 +2933,16 @@ async function handleLogin() {
         return;
     }
     loginInProgress = true;
+    wasLoggedIn = !!currentUser;
     const provider = new firebase.auth.GoogleAuthProvider();
     try {
-        await firebase.auth().signInWithPopup(provider);
+        const result = await firebase.auth().signInWithPopup(provider);
+        if (result.user && !wasLoggedIn) {
+            setTimeout(() => showLoginSuccess(), 300);
+        }
     } catch (e) {
         if (e.code !== 'auth/cancelled-popup-request' && e.code !== 'auth/popup-closed-by-user') {
-            alert('Login failed: ' + e.message);
+            console.error('Login error:', e);
         }
     } finally {
         loginInProgress = false;

@@ -2048,9 +2048,9 @@ def get_base_template():
                 <a href="{chapters_path}">📚 Chapters</a>
                 <a href="{login_path}">💾 Save</a>
                 <a href="https://www.webnovel.com/book/shadow-slave_17505878106372705" target="_blank" rel="noopener">🔗 Official Webnovel</a>
-                <div id="auth-container" style="gap: 0.5rem;">
-                    <button id="login-btn" class="btn btn-sm" style="background: var(--secondary);">Sign In</button>
-                    <button id="logout-btn" class="btn btn-sm" style="background: var(--accent); display: none;">Sign Out</button>
+                <div id="auth-container" style="display: flex; align-items: center; gap: 0.5rem;">
+                    <button id="login-btn" class="btn btn-sm" style="background: var(--secondary);" onclick="handleLogin()">Sign In</button>
+                    <button id="logout-btn" class="btn btn-sm" style="background: var(--accent); display: none;" onclick="handleLogout()">Sign Out</button>
                     <span id="user-display" style="color: var(--text-light); font-size: 0.9rem; align-self: center;"></span>
                 </div>
             </div>
